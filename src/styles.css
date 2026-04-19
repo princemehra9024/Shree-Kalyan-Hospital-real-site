@@ -1,0 +1,153 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/* Editorial fonts — Newsreader (display serif) + Instrument Sans (refined sans) */
+@import url("https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400..600;1,400..600&family=Newsreader:ital,opsz,wght@0,6..72,200..600;1,6..72,200..600&display=swap");
+
+@theme inline {
+  --font-display: "Newsreader", serif;
+  --font-sans: "Instrument Sans", sans-serif;
+
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-paper: var(--paper);
+  --color-ink: var(--ink);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  /* Brand */
+  --color-navy: var(--navy);
+  --color-navy-deep: var(--navy-deep);
+  --color-magenta: var(--magenta);
+  --color-pink: var(--pink);
+  --color-sky: var(--sky);
+
+  --shadow-editorial: 0 30px 80px -30px color-mix(in oklab, var(--navy-deep) 35%, transparent);
+  --shadow-card: 0 20px 50px -25px color-mix(in oklab, var(--navy-deep) 25%, transparent);
+}
+
+:root {
+  --radius: 0.5rem;
+
+  /* Paper-stock editorial palette - refined for Awwwards style */
+  --paper: #f9f8f4;            /* premium slightly warm paper */
+  --ink: #1a1a1a;              /* deep charcoal ink */
+  --background: var(--paper);
+  --foreground: var(--ink);
+
+  --navy: #1e293b;
+  --navy-deep: #0f172a;
+  --magenta: #be185d;
+  --pink: #db2777;
+  --sky: #38bdf8;
+
+  --card: var(--paper);
+  --card-foreground: var(--ink);
+  --popover: var(--paper);
+  --popover-foreground: var(--ink);
+  --primary: var(--navy-deep);
+  --primary-foreground: var(--paper);
+  --secondary: #f3f3f0;
+  --secondary-foreground: var(--ink);
+  --muted: #f3f3f0;
+  --muted-foreground: #64748b;
+  --accent: var(--magenta);
+  --accent-foreground: var(--paper);
+  --destructive: #991b1b;
+  --destructive-foreground: var(--paper);
+  --border: #e2e8f0;
+  --input: #e2e8f0;
+  --ring: var(--navy);
+}
+
+.dark {
+  --paper: #0f172a;
+  --ink: #f8fafc;
+  --background: var(--paper);
+  --foreground: var(--ink);
+  --card: #1e293b;
+  --card-foreground: var(--ink);
+  --popover: #1e293b;
+  --popover-foreground: var(--ink);
+  --primary: var(--paper);
+  --primary-foreground: var(--navy-deep);
+  --secondary: #1e293b;
+  --secondary-foreground: var(--ink);
+  --muted: #1e293b;
+  --muted-foreground: #94a3b8;
+  --accent: var(--magenta);
+  --accent-foreground: var(--paper);
+  --border: rgba(255,255,255,0.1);
+  --input: rgba(255,255,255,0.15);
+  --ring: var(--sky);
+}
+
+@layer base {
+  * { border-color: var(--color-border); }
+  html { scroll-behavior: smooth; }
+  body {
+    background-color: var(--color-paper);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    font-feature-settings: "ss01", "cv01";
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    position: relative;
+  }
+  
+  /* Global Noise Texture */
+  body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url("https://grainy-gradients.vercel.app/noise.svg");
+    opacity: 0.05;
+    pointer-events: none;
+    z-index: 9999;
+  }
+
+  ::selection { background-color: var(--color-magenta); color: var(--color-paper); }
+}
+
+/* Typography Refinements */
+.font-display {
+  font-weight: 300;
+  letter-spacing: -0.04em;
+}
+
+/* Marquee */
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+.animate-marquee { animation: marquee 40s linear infinite; }
+.animate-marquee-fast { animation: marquee 22s linear infinite; }
+
+/* Reveal helpers (used by GSAP fallback) */
+.reveal { opacity: 0; transform: translateY(24px); }
