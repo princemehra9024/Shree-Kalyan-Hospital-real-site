@@ -1,10 +1,10 @@
 const specialties = [
-  { num: "I", title: "Cardiology", body: "Interventional procedures and chronic care across our 32-bed cardiac unit." },
-  { num: "II", title: "Neurosciences", body: "Stroke response, epilepsy and movement disorder programs led by senior neurologists." },
-  { num: "III", title: "Oncology", body: "Targeted therapy and surgical oncology informed by molecular diagnostics." },
-  { num: "IV", title: "Orthopedics", body: "Joint replacement, sports medicine and reconstructive trauma surgery." },
-  { num: "V", title: "Mother & Child", body: "Obstetrics, neonatal ICU and pediatric specialists under one quiet roof." },
-  { num: "VI", title: "Critical Care", body: "Multi-disciplinary ICU with 24-hour intensivist coverage and trauma triage." },
+  { num: "I",   title: "Cardiology",    body: "Interventional procedures and chronic care across our 32-bed cardiac unit." },
+  { num: "II",  title: "Neurosciences", body: "Stroke response, epilepsy and movement disorder programs led by senior neurologists." },
+  { num: "III", title: "Oncology",      body: "Targeted therapy and surgical oncology informed by molecular diagnostics." },
+  { num: "IV",  title: "Orthopedics",   body: "Joint replacement, sports medicine and reconstructive trauma surgery." },
+  { num: "V",   title: "Mother & Child",body: "Obstetrics, neonatal ICU and pediatric specialists under one quiet roof." },
+  { num: "VI",  title: "Critical Care", body: "Multi-disciplinary ICU with 24-hour intensivist coverage and trauma triage." },
 ];
 
 export function Specialties() {

@@ -6,13 +6,13 @@ import tailwindcss from "@tailwindcss/vite";
 
 export default defineConfig({
   plugins: [
-    tsconfigPaths(),
-    react(),
-    tailwindcss(),
     tanstackStart({
       nitro: {
         preset: "vercel",
       },
     }),
+    tsconfigPaths(),
+    react(),
+    tailwindcss(),
   ],
 });

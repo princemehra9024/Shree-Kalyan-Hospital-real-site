@@ -7,6 +7,9 @@ import { Specialties } from "@/components/site/Specialties";
 import { Physicians } from "@/components/site/Physicians";
 import { ContactPreview } from "@/components/site/ContactPreview";
 import { SiteFooter } from "@/components/site/SiteFooter";
+import { PatientStories } from "@/components/site/PatientStories";
+import { QuickAccess } from "@/components/site/QuickAccess";
+import { RoomViews } from "@/components/site/RoomViews";
 import { useGsapReveal } from "@/hooks/use-gsap-reveal";
 
 export const Route = createFileRoute("/")({
@@ -62,9 +65,7 @@ function Index() {
             </h1>
 
             <div className="mt-12 md:mt-20 ml-2 md:ml-32 flex flex-col md:flex-row gap-12 md:gap-24 md:items-start" data-anim="hero-body">
-              <p
-                className="text-lg md:text-xl max-w-[42ch] leading-[1.8] text-ink/70 text-pretty font-light"
-              >
+              <p className="text-lg md:text-xl max-w-[42ch] leading-[1.8] text-ink/70 text-pretty font-light">
                 We believe healing requires more than medical excellence. It demands a sanctuary where
                 advanced clinical practice meets profound human empathy.
               </p>
@@ -112,6 +113,9 @@ function Index() {
         </div>
       </main>
 
+      {/* Quick-access Fortis-style grid */}
+      <QuickAccess />
+
       {/* Conveyor belt */}
       <Marquee
         items={[
@@ -133,7 +137,9 @@ function Index() {
       />
 
       <Specialties />
+      <RoomViews />
       <Physicians />
+      <PatientStories />
       <ContactPreview />
       <SiteFooter />
     </div>

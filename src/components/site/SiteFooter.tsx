@@ -24,7 +24,7 @@ export function SiteFooter() {
           <div className="col-span-6 md:col-span-2">
             <p className="text-[0.65rem] tracking-[0.2em] uppercase text-paper/50 mb-4">Reach</p>
             <ul className="space-y-2 text-sm text-paper/80">
-              <li><a href="tel:+919999999999" className="hover:text-magenta transition-colors">+91 99999 99999</a></li>
+              <li><a href="tel:+918529219330" className="hover:text-magenta transition-colors">+91 85292 19330</a></li>
               <li><a href="mailto:care@shreekalyan.in" className="hover:text-magenta transition-colors">care@shreekalyan.in</a></li>
             </ul>
           </div>

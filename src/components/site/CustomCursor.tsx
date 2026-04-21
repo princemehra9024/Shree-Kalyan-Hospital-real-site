@@ -3,110 +3,218 @@
 import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 
+type CursorState = "default" | "hover" | "click" | "text";
+
 export function CustomCursor() {
-  const cursorRef = useRef<HTMLDivElement>(null);
-  const followerRef = useRef<HTMLDivElement>(null);
-  const [isHovering, setIsHovering] = useState(false);
+  const dotRef = useRef<HTMLDivElement>(null);
+  const ringRef = useRef<HTMLDivElement>(null);
+  const labelRef = useRef<HTMLSpanElement>(null);
+  const [cursorState, setCursorState] = useState<CursorState>("default");
+  const [label, setLabel] = useState("");
+  const pos = useRef({ x: -200, y: -200 });
 
   useEffect(() => {
-    const cursor = cursorRef.current;
-    const follower = followerRef.current;
-    if (!cursor || !follower) return;
+    const dot = dotRef.current;
+    const ring = ringRef.current;
+    if (!dot || !ring) return;
 
-    const onMouseMove = (e: MouseEvent) => {
-      const { clientX, clientY } = e;
-      
-      // Instant small dot
-      gsap.to(cursor, {
-        x: clientX,
-        y: clientY,
-        duration: 0.1,
+    /* ── Mouse move — dot is instant, ring lags ── */
+    const onMove = (e: MouseEvent) => {
+      pos.current = { x: e.clientX, y: e.clientY };
+
+      gsap.to(dot, {
+        x: e.clientX,
+        y: e.clientY,
+        duration: 0.08,
         ease: "none",
+        overwrite: "auto",
       });
 
-      // Lagging follower circle
-      gsap.to(follower, {
-        x: clientX,
-        y: clientY,
-        duration: 0.5,
+      gsap.to(ring, {
+        x: e.clientX,
+        y: e.clientY,
+        duration: 0.45,
         ease: "power3.out",
+        overwrite: "auto",
       });
     };
 
-    const onMouseEnter = () => setIsHovering(true);
-    const onMouseLeave = () => setIsHovering(false);
+    /* ── Press states ── */
+    const onDown = () => setCursorState("click");
+    const onUp = () => setCursorState("default");
 
-    window.addEventListener("mousemove", onMouseMove);
+    /* ── Hide when leaving window ── */
+    const onLeave = () => {
+      gsap.to([dot, ring], { opacity: 0, duration: 0.2 });
+    };
+    const onEnter = () => {
+      gsap.to([dot, ring], { opacity: 1, duration: 0.2 });
+    };
 
-    // Reusable listener for interactive elements
-    const updateInteractiveListeners = () => {
-      const interactiveElements = document.querySelectorAll('a, button, [role="button"], input, select, textarea');
-      interactiveElements.forEach((el) => {
-        el.addEventListener("mouseenter", onMouseEnter);
-        el.addEventListener("mouseleave", onMouseLeave);
+    window.addEventListener("mousemove", onMove);
+    window.addEventListener("mousedown", onDown);
+    window.addEventListener("mouseup", onUp);
+    document.documentElement.addEventListener("mouseleave", onLeave);
+    document.documentElement.addEventListener("mouseenter", onEnter);
+
+    /* ── Interactive element detection ── */
+    const attach = () => {
+      const links = document.querySelectorAll<HTMLElement>(
+        'a, button, [role="button"], label[for], summary'
+      );
+      const inputs = document.querySelectorAll<HTMLElement>(
+        "input, textarea, select, [contenteditable]"
+      );
+
+      links.forEach((el) => {
+        el.addEventListener("mouseenter", () => {
+          const tip = el.getAttribute("data-cursor") || "";
+          setLabel(tip);
+          setCursorState("hover");
+        });
+        el.addEventListener("mouseleave", () => {
+          setLabel("");
+          setCursorState("default");
+        });
+      });
+
+      inputs.forEach((el) => {
+        el.addEventListener("mouseenter", () => setCursorState("text"));
+        el.addEventListener("mouseleave", () => setCursorState("default"));
       });
     };
 
-    updateInteractiveListeners();
-    
-    // Observer for dynamic content
-    const observer = new MutationObserver(updateInteractiveListeners);
+    attach();
+    const observer = new MutationObserver(attach);
     observer.observe(document.body, { childList: true, subtree: true });
 
     return () => {
-      window.removeEventListener("mousemove", onMouseMove);
+      window.removeEventListener("mousemove", onMove);
+      window.removeEventListener("mousedown", onDown);
+      window.removeEventListener("mouseup", onUp);
+      document.documentElement.removeEventListener("mouseleave", onLeave);
+      document.documentElement.removeEventListener("mouseenter", onEnter);
       observer.disconnect();
     };
   }, []);
 
+  /* ── Animate ring based on state ── */
   useEffect(() => {
-    if (!followerRef.current || !cursorRef.current) return;
+    const ring = ringRef.current;
+    const dot = dotRef.current;
+    if (!ring || !dot) return;
 
-    if (isHovering) {
-      gsap.to(followerRef.current, {
-        scale: 2.5,
-        backgroundColor: "rgba(235, 30, 77, 0.1)", // Magenta tint
-        borderColor: "rgba(235, 30, 77, 0.5)",
-        duration: 0.3,
+    if (cursorState === "hover") {
+      gsap.to(ring, {
+        width: 56,
+        height: 56,
+        borderColor: "rgba(190,24,93,1)",
+        backgroundColor: "rgba(190,24,93,0.08)",
+        duration: 0.35,
+        ease: "power2.out",
       });
-      gsap.to(cursorRef.current, {
-        scale: 0.5,
-        backgroundColor: "#EB1E4D",
-        duration: 0.3,
+      gsap.to(dot, {
+        width: 6,
+        height: 6,
+        backgroundColor: "#be185d",
+        duration: 0.2,
+      });
+    } else if (cursorState === "click") {
+      gsap.to(ring, {
+        width: 36,
+        height: 36,
+        backgroundColor: "rgba(190,24,93,0.25)",
+        duration: 0.15,
+        ease: "power3.out",
+      });
+      gsap.to(dot, {
+        width: 10,
+        height: 10,
+        backgroundColor: "#be185d",
+        duration: 0.1,
+      });
+    } else if (cursorState === "text") {
+      gsap.to(ring, {
+        width: 4,
+        height: 28,
+        borderRadius: 2,
+        borderColor: "rgba(190,24,93,0.8)",
+        backgroundColor: "rgba(190,24,93,0.15)",
+        duration: 0.25,
+        ease: "power2.out",
+      });
+      gsap.to(dot, {
+        width: 0,
+        height: 0,
+        duration: 0.2,
       });
     } else {
-      gsap.to(followerRef.current, {
-        scale: 1,
+      // default
+      gsap.to(ring, {
+        width: 40,
+        height: 40,
+        borderRadius: "50%",
+        borderColor: "rgba(15,23,42,0.55)",
         backgroundColor: "transparent",
-        borderColor: "rgba(26, 26, 26, 0.2)", // Ink tint
-        duration: 0.3,
+        duration: 0.4,
+        ease: "power2.out",
       });
-      gsap.to(cursorRef.current, {
-        scale: 1,
-        backgroundColor: "#1a1a1a",
-        duration: 0.3,
+      gsap.to(dot, {
+        width: 8,
+        height: 8,
+        backgroundColor: "#0f172a",
+        duration: 0.2,
       });
     }
-  }, [isHovering]);
+  }, [cursorState]);
 
   return (
     <>
-      <div 
-        ref={cursorRef} 
-        className="fixed top-0 left-0 w-2 h-2 bg-ink rounded-full pointer-events-none z-[9999] -translate-x-1/2 -translate-y-1/2 mix-blend-difference hidden md:block" 
+      {/* ── Outer ring (lagging) ── */}
+      <div
+        ref={ringRef}
+        aria-hidden="true"
+        className="fixed top-0 left-0 pointer-events-none z-[99999] -translate-x-1/2 -translate-y-1/2 hidden md:flex items-center justify-center"
+        style={{
+          width: 40,
+          height: 40,
+          borderRadius: "50%",
+          border: "1.5px solid rgba(15,23,42,0.55)",
+          backgroundColor: "transparent",
+          /* Subtle drop shadow so it's always visible */
+          filter: "drop-shadow(0 0 6px rgba(190,24,93,0.18))",
+          willChange: "transform",
+        }}
+      >
+        {/* Optional label inside ring on hover */}
+        {label && (
+          <span
+            ref={labelRef}
+            className="text-[0.42rem] font-black uppercase tracking-[0.18em] text-magenta whitespace-nowrap select-none"
+          >
+            {label}
+          </span>
+        )}
+      </div>
+
+      {/* ── Inner dot (instant) ── */}
+      <div
+        ref={dotRef}
+        aria-hidden="true"
+        className="fixed top-0 left-0 pointer-events-none z-[99999] -translate-x-1/2 -translate-y-1/2 rounded-full hidden md:block"
+        style={{
+          width: 8,
+          height: 8,
+          backgroundColor: "#0f172a",
+          boxShadow: "0 0 0 1.5px rgba(255,255,255,0.55), 0 2px 8px rgba(0,0,0,0.25)",
+          willChange: "transform",
+        }}
       />
-      <div 
-        ref={followerRef} 
-        className="fixed top-0 left-0 w-10 h-10 border border-ink/20 rounded-full pointer-events-none z-[9998] -translate-x-1/2 -translate-y-1/2 hidden md:block" 
-      />
+
+      {/* ── Hide native cursor ── */}
       <style>{`
-        * {
-          cursor: none !important;
-        }
-        @media (max-width: 768px) {
-          * {
-            cursor: auto !important;
-          }
+        @media (min-width: 768px) {
+          *, *::before, *::after { cursor: none !important; }
         }
       `}</style>
     </>

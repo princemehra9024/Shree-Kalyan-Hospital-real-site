@@ -8,7 +8,7 @@ const navItems = [
   { to: "/" as const, label: "Home", num: "01" },
   { to: "/about" as const, label: "About Us", num: "02" },
   { to: "/services" as const, label: "Services", num: "03" },
-  { to: "/team" as const, label: "Doctors", num: "04" },
+  { to: "/team" as const, label: "Team", num: "04" },
   { to: "/appointments" as const, label: "Appointments", num: "05" },
   { to: "/patient-care" as const, label: "Patient Care", num: "06" },
   { to: "/faqs" as const, label: "FAQs", num: "07" },
@@ -136,14 +136,28 @@ export function SiteNav() {
 
           {/* BOTTOM TIER: Main Navigation */}
           <div
-            className={`flex-1 bg-navy-deep/95 backdrop-blur-xl flex items-center justify-end md:justify-between px-6 border-b border-ink/10 transition-all duration-500 
+            className={`flex-1 bg-navy-deep/95 backdrop-blur-xl flex items-center justify-between px-4 md:px-6 border-b border-ink/10 transition-all duration-500 
             ${scrolled ? "h-16 md:h-20" : "h-16 md:h-20"}`}
           >
+            {/* Mobile: Hospital name — hidden on desktop */}
+            <Link
+              to="/"
+              className="flex flex-col md:hidden leading-tight"
+              aria-label="Shree Kalyan Hospital home"
+            >
+              <span className="text-paper font-bold text-[0.95rem] tracking-wide leading-tight">
+                Shree Kalyan
+              </span>
+              <span className="text-magenta text-[0.62rem] font-bold uppercase tracking-[0.22em] leading-tight">
+                Hospital · Kota
+              </span>
+            </Link>
+
             {/* Desktop Navigation Links */}
             <nav
               ref={navRef}
               onMouseLeave={hideIndicator}
-              className="relative hidden md:flex items-center gap-2 flex-wrap"
+              className="relative hidden md:flex items-center gap-1 flex-nowrap"
             >
               <span
                 ref={indicatorRef}
@@ -158,14 +172,14 @@ export function SiteNav() {
                   activeOptions={{ exact: true }}
                   onMouseEnter={(e) => moveIndicatorTo(e.currentTarget)}
                   activeProps={{ className: "text-magenta" }}
-                  className="relative z-10 group flex items-center gap-2 px-4 py-2 text-[0.7rem] font-bold tracking-[0.2em] uppercase text-paper hover:text-magenta transition-colors"
+                  className="relative z-10 group flex items-center gap-2 px-3 py-2 text-[0.65rem] font-bold tracking-[0.15em] uppercase text-paper hover:text-magenta transition-colors whitespace-nowrap"
                 >
                   {item.label}
                 </Link>
               ))}
             </nav>
 
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-3">
               {/* Desktop CTA */}
               <Link
                 to="/contact"
@@ -174,12 +188,23 @@ export function SiteNav() {
                 ENQUIRY FOR VISIT
                 <span className="font-display italic text-[1.1rem] opacity-70 group-hover:translate-x-1 group-hover:opacity-100 transition-all">↗</span>
               </Link>
-              
+
+              {/* Mobile: quick call button */}
+              <a
+                href="tel:+918529219330"
+                aria-label="Call emergency"
+                className="md:hidden flex items-center justify-center size-9 rounded-full bg-magenta/15 border border-magenta/30 text-magenta hover:bg-magenta hover:text-white transition-colors"
+              >
+                <svg viewBox="0 0 20 20" fill="none" className="w-4 h-4">
+                  <path d="M3 3h4l1.5 4-2 1.5a11 11 0 005 5L13 11l4 1.5V17a1 1 0 01-1 1C7 18 2 13 2 4a1 1 0 011-1z" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round"/>
+                </svg>
+              </a>
+
               {/* Mobile Burger */}
               <button
                 onClick={() => setOpen(true)}
                 aria-label="Open menu"
-                className="md:hidden relative size-10 rounded-full flex flex-col items-center justify-center gap-1.5 hover:text-magenta transition-colors text-paper"
+                className="md:hidden relative size-9 flex items-center justify-center hover:text-magenta transition-colors text-paper"
               >
                 <Menu className="size-6" />
               </button>
