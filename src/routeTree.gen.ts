@@ -13,10 +13,13 @@ import { Route as TeamRouteImport } from './routes/team'
 import { Route as ServicesRouteImport } from './routes/services'
 import { Route as PatientCareRouteImport } from './routes/patient-care'
 import { Route as FaqsRouteImport } from './routes/faqs'
+import { Route as FacilitiesRouteImport } from './routes/facilities'
 import { Route as ContactRouteImport } from './routes/contact'
+import { Route as CancerGuidelinesRouteImport } from './routes/cancer-guidelines'
 import { Route as AppointmentsRouteImport } from './routes/appointments'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ServicesServiceIdRouteImport } from './routes/services.$serviceId'
 
 const TeamRoute = TeamRouteImport.update({
   id: '/team',
@@ -38,9 +41,19 @@ const FaqsRoute = FaqsRouteImport.update({
   path: '/faqs',
   getParentRoute: () => rootRouteImport,
 } as any)
+const FacilitiesRoute = FacilitiesRouteImport.update({
+  id: '/facilities',
+  path: '/facilities',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ContactRoute = ContactRouteImport.update({
   id: '/contact',
   path: '/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CancerGuidelinesRoute = CancerGuidelinesRouteImport.update({
+  id: '/cancer-guidelines',
+  path: '/cancer-guidelines',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AppointmentsRoute = AppointmentsRouteImport.update({
@@ -58,37 +71,51 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ServicesServiceIdRoute = ServicesServiceIdRouteImport.update({
+  id: '/$serviceId',
+  path: '/$serviceId',
+  getParentRoute: () => ServicesRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/appointments': typeof AppointmentsRoute
+  '/cancer-guidelines': typeof CancerGuidelinesRoute
   '/contact': typeof ContactRoute
+  '/facilities': typeof FacilitiesRoute
   '/faqs': typeof FaqsRoute
   '/patient-care': typeof PatientCareRoute
-  '/services': typeof ServicesRoute
+  '/services': typeof ServicesRouteWithChildren
   '/team': typeof TeamRoute
+  '/services/$serviceId': typeof ServicesServiceIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/appointments': typeof AppointmentsRoute
+  '/cancer-guidelines': typeof CancerGuidelinesRoute
   '/contact': typeof ContactRoute
+  '/facilities': typeof FacilitiesRoute
   '/faqs': typeof FaqsRoute
   '/patient-care': typeof PatientCareRoute
-  '/services': typeof ServicesRoute
+  '/services': typeof ServicesRouteWithChildren
   '/team': typeof TeamRoute
+  '/services/$serviceId': typeof ServicesServiceIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/appointments': typeof AppointmentsRoute
+  '/cancer-guidelines': typeof CancerGuidelinesRoute
   '/contact': typeof ContactRoute
+  '/facilities': typeof FacilitiesRoute
   '/faqs': typeof FaqsRoute
   '/patient-care': typeof PatientCareRoute
-  '/services': typeof ServicesRoute
+  '/services': typeof ServicesRouteWithChildren
   '/team': typeof TeamRoute
+  '/services/$serviceId': typeof ServicesServiceIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -96,41 +123,52 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/appointments'
+    | '/cancer-guidelines'
     | '/contact'
+    | '/facilities'
     | '/faqs'
     | '/patient-care'
     | '/services'
     | '/team'
+    | '/services/$serviceId'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/about'
     | '/appointments'
+    | '/cancer-guidelines'
     | '/contact'
+    | '/facilities'
     | '/faqs'
     | '/patient-care'
     | '/services'
     | '/team'
+    | '/services/$serviceId'
   id:
     | '__root__'
     | '/'
     | '/about'
     | '/appointments'
+    | '/cancer-guidelines'
     | '/contact'
+    | '/facilities'
     | '/faqs'
     | '/patient-care'
     | '/services'
     | '/team'
+    | '/services/$serviceId'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
   AppointmentsRoute: typeof AppointmentsRoute
+  CancerGuidelinesRoute: typeof CancerGuidelinesRoute
   ContactRoute: typeof ContactRoute
+  FacilitiesRoute: typeof FacilitiesRoute
   FaqsRoute: typeof FaqsRoute
   PatientCareRoute: typeof PatientCareRoute
-  ServicesRoute: typeof ServicesRoute
+  ServicesRoute: typeof ServicesRouteWithChildren
   TeamRoute: typeof TeamRoute
 }
 
@@ -164,11 +202,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof FaqsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/facilities': {
+      id: '/facilities'
+      path: '/facilities'
+      fullPath: '/facilities'
+      preLoaderRoute: typeof FacilitiesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/contact': {
       id: '/contact'
       path: '/contact'
       fullPath: '/contact'
       preLoaderRoute: typeof ContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/cancer-guidelines': {
+      id: '/cancer-guidelines'
+      path: '/cancer-guidelines'
+      fullPath: '/cancer-guidelines'
+      preLoaderRoute: typeof CancerGuidelinesRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/appointments': {
@@ -192,17 +244,38 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/services/$serviceId': {
+      id: '/services/$serviceId'
+      path: '/$serviceId'
+      fullPath: '/services/$serviceId'
+      preLoaderRoute: typeof ServicesServiceIdRouteImport
+      parentRoute: typeof ServicesRoute
+    }
   }
 }
+
+interface ServicesRouteChildren {
+  ServicesServiceIdRoute: typeof ServicesServiceIdRoute
+}
+
+const ServicesRouteChildren: ServicesRouteChildren = {
+  ServicesServiceIdRoute: ServicesServiceIdRoute,
+}
+
+const ServicesRouteWithChildren = ServicesRoute._addFileChildren(
+  ServicesRouteChildren,
+)
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
   AppointmentsRoute: AppointmentsRoute,
+  CancerGuidelinesRoute: CancerGuidelinesRoute,
   ContactRoute: ContactRoute,
+  FacilitiesRoute: FacilitiesRoute,
   FaqsRoute: FaqsRoute,
   PatientCareRoute: PatientCareRoute,
-  ServicesRoute: ServicesRoute,
+  ServicesRoute: ServicesRouteWithChildren,
   TeamRoute: TeamRoute,
 }
 export const routeTree = rootRouteImport

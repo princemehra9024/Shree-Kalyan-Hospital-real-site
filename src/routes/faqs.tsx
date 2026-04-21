@@ -20,7 +20,7 @@ const faqs: FAQItem[] = [
   },
   {
     question: "What is the typical wait time for scheduling an elective surgery?",
-    answer: "Wait times vary by specialty. However, our commitment to 'unhurried medicine' ensures that once you are scheduled, the time allocated for your case is entirely yours. Most elective procedures can be scheduled within 7–14 days of initial consultation.",
+    answer: "Wait times vary by specialty. However, our commitment to 'unhurried medicine' ensures that once you are scheduled, the time allocated for your case is entirely yours. Most elective procedures can be scheduled within a week of initial consultation.",
   },
   {
     question: "How does the “same physician” policy work?",
@@ -37,6 +37,10 @@ const faqs: FAQItem[] = [
   {
     question: "Is remote second-opinion consultation available?",
     answer: "Yes. Through our Telemedicine Hub, our specialists frequently consult with patients Pan-India and internationally. For complex oncology and neurology cases, we can also facilitate multi-disciplinary tumor board reviews remotely.",
+  },
+  {
+    question: "Do I need to book an appointment for X-rays or advanced radiology scans?",
+    answer: "Routine X-rays and baseline ultrasounds can be accommodated on a walk-in basis through our 24/7 Radiology & Imaging department. However, for advanced imaging modalities such as 3-Tesla MRI, PET-CT, or 128-slice CT scans, prior appointments are strictly recommended to ensure our molecular imaging specialists have prepared your suite and protocol.",
   },
 ];
 

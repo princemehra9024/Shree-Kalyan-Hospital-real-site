@@ -3,7 +3,7 @@ import doc1 from "@/assets/doctor-1.jpg";
 import doc2 from "@/assets/doctor-2.jpg";
 import doc3 from "@/assets/doctor-3.jpg";
 import doc4 from "@/assets/doctor-4.jpg";
-import featured from "@/assets/doctor-portrait.jpg";
+import featured from "@/assets/anjali-sharma.png";
 import { SiteNav } from "@/components/site/SiteNav";
 import { SiteFooter } from "@/components/site/SiteFooter";
 import { PageHero } from "@/components/site/PageHero";

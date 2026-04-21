@@ -13,6 +13,9 @@ export const Route = createFileRoute("/services")({
   }),
 });
 
+import { services } from "@/lib/data/services";
+import { Link } from "@tanstack/react-router";
+
 function ServicesPage() {
   useGsapReveal();
 
@@ -35,33 +38,13 @@ function ServicesPage() {
       <section className="px-6 md:px-12 lg:px-24 py-24 md:py-48 max-w-[1600px] mx-auto border-t border-ink/10" data-reveal-stagger>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-x-24 gap-y-32">
           
-          {[
-            {
-              chapter: "01",
-              title: "Cardiology",
-              desc: "From non-invasive diagnostics to complex interventional procedures, our heart center is equipped for silent precision in life-saving care.",
-              services: ["Interventional Cardiology", "Electrophysiology", "Heart Failure Clinic", "Pediatric Cardiology"]
-            },
-            {
-              chapter: "02",
-              title: "Neurosciences",
-              desc: "Dedicated to the intricate care of the brain and spine. Our surgeons utilize advanced robotic assistance for uncompromised accuracy.",
-              services: ["Neurosurgery", "Neurology", "Stroke Management", "Spine Surgery"]
-            },
-            {
-              chapter: "03",
-              title: "Orthopedics",
-              desc: "Restoring mobility through advanced joint replacements and sports medicine, tailored to the unique biomechanics of each individual.",
-              services: ["Joint Replacement", "Sports Medicine", "Trauma & Orthopedics", "Physiotherapy"]
-            },
-            {
-              chapter: "04",
-              title: "Mother & Child",
-              desc: "A sanctuary for new beginnings, providing specialized neonatology and maternal care in a warm, unhurried environment.",
-              services: ["Obstetrics & Gynecology", "Neonatology (NICU)", "Pediatrics", "Antenatal Care"]
-            }
-          ].map((dept, i) => (
-            <div key={i} className="group border-b border-ink/10 pb-20">
+          {services.map((dept, i) => (
+            <Link 
+              key={dept.id} 
+              to="/services/$serviceId" 
+              params={{ serviceId: dept.id }}
+              className="group border-b border-ink/10 pb-20 block transition-all hover:bg-magenta/[0.02]"
+            >
               <div className="flex items-center gap-4 mb-8">
                 <span className="text-[0.65rem] font-bold text-magenta pr-4 border-r border-magenta/30">{dept.chapter}</span>
                 <p className="text-[0.65rem] font-bold tracking-[0.3em] text-ink/50 uppercase">Department</p>
@@ -73,14 +56,18 @@ function ServicesPage() {
                 {dept.desc}
               </p>
               <ul className="grid grid-cols-1 gap-4">
-                {dept.services.map((s, si) => (
+                {dept.services.slice(0, 4).map((s, si) => (
                   <li key={si} className="flex items-center gap-4 text-sm tracking-widest uppercase font-bold text-ink/40 group-hover:text-ink/80 transition-colors">
                     <span className="size-1 bg-magenta rounded-full" />
                     {s}
                   </li>
                 ))}
               </ul>
-            </div>
+              <div className="mt-12 flex items-center gap-4 text-[0.6rem] font-bold tracking-widest uppercase text-magenta opacity-0 group-hover:opacity-100 transition-all">
+                View Institute Details 
+                <span className="text-lg">→</span>
+              </div>
+            </Link>
           ))}
 
         </div>
