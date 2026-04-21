@@ -1,4 +1,4 @@
-import doctor from "@/assets/doctor-portrait.jpg";
+import doctor from "@/assets/anjali-sharma.png";
 
 export function Physicians() {
   return (
