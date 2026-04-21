@@ -40,6 +40,11 @@ export const Route = createRootRoute({
     ],
     links: [
       {
+        rel: "icon",
+        type: "image/svg+xml",
+        href: "/favicon.svg",
+      },
+      {
         rel: "stylesheet",
         href: appCss,
       },
@@ -67,14 +72,28 @@ function RootShell({ children }: { children: React.ReactNode }) {
 import { LenisProvider } from "@/components/site/LenisProvider";
 import { CustomCursor } from "@/components/site/CustomCursor";
 import { PageTransition } from "@/components/site/PageTransition";
+import { EmergencyOverlay } from "@/components/site/EmergencyOverlay";
+import { useState, useEffect } from "react";
 
 function RootComponent() {
+  const [emergencyOpen, setEmergencyOpen] = useState(false);
+
+  useEffect(() => {
+    const handleToggle = () => setEmergencyOpen(true);
+    window.addEventListener("toggle-emergency", handleToggle);
+    return () => window.removeEventListener("toggle-emergency", handleToggle);
+  }, []);
+
   return (
     <LenisProvider>
       <CustomCursor />
       <PageTransition>
         <Outlet />
       </PageTransition>
+      <EmergencyOverlay 
+        isOpen={emergencyOpen} 
+        onClose={() => setEmergencyOpen(false)} 
+      />
     </LenisProvider>
   );
 }
