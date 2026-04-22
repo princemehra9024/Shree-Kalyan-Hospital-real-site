@@ -34,12 +34,10 @@ export function SiteNav() {
   const navRef = useRef<HTMLElement | null>(null);
   const drawerRef = useRef<HTMLDivElement | null>(null);
   const burgerRef = useRef<HTMLButtonElement | null>(null);
-  const [lastScrollY, setLastScrollY] = useState(0);
 
   // Scroll locking for mobile menu
   useEffect(() => {
     if (open) {
-      setLastScrollY(window.scrollY);
       document.body.style.overflow = "hidden";
       document.documentElement.style.overflow = "hidden";
       // For Lenis compatibility
@@ -48,16 +46,22 @@ export function SiteNav() {
       document.body.style.overflow = "";
       document.documentElement.style.overflow = "";
       document.body.classList.remove("lenis-stopped");
-      if (lastScrollY > 0) {
-        window.scrollTo(0, lastScrollY);
-      }
     }
     return () => {
       document.body.style.overflow = "";
       document.documentElement.style.overflow = "";
       document.body.classList.remove("lenis-stopped");
     };
-  }, [open, lastScrollY]);
+  }, [open]);
+
+  // ESC key for drawer
+  useEffect(() => {
+    const handleEsc = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setOpen(false);
+    };
+    if (open) window.addEventListener("keydown", handleEsc);
+    return () => window.removeEventListener("keydown", handleEsc);
+  }, [open]);
 
   // Scroll state
   useEffect(() => {
@@ -181,7 +185,10 @@ export function SiteNav() {
             {/* White Contact Section with Slanted Edge */}
             <div className="bg-paper flex items-center px-8 gap-8 [clip-path:polygon(0_0,100%_0,calc(100%-2rem)_100%,0_100%)] pr-16 text-[0.65rem] tracking-wider uppercase font-bold text-ink">
               <button 
-                onClick={() => window.dispatchEvent(new CustomEvent("toggle-emergency"))}
+                onClick={() => {
+                  setOpen(false);
+                  window.dispatchEvent(new CustomEvent("toggle-emergency"));
+                }}
                 className="flex items-center gap-2 text-magenta hover:bg-magenta hover:text-white px-3 py-1 -ml-3 rounded transition-colors"
               >
                 <AlertTriangle className="size-3.5" /> Emergency
@@ -256,7 +263,10 @@ export function SiteNav() {
               <div className="flex md:hidden items-center gap-2">
                 {/* Emergency Icon */}
                 <button
-                  onClick={() => window.dispatchEvent(new CustomEvent("toggle-emergency"))}
+                  onClick={() => {
+                    setOpen(false);
+                    window.dispatchEvent(new CustomEvent("toggle-emergency"));
+                  }}
                   aria-label="Emergency"
                   className="size-10 rounded-full flex items-center justify-center bg-magenta text-paper shadow-lg shadow-magenta/20 active:scale-90 transition-all border border-magenta/20"
                 >
@@ -326,9 +336,10 @@ export function SiteNav() {
            <button
              onClick={() => setOpen(false)}
              aria-label="Close menu"
-             className="size-12 rounded-full border border-paper/20 text-paper hover:bg-magenta hover:border-magenta transition-colors flex items-center justify-center"
+             className="px-6 h-14 rounded-full border border-paper/20 bg-paper/5 backdrop-blur-md text-paper hover:bg-magenta hover:text-white hover:border-magenta transition-all flex items-center gap-3 group active:scale-95"
            >
-             <X className="size-5" />
+             <span className="text-[0.65rem] font-bold tracking-[0.2em] uppercase">Close</span>
+             <X className="size-5 transition-transform group-hover:rotate-90" />
            </button>
         </div>
 
@@ -352,11 +363,12 @@ export function SiteNav() {
            ))}
         </nav>
 
-        <div data-drawer-item className="mt-12 text-[0.65rem] tracking-[0.2em] uppercase">
+        <div data-drawer-item className="mt-12 space-y-4 text-[0.65rem] tracking-[0.2em] uppercase">
            <a
              href="mailto:care@shreekalyan.in"
-             className="block w-full border border-paper/30 text-paper px-5 py-4 text-center font-bold rounded-full hover:bg-paper hover:text-navy transition-colors"
+             className="flex w-full items-center justify-center gap-3 bg-magenta text-paper px-5 py-5 text-center font-bold rounded-full shadow-lg shadow-magenta/20 hover:bg-magenta/90 transition-colors"
            >
+             <Mail className="size-4" />
              Email Us
            </a>
         </div>

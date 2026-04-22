@@ -15,6 +15,20 @@ export function EmergencyOverlay({ isOpen, onClose }: EmergencyOverlayProps) {
     if (!containerRef.current || !contentRef.current) return;
 
     if (isOpen) {
+      // Push state for mobile back-button support
+      window.history.pushState({ emergency: true }, "");
+
+      const handlePopState = () => {
+        onClose();
+      };
+
+      const handleEsc = (e: KeyboardEvent) => {
+        if (e.key === "Escape") onClose();
+      };
+
+      window.addEventListener("popstate", handlePopState);
+      window.addEventListener("keydown", handleEsc);
+
       gsap.set(containerRef.current, { display: "flex", opacity: 0 });
       gsap.to(containerRef.current, { 
         opacity: 1, 
@@ -28,6 +42,17 @@ export function EmergencyOverlay({ isOpen, onClose }: EmergencyOverlayProps) {
       );
       
       document.body.style.overflow = "hidden";
+      document.body.classList.add("lenis-stopped");
+
+      return () => {
+        window.removeEventListener("popstate", handlePopState);
+        window.removeEventListener("keydown", handleEsc);
+        document.body.classList.remove("lenis-stopped");
+        // Clean up history state if closed via button rather than back button
+        if (window.history.state?.emergency) {
+          window.history.back();
+        }
+      };
     } else {
       gsap.to(containerRef.current, {
         opacity: 0,
@@ -36,24 +61,28 @@ export function EmergencyOverlay({ isOpen, onClose }: EmergencyOverlayProps) {
         onComplete: () => {
           if (containerRef.current) containerRef.current.style.display = "none";
           document.body.style.overflow = "";
+          document.body.classList.remove("lenis-stopped");
         }
       });
     }
   }, [isOpen]);
 
-  if (!isOpen && typeof window !== "undefined") return null;
+  // Removed early return to allow GSAP exit animation to play while component stays mounted
 
   return (
     <div 
       ref={containerRef}
-      className="fixed inset-0 z-[100] bg-magenta text-white flex flex-col items-center justify-center p-6 md:p-12 overflow-y-auto"
+      data-lenis-prevent
+      className="fixed inset-0 z-[100] bg-magenta text-white flex flex-col items-center justify-start p-6 md:p-12 overflow-y-auto"
       style={{ display: "none" }}
     >
       <button 
         onClick={onClose}
-        className="absolute top-8 right-8 size-14 rounded-full border-2 border-white/20 flex items-center justify-center hover:bg-white hover:text-magenta transition-all group lg:fixed"
+        className="fixed top-6 right-6 md:top-10 md:right-10 lg:top-14 lg:right-14 z-[110] px-4 md:px-6 h-12 md:h-14 rounded-full border-none bg-white shadow-2xl flex items-center gap-2 md:gap-3 hover:bg-paper transition-all group active:scale-95"
+        style={{ top: "calc(env(safe-area-inset-top) + 1.5rem)" }}
       >
-        <X className="size-6 transition-transform group-hover:rotate-90" />
+        <span className="text-[0.6rem] md:text-[0.7rem] font-bold tracking-[0.2em] uppercase text-magenta">Close</span>
+        <X className="size-4 md:size-5 transition-transform group-hover:rotate-90 text-magenta" />
       </button>
 
       <div ref={contentRef} className="w-full max-w-4xl mx-auto space-y-12 py-20">

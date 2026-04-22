@@ -16,6 +16,9 @@ export function LenisProvider({ children }: { children: ReactNode }) {
       touchMultiplier: 2,
       infinite: false,
     });
+    
+    // Expose lenis globally for scroll restoration
+    (window as any).lenis = lenis;
 
     function raf(time: number) {
       lenis.raf(time);

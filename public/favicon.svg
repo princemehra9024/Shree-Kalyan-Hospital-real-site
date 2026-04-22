@@ -1,4 +1,23 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="none">
-  <rect width="32" height="32" rx="4" fill="#E11D48"/>
-  <path d="M16 8V24M8 16H24" stroke="white" stroke-width="4" stroke-linecap="round"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="none">
+  <defs>
+    <linearGradient id="skGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#29ABE2" />
+      <stop offset="100%" stop-color="#EC008C" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Outer Blue Ring -->
+  <circle cx="256" cy="256" r="236" stroke="#2B5082" stroke-width="32" />
+  <circle cx="256" cy="256" r="252" stroke="#2B5082" stroke-width="4" />
+  
+  <!-- Medical Cross and Teardrop -->
+  <path d="M256 120 V 210 M211 165 H 301" stroke="#EC008C" stroke-width="32" stroke-linecap="round" />
+  <path d="M256 220 C 256 220 236 240 236 255 C 236 266 245 275 256 275 C 267 275 276 266 276 255 C 276 240 256 220 256 220 Z" fill="#EC008C" />
+
+  <!-- Stylized S (Wave/Stroke) -->
+  <path d="M170 180 C 110 240 110 380 180 420 C 230 440 280 410 300 390" stroke="url(#skGrad)" stroke-width="40" stroke-linecap="round" />
+  <circle cx="160" cy="410" r="35" fill="#2B5082" />
+
+  <!-- Stylized K (Chevron/Arrow) -->
+  <path d="M380 180 L 280 320 L 380 460" stroke="url(#skGrad)" stroke-width="40" stroke-linecap="round" />
 </svg>
