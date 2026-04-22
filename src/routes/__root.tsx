@@ -1,6 +1,9 @@
-import { Outlet, Link, createRootRoute, HeadContent, Scripts } from "@tanstack/react-router";
-
-import appCss from "../styles.css?url";
+import { Outlet, Link, createRootRoute } from "@tanstack/react-router";
+import { LenisProvider } from "@/components/site/LenisProvider";
+import { CustomCursor } from "@/components/site/CustomCursor";
+import { PageTransition } from "@/components/site/PageTransition";
+import { EmergencyOverlay } from "@/components/site/EmergencyOverlay";
+import { useState, useEffect } from "react";
 
 function NotFoundComponent() {
   return (
@@ -25,55 +28,9 @@ function NotFoundComponent() {
 }
 
 export const Route = createRootRoute({
-  head: () => ({
-    meta: [
-      { charSet: "utf-8" },
-      { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
-      { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
-      { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary" },
-      { name: "twitter:site", content: "@Lovable" },
-    ],
-    links: [
-      {
-        rel: "icon",
-        type: "image/svg+xml",
-        href: "/favicon.svg",
-      },
-      {
-        rel: "stylesheet",
-        href: appCss,
-      },
-    ],
-  }),
-  shellComponent: RootShell,
   component: RootComponent,
   notFoundComponent: NotFoundComponent,
 });
-
-function RootShell({ children }: { children: React.ReactNode }) {
-  return (
-    <html lang="en">
-      <head>
-        <HeadContent />
-      </head>
-      <body>
-        {children}
-        <Scripts />
-      </body>
-    </html>
-  );
-}
-
-import { LenisProvider } from "@/components/site/LenisProvider";
-import { CustomCursor } from "@/components/site/CustomCursor";
-import { PageTransition } from "@/components/site/PageTransition";
-import { EmergencyOverlay } from "@/components/site/EmergencyOverlay";
-import { useState, useEffect } from "react";
 
 function RootComponent() {
   const [emergencyOpen, setEmergencyOpen] = useState(false);
@@ -90,9 +47,9 @@ function RootComponent() {
       <PageTransition>
         <Outlet />
       </PageTransition>
-      <EmergencyOverlay 
-        isOpen={emergencyOpen} 
-        onClose={() => setEmergencyOpen(false)} 
+      <EmergencyOverlay
+        isOpen={emergencyOpen}
+        onClose={() => setEmergencyOpen(false)}
       />
     </LenisProvider>
   );
