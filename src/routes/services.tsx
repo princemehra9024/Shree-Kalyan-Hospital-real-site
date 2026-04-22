@@ -20,7 +20,7 @@ function ServicesPage() {
   useGsapReveal();
 
   return (
-    <div className="min-h-dvh bg-paper text-ink overflow-x-hidden pb-24 md:pb-0">
+    <div className="min-h-dvh bg-paper text-ink overflow-x-hidden">
       <SiteNav />
 
       <PageHero

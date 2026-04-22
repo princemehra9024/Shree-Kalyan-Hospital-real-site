@@ -32,7 +32,7 @@ function ContactPage() {
   const [submitted, setSubmitted] = useState(false);
 
   return (
-    <div className="min-h-dvh bg-paper text-ink overflow-x-hidden pb-24 md:pb-0 selection:bg-magenta selection:text-white">
+    <div className="min-h-dvh bg-paper text-ink overflow-x-hidden selection:bg-magenta selection:text-white">
       <SiteNav />
 
       <PageHero
@@ -123,7 +123,27 @@ function ContactPage() {
           </div>
 
           {/* Sidebar */}
-          <aside className="col-span-12 lg:col-span-4 lg:col-start-9 space-y-20" data-reveal-stagger>
+          <aside className="col-span-12 lg:col-span-4 lg:col-start-9 space-y-16" data-reveal-stagger>
+            <div>
+              <p className="text-[0.65rem] tracking-[0.3em] font-bold text-magenta uppercase mb-6 flex items-center gap-4">
+                 <span className="w-8 h-px bg-magenta" /> Directory
+              </p>
+              <ul className="space-y-6">
+                {[
+                  { title: "Billing & Insurance", phone: "+91 99999 99991" },
+                  { title: "Blood Bank", phone: "+91 99999 99992" },
+                  { title: "Pharmacy", phone: "+91 99999 99993" },
+                  { title: "International Care", email: "international@shreekalyan.in" },
+                  { title: "HR / Careers", email: "careers@shreekalyan.in" },
+                ].map((dept) => (
+                  <li key={dept.title} className="flex flex-col gap-1 border-b border-ink/5 pb-4 last:border-0 last:pb-0">
+                    <span className="font-display text-xl md:text-2xl text-navy-deep">{dept.title}</span>
+                    {dept.phone && <a href={`tel:${dept.phone.replace(/\\s/g, "")}`} className="text-sm tracking-widest text-ink/50 hover:text-magenta transition-colors">{dept.phone}</a>}
+                    {dept.email && <a href={`mailto:${dept.email}`} className="text-sm tracking-widest text-ink/50 hover:text-magenta transition-colors">{dept.email}</a>}
+                  </li>
+                ))}
+              </ul>
+            </div>
             <div>
               <p className="text-[0.65rem] tracking-[0.3em] font-bold text-magenta uppercase mb-6 flex items-center gap-4">
                  <span className="w-8 h-px bg-magenta" /> Address

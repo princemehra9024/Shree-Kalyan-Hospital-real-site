@@ -48,15 +48,15 @@ function Index() {
 
             <h1
               data-anim="hero-title"
-              className="font-display text-[4rem] sm:text-7xl md:text-8xl lg:text-[10rem] leading-[0.85] text-navy-deep tracking-tight text-pretty"
+              className="font-display text-[4rem] sm:text-7xl md:text-8xl lg:text-[10rem] leading-[0.9] text-navy-deep tracking-tight text-pretty"
             >
-              <div className="overflow-hidden pb-4">
+              <div className="overflow-hidden pt-4 pb-4">
                 <span className="block">Restoring</span>
               </div>
-              <div className="overflow-hidden pb-4">
-                <span className="block italic text-magenta font-light ml-8 md:ml-32 mt-2">vitality</span>
+              <div className="overflow-hidden pt-4 pb-4 -mt-4">
+                <span className="block italic text-magenta font-normal ml-8 md:ml-32 mt-2 drop-shadow-sm">vitality</span>
               </div>
-              <div className="overflow-hidden pb-4">
+              <div className="overflow-hidden pt-4 pb-4 -mt-4">
                 <span className="block ml-2 md:ml-12 mt-1">through quiet precision.</span>
               </div>
             </h1>
@@ -69,16 +69,47 @@ function Index() {
                 advanced clinical practice meets profound human empathy.
               </p>
 
-              <a
-                href="#philosophy"
-                className="group flex flex-col items-start gap-4 text-[0.65rem] font-bold tracking-[0.3em] uppercase text-magenta transition-colors shrink-0 pt-2"
-              >
-                <span className="flex items-center gap-4">
-                  Explore Care
-                  <span className="block size-1.5 rounded-full bg-magenta scale-0 group-hover:scale-100 transition-transform" />
-                </span>
-                <span className="block w-full h-px bg-magenta/20 group-hover:bg-magenta transition-colors" />
-              </a>
+              <div className="flex flex-col gap-8 shrink-0">
+                <a
+                  href="#philosophy"
+                  className="group flex flex-col items-start gap-4 text-[0.65rem] font-bold tracking-[0.3em] uppercase text-magenta transition-colors pt-2"
+                >
+                  <span className="flex items-center gap-4">
+                    Explore Care
+                    <span className="block size-1.5 rounded-full bg-magenta scale-0 group-hover:scale-100 transition-transform" />
+                  </span>
+                  <span className="block w-full h-px bg-magenta/20 group-hover:bg-magenta transition-colors" />
+                </a>
+
+                <div className="flex items-center gap-3">
+                  <div className="relative size-2">
+                    <div className="absolute inset-0 bg-emerald-500 rounded-full animate-pulse-ring" />
+                    <div className="absolute inset-0 bg-emerald-500 rounded-full animate-pulse-dot" />
+                  </div>
+                  <span className="text-[0.6rem] font-bold tracking-[0.15em] uppercase text-emerald-600/80">
+                    Emergency Services Active
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            {/* Quick Stats Overlay */}
+            <div 
+              data-anim="hero-stats"
+              className="mt-20 md:mt-32 ml-2 md:ml-32 grid grid-cols-2 md:grid-cols-3 gap-x-12 gap-y-8 border-t border-ink/5 pt-12"
+            >
+              <div>
+                <span className="block text-2xl font-display italic text-navy-deep">25+</span>
+                <span className="text-[0.65rem] font-semibold uppercase tracking-widest text-ink/40 mt-2 block">Specializations</span>
+              </div>
+              <div>
+                <span className="block text-2xl font-display italic text-navy-deep">150+</span>
+                <span className="text-[0.65rem] font-semibold uppercase tracking-widest text-ink/40 mt-2 block">Bed Capacity</span>
+              </div>
+              <div className="col-span-2 md:col-span-1">
+                <span className="block text-2xl font-display italic text-navy-deep">NABH</span>
+                <span className="text-[0.65rem] font-semibold uppercase tracking-widest text-ink/40 mt-2 block">Accredited Care</span>
+              </div>
             </div>
           </div>
 
@@ -108,6 +139,14 @@ function Index() {
                 Years of<br />Clinical<br />Excellence
               </span>
             </div>
+          </div>
+        </div>
+
+        {/* Scroll Indicator */}
+        <div className="absolute bottom-10 left-1/2 -translate-x-1/2 hidden md:flex flex-col items-center gap-4 opacity-30 group">
+          <span className="text-[0.6rem] font-bold tracking-[0.3em] uppercase rotate-90 origin-left ml-2 mb-8">Scroll</span>
+          <div className="w-px h-12 bg-ink/20 relative overflow-hidden">
+            <div className="absolute inset-0 w-full bg-ink animate-scroll-line" />
           </div>
         </div>
       </main>

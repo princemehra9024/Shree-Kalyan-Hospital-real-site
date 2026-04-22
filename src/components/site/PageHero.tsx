@@ -52,7 +52,7 @@ export function PageHero({ chapter, eyebrow, title, intro }: PageHeroProps) {
       </div>
       
       <h1 className="font-display text-[4rem] sm:text-7xl md:text-8xl lg:text-[10rem] leading-[0.85] text-navy-deep tracking-tight max-w-[14ch]">
-        <div className="overflow-hidden pb-4">
+        <div className="overflow-hidden pb-4 pt-6 -mt-6 px-4 -mx-4">
           <div className="hero-title-wrap">
             {title}
           </div>

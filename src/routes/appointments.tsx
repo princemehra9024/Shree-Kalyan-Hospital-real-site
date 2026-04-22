@@ -76,7 +76,7 @@ function AppointmentsPage() {
   }, [selectedTime]);
 
   return (
-    <div className="min-h-dvh bg-paper text-ink overflow-x-hidden pb-24 md:pb-0 selection:bg-magenta selection:text-white">
+    <div className="min-h-dvh bg-paper text-ink overflow-x-hidden selection:bg-magenta selection:text-white">
       <SiteNav />
 
       <PageHero
