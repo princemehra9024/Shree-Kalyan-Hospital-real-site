@@ -2,7 +2,7 @@
 
 @import "tailwindcss";
 @import "tw-animate-css";
-@source "../src";
+
 
 @custom-variant dark (&:is(.dark *));
 
@@ -12,48 +12,48 @@
   --font-sans: "Instrument Sans", sans-serif;
   --font-syne: "Syne", sans-serif;
 
-  --radius-sm: calc(var(--radius) - 4px);
-  --radius-md: calc(var(--radius) - 2px);
-  --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) + 4px);
+  --radius-sm: calc(var(--radius, 0rem) - 4px);
+  --radius-md: calc(var(--radius, 0rem) - 2px);
+  --radius-lg: var(--radius, 0rem);
+  --radius-xl: calc(var(--radius, 0rem) + 4px);
 
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --color-paper: var(--paper);
-  --color-ink: var(--ink);
-  --color-card: var(--card);
-  --color-card-foreground: var(--card-foreground);
-  --color-popover: var(--popover);
-  --color-popover-foreground: var(--popover-foreground);
-  --color-primary: var(--primary);
-  --color-primary-foreground: var(--primary-foreground);
-  --color-secondary: var(--secondary);
-  --color-secondary-foreground: var(--secondary-foreground);
-  --color-muted: var(--muted);
-  --color-muted-foreground: var(--muted-foreground);
-  --color-accent: var(--accent);
-  --color-accent-foreground: var(--accent-foreground);
-  --color-destructive: var(--destructive);
-  --color-destructive-foreground: var(--destructive-foreground);
-  --color-border: var(--border);
-  --color-input: var(--input);
-  --color-ring: var(--ring);
+  --color-background: var(--background, var(--paper));
+  --color-foreground: var(--foreground, var(--ink));
+  --color-paper: var(--paper, #f7f4ef);
+  --color-ink: var(--ink, #0a0f1e);
+  --color-card: var(--card, var(--paper));
+  --color-card-foreground: var(--card-foreground, var(--ink));
+  --color-popover: var(--popover, var(--paper));
+  --color-popover-foreground: var(--popover-foreground, var(--ink));
+  --color-primary: var(--primary, var(--navy-deep));
+  --color-primary-foreground: var(--primary-foreground, var(--paper));
+  --color-secondary: var(--secondary, #f0ede6);
+  --color-secondary-foreground: var(--secondary-foreground, var(--ink));
+  --color-muted: var(--muted, #f0ede6);
+  --color-muted-foreground: var(--muted-foreground, #64748b);
+  --color-accent: var(--accent, var(--magenta));
+  --color-accent-foreground: var(--accent-foreground, var(--paper));
+  --color-destructive: var(--destructive, #991b1b);
+  --color-destructive-foreground: var(--destructive-foreground, var(--paper));
+  --color-border: var(--border, rgba(10, 15, 30, 0.1));
+  --color-input: var(--input, rgba(10, 15, 30, 0.1));
+  --color-ring: var(--ring, var(--navy));
 
   /* ── Extended Brand Tokens ── */
-  --color-navy: var(--navy);
-  --color-navy-deep: var(--navy-deep);
-  --color-magenta: var(--magenta);
-  --color-pink: var(--pink);
-  --color-sky: var(--sky);
-  --color-gold: var(--gold);
-  --color-void: var(--void);
-  --color-surface: var(--surface);
+  --color-navy: var(--navy, #1e293b);
+  --color-navy-deep: var(--navy-deep, #03061a);
+  --color-magenta: var(--magenta, #e0185e);
+  --color-pink: var(--pink, #f43f90);
+  --color-sky: var(--sky, #06d6f5);
+  --color-gold: var(--gold, #d4a843);
+  --color-void: var(--void, #03061a);
+  --color-surface: var(--surface, #080f24);
 
-  --shadow-editorial: 0 30px 80px -30px color-mix(in oklab, var(--navy-deep) 35%, transparent);
-  --shadow-card:      0 20px 50px -25px color-mix(in oklab, var(--navy-deep) 25%, transparent);
-  --shadow-glow-magenta: 0 0 80px -8px  color-mix(in oklab, var(--magenta) 55%, transparent);
-  --shadow-glow-cyan:    0 0 80px -8px  color-mix(in oklab, var(--sky) 45%, transparent);
-  --shadow-glow-gold:    0 0 60px -8px  color-mix(in oklab, var(--gold) 40%, transparent);
+  --shadow-editorial: 0 30px 80px -30px color-mix(in oklab, var(--navy-deep, #03061a) 35%, transparent);
+  --shadow-card:      0 20px 50px -25px color-mix(in oklab, var(--navy-deep, #03061a) 25%, transparent);
+  --shadow-glow-magenta: 0 0 80px -8px  color-mix(in oklab, var(--magenta, #e0185e) 55%, transparent);
+  --shadow-glow-cyan:    0 0 80px -8px  color-mix(in oklab, var(--sky, #06d6f5) 45%, transparent);
+  --shadow-glow-gold:    0 0 60px -8px  color-mix(in oklab, var(--gold, #d4a843) 40%, transparent);
 }
 
 :root {
@@ -128,8 +128,7 @@
 .chromatic-divider {
   width: 100%;
   height: 4px;
-  background: linear-gradient(90deg, #cyan 0%, #magenta 33%, #yellow 66%, #blue 100%);
-  background: linear-gradient(90deg, var(--color-sky) 0%, var(--color-magenta) 33%, var(--color-gold) 66%, var(--color-void) 100%);
+  background: linear-gradient(90deg, var(--color-sky, #06d6f5) 0%, var(--color-magenta, #e0185e) 33%, var(--color-gold, #d4a843) 66%, var(--color-void, #03061a) 100%);
 }
 
 
@@ -146,9 +145,9 @@
   0%   { transform: translateX(-50%); }
   100% { transform: translateX(0); }
 }
-.animate-marquee         { animation: marquee 50s linear infinite; }
-.animate-marquee-fast    { animation: marquee 28s linear infinite; }
-.animate-marquee-reverse { animation: marquee-reverse 55s linear infinite; }
+.animate-marquee         { animation: marquee 50s linear infinite; will-change: transform; }
+.animate-marquee-fast    { animation: marquee 28s linear infinite; will-change: transform; }
+.animate-marquee-reverse { animation: marquee-reverse 55s linear infinite; will-change: transform; }
 
 /* ── Floating orbs ────────────────────────────────────────────────────── */
 @keyframes float-slow {
@@ -165,9 +164,9 @@
   25%       { transform: translate(18px, -14px) scale(1.04); }
   75%       { transform: translate(-16px, 9px) scale(0.97); }
 }
-.animate-float-slow   { animation: float-slow   14s ease-in-out infinite; }
-.animate-float-medium { animation: float-medium 18s ease-in-out infinite; }
-.animate-float-fast   { animation: float-fast   10s ease-in-out infinite; }
+.animate-float-slow   { animation: float-slow   14s ease-in-out infinite; will-change: transform; }
+.animate-float-medium { animation: float-medium 18s ease-in-out infinite; will-change: transform; }
+.animate-float-fast   { animation: float-fast   10s ease-in-out infinite; will-change: transform; }
 
 /* ── Pulse / glow ─────────────────────────────────────────────────────── */
 @keyframes glow-pulse {
@@ -225,21 +224,35 @@
 /* ── Glassmorphism ────────────────────────────────────────────────────── */
 .glass {
   background: rgba(255, 255, 255, 0.04);
-  backdrop-filter: blur(20px) saturate(180%);
-  -webkit-backdrop-filter: blur(20px) saturate(180%);
   border: 1px solid rgba(255, 255, 255, 0.08);
 }
+@supports (backdrop-filter: blur(1px)) {
+  .glass {
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+  }
+}
+
 .glass-dark {
   background: rgba(3, 6, 26, 0.55);
-  backdrop-filter: blur(24px) saturate(200%);
-  -webkit-backdrop-filter: blur(24px) saturate(200%);
   border: 1px solid rgba(255, 255, 255, 0.06);
 }
+@supports (backdrop-filter: blur(1px)) {
+  .glass-dark {
+    backdrop-filter: blur(24px) saturate(200%);
+    -webkit-backdrop-filter: blur(24px) saturate(200%);
+  }
+}
+
 .glass-light {
   background: rgba(247, 244, 239, 0.7);
-  backdrop-filter: blur(20px) saturate(150%);
-  -webkit-backdrop-filter: blur(20px) saturate(150%);
   border: 1px solid rgba(10, 15, 30, 0.06);
+}
+@supports (backdrop-filter: blur(1px)) {
+  .glass-light {
+    backdrop-filter: blur(20px) saturate(150%);
+    -webkit-backdrop-filter: blur(20px) saturate(150%);
+  }
 }
 
 /* ── Text stroke ──────────────────────────────────────────────────────── */
@@ -275,18 +288,6 @@
 }
 .card-3d:hover { transform: perspective(800px) rotateX(-2deg) rotateY(2deg) scale(1.02); }
 
-/* Glassmorphism */
-.glass {
-  background: color-mix(in oklab, var(--paper) 5%, transparent);
-  backdrop-filter: blur(8px);
-  border: 1px solid rgba(255, 255, 255, 0.05);
-}
-
-.glass-dark {
-  background: color-mix(in oklab, var(--navy-deep) 80%, transparent);
-  backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.05);
-}
 
 /* Map Pulse Animation */
 @keyframes pulse-ring {

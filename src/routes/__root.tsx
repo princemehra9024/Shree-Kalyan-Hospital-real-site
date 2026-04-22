@@ -1,7 +1,7 @@
 import { Outlet, Link, createRootRoute } from "@tanstack/react-router";
 import { LenisProvider } from "@/components/site/LenisProvider";
 import { CustomCursor } from "@/components/site/CustomCursor";
-import { PageTransition } from "@/components/site/PageTransition";
+import { BespokeTransition } from "@/components/site/BespokeTransition";
 import { EmergencyOverlay } from "@/components/site/EmergencyOverlay";
 import { useState, useEffect } from "react";
 
@@ -36,6 +36,12 @@ function RootComponent() {
   const [emergencyOpen, setEmergencyOpen] = useState(false);
 
   useEffect(() => {
+    // Force scroll to top on reload
+    if ("scrollRestoration" in history) {
+      history.scrollRestoration = "manual";
+    }
+    window.scrollTo(0, 0);
+
     const handleToggle = () => setEmergencyOpen(true);
     window.addEventListener("toggle-emergency", handleToggle);
     return () => window.removeEventListener("toggle-emergency", handleToggle);
@@ -44,9 +50,9 @@ function RootComponent() {
   return (
     <LenisProvider>
       <CustomCursor />
-      <PageTransition>
+      <BespokeTransition>
         <Outlet />
-      </PageTransition>
+      </BespokeTransition>
       <EmergencyOverlay
         isOpen={emergencyOpen}
         onClose={() => setEmergencyOpen(false)}
