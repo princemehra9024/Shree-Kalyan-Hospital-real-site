@@ -204,6 +204,36 @@ function PatientCarePage() {
         );
       });
 
+      /* ── 4.5 ONCOLOGY RIBBON DRAW ── */
+      const ribbonPath = document.querySelector(".anim-ribbon-path") as SVGPathElement;
+      if (ribbonPath) {
+        const length = ribbonPath.getTotalLength();
+        gsap.set(ribbonPath, { strokeDasharray: length, strokeDashoffset: length });
+        gsap.to(ribbonPath, {
+          strokeDashoffset: 0,
+          ease: "none",
+          scrollTrigger: {
+            trigger: ".oncology-focus",
+            start: "top 75%",
+            end: "bottom 35%",
+            scrub: 1
+          }
+        });
+      }
+
+      /* ── 4.6 ONCOLOGY TEXT STAGGER ── */
+      gsap.fromTo(".oncology-elem", 
+        { y: 50, opacity: 0 },
+        { 
+          y: 0, opacity: 1, duration: 1.2, stagger: 0.15, ease: "power3.out",
+          scrollTrigger: {
+             trigger: ".oncology-text-container",
+             start: "top 80%",
+             once: true
+          }
+        }
+      );
+
       /* ══ 5. MANIFESTO QUOTE: Word-by-word scroll scrub ══ */
       const quoteWords = gsap.utils.toArray<HTMLElement>(".qw");
       if (quoteWords.length) {
@@ -528,6 +558,45 @@ function PatientCarePage() {
             </div>
           </div>
         </div>
+      </section>
+
+      {/* ════════════════════════════════════ */}
+      {/* 4.5 ONCOLOGY & CANCER FOCUS         */}
+      {/* ════════════════════════════════════ */}
+      <section className="oncology-focus py-32 md:py-56 px-6 md:px-12 lg:px-24 bg-paper text-navy-deep border-b border-navy/10 relative overflow-hidden flex flex-col items-center justify-center min-h-[80vh]">
+        
+        <div className="relative z-10 max-w-[1000px] mx-auto text-center oncology-text-container">
+          <div className="oncology-elem flex justify-center mb-10">
+            {/* Small, highly visible, stable pink ribbon icon */}
+            <div className="relative flex justify-center items-center">
+              <div className="absolute inset-0 bg-magenta/20 blur-xl rounded-full" />
+              <svg viewBox="0 0 100 150" className="w-12 h-16 text-magenta relative z-10 drop-shadow-md" stroke="currentColor" fill="none">
+                 <path 
+                   d="M 25,140 C 50,90 80,50 80,30 C 80,10 50,5 45,30 C 40,55 30,85 75,140"
+                   strokeWidth="14" 
+                   strokeLinecap="round" 
+                   strokeLinejoin="round" 
+                 />
+              </svg>
+            </div>
+          </div>
+          <p className="oncology-elem text-[0.65rem] font-syne font-bold tracking-[0.5em] text-magenta uppercase mb-8">
+            Specialized Oncology Care
+          </p>
+          <h2 className="oncology-elem font-display text-5xl md:text-7xl lg:text-[7.5rem] leading-[0.85] tracking-tight mb-12 text-navy-deep">
+            Standing with you <br className="hidden md:block" />
+            <em className="italic font-light text-magenta drop-shadow-sm">every step.</em>
+          </h2>
+          <p className="oncology-elem text-ink/65 text-xl md:text-2xl font-light leading-relaxed max-w-3xl mx-auto mb-16">
+            A cancer diagnosis changes everything in an instant. Our oncology department is built not just with advanced radiation tech and robotic surgery, but with an unparalleled depth of human compassion to fight alongside you.
+          </p>
+          <div className="oncology-elem flex items-center justify-center gap-6">
+            <span className="w-16 h-px bg-magenta/50" />
+            <span className="text-[0.55rem] font-syne uppercase tracking-widest text-ink/40 font-bold">Unrelenting Hope</span>
+            <span className="w-16 h-px bg-magenta/50" />
+          </div>
+        </div>
+
       </section>
 
       {/* ════════════════════════════════════ */}
