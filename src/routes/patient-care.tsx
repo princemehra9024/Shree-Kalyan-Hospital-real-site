@@ -4,7 +4,14 @@ import { SiteFooter } from "@/components/site/SiteFooter";
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { ArrowRight, CheckCircle2, ShieldCheck, Stethoscope, HeartHandshake, Sparkles } from "lucide-react";
+import {
+  ArrowRight,
+  CheckCircle2,
+  ShieldCheck,
+  Stethoscope,
+  HeartHandshake,
+  Sparkles,
+} from "lucide-react";
 
 import hospitalLobby from "@/assets/hospital-lobby.png";
 import operatingTheatre from "@/assets/operating-theatre.png";
@@ -19,7 +26,10 @@ export const Route = createFileRoute("/patient-care")({
   head: () => ({
     meta: [
       { title: "Patient Care · Shree Kalyan Hospital" },
-      { name: "description", content: "Compassionate, unhurried patient care at Shree Kalyan Hospital." },
+      {
+        name: "description",
+        content: "Compassionate, unhurried patient care at Shree Kalyan Hospital.",
+      },
     ],
   }),
 });
@@ -80,48 +90,59 @@ function PatientCarePage() {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-
       /* ══ 1. HERO: Layered Word-Mask Reveal ══ */
       const heroWords = gsap.utils.toArray<HTMLElement>(".hw");
-      gsap.fromTo(heroWords,
+      gsap.fromTo(
+        heroWords,
         { yPercent: 115, skewY: 6, opacity: 0 },
         {
-          yPercent: 0, skewY: 0, opacity: 1,
-          duration: 1.6, stagger: 0.12,
+          yPercent: 0,
+          skewY: 0,
+          opacity: 1,
+          duration: 1.6,
+          stagger: 0.12,
           ease: "expo.out",
           delay: 0.3,
-        }
+        },
       );
 
-      gsap.fromTo(".hero-eyebrow",
+      gsap.fromTo(
+        ".hero-eyebrow",
         { x: -60, opacity: 0 },
-        { x: 0, opacity: 1, duration: 1.4, ease: "expo.out", delay: 0.1 }
+        { x: 0, opacity: 1, duration: 1.4, ease: "expo.out", delay: 0.1 },
       );
 
-      gsap.fromTo(".hero-sub",
+      gsap.fromTo(
+        ".hero-sub",
         { y: 50, opacity: 0 },
-        { y: 0, opacity: 1, duration: 1.2, ease: "power3.out", delay: 0.8 }
+        { y: 0, opacity: 1, duration: 1.2, ease: "power3.out", delay: 0.8 },
       );
 
       // Hero image: clip-path wipe from right
-      gsap.fromTo(".hero-img-wrap",
+      gsap.fromTo(
+        ".hero-img-wrap",
         { clipPath: "inset(0 100% 0 0)" },
-        { clipPath: "inset(0 0% 0 0)", duration: 2, ease: "expo.inOut", delay: 0.2 }
+        { clipPath: "inset(0 0% 0 0)", duration: 2, ease: "expo.inOut", delay: 0.2 },
       );
 
       // Floating badge
-      gsap.fromTo(".hero-badge",
+      gsap.fromTo(
+        ".hero-badge",
         { y: 60, opacity: 0, rotation: 8 },
-        { y: 0, opacity: 1, rotation: 0, duration: 1.2, ease: "back.out(1.5)", delay: 1.4 }
+        { y: 0, opacity: 1, rotation: 0, duration: 1.2, ease: "back.out(1.5)", delay: 1.4 },
       );
 
       // Hero parallax
-      gsap.to(".hero-img-inner",
-        {
-          yPercent: 18, ease: "none",
-          scrollTrigger: { trigger: heroRef.current, start: "top top", end: "bottom top", scrub: true }
-        }
-      );
+      gsap.to(".hero-img-inner", {
+        yPercent: 18,
+        ease: "none",
+        scrollTrigger: {
+          trigger: heroRef.current,
+          start: "top top",
+          end: "bottom top",
+          scrub: true,
+        },
+      });
 
       /* ══ 2. STATS: Counting Numbers ══ */
       STATS.forEach((s, i) => {
@@ -133,16 +154,28 @@ function PatientCarePage() {
           start: "top 85%",
           once: true,
           onEnter: () => {
-            gsap.fromTo({ val: 0 }, { val: target, duration: 2, ease: "power2.out" }, {
-              onUpdate: function () { el.textContent = Math.round(this.targets()[0].val).toString(); }
-            });
-          }
+            gsap.fromTo(
+              { val: 0 },
+              { val: target, duration: 2, ease: "power2.out" },
+              {
+                onUpdate: function () {
+                  el.textContent = Math.round(this.targets()[0].val).toString();
+                },
+              },
+            );
+          },
         });
-        gsap.fromTo(el.parentElement,
+        gsap.fromTo(
+          el.parentElement,
           { y: 60, opacity: 0 },
-          { y: 0, opacity: 1, duration: 1, ease: "back.out(1.4)", delay: i * 0.12,
-            scrollTrigger: { trigger: el, start: "top 85%", once: true }
-          }
+          {
+            y: 0,
+            opacity: 1,
+            duration: 1,
+            ease: "back.out(1.4)",
+            delay: i * 0.12,
+            scrollTrigger: { trigger: el, start: "top 85%", once: true },
+          },
         );
       });
 
@@ -162,16 +195,14 @@ function PatientCarePage() {
           scrub: false,
           onUpdate: (self) => {
             const progress = self.progress;
-            const activeIndex = Math.min(
-              Math.floor(progress * panels.length),
-              panels.length - 1
-            );
+            const activeIndex = Math.min(Math.floor(progress * panels.length), panels.length - 1);
             panels.forEach((p, idx) => {
               const isActive = idx === activeIndex;
               gsap.to(p, {
                 opacity: isActive ? 1 : 0,
                 x: isActive ? 0 : idx < activeIndex ? -40 : 60,
-                duration: 0.5, ease: "power3.out",
+                duration: 0.5,
+                ease: "power3.out",
               });
             });
             images.forEach((img, idx) => {
@@ -179,28 +210,36 @@ function PatientCarePage() {
               gsap.to(img, {
                 opacity: isActive ? 1 : 0,
                 scale: isActive ? 1 : 1.05,
-                duration: 0.7, ease: "power3.out",
+                duration: 0.7,
+                ease: "power3.out",
               });
             });
-          }
+          },
         });
 
         // Initial state
-        panels.forEach((p, i) => { if (i > 0) gsap.set(p, { opacity: 0, x: 60 }); });
-        images.forEach((img, i) => { if (i > 0) gsap.set(img, { opacity: 0, scale: 1.05 }); });
+        panels.forEach((p, i) => {
+          if (i > 0) gsap.set(p, { opacity: 0, x: 60 });
+        });
+        images.forEach((img, i) => {
+          if (i > 0) gsap.set(img, { opacity: 0, scale: 1.05 });
+        });
       }
 
       /* ══ 4. PROMISE CARDS: Clip-path Curtain Drop ══ */
       gsap.utils.toArray<HTMLElement>(".promise-card").forEach((card, i) => {
         // clip mask drop
-        gsap.fromTo(card,
+        gsap.fromTo(
+          card,
           { clipPath: "inset(0 0 100% 0)", y: 30 },
           {
-            clipPath: "inset(0 0 0% 0)", y: 0,
-            duration: 1.4, ease: "expo.out",
+            clipPath: "inset(0 0 0% 0)",
+            y: 0,
+            duration: 1.4,
+            ease: "expo.out",
             delay: i * 0.15,
-            scrollTrigger: { trigger: card, start: "top 85%", once: true }
-          }
+            scrollTrigger: { trigger: card, start: "top 85%", once: true },
+          },
         );
       });
 
@@ -216,28 +255,34 @@ function PatientCarePage() {
             trigger: ".oncology-focus",
             start: "top 75%",
             end: "bottom 35%",
-            scrub: 1
-          }
+            scrub: 1,
+          },
         });
       }
 
       /* ── 4.6 ONCOLOGY TEXT STAGGER ── */
-      gsap.fromTo(".oncology-elem", 
+      gsap.fromTo(
+        ".oncology-elem",
         { y: 50, opacity: 0 },
-        { 
-          y: 0, opacity: 1, duration: 1.2, stagger: 0.15, ease: "power3.out",
+        {
+          y: 0,
+          opacity: 1,
+          duration: 1.2,
+          stagger: 0.15,
+          ease: "power3.out",
           scrollTrigger: {
-             trigger: ".oncology-text-container",
-             start: "top 80%",
-             once: true
-          }
-        }
+            trigger: ".oncology-text-container",
+            start: "top 80%",
+            once: true,
+          },
+        },
       );
 
       /* ══ 5. MANIFESTO QUOTE: Word-by-word scroll scrub ══ */
       const quoteWords = gsap.utils.toArray<HTMLElement>(".qw");
       if (quoteWords.length) {
-        gsap.fromTo(quoteWords,
+        gsap.fromTo(
+          quoteWords,
           { opacity: 0.07 },
           {
             opacity: 1,
@@ -248,45 +293,63 @@ function PatientCarePage() {
               start: "top 70%",
               end: "bottom 40%",
               scrub: 1,
-            }
-          }
+            },
+          },
         );
       }
 
       /* ══ 6. AMENITIES: Stagger + underline expand ══ */
-      gsap.fromTo(".amenity-row",
+      gsap.fromTo(
+        ".amenity-row",
         { x: -50, opacity: 0 },
         {
-          x: 0, opacity: 1,
-          stagger: 0.08, duration: 0.9, ease: "expo.out",
-          scrollTrigger: { trigger: ".amenities-grid", start: "top 80%", once: true }
-        }
+          x: 0,
+          opacity: 1,
+          stagger: 0.08,
+          duration: 0.9,
+          ease: "expo.out",
+          scrollTrigger: { trigger: ".amenities-grid", start: "top 80%", once: true },
+        },
       );
 
       /* ══ 7. IMAGE GRID: diagonal reveal ══ */
       gsap.utils.toArray<HTMLElement>(".grid-img").forEach((img, i) => {
-        gsap.fromTo(img,
+        gsap.fromTo(
+          img,
           { clipPath: i % 2 === 0 ? "inset(100% 0 0 0)" : "inset(0 0 100% 0)", scale: 1.1 },
           {
-            clipPath: "inset(0 0 0 0)", scale: 1,
-            duration: 1.6, ease: "expo.inOut",
-            scrollTrigger: { trigger: img, start: "top 82%", once: true }
-          }
+            clipPath: "inset(0 0 0 0)",
+            scale: 1,
+            duration: 1.6,
+            ease: "expo.inOut",
+            scrollTrigger: { trigger: img, start: "top 82%", once: true },
+          },
         );
       });
 
       /* ══ 8. SPLIT CTA section ══ */
-      gsap.fromTo(".cta-left-panel",
+      gsap.fromTo(
+        ".cta-left-panel",
         { x: -80, opacity: 0 },
-        { x: 0, opacity: 1, duration: 1.4, ease: "expo.out",
-          scrollTrigger: { trigger: ".cta-split", start: "top 80%", once: true }
-        }
+        {
+          x: 0,
+          opacity: 1,
+          duration: 1.4,
+          ease: "expo.out",
+          scrollTrigger: { trigger: ".cta-split", start: "top 80%", once: true },
+        },
       );
-      gsap.fromTo(".cta-right-panel",
+      gsap.fromTo(
+        ".cta-right-panel",
         { x: 80, opacity: 0 },
-        { x: 0, opacity: 1, duration: 1.4, ease: "expo.out", delay: 0.15,
-          scrollTrigger: { trigger: ".cta-split", start: "top 80%", once: true }
-        }
+        {
+          x: 0,
+          opacity: 1,
+          duration: 1.4,
+          ease: "expo.out",
+          delay: 0.15,
+          scrollTrigger: { trigger: ".cta-split", start: "top 80%", once: true },
+        },
       );
 
       // Magnetic button effect
@@ -302,14 +365,16 @@ function PatientCarePage() {
           gsap.to(btn, { x: 0, y: 0, duration: 0.6, ease: "elastic.out(1, 0.5)" });
         });
       });
-
     }, pageRef);
 
     return () => ctx.revert();
   }, []);
 
   return (
-    <div ref={pageRef} className="bg-paper text-ink font-sans overflow-x-hidden selection:bg-magenta selection:text-white">
+    <div
+      ref={pageRef}
+      className="bg-paper text-ink font-sans overflow-x-hidden selection:bg-magenta selection:text-white"
+    >
       <SiteNav />
 
       {/* ════════════════════════════════════ */}
@@ -333,10 +398,7 @@ function PatientCarePage() {
           <h1 className="font-display leading-[0.82] tracking-tighter mb-10 text-navy-deep">
             {["A", "sanctuary", "for"].map((w, i) => (
               <div key={i} className="overflow-hidden block">
-                <span
-                  className="hw inline-block"
-                  style={{ fontSize: "clamp(3.5rem, 10vw, 9rem)" }}
-                >
+                <span className="hw inline-block" style={{ fontSize: "clamp(3.5rem, 10vw, 9rem)" }}>
                   {w}&nbsp;
                 </span>
               </div>
@@ -352,15 +414,22 @@ function PatientCarePage() {
           </h1>
 
           <p className="hero-sub max-w-md text-lg text-ink/60 font-light leading-relaxed mb-12">
-            From admission to full recovery — every detail of your care has been designed around your comfort, dignity, and complete healing.
+            From admission to full recovery — every detail of your care has been designed around
+            your comfort, dignity, and complete healing.
           </p>
 
           <div className="flex flex-wrap gap-4">
-            <a href="/appointments" className="mag-btn group bg-navy-deep text-paper px-8 py-5 text-[0.65rem] font-syne font-bold uppercase tracking-widest hover:bg-magenta transition-colors duration-500 inline-flex items-center gap-3">
+            <a
+              href="/appointments"
+              className="mag-btn group bg-navy-deep text-paper px-8 py-5 text-[0.65rem] font-syne font-bold uppercase tracking-widest hover:bg-magenta transition-colors duration-500 inline-flex items-center gap-3"
+            >
               Book Your Visit
               <ArrowRight className="size-4 group-hover:translate-x-1 transition-transform" />
             </a>
-            <a href="/faqs" className="mag-btn border border-navy/20 px-8 py-5 text-[0.65rem] font-syne font-bold uppercase tracking-widest text-ink/60 hover:border-navy hover:text-ink transition-all inline-flex items-center gap-3">
+            <a
+              href="/faqs"
+              className="mag-btn border border-navy/20 px-8 py-5 text-[0.65rem] font-syne font-bold uppercase tracking-widest text-ink/60 hover:border-navy hover:text-ink transition-all inline-flex items-center gap-3"
+            >
               Patient FAQs
             </a>
           </div>
@@ -428,7 +497,8 @@ function PatientCarePage() {
             </h2>
           </div>
           <p className="text-ink/55 text-lg font-light leading-relaxed max-w-sm md:ml-auto">
-            We do not believe in mass-produced healthcare. Every protocol, every investment, every decision is measured against one standard: your wellbeing.
+            We do not believe in mass-produced healthcare. Every protocol, every investment, every
+            decision is measured against one standard: your wellbeing.
           </p>
         </div>
 
@@ -463,12 +533,12 @@ function PatientCarePage() {
               <div className="text-[5rem] font-display font-bold leading-none opacity-[0.04] absolute top-4 right-6 select-none">
                 {card.num}
               </div>
-              <div className={`text-[0.58rem] font-syne uppercase tracking-[0.3em] font-bold mb-6 ${card.accent}`}>
+              <div
+                className={`text-[0.58rem] font-syne uppercase tracking-[0.3em] font-bold mb-6 ${card.accent}`}
+              >
                 {card.num} — {card.title}
               </div>
-              <h3 className="font-display text-3xl md:text-4xl mb-6 leading-tight">
-                {card.title}
-              </h3>
+              <h3 className="font-display text-3xl md:text-4xl mb-6 leading-tight">{card.title}</h3>
               <p className={`font-light leading-relaxed ${i === 0 ? "text-ink/60" : "opacity-70"}`}>
                 {card.body}
               </p>
@@ -513,7 +583,10 @@ function PatientCarePage() {
             {STEPS.map((step, i) => {
               const Icon = step.icon;
               return (
-                <div key={i} className={`step-panel absolute inset-0 flex flex-col justify-center ${i === 0 ? "" : "opacity-0"}`}>
+                <div
+                  key={i}
+                  className={`step-panel absolute inset-0 flex flex-col justify-center ${i === 0 ? "" : "opacity-0"}`}
+                >
                   <div className="flex items-center gap-4 mb-8">
                     <span className="size-12 rounded-full bg-magenta/15 border border-magenta/25 flex items-center justify-center">
                       <Icon className="size-5 text-magenta" />
@@ -564,19 +637,23 @@ function PatientCarePage() {
       {/* 4.5 ONCOLOGY & CANCER FOCUS         */}
       {/* ════════════════════════════════════ */}
       <section className="oncology-focus py-32 md:py-56 px-6 md:px-12 lg:px-24 bg-paper text-navy-deep border-b border-navy/10 relative overflow-hidden flex flex-col items-center justify-center min-h-[80vh]">
-        
         <div className="relative z-10 max-w-[1000px] mx-auto text-center oncology-text-container">
           <div className="oncology-elem flex justify-center mb-10">
             {/* Small, highly visible, stable pink ribbon icon */}
             <div className="relative flex justify-center items-center">
               <div className="absolute inset-0 bg-magenta/20 blur-xl rounded-full" />
-              <svg viewBox="0 0 100 150" className="w-12 h-16 text-magenta relative z-10 drop-shadow-md" stroke="currentColor" fill="none">
-                 <path 
-                   d="M 25,140 C 50,90 80,50 80,30 C 80,10 50,5 45,30 C 40,55 30,85 75,140"
-                   strokeWidth="14" 
-                   strokeLinecap="round" 
-                   strokeLinejoin="round" 
-                 />
+              <svg
+                viewBox="0 0 100 150"
+                className="w-12 h-16 text-magenta relative z-10 drop-shadow-md"
+                stroke="currentColor"
+                fill="none"
+              >
+                <path
+                  d="M 25,140 C 50,90 80,50 80,30 C 80,10 50,5 45,30 C 40,55 30,85 75,140"
+                  strokeWidth="14"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
               </svg>
             </div>
           </div>
@@ -588,15 +665,18 @@ function PatientCarePage() {
             <em className="italic font-light text-magenta drop-shadow-sm">every step.</em>
           </h2>
           <p className="oncology-elem text-ink/65 text-xl md:text-2xl font-light leading-relaxed max-w-3xl mx-auto mb-16">
-            A cancer diagnosis changes everything in an instant. Our oncology department is built not just with advanced radiation tech and robotic surgery, but with an unparalleled depth of human compassion to fight alongside you.
+            A cancer diagnosis changes everything in an instant. Our oncology department is built
+            not just with advanced radiation tech and robotic surgery, but with an unparalleled
+            depth of human compassion to fight alongside you.
           </p>
           <div className="oncology-elem flex items-center justify-center gap-6">
             <span className="w-16 h-px bg-magenta/50" />
-            <span className="text-[0.55rem] font-syne uppercase tracking-widest text-ink/40 font-bold">Unrelenting Hope</span>
+            <span className="text-[0.55rem] font-syne uppercase tracking-widest text-ink/40 font-bold">
+              Unrelenting Hope
+            </span>
             <span className="w-16 h-px bg-magenta/50" />
           </div>
         </div>
-
       </section>
 
       {/* ════════════════════════════════════ */}
@@ -619,7 +699,9 @@ function PatientCarePage() {
                 <div key={i} className="amenity-row group flex items-center gap-5 py-5 relative">
                   <div className="absolute bottom-0 left-0 right-0 h-[1px] bg-magenta scale-x-0 origin-left group-hover:scale-x-100 transition-transform duration-500" />
                   <CheckCircle2 className="size-5 text-magenta shrink-0" />
-                  <span className="text-lg font-light text-ink/80 group-hover:text-ink transition-colors">{item}</span>
+                  <span className="text-lg font-light text-ink/80 group-hover:text-ink transition-colors">
+                    {item}
+                  </span>
                   <ArrowRight className="size-4 text-magenta ml-auto opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300" />
                 </div>
               ))}
@@ -669,11 +751,13 @@ function PatientCarePage() {
             Our Guiding Belief
           </span>
           <p className="font-display text-3xl md:text-5xl lg:text-6xl leading-[1.2] text-paper">
-            {`"Healing is not merely technical. It is deeply, irreversibly human — and every patient deserves to be treated as the masterpiece they are."`.split(" ").map((word, i) => (
-              <span key={i} className="qw inline-block mr-[0.3em]">
-                {word}
-              </span>
-            ))}
+            {`"Healing is not merely technical. It is deeply, irreversibly human — and every patient deserves to be treated as the masterpiece they are."`
+              .split(" ")
+              .map((word, i) => (
+                <span key={i} className="qw inline-block mr-[0.3em]">
+                  {word}
+                </span>
+              ))}
           </p>
           <div className="mt-16 flex items-center justify-center gap-4">
             <div className="w-12 h-px bg-magenta" />
@@ -690,19 +774,38 @@ function PatientCarePage() {
       {/* ════════════════════════════════════ */}
       <section className="py-32 px-6 md:px-12 lg:px-24 max-w-[1600px] mx-auto border-b border-navy/10">
         <div className="mb-20">
-          <h2 className="font-display text-5xl md:text-7xl text-navy-deep leading-[0.88]" data-reveal>
+          <h2
+            className="font-display text-5xl md:text-7xl text-navy-deep leading-[0.88]"
+            data-reveal
+          >
             Plan your <em className="italic font-light text-navy-deep/40">visit.</em>
           </h2>
         </div>
         <div className="grid md:grid-cols-3 gap-0 divide-y md:divide-y-0 md:divide-x divide-navy/10">
           {[
-            { title: "Visiting Hours", value: "10 AM – 8 PM", detail: "ICU by appointment. Family accommodation available for critical patients." },
-            { title: "Parking & Drop-Off", value: "Valet Service", detail: "Complimentary valet for all patients. Wheelchair-accessible main entrance." },
-            { title: "On-Site Amenities", value: "Full Service", detail: "Pharmacy, café, prayer room, and a curated healing garden — open to all." },
+            {
+              title: "Visiting Hours",
+              value: "10 AM – 8 PM",
+              detail: "ICU by appointment. Family accommodation available for critical patients.",
+            },
+            {
+              title: "Parking & Drop-Off",
+              value: "Valet Service",
+              detail: "Complimentary valet for all patients. Wheelchair-accessible main entrance.",
+            },
+            {
+              title: "On-Site Amenities",
+              value: "Full Service",
+              detail: "Pharmacy, café, prayer room, and a curated healing garden — open to all.",
+            },
           ].map((item, i) => (
             <div key={i} className="group px-0 md:px-12 py-10 first:pl-0 last:pr-0" data-reveal>
-              <span className="text-[0.58rem] font-syne uppercase tracking-[0.3em] text-ink/40 font-bold block mb-5">{item.title}</span>
-              <div className="font-display text-3xl md:text-4xl text-navy-deep mb-5 group-hover:text-magenta transition-colors duration-500">{item.value}</div>
+              <span className="text-[0.58rem] font-syne uppercase tracking-[0.3em] text-ink/40 font-bold block mb-5">
+                {item.title}
+              </span>
+              <div className="font-display text-3xl md:text-4xl text-navy-deep mb-5 group-hover:text-magenta transition-colors duration-500">
+                {item.value}
+              </div>
               <p className="text-ink/55 font-light leading-relaxed">{item.detail}</p>
             </div>
           ))}
@@ -734,17 +837,25 @@ function PatientCarePage() {
             Ready to Begin
           </p>
           <h2 className="font-display text-4xl md:text-5xl lg:text-6xl mb-8 leading-[0.9]">
-            Questions about <br />your visit?
+            Questions about <br />
+            your visit?
           </h2>
           <p className="text-paper/75 font-light text-lg mb-12 max-w-sm leading-relaxed">
-            Our concierge team is available around the clock — from insurance coordination to dietary preferences.
+            Our concierge team is available around the clock — from insurance coordination to
+            dietary preferences.
           </p>
           <div className="flex flex-col sm:flex-row gap-4">
-            <a href="/contact" className="mag-btn group bg-paper text-ink px-10 py-5 text-[0.65rem] font-syne font-bold uppercase tracking-widest hover:bg-navy-deep hover:text-paper transition-colors duration-500 text-center inline-flex items-center justify-center gap-3">
+            <a
+              href="/contact"
+              className="mag-btn group bg-paper text-ink px-10 py-5 text-[0.65rem] font-syne font-bold uppercase tracking-widest hover:bg-navy-deep hover:text-paper transition-colors duration-500 text-center inline-flex items-center justify-center gap-3"
+            >
               Contact Concierge
               <ArrowRight className="size-4 group-hover:translate-x-1 transition-transform" />
             </a>
-            <a href="/faqs" className="border border-paper/30 px-10 py-5 text-[0.65rem] font-syne font-bold uppercase tracking-widest text-paper hover:bg-white/10 transition-colors text-center">
+            <a
+              href="/faqs"
+              className="border border-paper/30 px-10 py-5 text-[0.65rem] font-syne font-bold uppercase tracking-widest text-paper hover:bg-white/10 transition-colors text-center"
+            >
               Read FAQs
             </a>
           </div>

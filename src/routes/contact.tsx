@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import exterior from "@/assets/hospital-exterior.jpg";
 import { SiteNav } from "@/components/site/SiteNav";
@@ -33,13 +33,7 @@ export const Route = createFileRoute("/contact")({
 /* ─── Animated SVG cross / plus decorators ─────────────────────── */
 function SVGCross({ className }: { className?: string }) {
   return (
-    <svg
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      className={className}
-    >
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" className={className}>
       <line x1="12" y1="0" x2="12" y2="24" stroke="currentColor" strokeWidth="1" />
       <line x1="0" y1="12" x2="24" y2="12" stroke="currentColor" strokeWidth="1" />
     </svg>
@@ -47,15 +41,7 @@ function SVGCross({ className }: { className?: string }) {
 }
 
 /* ─── Floating stat badge ────────────────────────────────────────── */
-function StatBadge({
-  num,
-  label,
-  className,
-}: {
-  num: string;
-  label: string;
-  className?: string;
-}) {
+function StatBadge({ num, label, className }: { num: string; label: string; className?: string }) {
   return (
     <div
       className={`stat-badge absolute bg-paper/95 backdrop-blur border border-ink/10 px-6 py-5 shadow-2xl ${className}`}
@@ -77,12 +63,12 @@ function ContactPage() {
       gsap.fromTo(
         ".ct-line",
         { scaleX: 0 },
-        { scaleX: 1, duration: 1.1, ease: "power3.inOut", delay: 0.2 }
+        { scaleX: 1, duration: 1.1, ease: "power3.inOut", delay: 0.2 },
       );
       gsap.fromTo(
         ".ct-eyebrow",
         { opacity: 0, x: -16 },
-        { opacity: 1, x: 0, duration: 0.9, ease: "expo.out", delay: 0.55 }
+        { opacity: 1, x: 0, duration: 0.9, ease: "expo.out", delay: 0.55 },
       );
 
       /* ── 2. Headline stagger (clip-path per word) ── */
@@ -96,21 +82,21 @@ function ContactPage() {
           stagger: 0.12,
           ease: "expo.out",
           delay: 0.4,
-        }
+        },
       );
 
       /* ── 3. Description fade ── */
       gsap.fromTo(
         ".ct-desc",
         { opacity: 0, y: 24 },
-        { opacity: 1, y: 0, duration: 1.1, ease: "expo.out", delay: 1.0 }
+        { opacity: 1, y: 0, duration: 1.1, ease: "expo.out", delay: 1.0 },
       );
 
       /* ── 4. CTA bar slide ── */
       gsap.fromTo(
         ".ct-cta",
         { opacity: 0, y: 16 },
-        { opacity: 1, y: 0, duration: 0.9, ease: "expo.out", delay: 1.2 }
+        { opacity: 1, y: 0, duration: 0.9, ease: "expo.out", delay: 1.2 },
       );
 
       /* ── 5. Hero image clip-path wipe (bottom-up) ── */
@@ -122,12 +108,12 @@ function ContactPage() {
           duration: 1.8,
           ease: "expo.inOut",
           delay: 0.15,
-        }
+        },
       );
       gsap.fromTo(
         ".ct-hero-img",
         { scale: 1.12 },
-        { scale: 1, duration: 2.6, ease: "power3.out", delay: 0.15 }
+        { scale: 1, duration: 2.6, ease: "power3.out", delay: 0.15 },
       );
 
       /* ── 6. Stat badges pop in ── */
@@ -142,14 +128,14 @@ function ContactPage() {
           stagger: 0.18,
           ease: "back.out(1.5)",
           delay: 1.5,
-        }
+        },
       );
 
       /* ── 7. Decorative lines draw ── */
       gsap.fromTo(
         ".ct-deco-line",
         { scaleX: 0, transformOrigin: "left center" },
-        { scaleX: 1, duration: 1.2, ease: "power3.inOut", delay: 1.6 }
+        { scaleX: 1, duration: 1.2, ease: "power3.inOut", delay: 1.6 },
       );
 
       /* ── 8. Image parallax on scroll ── */
@@ -175,7 +161,7 @@ function ContactPage() {
           stagger: 0.12,
           ease: "expo.out",
           scrollTrigger: { trigger: ".ct-strips", start: "top 88%", once: true },
-        }
+        },
       );
 
       /* ── 10. Form section reveal ── */
@@ -188,7 +174,7 @@ function ContactPage() {
           duration: 1.3,
           ease: "expo.out",
           scrollTrigger: { trigger: ".ct-form-section", start: "top 85%", once: true },
-        }
+        },
       );
 
       /* ── 11. Map image parallax ── */
@@ -233,10 +219,8 @@ function ContactPage() {
         <SVGCross className="absolute bottom-24 left-8 md:left-24 text-magenta/20 size-6 ct-deco" />
 
         <div className="max-w-[1600px] mx-auto px-6 md:px-12 lg:px-24 w-full grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
-
           {/* ── LEFT: Typography ── */}
           <div className="z-10 relative order-2 lg:order-1 pb-16 lg:pb-0">
-
             {/* Chapter / eyebrow */}
             <div className="flex items-center gap-5 mb-12">
               <div className="ct-line w-12 h-px bg-magenta origin-left" />
@@ -252,9 +236,7 @@ function ContactPage() {
             >
               {/* "Begin" — italic magenta */}
               <div className="overflow-hidden pb-3">
-                <span className="ct-title-word block italic font-light text-magenta">
-                  Begin
-                </span>
+                <span className="ct-title-word block italic font-light text-magenta">Begin</span>
               </div>
               {/* "here." — indented */}
               <div className="overflow-hidden pb-3 pl-[0.15em] md:pl-[0.3em]">
@@ -264,9 +246,8 @@ function ContactPage() {
 
             {/* Description */}
             <p className="ct-desc text-lg md:text-xl text-ink/60 font-light leading-relaxed max-w-md mb-12">
-              Walk-in consultations daily. Emergency triage twenty-four hours. To schedule a
-              private review with one of our consultants, leave a note below or call our
-              admissions desk.
+              Walk-in consultations daily. Emergency triage twenty-four hours. To schedule a private
+              review with one of our consultants, leave a note below or call our admissions desk.
             </p>
 
             {/* CTA cluster */}
@@ -294,7 +275,8 @@ function ContactPage() {
           {/* ── RIGHT: Image with floating badges ── */}
           <div className="relative order-1 lg:order-2 z-10">
             {/* Main hero image with clip-path wipe */}
-            <div className="ct-hero-img-wrap overflow-hidden relative shadow-[0_40px_100px_-20px_rgba(0,0,0,0.18)]"
+            <div
+              className="ct-hero-img-wrap overflow-hidden relative shadow-[0_40px_100px_-20px_rgba(0,0,0,0.18)]"
               style={{ clipPath: "polygon(0 100%, 100% 100%, 100% 100%, 0 100%)" }}
             >
               <img
@@ -376,9 +358,7 @@ function ContactPage() {
                 <p
                   className={`text-[0.65rem] tracking-[0.3em] font-bold mb-6 flex items-center gap-3 group-hover:text-magenta transition-colors ${c.accent ? "text-magenta" : "text-ink/40"}`}
                 >
-                  {c.accent && (
-                    <span className="size-2 rounded-full bg-magenta animate-pulse" />
-                  )}
+                  {c.accent && <span className="size-2 rounded-full bg-magenta animate-pulse" />}
                   <Icon className="size-3.5" />
                   {c.label}
                 </p>
@@ -459,54 +439,61 @@ function ContactPage() {
 
           {/* Sidebar */}
           <aside className="col-span-12 lg:col-span-4 lg:col-start-9 space-y-20">
-            {[
-              {
-                icon: MapPin,
-                label: "Address",
-                content: (
-                  <>
-                    Shree Kalyan Hospital
-                    <br />
-                    80 Feet Link Road
-                    <br />
-                    Kota, Rajasthan 324005
-                  </>
-                ),
-              },
-              {
-                icon: Clock,
-                label: "OPD Hours",
-                content: (
-                  <>
-                    Mon – Sat
-                    <br />
-                    09:00 – 20:00
-                  </>
-                ),
-              },
-              {
-                icon: Phone,
-                label: "Emergency",
-                content: (
-                  <>
-                    24 hours
-                    <br />
-                    Every day, all year
-                  </>
-                ),
-                accent: true,
-              },
-            ].map((item, i) => {
+            {(
+              [
+                {
+                  icon: MapPin,
+                  label: "Address",
+                  content: (
+                    <>
+                      Shree Kalyan Hospital
+                      <br />
+                      80 Feet Link Road
+                      <br />
+                      Kota, Rajasthan 324005
+                    </>
+                  ),
+                },
+                {
+                  icon: Clock,
+                  label: "OPD Hours",
+                  content: (
+                    <>
+                      Mon – Sat
+                      <br />
+                      09:00 – 20:00
+                    </>
+                  ),
+                },
+                {
+                  icon: Phone,
+                  label: "Emergency",
+                  accent: true,
+                  content: (
+                    <>
+                      24 hours
+                      <br />
+                      Every day, all year
+                    </>
+                  ),
+                },
+              ] as {
+                icon: React.ElementType;
+                label: string;
+                accent?: boolean;
+                content: React.ReactNode;
+              }[]
+            ).map((item, i) => {
               const Icon = item.icon;
               return (
                 <div key={i}>
                   <p
-                    className={`text-[0.65rem] tracking-[0.3em] font-bold uppercase mb-6 flex items-center gap-4 ${(item as any).accent ? "text-magenta" : "text-magenta"}`}
+                    className={`text-[0.65rem] tracking-[0.3em] font-bold uppercase mb-6 flex items-center gap-4 ${item.accent ? "text-magenta" : "text-magenta"}`}
                   >
                     <span className="w-8 h-px bg-magenta" />
                     <Icon className="size-3.5" />
                     {item.label}
-                    {(item as any).accent && (
+                    {item.accent && (
                       <span className="size-2 rounded-full bg-magenta animate-pulse ml-1" />
                     )}
                   </p>
@@ -523,9 +510,7 @@ function ContactPage() {
       {/* ══════════════════════════════════════════════════ */}
       {/* Map / location image                             */}
       {/* ══════════════════════════════════════════════════ */}
-      <section
-        className="ct-map-section relative h-[60vh] md:h-[80vh] overflow-hidden border-t border-ink/10"
-      >
+      <section className="ct-map-section relative h-[60vh] md:h-[80vh] overflow-hidden border-t border-ink/10">
         <img
           src={exterior}
           alt="Shree Kalyan Hospital, Kota — exterior at golden hour"
@@ -541,10 +526,7 @@ function ContactPage() {
           <p className="text-[0.65rem] tracking-[0.3em] uppercase font-bold text-magenta mb-4 flex items-center gap-3">
             <MapPin className="size-3.5" /> Find us
           </p>
-          <p
-            className="font-display leading-none"
-            style={{ fontSize: "clamp(3rem, 8vw, 7.5rem)" }}
-          >
+          <p className="font-display leading-none" style={{ fontSize: "clamp(3rem, 8vw, 7.5rem)" }}>
             Kota, <br />
             <span className="italic font-light opacity-80">Rajasthan</span>
           </p>
@@ -552,9 +534,7 @@ function ContactPage() {
 
         {/* Bottom-right stat */}
         <div className="absolute bottom-12 right-6 md:bottom-24 md:right-24 text-paper text-right">
-          <p className="font-display text-6xl md:text-8xl text-paper/20 leading-none">
-            2024
-          </p>
+          <p className="font-display text-6xl md:text-8xl text-paper/20 leading-none">2024</p>
           <p className="text-[0.6rem] tracking-[0.35em] uppercase text-magenta font-bold">
             Est. in Kota
           </p>

@@ -36,7 +36,7 @@ export function WhatsAppDirect() {
         duration: 1,
         delay: 1.5,
         ease: "elastic.out(1, 0.5)",
-      }
+      },
     );
   }, []);
 
@@ -57,7 +57,7 @@ export function WhatsAppDirect() {
           ease: "power2.out",
           repeat: -1,
           repeatDelay: 0.2,
-        }
+        },
       );
     });
   }, []);
@@ -108,7 +108,7 @@ export function WhatsAppDirect() {
       gsap.fromTo(
         tip,
         { opacity: 0, x: 14, scale: 0.92 },
-        { opacity: 1, x: 0, scale: 1, duration: 0.35, ease: "power3.out" }
+        { opacity: 1, x: 0, scale: 1, duration: 0.35, ease: "power3.out" },
       );
     } else {
       gsap.to(tip, { opacity: 0, x: 14, scale: 0.92, duration: 0.2, ease: "power2.in" });
@@ -178,8 +178,7 @@ export function WhatsAppDirect() {
             position: "absolute",
             inset: 0,
             borderRadius: "50%",
-            background:
-              "linear-gradient(135deg, rgba(37,211,102,0.12) 0%, transparent 60%)",
+            background: "linear-gradient(135deg, rgba(37,211,102,0.12) 0%, transparent 60%)",
             pointerEvents: "none",
           }}
         />

@@ -36,34 +36,53 @@ export function PageTransition({ children }: { children: React.ReactNode }) {
       stagger: 0,
     })
 
-    // Phase 2: Fade-in the transition label
-    .to(lbl, {
-      opacity: 1, y: 0, scale: 1,
-      duration: 0.4, ease: "power3.out",
-    }, "-=0.1")
+      // Phase 2: Fade-in the transition label
+      .to(
+        lbl,
+        {
+          opacity: 1,
+          y: 0,
+          scale: 1,
+          duration: 0.4,
+          ease: "power3.out",
+        },
+        "-=0.1",
+      )
 
-    // Phase 3: Hold
-    .to({}, { duration: 0.5 })
+      // Phase 3: Hold
+      .to({}, { duration: 0.5 })
 
-    // Phase 4: Fade label out
-    .to(lbl, {
-      opacity: 0, y: -10,
-      duration: 0.3, ease: "power2.in",
-    })
+      // Phase 4: Fade label out
+      .to(lbl, {
+        opacity: 0,
+        y: -10,
+        duration: 0.3,
+        ease: "power2.in",
+      })
 
-    // Phase 5: Split panels open
-    .to(top, {
-      yPercent: -100,
-      duration: 0.85,
-      ease: "expo.inOut",
-    }, "-=0.1")
-    .to(bot, {
-      yPercent: 100,
-      duration: 0.85,
-      ease: "expo.inOut",
-    }, "<");
+      // Phase 5: Split panels open
+      .to(
+        top,
+        {
+          yPercent: -100,
+          duration: 0.85,
+          ease: "expo.inOut",
+        },
+        "-=0.1",
+      )
+      .to(
+        bot,
+        {
+          yPercent: 100,
+          duration: 0.85,
+          ease: "expo.inOut",
+        },
+        "<",
+      );
 
-    return () => { tl.kill(); };
+    return () => {
+      tl.kill();
+    };
   }, [location.pathname]);
 
   return (

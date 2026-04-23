@@ -81,52 +81,89 @@ const facilitiesData = [
 function Cross({ className }: { className?: string }) {
   return (
     <svg width="20" height="20" viewBox="0 0 20 20" fill="none" className={className}>
-      <line x1="10" y1="0"  x2="10" y2="20" stroke="currentColor" strokeWidth="1" />
-      <line x1="0"  y1="10" x2="20" y2="10" stroke="currentColor" strokeWidth="1" />
+      <line x1="10" y1="0" x2="10" y2="20" stroke="currentColor" strokeWidth="1" />
+      <line x1="0" y1="10" x2="20" y2="10" stroke="currentColor" strokeWidth="1" />
     </svg>
   );
 }
 
 function FacilitiesPage() {
-  const pageRef      = useRef<HTMLDivElement>(null);
+  const pageRef = useRef<HTMLDivElement>(null);
   const horizontalRef = useRef<HTMLDivElement>(null);
-  const containerRef  = useRef<HTMLDivElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
 
   /* ── Hero entrance ── */
   useEffect(() => {
     const ctx = gsap.context(() => {
       /* 1. Eyebrow */
-      gsap.fromTo(".fc-line",    { scaleX: 0 }, { scaleX: 1, duration: 1.1, ease: "power3.inOut", delay: 0.2 });
-      gsap.fromTo(".fc-eyebrow", { opacity: 0, x: -16 }, { opacity: 1, x: 0, duration: 0.9, ease: "expo.out", delay: 0.55 });
+      gsap.fromTo(
+        ".fc-line",
+        { scaleX: 0 },
+        { scaleX: 1, duration: 1.1, ease: "power3.inOut", delay: 0.2 },
+      );
+      gsap.fromTo(
+        ".fc-eyebrow",
+        { opacity: 0, x: -16 },
+        { opacity: 1, x: 0, duration: 0.9, ease: "expo.out", delay: 0.55 },
+      );
 
       /* 2. Headline */
       gsap.fromTo(
         ".fc-title-word",
         { yPercent: 110, skewY: 3 },
-        { yPercent: 0, skewY: 0, duration: 1.4, stagger: 0.12, ease: "expo.out", delay: 0.4 }
+        { yPercent: 0, skewY: 0, duration: 1.4, stagger: 0.12, ease: "expo.out", delay: 0.4 },
       );
 
       /* 3. Description + CTA */
-      gsap.fromTo(".fc-desc", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 1.1, ease: "expo.out", delay: 1.05 });
-      gsap.fromTo(".fc-cta",  { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.9, ease: "expo.out", delay: 1.25 });
+      gsap.fromTo(
+        ".fc-desc",
+        { opacity: 0, y: 24 },
+        { opacity: 1, y: 0, duration: 1.1, ease: "expo.out", delay: 1.05 },
+      );
+      gsap.fromTo(
+        ".fc-cta",
+        { opacity: 0, y: 16 },
+        { opacity: 1, y: 0, duration: 0.9, ease: "expo.out", delay: 1.25 },
+      );
 
       /* 4. Hero image wipe */
       gsap.fromTo(
         ".fc-img-wrap",
         { clipPath: "polygon(0 100%, 100% 100%, 100% 100%, 0 100%)" },
-        { clipPath: "polygon(0 0%, 100% 0%, 100% 100%, 0 100%)", duration: 1.8, ease: "expo.inOut", delay: 0.15 }
+        {
+          clipPath: "polygon(0 0%, 100% 0%, 100% 100%, 0 100%)",
+          duration: 1.8,
+          ease: "expo.inOut",
+          delay: 0.15,
+        },
       );
-      gsap.fromTo(".fc-hero-img", { scale: 1.12 }, { scale: 1, duration: 2.6, ease: "power3.out", delay: 0.15 });
+      gsap.fromTo(
+        ".fc-hero-img",
+        { scale: 1.12 },
+        { scale: 1, duration: 2.6, ease: "power3.out", delay: 0.15 },
+      );
 
       /* 5. Stat badges */
       gsap.fromTo(
         ".fc-badge",
         { opacity: 0, scale: 0.85, y: 20 },
-        { opacity: 1, scale: 1, y: 0, duration: 0.9, stagger: 0.18, ease: "back.out(1.5)", delay: 1.5 }
+        {
+          opacity: 1,
+          scale: 1,
+          y: 0,
+          duration: 0.9,
+          stagger: 0.18,
+          ease: "back.out(1.5)",
+          delay: 1.5,
+        },
       );
 
       /* 6. Deco line */
-      gsap.fromTo(".fc-deco-line", { scaleX: 0 }, { scaleX: 1, duration: 1.2, ease: "power3.inOut", delay: 1.65 });
+      gsap.fromTo(
+        ".fc-deco-line",
+        { scaleX: 0 },
+        { scaleX: 1, duration: 1.2, ease: "power3.inOut", delay: 1.65 },
+      );
 
       /* 7. Hero image parallax */
       gsap.to(".fc-hero-img", {
@@ -170,7 +207,10 @@ function FacilitiesPage() {
   }, []);
 
   return (
-    <div ref={pageRef} className="bg-paper min-h-screen overflow-x-hidden selection:bg-magenta selection:text-white">
+    <div
+      ref={pageRef}
+      className="bg-paper min-h-screen overflow-x-hidden selection:bg-magenta selection:text-white"
+    >
       <SiteNav />
 
       {/* ══════════════════════════════════════════════════════════ */}
@@ -192,7 +232,6 @@ function FacilitiesPage() {
         <Cross className="absolute bottom-28 left-8 md:left-20 text-magenta/20 size-6" />
 
         <div className="max-w-[1600px] mx-auto px-6 md:px-12 lg:px-24 w-full grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
-
           {/* ── LEFT: Typography ── */}
           <div className="z-10 relative order-2 lg:order-1 pb-16 lg:pb-0">
             <div className="flex items-center gap-5 mb-12">
@@ -213,15 +252,18 @@ function FacilitiesPage() {
                 <span className="fc-title-word block">Precision.</span>
               </div>
               <div className="overflow-hidden pb-3 pl-[0.3em] md:pl-[0.6em]">
-                <span className="fc-title-word block italic font-light opacity-40" style={{ fontSize: "55%" }}>
+                <span
+                  className="fc-title-word block italic font-light opacity-40"
+                  style={{ fontSize: "55%" }}
+                >
                   High Standards.
                 </span>
               </div>
             </h1>
 
             <p className="fc-desc text-lg md:text-xl text-ink/60 font-light leading-relaxed max-w-md mb-12">
-              An editorial tour through our premium healthcare environments — designed
-              for medical excellence and patient tranquility in equal measure.
+              An editorial tour through our premium healthcare environments — designed for medical
+              excellence and patient tranquility in equal measure.
             </p>
 
             <div className="fc-cta flex flex-col sm:flex-row gap-4">
@@ -259,11 +301,15 @@ function FacilitiesPage() {
 
             <div className="fc-badge absolute -bottom-6 -left-6 md:-bottom-8 md:-left-10 bg-paper/95 backdrop-blur border border-ink/10 px-6 py-5 shadow-2xl">
               <p className="font-display text-3xl text-navy-deep leading-none mb-1">5+</p>
-              <p className="text-[0.6rem] font-bold tracking-[0.25em] uppercase text-ink/40">Premium Units</p>
+              <p className="text-[0.6rem] font-bold tracking-[0.25em] uppercase text-ink/40">
+                Premium Units
+              </p>
             </div>
             <div className="fc-badge absolute -top-6 -right-4 md:-top-8 md:-right-8 bg-paper/95 backdrop-blur border border-ink/10 px-6 py-5 shadow-2xl">
               <p className="font-display text-3xl text-navy-deep leading-none mb-1">HEPA</p>
-              <p className="text-[0.6rem] font-bold tracking-[0.25em] uppercase text-ink/40">Filtration</p>
+              <p className="text-[0.6rem] font-bold tracking-[0.25em] uppercase text-ink/40">
+                Filtration
+              </p>
             </div>
 
             <div className="absolute -bottom-10 -left-10 w-32 h-32 border-b border-l border-magenta/50 pointer-events-none z-20" />
@@ -273,7 +319,9 @@ function FacilitiesPage() {
 
         {/* Scroll cue */}
         <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-40">
-          <span className="text-[0.55rem] tracking-[0.35em] uppercase font-bold text-ink">Scroll</span>
+          <span className="text-[0.55rem] tracking-[0.35em] uppercase font-bold text-ink">
+            Scroll
+          </span>
           <div className="w-px h-12 bg-ink/30 relative overflow-hidden">
             <div
               className="absolute top-0 left-0 w-full bg-magenta"
@@ -294,7 +342,9 @@ function FacilitiesPage() {
               className={`w-[100vw] h-full flex flex-col justify-center px-12 md:px-24 py-32 border-r border-white/5 ${item.bg}`}
             >
               <div className="max-w-4xl">
-                <p className={`font-display italic text-6xl md:text-9xl mb-8 opacity-15 ${item.text}`}>
+                <p
+                  className={`font-display italic text-6xl md:text-9xl mb-8 opacity-15 ${item.text}`}
+                >
                   {item.eyebrow}
                 </p>
                 <item.icon className={`size-16 md:size-24 mb-12 ${item.accent} opacity-80`} />
@@ -307,17 +357,27 @@ function FacilitiesPage() {
                     </span>
                   ))}
                 </h2>
-                <p className={`text-xl md:text-2xl font-light leading-relaxed max-w-2xl opacity-70 ${item.text}`}>
+                <p
+                  className={`text-xl md:text-2xl font-light leading-relaxed max-w-2xl opacity-70 ${item.text}`}
+                >
                   {item.desc}
                 </p>
 
                 <div className="mt-24 flex items-center gap-12">
                   <div className="flex flex-col">
-                    <span className={`text-[0.65rem] uppercase tracking-widest opacity-40 mb-2 ${item.text}`}>Capacity</span>
+                    <span
+                      className={`text-[0.65rem] uppercase tracking-widest opacity-40 mb-2 ${item.text}`}
+                    >
+                      Capacity
+                    </span>
                     <span className={`font-display text-4xl ${item.text}`}>Available</span>
                   </div>
                   <div className="flex flex-col">
-                    <span className={`text-[0.65rem] uppercase tracking-widest opacity-40 mb-2 ${item.text}`}>Staffing</span>
+                    <span
+                      className={`text-[0.65rem] uppercase tracking-widest opacity-40 mb-2 ${item.text}`}
+                    >
+                      Staffing
+                    </span>
                     <span className={`font-display text-4xl ${item.text}`}>24/7 Dedicated</span>
                   </div>
                 </div>
@@ -328,8 +388,13 @@ function FacilitiesPage() {
           {/* Final CTA slide */}
           <div className="w-[100vw] h-full flex items-center justify-center bg-paper text-navy-deep">
             <div className="text-center px-12">
-              <p className="text-[0.65rem] font-bold tracking-[0.45em] uppercase text-magenta mb-10">End of Tour</p>
-              <h3 className="font-display leading-[0.85] tracking-tight mb-16" style={{ fontSize: "clamp(3.5rem,9vw,8rem)" }}>
+              <p className="text-[0.65rem] font-bold tracking-[0.45em] uppercase text-magenta mb-10">
+                End of Tour
+              </p>
+              <h3
+                className="font-display leading-[0.85] tracking-tight mb-16"
+                style={{ fontSize: "clamp(3.5rem,9vw,8rem)" }}
+              >
                 Experience <br />
                 <span className="italic font-light text-magenta">Excellence.</span>
               </h3>
@@ -356,7 +421,10 @@ function FacilitiesPage() {
         <div className="absolute bottom-12 left-1/2 -translate-x-1/2 flex items-center gap-4 text-magenta/40 text-[0.65rem] tracking-[0.4em] uppercase font-bold pointer-events-none">
           <span>Scroll to explore</span>
           <div className="w-24 h-px bg-magenta/20 overflow-hidden">
-            <div className="w-full h-full bg-magenta origin-left" style={{ animation: "fcHint 2.2s ease-in-out infinite" }} />
+            <div
+              className="w-full h-full bg-magenta origin-left"
+              style={{ animation: "fcHint 2.2s ease-in-out infinite" }}
+            />
           </div>
         </div>
       </div>
@@ -371,7 +439,10 @@ function FacilitiesPage() {
               <span className="w-8 h-px bg-magenta" />
               Our Philosophy
             </p>
-            <h3 className="font-display leading-[0.85] tracking-tighter" style={{ fontSize: "clamp(3rem,7vw,6rem)" }}>
+            <h3
+              className="font-display leading-[0.85] tracking-tighter"
+              style={{ fontSize: "clamp(3rem,7vw,6rem)" }}
+            >
               Designed for <br />
               <span className="italic font-light text-magenta">Healing.</span>
             </h3>

@@ -43,7 +43,7 @@ function Cross({ className }: { className?: string }) {
   return (
     <svg width="20" height="20" viewBox="0 0 20 20" fill="none" className={className}>
       <line x1="10" y1="0" x2="10" y2="20" stroke="currentColor" strokeWidth="1" />
-      <line x1="0"  y1="10" x2="20" y2="10" stroke="currentColor" strokeWidth="1" />
+      <line x1="0" y1="10" x2="20" y2="10" stroke="currentColor" strokeWidth="1" />
     </svg>
   );
 }
@@ -54,9 +54,7 @@ function AppointmentsPage() {
   const gridRef = useRef<HTMLDivElement>(null);
   const formRef = useRef<HTMLDivElement>(null);
 
-  const [date, setDate] = useState<Date | undefined>(
-    new Date(new Date().setHours(0, 0, 0, 0))
-  );
+  const [date, setDate] = useState<Date | undefined>(new Date(new Date().setHours(0, 0, 0, 0)));
   const [selectedTime, setSelectedTime] = useState<string | null>(null);
   const [bookingConfirmed, setBookingConfirmed] = useState(false);
 
@@ -64,37 +62,74 @@ function AppointmentsPage() {
   useEffect(() => {
     const ctx = gsap.context(() => {
       /* 1. Eyebrow line sweep */
-      gsap.fromTo(".ap-line", { scaleX: 0 }, { scaleX: 1, duration: 1.1, ease: "power3.inOut", delay: 0.2 });
-      gsap.fromTo(".ap-eyebrow", { opacity: 0, x: -16 }, { opacity: 1, x: 0, duration: 0.9, ease: "expo.out", delay: 0.55 });
+      gsap.fromTo(
+        ".ap-line",
+        { scaleX: 0 },
+        { scaleX: 1, duration: 1.1, ease: "power3.inOut", delay: 0.2 },
+      );
+      gsap.fromTo(
+        ".ap-eyebrow",
+        { opacity: 0, x: -16 },
+        { opacity: 1, x: 0, duration: 0.9, ease: "expo.out", delay: 0.55 },
+      );
 
       /* 2. Headline word stagger */
       gsap.fromTo(
         ".ap-title-word",
         { yPercent: 110, skewY: 3 },
-        { yPercent: 0, skewY: 0, duration: 1.4, stagger: 0.12, ease: "expo.out", delay: 0.4 }
+        { yPercent: 0, skewY: 0, duration: 1.4, stagger: 0.12, ease: "expo.out", delay: 0.4 },
       );
 
       /* 3. Description + CTA fade */
-      gsap.fromTo(".ap-desc", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 1.1, ease: "expo.out", delay: 1.05 });
-      gsap.fromTo(".ap-cta",  { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.9, ease: "expo.out", delay: 1.25 });
+      gsap.fromTo(
+        ".ap-desc",
+        { opacity: 0, y: 24 },
+        { opacity: 1, y: 0, duration: 1.1, ease: "expo.out", delay: 1.05 },
+      );
+      gsap.fromTo(
+        ".ap-cta",
+        { opacity: 0, y: 16 },
+        { opacity: 1, y: 0, duration: 0.9, ease: "expo.out", delay: 1.25 },
+      );
 
       /* 4. Image clip-path wipe */
       gsap.fromTo(
         ".ap-img-wrap",
         { clipPath: "polygon(0 100%, 100% 100%, 100% 100%, 0 100%)" },
-        { clipPath: "polygon(0 0%, 100% 0%, 100% 100%, 0 100%)", duration: 1.8, ease: "expo.inOut", delay: 0.15 }
+        {
+          clipPath: "polygon(0 0%, 100% 0%, 100% 100%, 0 100%)",
+          duration: 1.8,
+          ease: "expo.inOut",
+          delay: 0.15,
+        },
       );
-      gsap.fromTo(".ap-hero-img", { scale: 1.12 }, { scale: 1, duration: 2.6, ease: "power3.out", delay: 0.15 });
+      gsap.fromTo(
+        ".ap-hero-img",
+        { scale: 1.12 },
+        { scale: 1, duration: 2.6, ease: "power3.out", delay: 0.15 },
+      );
 
       /* 5. Floating badges */
       gsap.fromTo(
         ".ap-badge",
         { opacity: 0, scale: 0.85, y: 20 },
-        { opacity: 1, scale: 1, y: 0, duration: 0.9, stagger: 0.18, ease: "back.out(1.5)", delay: 1.5 }
+        {
+          opacity: 1,
+          scale: 1,
+          y: 0,
+          duration: 0.9,
+          stagger: 0.18,
+          ease: "back.out(1.5)",
+          delay: 1.5,
+        },
       );
 
       /* 6. Deco line draw */
-      gsap.fromTo(".ap-deco-line", { scaleX: 0 }, { scaleX: 1, duration: 1.2, ease: "power3.inOut", delay: 1.65 });
+      gsap.fromTo(
+        ".ap-deco-line",
+        { scaleX: 0 },
+        { scaleX: 1, duration: 1.2, ease: "power3.inOut", delay: 1.65 },
+      );
 
       /* 7. Image parallax */
       gsap.to(".ap-hero-img", {
@@ -113,9 +148,12 @@ function AppointmentsPage() {
         ".ap-booking-section",
         { opacity: 0, y: 60 },
         {
-          opacity: 1, y: 0, duration: 1.3, ease: "expo.out",
+          opacity: 1,
+          y: 0,
+          duration: 1.3,
+          ease: "expo.out",
           scrollTrigger: { trigger: ".ap-booking-section", start: "top 88%", once: true },
-        }
+        },
       );
     }, pageRef);
     return () => ctx.revert();
@@ -127,7 +165,7 @@ function AppointmentsPage() {
       gsap.fromTo(
         gridRef.current.children,
         { opacity: 0, y: 30 },
-        { opacity: 1, y: 0, stagger: 0.04, duration: 0.7, ease: "power3.out" }
+        { opacity: 1, y: 0, stagger: 0.04, duration: 0.7, ease: "power3.out" },
       );
     }
   }, [date, selectedTime, bookingConfirmed]);
@@ -138,7 +176,7 @@ function AppointmentsPage() {
       gsap.fromTo(
         formRef.current,
         { opacity: 0, height: 0, y: 40 },
-        { opacity: 1, height: "auto", y: 0, duration: 1, ease: "expo.out" }
+        { opacity: 1, height: "auto", y: 0, duration: 1, ease: "expo.out" },
       );
     }
   }, [selectedTime]);
@@ -174,10 +212,8 @@ function AppointmentsPage() {
         <Cross className="absolute bottom-28 left-8 md:left-20 text-magenta/20 size-6" />
 
         <div className="max-w-[1600px] mx-auto px-6 md:px-12 lg:px-24 w-full grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
-
           {/* ── LEFT: Typography ── */}
           <div className="z-10 relative order-2 lg:order-1 pb-16 lg:pb-0">
-
             {/* Eyebrow */}
             <div className="flex items-center gap-5 mb-12">
               <div className="ap-line w-12 h-px bg-magenta origin-left" />
@@ -201,8 +237,8 @@ function AppointmentsPage() {
 
             {/* Description */}
             <p className="ap-desc text-lg md:text-xl text-ink/60 font-light leading-relaxed max-w-md mb-12">
-              Schedule your consultation with our leading medical experts. Select a
-              date, choose a slot, and confirm — we handle the rest.
+              Schedule your consultation with our leading medical experts. Select a date, choose a
+              slot, and confirm — we handle the rest.
             </p>
 
             {/* CTA cluster */}
@@ -245,11 +281,15 @@ function AppointmentsPage() {
             {/* Floating badges */}
             <div className="ap-badge absolute -bottom-6 -left-6 md:-bottom-8 md:-left-10 bg-paper/95 backdrop-blur border border-ink/10 px-6 py-5 shadow-2xl">
               <p className="font-display text-3xl text-navy-deep leading-none mb-1">OPD</p>
-              <p className="text-[0.6rem] font-bold tracking-[0.25em] uppercase text-ink/40">Daily Walk-in</p>
+              <p className="text-[0.6rem] font-bold tracking-[0.25em] uppercase text-ink/40">
+                Daily Walk-in
+              </p>
             </div>
             <div className="ap-badge absolute -top-6 -right-4 md:-top-8 md:-right-8 bg-paper/95 backdrop-blur border border-ink/10 px-6 py-5 shadow-2xl">
               <p className="font-display text-3xl text-navy-deep leading-none mb-1">74+</p>
-              <p className="text-[0.6rem] font-bold tracking-[0.25em] uppercase text-ink/40">Consultants</p>
+              <p className="text-[0.6rem] font-bold tracking-[0.25em] uppercase text-ink/40">
+                Consultants
+              </p>
             </div>
 
             {/* Corner frames */}
@@ -260,7 +300,9 @@ function AppointmentsPage() {
 
         {/* Scroll cue */}
         <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-40">
-          <span className="text-[0.55rem] tracking-[0.35em] uppercase font-bold text-ink">Scroll</span>
+          <span className="text-[0.55rem] tracking-[0.35em] uppercase font-bold text-ink">
+            Scroll
+          </span>
           <div className="w-px h-12 bg-ink/30 relative overflow-hidden">
             <div
               className="absolute top-0 left-0 w-full bg-magenta"
@@ -278,7 +320,6 @@ function AppointmentsPage() {
         className="ap-booking-section px-6 md:px-12 lg:px-24 py-32 md:py-48 max-w-[1600px] mx-auto border-t border-ink/10"
       >
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24 items-start relative">
-
           {/* Left — Calendar sticky */}
           <div className="col-span-1 lg:col-span-5 lg:sticky top-32">
             <p className="text-[0.65rem] uppercase tracking-[0.3em] font-bold text-magenta mb-8 flex items-center gap-4">
@@ -313,7 +354,9 @@ function AppointmentsPage() {
               ].map((item) => (
                 <div key={item.label} className="border border-ink/10 p-5">
                   <item.icon className="size-4 text-magenta mb-3" />
-                  <p className="text-[0.6rem] tracking-[0.25em] uppercase font-bold text-ink/40 mb-1">{item.label}</p>
+                  <p className="text-[0.6rem] tracking-[0.25em] uppercase font-bold text-ink/40 mb-1">
+                    {item.label}
+                  </p>
                   <p className="font-display text-xl text-navy-deep">{item.value}</p>
                 </div>
               ))}
@@ -363,18 +406,23 @@ function AppointmentsPage() {
                           disabled={booked}
                           onClick={() => setSelectedTime(time)}
                           className={`w-full py-5 px-0 flex justify-between items-center transition-all duration-500 border-b relative group overflow-hidden
-                            ${booked
-                              ? "border-red-500/20 text-red-500 cursor-not-allowed"
-                              : "border-ink/10 text-ink hover:text-magenta hover:border-magenta hover:pl-4"
+                            ${
+                              booked
+                                ? "border-red-500/20 text-red-500 cursor-not-allowed"
+                                : "border-ink/10 text-ink hover:text-magenta hover:border-magenta hover:pl-4"
                             }`}
                         >
                           {!booked && (
                             <span className="absolute inset-0 bg-magenta/5 w-full h-full -translate-x-full group-hover:translate-x-0 transition-transform duration-500 ease-out -z-10" />
                           )}
-                          <span className={`font-display text-2xl tracking-wide z-10 ${booked ? "line-through opacity-70" : ""}`}>
+                          <span
+                            className={`font-display text-2xl tracking-wide z-10 ${booked ? "line-through opacity-70" : ""}`}
+                          >
                             {time}
                           </span>
-                          <span className={`text-[0.65rem] uppercase tracking-[0.2em] font-bold z-10 ${booked ? "text-red-500/80" : "text-magenta opacity-0 group-hover:opacity-100 transition-opacity duration-300"}`}>
+                          <span
+                            className={`text-[0.65rem] uppercase tracking-[0.2em] font-bold z-10 ${booked ? "text-red-500/80" : "text-magenta opacity-0 group-hover:opacity-100 transition-opacity duration-300"}`}
+                          >
                             {booked ? "Booked" : "Select"}
                           </span>
                         </button>
@@ -405,7 +453,10 @@ function AppointmentsPage() {
                       </div>
 
                       <form
-                        onSubmit={(e) => { e.preventDefault(); setBookingConfirmed(true); }}
+                        onSubmit={(e) => {
+                          e.preventDefault();
+                          setBookingConfirmed(true);
+                        }}
                         className="space-y-8 relative z-10"
                       >
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
@@ -440,10 +491,16 @@ function AppointmentsPage() {
                 <p className="text-xl md:text-2xl text-ink/70 max-w-lg mb-12 font-light">
                   Your time is reserved for{" "}
                   <strong className="font-medium text-navy-deep">{selectedTime}</strong> on{" "}
-                  <strong className="font-medium text-navy-deep">{date?.toLocaleDateString()}</strong>.
+                  <strong className="font-medium text-navy-deep">
+                    {date?.toLocaleDateString()}
+                  </strong>
+                  .
                 </p>
                 <button
-                  onClick={() => { setSelectedTime(null); setBookingConfirmed(false); }}
+                  onClick={() => {
+                    setSelectedTime(null);
+                    setBookingConfirmed(false);
+                  }}
                   className="text-sm uppercase tracking-[0.2em] font-bold border-b-2 border-magenta text-magenta hover:text-navy-deep hover:border-navy-deep transition-colors pb-1"
                 >
                   Book another
@@ -471,9 +528,15 @@ function AppointmentsPage() {
 
 /* ─── Dark-mode floating-label input ─────────────────────────── */
 function DarkField({
-  id, label, type, required,
+  id,
+  label,
+  type,
+  required,
 }: {
-  id: string; label: string; type: string; required?: boolean;
+  id: string;
+  label: string;
+  type: string;
+  required?: boolean;
 }) {
   return (
     <div className="relative">
@@ -488,7 +551,8 @@ function DarkField({
         htmlFor={id}
         className="absolute left-0 -top-3.5 text-[0.65rem] tracking-[0.2em] uppercase text-white/50 transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-white/40 peer-placeholder-shown:top-4 peer-focus:-top-3.5 peer-focus:text-[0.65rem] peer-focus:text-magenta font-bold"
       >
-        {label}{required && " *"}
+        {label}
+        {required && " *"}
       </label>
     </div>
   );

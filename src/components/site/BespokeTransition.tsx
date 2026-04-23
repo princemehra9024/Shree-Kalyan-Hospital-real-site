@@ -10,7 +10,7 @@ const routeNames: Record<string, string> = {
   "/facilities": "Facilities",
   "/patient-care": "Patient Care",
   "/contact": "Contact Us",
-  "/about": "About Us"
+  "/about": "About Us",
 };
 
 /**
@@ -45,13 +45,13 @@ export function BespokeTransition({ children }: { children: React.ReactNode }) {
       },
       onComplete: () => {
         gsap.set(containerRef.current, { pointerEvents: "none" });
-      }
+      },
     });
 
     // 1. Reset
     gsap.set([l1, l2], { clipPath: "circle(0% at 50% 50%)" });
     gsap.set(lbl.querySelectorAll("span"), { y: 20, opacity: 0 });
-    
+
     // Hide the incoming content initially to prevent flashes before the overlay covers it
     gsap.set(content, { scale: 1.05, opacity: 0, filter: "blur(8px)" });
 
@@ -60,48 +60,68 @@ export function BespokeTransition({ children }: { children: React.ReactNode }) {
       clipPath: "circle(150% at 50% 50%)",
       duration: 0.8,
     })
-    .to(l2, {
-      clipPath: "circle(150% at 50% 50%)",
-      duration: 0.8,
-    }, "-=0.6")
+      .to(
+        l2,
+        {
+          clipPath: "circle(150% at 50% 50%)",
+          duration: 0.8,
+        },
+        "-=0.6",
+      )
 
-    // 3. Label Entrance
-    .to(lbl.querySelectorAll("span"), {
-      y: 0,
-      opacity: 1,
-      duration: 0.6,
-      stagger: 0.1,
-      ease: "power3.out"
-    }, "-=0.3")
+      // 3. Label Entrance
+      .to(
+        lbl.querySelectorAll("span"),
+        {
+          y: 0,
+          opacity: 1,
+          duration: 0.6,
+          stagger: 0.1,
+          ease: "power3.out",
+        },
+        "-=0.3",
+      )
 
-    // 4. Hold
-    .to({}, { duration: 0.4 })
+      // 4. Hold
+      .to({}, { duration: 0.4 })
 
-    // 5. Reveal Phase (Outward)
-    .to(lbl.querySelectorAll("span"), {
-      y: -20,
-      opacity: 0,
-      duration: 0.4,
-      stagger: 0.05,
-      ease: "power2.in"
-    })
-    .to(l2, {
-      clipPath: "circle(0% at 50% 50%)",
-      duration: 0.9,
-    }, "-=0.1")
-    .to(l1, {
-      clipPath: "circle(0% at 50% 50%)",
-      duration: 0.9,
-    }, "-=0.7")
-    
-    // 6. Content Parallax Reveal
-    .to(content, {
-      scale: 1,
-      opacity: 1,
-      filter: "blur(0px)",
-      duration: 1.2,
-      ease: "power3.out"
-    }, "-=0.9");
+      // 5. Reveal Phase (Outward)
+      .to(lbl.querySelectorAll("span"), {
+        y: -20,
+        opacity: 0,
+        duration: 0.4,
+        stagger: 0.05,
+        ease: "power2.in",
+      })
+      .to(
+        l2,
+        {
+          clipPath: "circle(0% at 50% 50%)",
+          duration: 0.9,
+        },
+        "-=0.1",
+      )
+      .to(
+        l1,
+        {
+          clipPath: "circle(0% at 50% 50%)",
+          duration: 0.9,
+        },
+        "-=0.7",
+      )
+
+      // 6. Content Parallax Reveal
+      .to(
+        content,
+        {
+          scale: 1,
+          opacity: 1,
+          filter: "blur(0px)",
+          duration: 1.2,
+          ease: "power3.out",
+        },
+        "-=0.9",
+      );
 
     return () => {
       tl.kill();
@@ -110,28 +130,25 @@ export function BespokeTransition({ children }: { children: React.ReactNode }) {
 
   return (
     <>
-      <div 
+      <div
         ref={containerRef}
         className="fixed inset-0 z-[10000] pointer-events-none overflow-hidden"
       >
         {/* Layer 1: Navy Base */}
-        <div 
+        <div
           ref={layer1Ref}
           className="absolute inset-0 bg-navy-deep flex items-center justify-center"
           style={{ clipPath: "circle(0% at 50% 50%)" }}
         />
-        
+
         {/* Layer 2: Magenta Accent */}
-        <div 
+        <div
           ref={layer2Ref}
           className="absolute inset-0 bg-paper flex items-center justify-center"
           style={{ clipPath: "circle(0% at 50% 50%)" }}
         >
           {/* Label Container within the top-most layer */}
-          <div
-            ref={labelRef}
-            className="flex flex-col items-center gap-4 text-navy-deep"
-          >
+          <div ref={labelRef} className="flex flex-col items-center gap-4 text-navy-deep">
             <span className="w-12 h-px bg-magenta block" />
             <span className="font-syne text-[0.7rem] uppercase tracking-[0.5em] font-bold text-magenta">
               Navigating To

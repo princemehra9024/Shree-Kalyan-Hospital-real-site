@@ -60,10 +60,10 @@ export function CustomCursor() {
     /* ── Interactive element detection ── */
     const attach = () => {
       const links = document.querySelectorAll<HTMLElement>(
-        'a, button, [role="button"], label[for], summary'
+        'a, button, [role="button"], label[for], summary',
       );
       const inputs = document.querySelectorAll<HTMLElement>(
-        "input, textarea, select, [contenteditable]"
+        "input, textarea, select, [contenteditable]",
       );
 
       links.forEach((el) => {

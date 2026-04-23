@@ -73,7 +73,7 @@ function FAQAccordionItem({
     <div className="group border-b border-ink/10 relative">
       {/* Background Hover Effect */}
       <div className="absolute inset-0 bg-ink/3 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
-      
+
       <button
         onClick={onClick}
         className="w-full flex items-center justify-between text-left py-8 md:py-10 px-4 md:px-8 relative z-10"
@@ -84,7 +84,7 @@ function FAQAccordionItem({
           </span>
           {item.question}
         </span>
-        
+
         {/* Animated Plus/Minus icon */}
         <div className="relative size-6 shrink-0 ml-4 flex items-center justify-center">
           <span
@@ -98,10 +98,7 @@ function FAQAccordionItem({
         </div>
       </button>
 
-      <div
-        ref={wrapperRef}
-        className="overflow-hidden h-0 relative z-10"
-      >
+      <div ref={wrapperRef} className="overflow-hidden h-0 relative z-10">
         <div
           ref={contentRef}
           className="pb-10 px-4 md:px-8 ml-0 md:ml-12 text-lg text-ink/65 font-light leading-relaxed max-w-3xl opacity-0 translate-y-[-10px]"

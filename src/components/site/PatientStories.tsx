@@ -81,7 +81,9 @@ const STORIES = [
 /* ─── Avatar ─────────────────────────────────────────────────── */
 function Avatar({ initials, color, ring }: { initials: string; color: string; ring: string }) {
   return (
-    <div className={`relative shrink-0 size-14 rounded-full ring-2 ${ring} flex items-center justify-center overflow-hidden`}>
+    <div
+      className={`relative shrink-0 size-14 rounded-full ring-2 ${ring} flex items-center justify-center overflow-hidden`}
+    >
       <div className={`absolute inset-0 bg-gradient-to-br ${color} opacity-60`} />
       <span className="relative z-10 font-display text-xl text-navy-deep font-light">
         {initials}
@@ -97,7 +99,7 @@ function StoryCard({
   isActive,
   onClick,
 }: {
-  story: typeof STORIES[0];
+  story: (typeof STORIES)[0];
   index: number;
   isActive: boolean;
   onClick: () => void;
@@ -111,9 +113,7 @@ function StoryCard({
         w-[82vw] sm:w-[60vw] lg:w-[42vw] xl:w-[36vw] max-w-[680px]
         min-h-[280px] md:min-h-[480px] p-6 md:p-12
         border transition-all duration-700 select-none
-        ${isActive
-          ? "bg-navy-deep border-navy-deep"
-          : "bg-paper border-ink/10 hover:border-ink/25"}
+        ${isActive ? "bg-navy-deep border-navy-deep" : "bg-paper border-ink/10 hover:border-ink/25"}
       `}
     >
       {/* Index + tag */}
@@ -127,9 +127,7 @@ function StoryCard({
         </span>
         <span
           className={`text-[0.55rem] font-bold uppercase tracking-[0.2em] border px-2 py-1 md:px-3 md:py-1.5 transition-colors duration-700 ${
-            isActive
-              ? "text-magenta border-magenta/30 bg-magenta/10"
-              : "text-ink/40 border-ink/10"
+            isActive ? "text-magenta border-magenta/30 bg-magenta/10" : "text-ink/40 border-ink/10"
           }`}
         >
           {story.tag}
@@ -158,17 +156,25 @@ function StoryCard({
       </div>
 
       {/* Footer */}
-      <div className={`mt-5 md:mt-10 pt-4 md:pt-8 border-t transition-colors duration-700 flex items-center gap-3 ${isActive ? "border-white/10" : "border-ink/8"}`}>
+      <div
+        className={`mt-5 md:mt-10 pt-4 md:pt-8 border-t transition-colors duration-700 flex items-center gap-3 ${isActive ? "border-white/10" : "border-ink/8"}`}
+      >
         <Avatar initials={story.initials} color={story.color} ring={story.ring} />
         <div className="flex-1 min-w-0">
-          <p className={`font-semibold text-sm transition-colors duration-700 ${isActive ? "text-white" : "text-navy-deep"}`}>
+          <p
+            className={`font-semibold text-sm transition-colors duration-700 ${isActive ? "text-white" : "text-navy-deep"}`}
+          >
             {story.name}, <span className="font-light">{story.age}</span>
           </p>
-          <p className={`text-[0.72rem] font-light mt-0.5 transition-colors duration-700 ${isActive ? "text-white/40" : "text-ink/40"}`}>
+          <p
+            className={`text-[0.72rem] font-light mt-0.5 transition-colors duration-700 ${isActive ? "text-white/40" : "text-ink/40"}`}
+          >
             {story.dept}
           </p>
         </div>
-        <span className={`text-[0.65rem] font-bold tracking-widest transition-colors duration-700 ${isActive ? "text-magenta" : "text-ink/25"}`}>
+        <span
+          className={`text-[0.65rem] font-bold tracking-widest transition-colors duration-700 ${isActive ? "text-magenta" : "text-ink/25"}`}
+        >
           {story.year}
         </span>
       </div>
@@ -223,10 +229,10 @@ export function PatientStories() {
             ease: "power3.out",
             scrollTrigger: {
               trigger: sectionRef.current, // trigger on section, not tape
-              start: "top bottom",         // fires immediately when section enters
+              start: "top bottom", // fires immediately when section enters
               once: true,
             },
-          }
+          },
         );
       }
     }, sectionRef);
@@ -292,7 +298,8 @@ export function PatientStories() {
           {/* Sub-copy + navigation */}
           <div className="mt-4 md:mt-10 flex flex-col sm:flex-row sm:items-end gap-4 md:gap-8 justify-between">
             <p className="text-white/40 text-sm md:text-base font-light max-w-[38ch] leading-relaxed hidden sm:block">
-              Real words from real people whose lives changed inside these walls. No scripts. No stock photos. Just truth.
+              Real words from real people whose lives changed inside these walls. No scripts. No
+              stock photos. Just truth.
             </p>
 
             {/* Dot nav + arrows — same row on mobile */}
@@ -320,7 +327,13 @@ export function PatientStories() {
                 className="size-12 border border-white/10 flex items-center justify-center text-white/40 hover:text-white hover:border-white/30 disabled:opacity-20 transition-all duration-300"
               >
                 <svg viewBox="0 0 20 20" fill="none" className="w-5 h-5">
-                  <path d="M13 4L7 10L13 16" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+                  <path
+                    d="M13 4L7 10L13 16"
+                    stroke="currentColor"
+                    strokeWidth="1.6"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
                 </svg>
               </button>
               <button
@@ -330,7 +343,13 @@ export function PatientStories() {
                 className="size-12 border border-white/10 flex items-center justify-center text-white/40 hover:text-white hover:border-white/30 disabled:opacity-20 transition-all duration-300"
               >
                 <svg viewBox="0 0 20 20" fill="none" className="w-5 h-5">
-                  <path d="M7 4L13 10L7 16" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+                  <path
+                    d="M7 4L13 10L7 16"
+                    stroke="currentColor"
+                    strokeWidth="1.6"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
                 </svg>
               </button>
             </div>

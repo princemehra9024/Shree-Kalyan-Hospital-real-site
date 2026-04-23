@@ -74,7 +74,7 @@ export function RoomViews() {
             duration: 0.45,
             ease: "power3.in",
           },
-          0
+          0,
         );
       }
 
@@ -88,13 +88,13 @@ export function RoomViews() {
             duration: 0.8,
             ease: "power4.inOut",
           },
-          0.15
+          0.15,
         );
         // scale the inner image slightly while wiping
         tl.to(
           fromImg.querySelector("img"),
           { scale: 1.15, duration: 0.8, ease: "power4.inOut" },
-          0.15
+          0.15,
         );
       }
 
@@ -111,13 +111,9 @@ export function RoomViews() {
             duration: 1,
             ease: "power4.inOut",
           },
-          0.35
+          0.35,
         );
-        tl.to(
-          toImg.querySelector("img"),
-          { scale: 1, duration: 1.4, ease: "power2.out" },
-          0.35
-        );
+        tl.to(toImg.querySelector("img"), { scale: 1, duration: 1.4, ease: "power2.out" }, 0.35);
       }
 
       // ------- TEXT IN -------
@@ -136,7 +132,7 @@ export function RoomViews() {
             duration: 0.7,
             ease: "power3.out",
           },
-          0.6
+          0.6,
         );
       }
 
@@ -149,7 +145,7 @@ export function RoomViews() {
             duration: 0.8,
             ease: "power2.inOut",
           },
-          0.3
+          0.3,
         );
       }
 
@@ -160,7 +156,7 @@ export function RoomViews() {
         });
       });
     },
-    [isAnimating]
+    [isAnimating],
   );
 
   const goNext = useCallback(() => {
@@ -178,7 +174,7 @@ export function RoomViews() {
       if (index === activeIndex) return;
       animateTransition(activeIndex, index);
     },
-    [activeIndex, animateTransition]
+    [activeIndex, animateTransition],
   );
 
   // Auto-play every 5 seconds
@@ -256,7 +252,9 @@ export function RoomViews() {
             {ROOMS.map((room, i) => (
               <div
                 key={room.id}
-                ref={(el) => { textRefs.current[i] = el; }}
+                ref={(el) => {
+                  textRefs.current[i] = el;
+                }}
                 className="absolute inset-0 flex flex-col justify-center"
                 style={{
                   visibility: i === activeIndex ? "visible" : "hidden",
@@ -299,9 +297,7 @@ export function RoomViews() {
                 >
                   {Object.entries(room.stats).map(([key, val]) => (
                     <div key={key} className="flex flex-col">
-                      <span className="text-paper text-base lg:text-lg font-display">
-                        {val}
-                      </span>
+                      <span className="text-paper text-base lg:text-lg font-display">{val}</span>
                       <span className="text-[0.55rem] font-syne uppercase tracking-[0.2em] text-paper/30 font-bold mt-1 capitalize">
                         {key}
                       </span>
@@ -334,7 +330,9 @@ export function RoomViews() {
             {ROOMS.map((room, i) => (
               <div
                 key={room.id}
-                ref={(el) => { imageRefs.current[i] = el; }}
+                ref={(el) => {
+                  imageRefs.current[i] = el;
+                }}
                 className="absolute inset-0 will-change-transform"
                 style={{
                   clipPath: i === 0 ? "inset(0 0 0 0)" : "inset(100% 0 0 0)",
@@ -403,9 +401,7 @@ export function RoomViews() {
               >
                 <span
                   className={`block h-[3px] rounded-full transition-all duration-500 ${
-                    i === activeIndex
-                      ? "w-8 bg-magenta"
-                      : "w-3 bg-paper/20 group-hover:bg-paper/50"
+                    i === activeIndex ? "w-8 bg-magenta" : "w-3 bg-paper/20 group-hover:bg-paper/50"
                   }`}
                 />
                 <span

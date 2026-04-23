@@ -21,7 +21,12 @@ const IconCalendar = () => (
 
 const IconStethoscope = () => (
   <svg viewBox="0 0 56 56" fill="none" className="w-12 h-12" aria-hidden="true">
-    <path d="M14 10v16a14 14 0 0 0 28 0V10" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+    <path
+      d="M14 10v16a14 14 0 0 0 28 0V10"
+      stroke="currentColor"
+      strokeWidth="1.8"
+      strokeLinecap="round"
+    />
     <circle cx="42" cy="38" r="6" stroke="currentColor" strokeWidth="1.8" />
     <path d="M42 32v-6" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
     <path d="M10 10h8M38 10h8" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
@@ -31,7 +36,12 @@ const IconStethoscope = () => (
 const IconDoctor = () => (
   <svg viewBox="0 0 56 56" fill="none" className="w-12 h-12" aria-hidden="true">
     <circle cx="28" cy="18" r="10" stroke="currentColor" strokeWidth="1.8" />
-    <path d="M8 50c0-11.046 8.954-20 20-20s20 8.954 20 20" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+    <path
+      d="M8 50c0-11.046 8.954-20 20-20s20 8.954 20 20"
+      stroke="currentColor"
+      strokeWidth="1.8"
+      strokeLinecap="round"
+    />
     <path d="M34 42h8M38 38v8" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
   </svg>
 );
@@ -40,17 +50,28 @@ const IconCheckup = () => (
   <svg viewBox="0 0 56 56" fill="none" className="w-12 h-12" aria-hidden="true">
     <rect x="12" y="6" width="32" height="44" rx="4" stroke="currentColor" strokeWidth="1.8" />
     <path d="M20 6v6h16V6" stroke="currentColor" strokeWidth="1.8" strokeLinejoin="round" />
-    <path d="M18 28l6 6 14-13" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+    <path
+      d="M18 28l6 6 14-13"
+      stroke="currentColor"
+      strokeWidth="1.8"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
   </svg>
 );
 
 const IconFlask = () => (
   <svg viewBox="0 0 56 56" fill="none" className="w-12 h-12" aria-hidden="true">
-    <path d="M21 6v22L9 44a4 4 0 0 0 3.6 5.6h30.8A4 4 0 0 0 47 44L35 28V6" stroke="currentColor" strokeWidth="1.8" strokeLinejoin="round" />
+    <path
+      d="M21 6v22L9 44a4 4 0 0 0 3.6 5.6h30.8A4 4 0 0 0 47 44L35 28V6"
+      stroke="currentColor"
+      strokeWidth="1.8"
+      strokeLinejoin="round"
+    />
     <path d="M18 6h20" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
     <circle cx="22" cy="40" r="2.5" fill="currentColor" />
-    <circle cx="31" cy="36" r="2" fill="currentColor" opacity="0.5"/>
-    <circle cx="36" cy="43" r="1.5" fill="currentColor" opacity="0.7"/>
+    <circle cx="31" cy="36" r="2" fill="currentColor" opacity="0.5" />
+    <circle cx="36" cy="43" r="1.5" fill="currentColor" opacity="0.7" />
   </svg>
 );
 
@@ -63,7 +84,13 @@ const IconEmergency = () => (
 
 const ArrowUpRight = ({ className = "w-5 h-5" }: { className?: string }) => (
   <svg viewBox="0 0 20 20" fill="none" className={className} aria-hidden="true">
-    <path d="M4 16L16 4M16 4H8M16 4v8" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+    <path
+      d="M4 16L16 4M16 4H8M16 4v8"
+      stroke="currentColor"
+      strokeWidth="1.6"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
   </svg>
 );
 
@@ -133,7 +160,22 @@ const STATS = [
 ];
 
 /* ─── Theme map ──────────────────────────────────────────────── */
-const themeMap: Record<string, { bg: string; bgHover: string; text: string; textHover: string; subText: string; subTextHover: string; iconColor: string; iconColorHover: string; numColor: string; border: string; arrowBorder: string }> = {
+const themeMap: Record<
+  string,
+  {
+    bg: string;
+    bgHover: string;
+    text: string;
+    textHover: string;
+    subText: string;
+    subTextHover: string;
+    iconColor: string;
+    iconColorHover: string;
+    numColor: string;
+    border: string;
+    arrowBorder: string;
+  }
+> = {
   featured: {
     bg: "bg-paper",
     bgHover: "group-hover:bg-magenta",
@@ -189,7 +231,7 @@ const themeMap: Record<string, { bg: string; bgHover: string; text: string; text
 };
 
 /* ─── Single Card ────────────────────────────────────────────── */
-function QACard({ card }: { card: typeof MAIN_CARDS[0] }) {
+function QACard({ card }: { card: (typeof MAIN_CARDS)[0] }) {
   const t = themeMap[card.theme];
 
   return (
@@ -223,14 +265,18 @@ function QACard({ card }: { card: typeof MAIN_CARDS[0] }) {
         <span className={`transition-colors duration-500 ${t.iconColor} ${t.iconColorHover}`}>
           {card.icon}
         </span>
-        <span className={`font-display text-[2.8rem] leading-none font-light ${t.numColor} transition-colors duration-500`}>
+        <span
+          className={`font-display text-[2.8rem] leading-none font-light ${t.numColor} transition-colors duration-500`}
+        >
           {card.num}
         </span>
       </div>
 
       {/* Text */}
       <div className="relative z-10 mt-6">
-        <h3 className={`font-display text-[1.6rem] leading-tight tracking-tight ${t.text} transition-colors duration-500`}>
+        <h3
+          className={`font-display text-[1.6rem] leading-tight tracking-tight ${t.text} transition-colors duration-500`}
+        >
           {card.label}
         </h3>
         <p className={`text-sm mt-2 font-light ${t.subText} transition-colors duration-500`}>
@@ -248,7 +294,9 @@ function QACard({ card }: { card: typeof MAIN_CARDS[0] }) {
           group-hover:translate-x-0.5 group-hover:-translate-y-0.5
         `}
       >
-        <span className={`transition-colors duration-500 ${card.theme === "dark" || card.theme === "emergency" ? "text-white/50 group-hover:text-sky" : "text-ink/30 group-hover:text-white"}`}>
+        <span
+          className={`transition-colors duration-500 ${card.theme === "dark" || card.theme === "emergency" ? "text-white/50 group-hover:text-sky" : "text-ink/30 group-hover:text-white"}`}
+        >
           <ArrowUpRight />
         </span>
       </span>
@@ -372,7 +420,8 @@ export function QuickAccess() {
           We can help you
         </p>
         <h2 className="font-display text-5xl md:text-6xl lg:text-7xl text-navy-deep leading-[0.92] tracking-tight">
-          Quick<br />
+          Quick
+          <br />
           <span className="text-magenta italic font-light">access.</span>
         </h2>
       </div>
@@ -410,12 +459,16 @@ export function QuickAccess() {
               <span className="text-magenta group-hover:text-magenta transition-colors">
                 <IconCalendar />
               </span>
-              <span className="font-display text-[3rem] leading-none font-light text-white/10 group-hover:text-white/15 transition-colors duration-500">01</span>
+              <span className="font-display text-[3rem] leading-none font-light text-white/10 group-hover:text-white/15 transition-colors duration-500">
+                01
+              </span>
             </div>
 
             <div className="relative z-10 mt-8">
               <h3 className="font-display text-3xl md:text-4xl text-white leading-tight tracking-tight">
-                Book an<br />Appointment
+                Book an
+                <br />
+                Appointment
               </h3>
               <p className="text-sm mt-3 font-light text-white/40 group-hover:text-white/60 transition-colors duration-500">
                 With country's leading experts
@@ -448,12 +501,23 @@ export function QuickAccess() {
             bg-[#f0ede6] border border-ink/8 overflow-hidden
           "
         >
-          <span aria-hidden="true" className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-[0.08] pointer-events-none" />
-          <p className="text-[0.6rem] font-bold uppercase tracking-[0.3em] text-ink/40 mb-4">Patient Corner</p>
+          <span
+            aria-hidden="true"
+            className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-[0.08] pointer-events-none"
+          />
+          <p className="text-[0.6rem] font-bold uppercase tracking-[0.3em] text-ink/40 mb-4">
+            Patient Corner
+          </p>
           <div className="space-y-3">
             {["Insurance & Cashless", "International Patients", "Medical Records"].map((item) => (
-              <Link key={item} to="/contact" className="group/row flex items-center justify-between py-2.5 border-b border-ink/10 hover:border-magenta/40 transition-colors duration-300">
-                <span className="text-sm font-medium text-ink/60 group-hover/row:text-navy-deep transition-colors duration-300">{item}</span>
+              <Link
+                key={item}
+                to="/contact"
+                className="group/row flex items-center justify-between py-2.5 border-b border-ink/10 hover:border-magenta/40 transition-colors duration-300"
+              >
+                <span className="text-sm font-medium text-ink/60 group-hover/row:text-navy-deep transition-colors duration-300">
+                  {item}
+                </span>
                 <ArrowUpRight className="w-4 h-4 text-ink/20 group-hover/row:text-magenta group-hover/row:translate-x-0.5 group-hover/row:-translate-y-0.5 transition-all duration-300" />
               </Link>
             ))}

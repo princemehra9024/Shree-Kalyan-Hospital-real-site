@@ -30,6 +30,20 @@ function NotFoundComponent() {
 export const Route = createRootRoute({
   component: RootComponent,
   notFoundComponent: NotFoundComponent,
+  head: () => ({
+    meta: [
+      { charSet: "utf-8" },
+      { name: "viewport", content: "width=device-width, initial-scale=1" },
+      { title: "Shree Kalyan Hospital · Kota" },
+      {
+        name: "description",
+        content:
+          "Modern healthcare with quiet precision. Shree Kalyan Hospital provides advanced clinical care in Kota, Rajasthan.",
+      },
+      { name: "theme-color", content: "#03061a" },
+    ],
+    links: [{ rel: "icon", href: "/favicon.svg", type: "image/svg+xml" }],
+  }),
 });
 
 function RootComponent() {
@@ -53,10 +67,7 @@ function RootComponent() {
       <BespokeTransition>
         <Outlet />
       </BespokeTransition>
-      <EmergencyOverlay
-        isOpen={emergencyOpen}
-        onClose={() => setEmergencyOpen(false)}
-      />
+      <EmergencyOverlay isOpen={emergencyOpen} onClose={() => setEmergencyOpen(false)} />
     </LenisProvider>
   );
 }
