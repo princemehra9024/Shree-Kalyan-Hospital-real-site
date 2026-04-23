@@ -5,7 +5,8 @@ import { SiteNav } from "@/components/site/SiteNav";
 import { SiteFooter } from "@/components/site/SiteFooter";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { ArrowRight, MapPin, Clock, Phone, Mail } from "lucide-react";
+import { ArrowRight, MapPin, Clock, Phone, Mail, Loader2 } from "lucide-react";
+import { toast } from "sonner";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -56,6 +57,7 @@ function StatBadge({ num, label, className }: { num: string; label: string; clas
 function ContactPage() {
   const pageRef = useRef<HTMLDivElement>(null);
   const [submitted, setSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -203,7 +205,7 @@ function ContactPage() {
       {/* ══════════════════════════════════════════════════ */}
       {/* HERO — Award-winning split-screen                 */}
       {/* ══════════════════════════════════════════════════ */}
-      <section className="ct-hero-section relative w-full min-h-screen bg-paper flex flex-col justify-center pt-32 pb-0 overflow-hidden">
+      <section className="ct-hero-section relative w-full min-h-screen bg-paper flex flex-col justify-center pt-48 pb-0 overflow-hidden">
         {/* Subtle grid noise texture */}
         <div
           className="absolute inset-0 pointer-events-none opacity-[0.025]"
@@ -213,20 +215,6 @@ function ContactPage() {
           }}
         />
 
-<<<<<<< HEAD
-      {/* Quick contact strips */}
-      <section className="px-6 md:px-12 lg:px-24 max-w-[1600px] mx-auto border-t border-ink/10" data-reveal-stagger>
-        <div className="grid grid-cols-1 md:grid-cols-3">
-          {[
-            { label: "Admissions", value: "+91 85292 19330", href: "tel:+918529219330" },
-            { label: "Emergency", value: "+91 85292 19330", href: "tel:+918529219330", accent: true },
-            { label: "Email", value: "care@shreekalyan.in", href: "mailto:care@shreekalyan.in" },
-          ].map((c) => (
-            <a
-              key={c.label}
-              href={c.href}
-              className={`group p-10 md:p-14 border-b md:border-b-0 md:border-r last:border-r-0 border-ink/10 transition-all duration-500 hover:bg-navy-deep ${c.accent ? "bg-magenta/5" : "bg-paper"}`}
-=======
         {/* SVG cross decorators (top-right area) */}
         <SVGCross className="absolute top-40 right-8 md:right-24 text-magenta/25 size-8 ct-deco" />
         <SVGCross className="absolute top-56 right-16 md:right-36 text-ink/10 size-5 ct-deco" />
@@ -247,7 +235,6 @@ function ContactPage() {
             <h1
               className="font-display leading-[0.9] tracking-tighter text-navy-deep mb-10"
               style={{ fontSize: "clamp(4.5rem, 10vw, 9rem)" }}
->>>>>>> 41618e9a679645c70682d4ff2883ce126bd6cf50
             >
               {/* "Begin" — italic magenta */}
               <div className="overflow-hidden pb-3">
@@ -414,9 +401,34 @@ function ContactPage() {
               </div>
             ) : (
               <form
-                onSubmit={(e) => {
+                onSubmit={async (e) => {
                   e.preventDefault();
-                  setSubmitted(true);
+                  setIsSubmitting(true);
+
+                  const formData = new FormData(e.currentTarget);
+                  formData.append("access_key", "ad8f6ae8-f6a3-4a34-b035-a96a66e5d980");
+                  formData.append("subject", "New Consultation Request from Website");
+                  formData.append("from_name", "Shree Kalyan Hospital Website");
+
+                  try {
+                    const response = await fetch("https://api.web3forms.com/submit", {
+                      method: "POST",
+                      body: formData,
+                    });
+
+                    const data = await response.json();
+
+                    if (data.success) {
+                      setSubmitted(true);
+                      toast.success("Your request has been sent successfully.");
+                    } else {
+                      toast.error(data.message || "Something went wrong. Please try again.");
+                    }
+                  } catch (err) {
+                    toast.error("Failed to send request. Please check your connection.");
+                  } finally {
+                    setIsSubmitting(false);
+                  }
                 }}
                 className="space-y-12"
               >
@@ -443,65 +455,26 @@ function ContactPage() {
                 </div>
                 <button
                   type="submit"
-                  className="group w-full md:w-auto bg-navy-deep text-paper px-16 py-6 text-sm font-bold tracking-[0.3em] uppercase hover:bg-magenta transition-colors duration-500 flex items-center gap-4"
+                  disabled={isSubmitting}
+                  className="group w-full md:w-auto bg-navy-deep text-paper px-16 py-6 text-sm font-bold tracking-[0.3em] uppercase hover:bg-magenta transition-colors duration-500 flex items-center gap-4 disabled:opacity-70 disabled:cursor-not-allowed"
                 >
-                  Send Request
-                  <ArrowRight className="size-4 group-hover:translate-x-1 transition-transform" />
+                  {isSubmitting ? (
+                    <>
+                      <Loader2 className="size-4 animate-spin" />
+                      Sending...
+                    </>
+                  ) : (
+                    <>
+                      Send Request
+                      <ArrowRight className="size-4 group-hover:translate-x-1 transition-transform" />
+                    </>
+                  )}
                 </button>
               </form>
             )}
           </div>
 
           {/* Sidebar */}
-<<<<<<< HEAD
-          <aside className="col-span-12 lg:col-span-4 lg:col-start-9 space-y-16" data-reveal-stagger>
-            <div>
-              <p className="text-[0.65rem] tracking-[0.3em] font-bold text-magenta uppercase mb-6 flex items-center gap-4">
-                 <span className="w-8 h-px bg-magenta" /> Directory
-              </p>
-              <ul className="space-y-6">
-                {[
-                  { title: "Billing & Insurance", phone: "+91 85292 19330" },
-                  { title: "Blood Bank", phone: "+91 85292 19330" },
-                  { title: "Pharmacy", phone: "+91 85292 19330" },
-                  { title: "International Care", email: "care@shreekalyan.in" },
-                  { title: "HR / Careers", email: "care@shreekalyan.in" },
-                ].map((dept) => (
-                  <li key={dept.title} className="flex flex-col gap-1 border-b border-ink/5 pb-4 last:border-0 last:pb-0">
-                    <span className="font-display text-xl md:text-2xl text-navy-deep">{dept.title}</span>
-                    {dept.phone && <a href={`tel:${dept.phone.replace(/\\s/g, "")}`} className="text-sm tracking-widest text-ink/50 hover:text-magenta transition-colors">{dept.phone}</a>}
-                    {dept.email && <a href={`mailto:${dept.email}`} className="text-sm tracking-widest text-ink/50 hover:text-magenta transition-colors">{dept.email}</a>}
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <div>
-              <p className="text-[0.65rem] tracking-[0.3em] font-bold text-magenta uppercase mb-6 flex items-center gap-4">
-                 <span className="w-8 h-px bg-magenta" /> Address
-              </p>
-              <p className="font-display text-3xl md:text-4xl text-navy-deep leading-tight">
-                Shree Kalyan Hospital<br />
-                Indraprastha Industrial Area<br />
-                Kota, Rajasthan 324005
-              </p>
-            </div>
-            <div>
-              <p className="text-[0.65rem] tracking-[0.3em] font-bold text-magenta uppercase mb-6 flex items-center gap-4">
-                 <span className="w-8 h-px bg-magenta" /> OPD Hours
-              </p>
-              <p className="font-display text-3xl md:text-4xl text-navy-deep leading-tight">
-                Mon – Sat<br />09:00 – 20:00
-              </p>
-            </div>
-            <div>
-              <p className="text-[0.65rem] tracking-[0.3em] font-bold text-magenta uppercase mb-6 flex items-center gap-4">
-                 <span className="w-8 h-px bg-magenta" /> Emergency
-              </p>
-              <p className="font-display text-3xl md:text-4xl text-navy-deep leading-tight">
-                24 hours<br />Every day, all year
-              </p>
-            </div>
-=======
           <aside className="col-span-12 lg:col-span-4 lg:col-start-9 space-y-20">
             {(
               [
@@ -567,7 +540,6 @@ function ContactPage() {
                 </div>
               );
             })}
->>>>>>> 41618e9a679645c70682d4ff2883ce126bd6cf50
           </aside>
         </div>
       </section>

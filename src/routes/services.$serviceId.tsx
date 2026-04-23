@@ -1,5 +1,5 @@
 import { createFileRoute, notFound, Link } from "@tanstack/react-router";
-import { services } from "@/lib/data/services";
+import { services, type ServiceDetail } from "@/lib/data/services";
 import { SiteNav } from "@/components/site/SiteNav";
 import { SiteFooter } from "@/components/site/SiteFooter";
 import { PageHero } from "@/components/site/PageHero";
@@ -16,7 +16,7 @@ export const Route = createFileRoute("/services/$serviceId")({
 });
 
 function ServiceIdPage() {
-  const { service } = Route.useLoaderData();
+  const { service } = Route.useLoaderData() as { service: ServiceDetail };
   useGsapReveal();
 
   return (
@@ -58,7 +58,7 @@ function ServiceIdPage() {
               </p>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-12 pt-12 border-t border-ink/10">
-                {service.stats.map((stat, i) => (
+                {service.stats.map((stat: { label: string; value: string }, i: number) => (
                   <div key={i}>
                     <p className="text-[0.65rem] font-bold tracking-[0.2em] uppercase text-ink/40 mb-2">
                       {stat.label}
@@ -89,7 +89,7 @@ function ServiceIdPage() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {service.services.map((item, i) => (
+            {service.services.map((item: string, i: number) => (
               <div
                 key={i}
                 className="group border border-white/10 p-10 hover:border-magenta transition-all duration-500"
@@ -120,7 +120,7 @@ function ServiceIdPage() {
             </h2>
 
             <div className="space-y-12 max-w-xl">
-              {service.features.map((f, i) => (
+              {service.features.map((f: { title: string; desc: string }, i: number) => (
                 <div key={i} className="flex gap-6 items-start border-b border-ink/5 pb-8">
                   <div className="size-12 rounded-full bg-magenta/5 flex items-center justify-center shrink-0">
                     <CheckCircle2 className="size-6 text-magenta" />

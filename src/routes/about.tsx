@@ -397,56 +397,100 @@ function AboutPage() {
         </div>
       </section>
 
-<<<<<<< HEAD
       <section className="px-6 md:px-12 lg:px-24 py-32 md:py-48 max-w-[1600px] mx-auto border-t border-ink/10">
-         <div className="flex flex-col md:flex-row md:items-end justify-between gap-12 mb-24" data-reveal>
-            <h2 className="font-display text-4xl md:text-6xl lg:text-8xl text-navy-deep leading-[0.85] tracking-tight">
-              Heritage & <span className="italic font-light text-magenta">milestones.</span>
-            </h2>
-            <p className="text-lg text-ink/60 max-w-[36ch] leading-relaxed">
-              A brief history of our evolution from a surgical center to a regional center of excellence.
-            </p>
-          </div>
+        <div
+          className="flex flex-col md:flex-row md:items-end justify-between gap-12 mb-24"
+          data-reveal
+        >
+          <h2 className="font-display text-4xl md:text-6xl lg:text-8xl text-navy-deep leading-[0.85] tracking-tight">
+            Heritage & <span className="italic font-light text-magenta">milestones.</span>
+          </h2>
+          <p className="text-lg text-ink/60 max-w-[36ch] leading-relaxed">
+            A brief history of our evolution from a surgical center to a regional center of
+            excellence.
+          </p>
+        </div>
 
-          <div className="space-y-12">
-            {[
-              { year: "2001", event: "Shree Kalyan Surgical Center founded by senior consultants in Kota." },
-              { year: "2008", event: "Expansion into a multi-specialty facility with advanced cardiology wing." },
-              { year: "2015", event: "Attained NABH accreditation, the gold standard for Indian healthcare." },
-              { year: "2021", event: "Inauguration of the Precision Oncology and Robotic Surgery department." },
-              { year: "2024", event: "Celebrating 25 years of restoring vitality through quiet precision." }
-            ].map((m, i) => (
-              <div key={i} className="group grid grid-cols-12 gap-x-6 py-12 border-b border-ink/5 items-center hover:bg-magenta/[0.01] transition-colors" data-reveal>
-                <div className="col-span-3 md:col-span-2">
-                  <span className="font-display text-4xl md:text-6xl italic text-magenta/40 group-hover:text-magenta transition-colors">{m.year}</span>
-                </div>
-                <div className="col-span-9 md:col-span-10">
-                  <p className="font-display text-2xl md:text-4xl text-navy-deep/80 max-w-3xl leading-snug">{m.event}</p>
-                </div>
+        <div className="space-y-12">
+          {[
+            {
+              year: "2001",
+              event: "Shree Kalyan Surgical Center founded by senior consultants in Kota.",
+            },
+            {
+              year: "2008",
+              event: "Expansion into a multi-specialty facility with advanced cardiology wing.",
+            },
+            {
+              year: "2015",
+              event: "Attained NABH accreditation, the gold standard for Indian healthcare.",
+            },
+            {
+              year: "2021",
+              event: "Inauguration of the Precision Oncology and Robotic Surgery department.",
+            },
+            {
+              year: "2024",
+              event: "Celebrating 25 years of restoring vitality through quiet precision.",
+            },
+          ].map((m, i) => (
+            <div
+              key={i}
+              className="group grid grid-cols-12 gap-x-6 py-12 border-b border-ink/5 items-center hover:bg-magenta/[0.01] transition-colors"
+              data-reveal
+            >
+              <div className="col-span-3 md:col-span-2">
+                <span className="font-display text-4xl md:text-6xl italic text-magenta/40 group-hover:text-magenta transition-colors">
+                  {m.year}
+                </span>
               </div>
-            ))}
-          </div>
+              <div className="col-span-9 md:col-span-10">
+                <p className="font-display text-2xl md:text-4xl text-navy-deep/80 max-w-3xl leading-snug">
+                  {m.event}
+                </p>
+              </div>
+            </div>
+          ))}
+        </div>
       </section>
 
       <section className="px-6 md:px-12 lg:px-24 py-32 bg-navy-deep text-paper overflow-hidden relative">
-         <div className="absolute top-0 right-0 w-1/2 h-full opacity-10 pointer-events-none">
-            <div className="w-full h-full bg-[radial-gradient(circle_at_center,_var(--color-magenta)_0%,_transparent_70%)]" />
-         </div>
-         
-         <div className="max-w-[1200px] mx-auto text-center" data-reveal>
-            <p className="text-[0.65rem] font-bold tracking-[0.5em] text-magenta uppercase mb-12">Our Core Pillars</p>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-24">
-               {[
-                 { title: "Precision", desc: "Advanced diagnostics and surgical accuracy that leaves no room for doubt." },
-                 { title: "Presence", desc: "A commitment to being fully attentive to every patient’s unique narrative." },
-                 { title: "Progress", desc: "Continuously evolving our clinical protocols to lead the frontier of care." }
-               ].map((p, i) => (
-                 <div key={i} className="group">
-                    <h3 className="font-display text-5xl mb-6 italic font-light group-hover:text-magenta transition-colors">{p.title}</h3>
-                    <p className="text-sm tracking-wide leading-relaxed opacity-60 font-light">{p.desc}</p>
-                 </div>
-               ))}
-=======
+        <div className="absolute top-0 right-0 w-1/2 h-full opacity-10 pointer-events-none">
+          <div className="w-full h-full bg-[radial-gradient(circle_at_center,_var(--color-magenta)_0%,_transparent_70%)]" />
+        </div>
+
+        <div className="max-w-[1200px] mx-auto text-center" data-reveal>
+          <p className="text-[0.65rem] font-bold tracking-[0.5em] text-magenta uppercase mb-12">
+            Our Core Pillars
+          </p>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-24">
+            {[
+              {
+                title: "Precision",
+                desc: "Advanced diagnostics and surgical accuracy that leaves no room for doubt.",
+              },
+              {
+                title: "Presence",
+                desc: "A commitment to being fully attentive to every patient’s unique narrative.",
+              },
+              {
+                title: "Progress",
+                desc: "Continuously evolving our clinical protocols to lead the frontier of care.",
+              },
+            ].map((p, i) => (
+              <div key={i} className="group">
+                <h3 className="font-display text-5xl mb-6 italic font-light group-hover:text-magenta transition-colors">
+                  {p.title}
+                </h3>
+                <p className="text-sm tracking-wide leading-relaxed opacity-60 font-light">
+                  {p.desc}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* 2. INFINITE MARQUEE (AWARDS) */}
       <section className="py-8 bg-magenta text-paper overflow-hidden border-y border-navy-deep">
         <div className="flex whitespace-nowrap marquee-content w-[200%] items-center">
@@ -465,7 +509,6 @@ function AboutPage() {
                 #1 Central India Healthcare
               </span>
               <span className="h-2 w-2 rounded-full bg-paper/50"></span>
->>>>>>> 41618e9a679645c70682d4ff2883ce126bd6cf50
             </div>
           ))}
         </div>

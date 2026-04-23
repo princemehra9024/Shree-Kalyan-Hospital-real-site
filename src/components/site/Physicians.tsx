@@ -59,8 +59,8 @@ export function Physicians() {
           </dl>
 
           <div className="mt-16" data-reveal>
-            <Link 
-              to="/team" 
+            <Link
+              to="/team"
               className="group flex items-center gap-6 text-[0.7rem] font-bold tracking-[0.3em] uppercase text-magenta"
             >
               Meet the Full Roster

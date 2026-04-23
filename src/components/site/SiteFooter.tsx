@@ -74,16 +74,9 @@ export function SiteFooter() {
             </ul>
           </div>
 
-<<<<<<< HEAD
           <div className="col-span-6 md:col-span-3 lg:col-span-2">
-            <p className="text-[0.65rem] tracking-[0.3em] uppercase text-paper/30 mb-10">Connect</p>
+            <p className="text-[0.65rem] tracking-[0.3em] uppercase text-paper/30 mb-10">Reach</p>
             <ul className="space-y-4 text-base font-light text-paper/80">
-              <li><a href="tel:+918529219330" className="hover:text-pink transition-colors">+91 85292 19330</a></li>
-              <li><a href="mailto:care@shreekalyan.in" className="hover:text-pink transition-colors">care@shreekalyan.in</a></li>
-=======
-          <div className="col-span-6 md:col-span-2">
-            <p className="text-[0.65rem] tracking-[0.2em] uppercase text-paper/50 mb-4">Reach</p>
-            <ul className="space-y-2 text-sm text-paper/80">
               <li>
                 <a href="tel:+918529219330" className="hover:text-magenta transition-colors">
                   +91 85292 19330
@@ -97,7 +90,6 @@ export function SiteFooter() {
                   care@shreekalyan.in
                 </a>
               </li>
->>>>>>> 41618e9a679645c70682d4ff2883ce126bd6cf50
             </ul>
           </div>
 

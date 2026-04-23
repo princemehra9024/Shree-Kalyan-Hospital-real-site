@@ -3,24 +3,52 @@ import { LenisProvider } from "@/components/site/LenisProvider";
 import { CustomCursor } from "@/components/site/CustomCursor";
 import { BespokeTransition } from "@/components/site/BespokeTransition";
 import { EmergencyOverlay } from "@/components/site/EmergencyOverlay";
+import { ErrorBoundary } from "@/components/site/ErrorBoundary";
 import { useState, useEffect } from "react";
+import { MapPin, ArrowRight, Compass } from "lucide-react";
 
 function NotFoundComponent() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background px-4">
-      <div className="max-w-md text-center">
-        <h1 className="text-7xl font-bold text-foreground">404</h1>
-        <h2 className="mt-4 text-xl font-semibold text-foreground">Page not found</h2>
-        <p className="mt-2 text-sm text-muted-foreground">
-          The page you're looking for doesn't exist or has been moved.
+    <div className="min-h-screen bg-paper flex items-center justify-center p-6 selection:bg-magenta selection:text-white">
+      <div className="max-w-2xl w-full text-left">
+        <div className="flex items-center gap-4 mb-8">
+          <div className="p-3 bg-navy-deep/5 rounded-full">
+            <Compass className="size-6 text-navy-deep" />
+          </div>
+          <span className="text-[0.65rem] font-syne font-bold tracking-[0.4em] text-ink/30 uppercase">
+            Error 404 — Directional Misalignment
+          </span>
+        </div>
+
+        <h1 className="font-display text-6xl md:text-8xl text-navy-deep leading-[0.88] mb-8 tracking-tighter">
+          This path leads <br />
+          <em className="italic font-light text-magenta">elsewhere.</em>
+        </h1>
+
+        <p className="text-xl text-ink/60 font-light leading-relaxed mb-12 max-w-lg">
+          The requested coordinate does not exist within our clinical network. We recommend
+          returning to our primary portal for navigation.
         </p>
-        <div className="mt-6">
+
+        <div className="flex flex-wrap gap-4">
           <Link
             to="/"
-            className="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
+            className="bg-navy-deep text-paper px-12 py-6 text-[0.65rem] font-syne font-bold uppercase tracking-widest hover:bg-magenta transition-colors duration-500 inline-flex items-center gap-4 shadow-editorial"
           >
-            Go home
+            Return to Portal
+            <ArrowRight className="size-4" />
           </Link>
+          <a
+            href="/contact"
+            className="border border-navy/20 px-12 py-6 text-[0.65rem] font-syne font-bold uppercase tracking-widest text-ink/60 hover:border-navy hover:text-ink transition-all inline-flex items-center gap-4"
+          >
+            Contact Concierge
+          </a>
+        </div>
+
+        {/* Decorative element */}
+        <div className="mt-32 opacity-[0.03] pointer-events-none select-none">
+          <h2 className="font-display text-[15vw] leading-none whitespace-nowrap">SHREE KALYAN</h2>
         </div>
       </div>
     </div>
@@ -30,29 +58,31 @@ function NotFoundComponent() {
 export const Route = createRootRoute({
   component: RootComponent,
   notFoundComponent: NotFoundComponent,
+  errorComponent: ({ error }) => (
+    <ErrorBoundary>
+      <div className="hidden">{error?.toString()}</div>
+      <></>
+    </ErrorBoundary>
+  ),
   head: () => ({
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-<<<<<<< HEAD
       { title: "Shree Kalyan Hospital · Kota — Quiet precision in modern healthcare" },
-      { name: "description", content: "Shree Kalyan Hospital, Kota — an editorial sanctuary of advanced clinical care across cardiology, neurosciences, oncology and more." },
-      { name: "author", content: "Shree Kalyan Hospital" },
-      { property: "og:title", content: "Shree Kalyan Hospital · Kota" },
-      { property: "og:description", content: "Quiet precision in modern healthcare. Kota, Rajasthan." },
-      { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:site", content: "@shreekalyan" },
-    ],
-    links: [
-=======
-      { title: "Shree Kalyan Hospital · Kota" },
->>>>>>> 41618e9a679645c70682d4ff2883ce126bd6cf50
       {
         name: "description",
         content:
-          "Modern healthcare with quiet precision. Shree Kalyan Hospital provides advanced clinical care in Kota, Rajasthan.",
+          "Shree Kalyan Hospital, Kota — an editorial sanctuary of advanced clinical care across cardiology, neurosciences, oncology and more.",
       },
+      { name: "author", content: "Shree Kalyan Hospital" },
+      { property: "og:title", content: "Shree Kalyan Hospital · Kota" },
+      {
+        property: "og:description",
+        content: "Quiet precision in modern healthcare. Kota, Rajasthan.",
+      },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:site", content: "@shreekalyan" },
       { name: "theme-color", content: "#03061a" },
     ],
     links: [{ rel: "icon", href: "/favicon.svg", type: "image/svg+xml" }],

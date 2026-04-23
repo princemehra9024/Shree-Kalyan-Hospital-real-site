@@ -5,7 +5,8 @@ import { SiteNav } from "@/components/site/SiteNav";
 import { SiteFooter } from "@/components/site/SiteFooter";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { ArrowRight, CalendarDays, Clock, Phone } from "lucide-react";
+import { ArrowRight, CalendarDays, Clock, Phone, Loader2 } from "lucide-react";
+import { toast } from "sonner";
 import heroCorridor from "@/assets/hero-corridor.jpg";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -57,6 +58,7 @@ function AppointmentsPage() {
   const [date, setDate] = useState<Date | undefined>(new Date(new Date().setHours(0, 0, 0, 0)));
   const [selectedTime, setSelectedTime] = useState<string | null>(null);
   const [bookingConfirmed, setBookingConfirmed] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   /* ── Hero entrance animations ── */
   useEffect(() => {
@@ -453,9 +455,36 @@ function AppointmentsPage() {
                       </div>
 
                       <form
-                        onSubmit={(e) => {
+                        onSubmit={async (e) => {
                           e.preventDefault();
-                          setBookingConfirmed(true);
+                          setIsSubmitting(true);
+
+                          const formData = new FormData(e.currentTarget);
+                          formData.append("access_key", "ad8f6ae8-f6a3-4a34-b035-a96a66e5d980");
+                          formData.append("subject", "New Appointment Request");
+                          formData.append("from_name", "Shree Kalyan Hospital Website");
+                          formData.append("appointment_date", date?.toLocaleDateString() || "Not set");
+                          formData.append("appointment_time", selectedTime || "Not set");
+
+                          try {
+                            const response = await fetch("https://api.web3forms.com/submit", {
+                              method: "POST",
+                              body: formData,
+                            });
+
+                            const data = await response.json();
+
+                            if (data.success) {
+                              setBookingConfirmed(true);
+                              toast.success("Your appointment request has been submitted.");
+                            } else {
+                              toast.error(data.message || "Something went wrong. Please try again.");
+                            }
+                          } catch (err) {
+                            toast.error("Failed to submit request. Please check your connection.");
+                          } finally {
+                            setIsSubmitting(false);
+                          }
                         }}
                         className="space-y-8 relative z-10"
                       >
@@ -468,10 +497,20 @@ function AppointmentsPage() {
                         </div>
                         <button
                           type="submit"
-                          className="w-full mt-12 bg-magenta text-white py-6 text-sm uppercase tracking-[0.3em] font-bold hover:bg-paper hover:text-navy-deep transition-colors duration-500 flex items-center justify-center gap-3"
+                          disabled={isSubmitting}
+                          className="w-full mt-12 bg-magenta text-white py-6 text-sm uppercase tracking-[0.3em] font-bold hover:bg-paper hover:text-navy-deep transition-colors duration-500 flex items-center justify-center gap-3 disabled:opacity-70 disabled:cursor-not-allowed"
                         >
-                          Confirm Appointment
-                          <ArrowRight className="size-4" />
+                          {isSubmitting ? (
+                            <>
+                              <Loader2 className="size-4 animate-spin" />
+                              Submitting...
+                            </>
+                          ) : (
+                            <>
+                              Confirm Appointment
+                              <ArrowRight className="size-4" />
+                            </>
+                          )}
                         </button>
                       </form>
                     </div>
