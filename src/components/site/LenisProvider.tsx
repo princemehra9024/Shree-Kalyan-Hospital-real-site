@@ -16,16 +16,17 @@ export function LenisProvider({ children }: { children: ReactNode }) {
       touchMultiplier: 2,
       infinite: false,
     });
-    
-    // Expose lenis globally for scroll restoration
-    (window as any).lenis = lenis;
 
+    // Expose lenis globally for scroll restoration
+    (window as unknown as { lenis?: Lenis }).lenis = lenis;
+
+    let rafId: number;
     function raf(time: number) {
       lenis.raf(time);
-      requestAnimationFrame(raf);
+      rafId = requestAnimationFrame(raf);
     }
 
-    requestAnimationFrame(raf);
+    rafId = requestAnimationFrame(raf);
 
     // Integrate with GSAP ScrollTrigger
     // Importing gsap inside useEffect to avoid SSR issues if necessary
@@ -33,11 +34,11 @@ export function LenisProvider({ children }: { children: ReactNode }) {
       import("gsap/ScrollTrigger").then(({ ScrollTrigger }) => {
         gsap.registerPlugin(ScrollTrigger);
         lenis.on("scroll", ScrollTrigger.update);
-        
+
         ScrollTrigger.scrollerProxy(document.body, {
           scrollTop(value) {
-            return arguments.length 
-              ? lenis.scrollTo(value as number, { immediate: true }) 
+            return arguments.length
+              ? lenis.scrollTo(value as number, { immediate: true })
               : lenis.scroll;
           },
           getBoundingClientRect() {
@@ -53,6 +54,7 @@ export function LenisProvider({ children }: { children: ReactNode }) {
     });
 
     return () => {
+      cancelAnimationFrame(rafId);
       lenis.destroy();
     };
   }, []);

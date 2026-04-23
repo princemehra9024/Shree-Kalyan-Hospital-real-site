@@ -15,6 +15,7 @@ import { Route as PatientCareRouteImport } from './routes/patient-care'
 import { Route as FaqsRouteImport } from './routes/faqs'
 import { Route as FacilitiesRouteImport } from './routes/facilities'
 import { Route as ContactRouteImport } from './routes/contact'
+import { Route as CancerGuidelinesRouteImport } from './routes/cancer-guidelines'
 import { Route as AppointmentsRouteImport } from './routes/appointments'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
@@ -50,6 +51,11 @@ const ContactRoute = ContactRouteImport.update({
   path: '/contact',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CancerGuidelinesRoute = CancerGuidelinesRouteImport.update({
+  id: '/cancer-guidelines',
+  path: '/cancer-guidelines',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AppointmentsRoute = AppointmentsRouteImport.update({
   id: '/appointments',
   path: '/appointments',
@@ -75,6 +81,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/appointments': typeof AppointmentsRoute
+  '/cancer-guidelines': typeof CancerGuidelinesRoute
   '/contact': typeof ContactRoute
   '/facilities': typeof FacilitiesRoute
   '/faqs': typeof FaqsRoute
@@ -87,6 +94,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/appointments': typeof AppointmentsRoute
+  '/cancer-guidelines': typeof CancerGuidelinesRoute
   '/contact': typeof ContactRoute
   '/facilities': typeof FacilitiesRoute
   '/faqs': typeof FaqsRoute
@@ -100,6 +108,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/appointments': typeof AppointmentsRoute
+  '/cancer-guidelines': typeof CancerGuidelinesRoute
   '/contact': typeof ContactRoute
   '/facilities': typeof FacilitiesRoute
   '/faqs': typeof FaqsRoute
@@ -114,6 +123,7 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/appointments'
+    | '/cancer-guidelines'
     | '/contact'
     | '/facilities'
     | '/faqs'
@@ -126,6 +136,7 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/appointments'
+    | '/cancer-guidelines'
     | '/contact'
     | '/facilities'
     | '/faqs'
@@ -138,6 +149,7 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/appointments'
+    | '/cancer-guidelines'
     | '/contact'
     | '/facilities'
     | '/faqs'
@@ -151,6 +163,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
   AppointmentsRoute: typeof AppointmentsRoute
+  CancerGuidelinesRoute: typeof CancerGuidelinesRoute
   ContactRoute: typeof ContactRoute
   FacilitiesRoute: typeof FacilitiesRoute
   FaqsRoute: typeof FaqsRoute
@@ -203,6 +216,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ContactRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/cancer-guidelines': {
+      id: '/cancer-guidelines'
+      path: '/cancer-guidelines'
+      fullPath: '/cancer-guidelines'
+      preLoaderRoute: typeof CancerGuidelinesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/appointments': {
       id: '/appointments'
       path: '/appointments'
@@ -250,6 +270,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
   AppointmentsRoute: AppointmentsRoute,
+  CancerGuidelinesRoute: CancerGuidelinesRoute,
   ContactRoute: ContactRoute,
   FacilitiesRoute: FacilitiesRoute,
   FaqsRoute: FaqsRoute,
@@ -260,12 +281,3 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { createStart } from '@tanstack/react-start'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-  }
-}

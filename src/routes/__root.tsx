@@ -1,6 +1,9 @@
-import { Outlet, Link, createRootRoute, HeadContent, Scripts } from "@tanstack/react-router";
-
-import appCss from "../styles.css?url";
+import { Outlet, Link, createRootRoute } from "@tanstack/react-router";
+import { LenisProvider } from "@/components/site/LenisProvider";
+import { CustomCursor } from "@/components/site/CustomCursor";
+import { BespokeTransition } from "@/components/site/BespokeTransition";
+import { EmergencyOverlay } from "@/components/site/EmergencyOverlay";
+import { useState, useEffect } from "react";
 
 function NotFoundComponent() {
   return (
@@ -25,10 +28,13 @@ function NotFoundComponent() {
 }
 
 export const Route = createRootRoute({
+  component: RootComponent,
+  notFoundComponent: NotFoundComponent,
   head: () => ({
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
+<<<<<<< HEAD
       { title: "Shree Kalyan Hospital · Kota — Quiet precision in modern healthcare" },
       { name: "description", content: "Shree Kalyan Hospital, Kota — an editorial sanctuary of advanced clinical care across cardiology, neurosciences, oncology and more." },
       { name: "author", content: "Shree Kalyan Hospital" },
@@ -39,46 +45,30 @@ export const Route = createRootRoute({
       { name: "twitter:site", content: "@shreekalyan" },
     ],
     links: [
+=======
+      { title: "Shree Kalyan Hospital · Kota" },
+>>>>>>> 41618e9a679645c70682d4ff2883ce126bd6cf50
       {
-        rel: "icon",
-        type: "image/svg+xml",
-        href: "/favicon.svg",
+        name: "description",
+        content:
+          "Modern healthcare with quiet precision. Shree Kalyan Hospital provides advanced clinical care in Kota, Rajasthan.",
       },
-      {
-        rel: "stylesheet",
-        href: appCss,
-      },
+      { name: "theme-color", content: "#03061a" },
     ],
+    links: [{ rel: "icon", href: "/favicon.svg", type: "image/svg+xml" }],
   }),
-  shellComponent: RootShell,
-  component: RootComponent,
-  notFoundComponent: NotFoundComponent,
 });
-
-function RootShell({ children }: { children: React.ReactNode }) {
-  return (
-    <html lang="en">
-      <head>
-        <HeadContent />
-      </head>
-      <body>
-        {children}
-        <Scripts />
-      </body>
-    </html>
-  );
-}
-
-import { LenisProvider } from "@/components/site/LenisProvider";
-import { CustomCursor } from "@/components/site/CustomCursor";
-import { PageTransition } from "@/components/site/PageTransition";
-import { EmergencyOverlay } from "@/components/site/EmergencyOverlay";
-import { useState, useEffect } from "react";
 
 function RootComponent() {
   const [emergencyOpen, setEmergencyOpen] = useState(false);
 
   useEffect(() => {
+    // Force scroll to top on reload
+    if ("scrollRestoration" in history) {
+      history.scrollRestoration = "manual";
+    }
+    window.scrollTo(0, 0);
+
     const handleToggle = () => setEmergencyOpen(true);
     window.addEventListener("toggle-emergency", handleToggle);
     return () => window.removeEventListener("toggle-emergency", handleToggle);
@@ -87,13 +77,10 @@ function RootComponent() {
   return (
     <LenisProvider>
       <CustomCursor />
-      <PageTransition>
+      <BespokeTransition>
         <Outlet />
-      </PageTransition>
-      <EmergencyOverlay 
-        isOpen={emergencyOpen} 
-        onClose={() => setEmergencyOpen(false)} 
-      />
+      </BespokeTransition>
+      <EmergencyOverlay isOpen={emergencyOpen} onClose={() => setEmergencyOpen(false)} />
     </LenisProvider>
   );
 }

@@ -12,7 +12,9 @@ export function Marquee({ items, variant = "navy", speed = "slow" }: MarqueeProp
         isNavy ? "bg-navy-deep text-paper border-paper/10" : "bg-paper text-navy-deep border-ink/10"
       }`}
     >
-      <div className={`flex items-center ${speed === "fast" ? "animate-marquee-fast" : "animate-marquee"}`}>
+      <div
+        className={`flex items-center ${speed === "fast" ? "animate-marquee-fast" : "animate-marquee"}`}
+      >
         {[0, 1].map((set) => (
           <div key={set} className="flex items-center gap-8 mx-4 shrink-0" aria-hidden={set === 1}>
             {items.map((item, i) => (

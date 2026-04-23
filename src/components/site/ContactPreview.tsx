@@ -29,8 +29,8 @@ export function ContactPreview() {
               Begin <span className="italic font-light text-pink">here.</span>
             </h2>
             <p className="mt-10 text-lg md:text-xl leading-relaxed text-paper/80 max-w-[44ch]">
-              Walk-in consultations daily. Emergency triage 24 hours. To schedule a private review with
-              one of our consultants, reach our admissions desk.
+              Walk-in consultations daily. Emergency triage 24 hours. To schedule a private review
+              with one of our consultants, reach our admissions desk.
             </p>
 
             <div className="mt-12 flex flex-col sm:flex-row gap-4">
