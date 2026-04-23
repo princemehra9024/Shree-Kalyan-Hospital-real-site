@@ -74,6 +74,36 @@ function AboutPage() {
         </div>
       </section>
 
+      <section className="px-6 md:px-12 lg:px-24 py-32 md:py-48 max-w-[1600px] mx-auto border-t border-ink/10">
+         <div className="flex flex-col md:flex-row md:items-end justify-between gap-12 mb-24" data-reveal>
+            <h2 className="font-display text-4xl md:text-6xl lg:text-8xl text-navy-deep leading-[0.85] tracking-tight">
+              Heritage & <span className="italic font-light text-magenta">milestones.</span>
+            </h2>
+            <p className="text-lg text-ink/60 max-w-[36ch] leading-relaxed">
+              A brief history of our evolution from a surgical center to a regional center of excellence.
+            </p>
+          </div>
+
+          <div className="space-y-12">
+            {[
+              { year: "2001", event: "Shree Kalyan Surgical Center founded by senior consultants in Kota." },
+              { year: "2008", event: "Expansion into a multi-specialty facility with advanced cardiology wing." },
+              { year: "2015", event: "Attained NABH accreditation, the gold standard for Indian healthcare." },
+              { year: "2021", event: "Inauguration of the Precision Oncology and Robotic Surgery department." },
+              { year: "2024", event: "Celebrating 25 years of restoring vitality through quiet precision." }
+            ].map((m, i) => (
+              <div key={i} className="group grid grid-cols-12 gap-x-6 py-12 border-b border-ink/5 items-center hover:bg-magenta/[0.01] transition-colors" data-reveal>
+                <div className="col-span-3 md:col-span-2">
+                  <span className="font-display text-4xl md:text-6xl italic text-magenta/40 group-hover:text-magenta transition-colors">{m.year}</span>
+                </div>
+                <div className="col-span-9 md:col-span-10">
+                  <p className="font-display text-2xl md:text-4xl text-navy-deep/80 max-w-3xl leading-snug">{m.event}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+      </section>
+
       <section className="px-6 md:px-12 lg:px-24 py-32 bg-navy-deep text-paper overflow-hidden relative">
          <div className="absolute top-0 right-0 w-1/2 h-full opacity-10 pointer-events-none">
             <div className="w-full h-full bg-[radial-gradient(circle_at_center,_var(--color-magenta)_0%,_transparent_70%)]" />

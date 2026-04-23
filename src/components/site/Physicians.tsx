@@ -1,3 +1,4 @@
+import { Link } from "@tanstack/react-router";
 import doctor from "@/assets/anjali-sharma.png";
 
 export function Physicians() {
@@ -51,6 +52,16 @@ export function Physicians() {
               <dd className="mt-2 font-display text-4xl text-magenta">25</dd>
             </div>
           </dl>
+
+          <div className="mt-16" data-reveal>
+            <Link 
+              to="/team" 
+              className="group flex items-center gap-6 text-[0.7rem] font-bold tracking-[0.3em] uppercase text-magenta"
+            >
+              Meet the Full Roster
+              <span className="w-12 h-px bg-magenta/20 group-hover:w-24 group-hover:bg-magenta transition-all duration-700" />
+            </Link>
+          </div>
         </div>
       </div>
     </section>

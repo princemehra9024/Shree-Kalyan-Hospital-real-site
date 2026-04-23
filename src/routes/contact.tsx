@@ -51,8 +51,8 @@ function ContactPage() {
       <section className="px-6 md:px-12 lg:px-24 max-w-[1600px] mx-auto border-t border-ink/10" data-reveal-stagger>
         <div className="grid grid-cols-1 md:grid-cols-3">
           {[
-            { label: "Admissions", value: "+91 99999 99999", href: "tel:+919999999999" },
-            { label: "Emergency", value: "+91 88888 88888", href: "tel:+918888888888", accent: true },
+            { label: "Admissions", value: "+91 85292 19330", href: "tel:+918529219330" },
+            { label: "Emergency", value: "+91 85292 19330", href: "tel:+918529219330", accent: true },
             { label: "Email", value: "care@shreekalyan.in", href: "mailto:care@shreekalyan.in" },
           ].map((c) => (
             <a
@@ -130,11 +130,11 @@ function ContactPage() {
               </p>
               <ul className="space-y-6">
                 {[
-                  { title: "Billing & Insurance", phone: "+91 99999 99991" },
-                  { title: "Blood Bank", phone: "+91 99999 99992" },
-                  { title: "Pharmacy", phone: "+91 99999 99993" },
-                  { title: "International Care", email: "international@shreekalyan.in" },
-                  { title: "HR / Careers", email: "careers@shreekalyan.in" },
+                  { title: "Billing & Insurance", phone: "+91 85292 19330" },
+                  { title: "Blood Bank", phone: "+91 85292 19330" },
+                  { title: "Pharmacy", phone: "+91 85292 19330" },
+                  { title: "International Care", email: "care@shreekalyan.in" },
+                  { title: "HR / Careers", email: "care@shreekalyan.in" },
                 ].map((dept) => (
                   <li key={dept.title} className="flex flex-col gap-1 border-b border-ink/5 pb-4 last:border-0 last:pb-0">
                     <span className="font-display text-xl md:text-2xl text-navy-deep">{dept.title}</span>
