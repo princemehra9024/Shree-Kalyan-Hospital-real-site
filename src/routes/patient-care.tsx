@@ -448,6 +448,8 @@ function PatientCarePage() {
             src={hospitalLobby}
             alt="Patient Suite"
             className="hero-img-inner w-full h-[115%] object-cover -top-[7%] absolute"
+            fetchPriority="high"
+            decoding="async"
           />
           <div className="absolute inset-0 bg-gradient-to-l from-transparent to-paper/20 lg:to-transparent" />
 
@@ -573,6 +575,8 @@ function PatientCarePage() {
               key={i}
               src={step.image}
               alt={step.title}
+              loading="lazy"
+              decoding="async"
               className={`step-img absolute inset-0 w-full h-full object-cover grayscale brightness-[0.35] ${i === 0 ? "" : "opacity-0"}`}
             />
           ))}
@@ -722,6 +726,8 @@ function PatientCarePage() {
                 src={operatingTheatre}
                 alt="Operating Theatre"
                 className="w-full h-full object-cover grayscale hover:grayscale-0 transition-[filter] duration-[2s]"
+                loading="lazy"
+                decoding="async"
               />
               <div className="absolute top-4 left-4 bg-paper px-4 py-2 text-[0.55rem] font-syne font-bold uppercase tracking-widest text-navy-deep">
                 Recovery Suite
@@ -732,6 +738,8 @@ function PatientCarePage() {
                 src={founderDoctor}
                 alt="Expert care"
                 className="w-full h-full object-cover object-top grayscale hover:grayscale-0 transition-[filter] duration-[2s]"
+                loading="lazy"
+                decoding="async"
               />
             </div>
             <div className="grid-img relative h-[30vh] overflow-hidden">
@@ -739,6 +747,8 @@ function PatientCarePage() {
                 src={heroCorridor}
                 alt="Hospital corridor"
                 className="w-full h-full object-cover grayscale hover:grayscale-0 transition-[filter] duration-[2s]"
+                loading="lazy"
+                decoding="async"
               />
             </div>
           </div>

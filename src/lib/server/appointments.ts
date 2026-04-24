@@ -1,7 +1,7 @@
 import { neon } from "@neondatabase/serverless";
 
 // Fallback to import.meta.env for Vite clients, or process.env for Node
-const dbUrl = import.meta.env?.VITE_NEON_DB_URL || process.env.VITE_NEON_DB_URL;
+const dbUrl = import.meta.env?.VITE_NEON_DB_URL || (typeof process !== 'undefined' ? process.env.VITE_NEON_DB_URL : undefined);
 
 if (!dbUrl) {
   console.warn("VITE_NEON_DB_URL is missing. Please check your environment variables.");

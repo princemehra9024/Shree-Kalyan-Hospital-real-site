@@ -313,6 +313,8 @@ function AppointmentsPage() {
               <img
                 src={heroCorridor}
                 alt="Shree Kalyan Hospital — corridor"
+                fetchPriority="high"
+                decoding="async"
                 className="ap-hero-img w-full aspect-[4/5] object-cover grayscale hover:grayscale-0 transition-all duration-[2s] ease-in-out"
               />
               <div className="absolute inset-0 bg-navy-deep/10 mix-blend-multiply" />

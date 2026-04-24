@@ -160,6 +160,8 @@ export function SiteNav({ isHome = false }: { isHome?: boolean }) {
               <img
                 src={logo}
                 alt="Shree Kalyan Hospital"
+                fetchPriority="high"
+                decoding="async"
                 className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
               />
             </span>

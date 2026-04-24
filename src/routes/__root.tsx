@@ -1,6 +1,7 @@
 import { Outlet, Link, createRootRoute } from "@tanstack/react-router";
 import { LenisProvider } from "@/components/site/LenisProvider";
 import { CustomCursor } from "@/components/site/CustomCursor";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 import { EmergencyOverlay } from "@/components/site/EmergencyOverlay";
 import { ErrorBoundary } from "@/components/site/ErrorBoundary";
@@ -109,7 +110,11 @@ export const Route = createRootRoute({
     ],
     links: [
       { rel: "icon", href: "/favicon.svg", type: "image/svg+xml" },
-      { rel: "canonical", href: "https://shreekalyanhospital.com" }
+      { rel: "canonical", href: "https://shreekalyanhospital.com" },
+      { rel: "preconnect", href: "https://fonts.googleapis.com" },
+      { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
+      { rel: "dns-prefetch", href: "https://fonts.googleapis.com" },
+      { rel: "dns-prefetch", href: "https://fonts.gstatic.com" },
     ],
     scripts: [
       {
@@ -121,6 +126,7 @@ export const Route = createRootRoute({
 });
 
 function RootComponent() {
+  const [queryClient] = useState(() => new QueryClient());
   const [emergencyOpen, setEmergencyOpen] = useState(false);
 
   useEffect(() => {
@@ -136,10 +142,12 @@ function RootComponent() {
   }, []);
 
   return (
-    <LenisProvider>
-      <CustomCursor />
-      <Outlet />
-      <EmergencyOverlay isOpen={emergencyOpen} onClose={() => setEmergencyOpen(false)} />
-    </LenisProvider>
+    <QueryClientProvider client={queryClient}>
+      <LenisProvider>
+        <CustomCursor />
+        <Outlet />
+        <EmergencyOverlay isOpen={emergencyOpen} onClose={() => setEmergencyOpen(false)} />
+      </LenisProvider>
+    </QueryClientProvider>
   );
 }

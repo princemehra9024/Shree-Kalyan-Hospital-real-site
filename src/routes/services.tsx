@@ -166,6 +166,8 @@ function ServicesPage() {
             src={surgicalTheater}
             className="hero-parallax-img w-full h-[130%] object-cover grayscale"
             alt="texture"
+            fetchPriority="high"
+            decoding="async"
           />
         </div>
 
@@ -210,6 +212,8 @@ function ServicesPage() {
             src={operatingTheatre}
             alt="Department Preview"
             className="hidden lg:block fixed pointer-events-none z-0 object-cover grayscale mix-blend-multiply"
+            loading="lazy"
+            decoding="async"
             style={{
               width: "450px",
               height: "550px",
@@ -289,6 +293,8 @@ function ServicesPage() {
             src={heroCorridor}
             alt=""
             className="absolute inset-0 w-full h-full object-cover grayscale mix-blend-overlay opacity-10"
+            loading="lazy"
+            decoding="async"
           />
         </div>
 

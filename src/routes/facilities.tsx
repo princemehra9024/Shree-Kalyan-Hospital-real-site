@@ -303,6 +303,8 @@ function FacilitiesPage() {
                 src={operatingTheatre}
                 alt="Shree Kalyan Hospital — operating theatre"
                 className="fc-hero-img w-full aspect-[4/5] object-cover grayscale hover:grayscale-0 transition-all duration-[2s] ease-in-out"
+                fetchPriority="high"
+                decoding="async"
               />
               <div className="absolute inset-0 bg-navy-deep/10 mix-blend-multiply" />
             </div>
@@ -466,6 +468,8 @@ function FacilitiesPage() {
                 src={surgicalTheater}
                 alt="Surgical theater at Shree Kalyan Hospital"
                 className="w-full aspect-video object-cover grayscale hover:grayscale-0 transition-all duration-[2s]"
+                loading="lazy"
+                decoding="async"
               />
               <div className="absolute inset-0 bg-navy-deep/10 mix-blend-multiply" />
             </div>

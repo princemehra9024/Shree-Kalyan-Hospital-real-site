@@ -195,6 +195,8 @@ function TeamPage() {
                 src={physicians[0].image}
                 alt="Medical Team"
                 className="hero-img w-full aspect-[4/3] md:aspect-[16/10] lg:aspect-[4/5] object-cover"
+                fetchPriority="high"
+                decoding="async"
               />
               <div className="absolute inset-0 bg-navy-deep/5 mix-blend-multiply" />
             </div>
@@ -241,6 +243,7 @@ function TeamPage() {
                 src={physicians[0].image}
                 alt={physicians[0].name}
                 loading="lazy"
+                decoding="async"
                 className="w-full aspect-square md:aspect-[4/5] object-cover"
                 data-parallax
               />
@@ -285,6 +288,7 @@ function TeamPage() {
                     src={p.image}
                     alt={p.name}
                     loading="lazy"
+                    decoding="async"
                     className="w-full h-full object-cover transition-transform duration-[1200ms] group-hover:scale-110 opacity-90 group-hover:opacity-100"
                   />
                 </div>

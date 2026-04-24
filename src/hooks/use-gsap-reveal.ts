@@ -14,45 +14,48 @@ export function useGsapReveal() {
 
     const ctx = gsap.context(() => {
       // Hero entrance - Cinematic character reveal
-      const heroTl = gsap.timeline({ defaults: { ease: "power4.out" } });
+      const hasHero = document.querySelector("[data-anim='hero-title']");
+      if (hasHero) {
+        const heroTl = gsap.timeline({ defaults: { ease: "power4.out" } });
 
-      heroTl
-        .from("[data-anim='hero-eyebrow']", {
-          opacity: 0,
-          y: 20,
-          duration: 1,
-          delay: 0.3,
-        })
-        .from(
-          "[data-anim='hero-title'] span",
-          {
-            yPercent: 120,
-            skewY: 3,
+        heroTl
+          .from("[data-anim='hero-eyebrow']", {
             opacity: 0,
-            duration: 1.5,
-            stagger: 0.15,
-          },
-          "-=0.8",
-        )
-        .from(
-          "[data-anim='hero-cta']",
-          {
-            opacity: 0,
-            scale: 0.5,
-            rotate: -15,
-            duration: 1.2,
-          },
-          "-=1.2",
-        )
-        .from(
-          "[data-anim='hero-stats']",
-          {
-            opacity: 0,
-            y: 30,
+            y: 20,
             duration: 1,
-          },
-          "-=1",
-        );
+            delay: 0.3,
+          })
+          .from(
+            "[data-anim='hero-title'] span",
+            {
+              yPercent: 120,
+              skewY: 3,
+              opacity: 0,
+              duration: 1.5,
+              stagger: 0.15,
+            },
+            "-=0.8",
+          )
+          .from(
+            "[data-anim='hero-cta']",
+            {
+              opacity: 0,
+              scale: 0.5,
+              rotate: -15,
+              duration: 1.2,
+            },
+            "-=1.2",
+          )
+          .from(
+            "[data-anim='hero-stats']",
+            {
+              opacity: 0,
+              y: 30,
+              duration: 1,
+            },
+            "-=1",
+          );
+      }
 
       // Generic scroll reveal
       gsap.utils.toArray<HTMLElement>("[data-reveal]").forEach((el) => {

@@ -77,6 +77,8 @@ export function PageHero({ chapter, eyebrow, title, intro, image }: PageHeroProp
             src={image}
             className="hero-parallax-img w-full h-[130%] object-cover grayscale"
             alt="texture"
+            fetchPriority="high"
+            decoding="async"
           />
         </div>
       )}

@@ -266,7 +266,7 @@ export function PatientStories() {
         <div
           aria-hidden="true"
           className="absolute inset-0 opacity-[0.04]"
-          style={{ backgroundImage: "url('https://grainy-gradients.vercel.app/noise.svg')" }}
+          style={{ backgroundImage: "url('/noise.svg')" }}
         />
         {/* Magenta orb */}
         <div

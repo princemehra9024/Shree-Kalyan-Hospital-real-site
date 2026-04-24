@@ -28,6 +28,7 @@ export function Philosophy() {
               height={896}
               className="w-full aspect-[4/3] object-cover transition-transform duration-[2s] group-hover:scale-110"
               data-parallax
+              decoding="async"
             />
           </div>
           <p className="font-display text-xl md:text-3xl lg:text-4xl leading-relaxed text-ink/80 italic max-w-prose">

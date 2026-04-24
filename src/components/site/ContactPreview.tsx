@@ -10,6 +10,7 @@ export function ContactPreview() {
           alt=""
           aria-hidden="true"
           loading="lazy"
+          decoding="async"
           width={1280}
           height={896}
           className="w-full h-full object-cover"

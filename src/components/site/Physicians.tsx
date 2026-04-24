@@ -18,6 +18,7 @@ export function Physicians() {
               height={1200}
               className="w-full aspect-[3/4] object-cover"
               data-parallax
+              decoding="async"
             />
           </div>
           <div className="absolute -bottom-8 -right-6 md:-right-10 bg-magenta text-paper p-5 md:p-6 shadow-card max-w-[16rem]">

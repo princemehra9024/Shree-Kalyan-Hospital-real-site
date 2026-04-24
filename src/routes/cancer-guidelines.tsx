@@ -337,6 +337,8 @@ function CancerGuidelinesPage() {
             src={hospitalLobby}
             alt="Oncology Department"
             className="w-full h-full object-cover"
+            fetchPriority="high"
+            decoding="async"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-paper/30 lg:from-transparent to-transparent" />
           {/* Pink ribbon badge */}
@@ -527,6 +529,8 @@ function CancerGuidelinesPage() {
                   src={tech.img}
                   alt={tech.title}
                   className="absolute inset-0 w-full h-full object-cover grayscale opacity-50 group-hover:grayscale-0 group-hover:opacity-100 transition-[filter,opacity] duration-[1.5s]"
+                  loading="lazy"
+                  decoding="async"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-navy-deep via-navy-deep/40 to-transparent" />
 
@@ -647,6 +651,8 @@ function CancerGuidelinesPage() {
                 src={operatingTheatre}
                 alt="Oncology suite"
                 className="w-full h-full object-cover grayscale hover:grayscale-0 transition-[filter] duration-[2s]"
+                loading="lazy"
+                decoding="async"
               />
               <div className="absolute top-4 left-4 bg-paper px-4 py-2 text-[0.55rem] font-syne font-bold uppercase tracking-widest text-navy-deep">
                 Oncology Suite
@@ -657,6 +663,8 @@ function CancerGuidelinesPage() {
                 src={founderDoctor}
                 alt="Care team"
                 className="w-full h-full object-cover object-top grayscale hover:grayscale-0 transition-[filter] duration-[2s]"
+                loading="lazy"
+                decoding="async"
               />
             </div>
             <div className="mosaic-img relative h-[28vh] overflow-hidden">
@@ -664,6 +672,8 @@ function CancerGuidelinesPage() {
                 src={heroCorridor}
                 alt="Hospital"
                 className="w-full h-full object-cover grayscale hover:grayscale-0 transition-[filter] duration-[2s]"
+                loading="lazy"
+                decoding="async"
               />
             </div>
           </div>
@@ -676,7 +686,7 @@ function CancerGuidelinesPage() {
       <section className="cg-cta-split grid lg:grid-cols-2 min-h-[60vh]">
         {/* Left — image */}
         <div className="cg-cta-l relative overflow-hidden min-h-[40vh]">
-          <img src={hospitalLobby} alt="Shree Kalyan" className="w-full h-full object-cover" />
+          <img src={hospitalLobby} alt="Shree Kalyan" className="w-full h-full object-cover" loading="lazy" decoding="async" />
           <div className="absolute inset-0 bg-navy-deep/70" />
           <div className="absolute inset-0 flex flex-col items-start justify-end p-10 md:p-16 gap-4">
             <HeartHandshake className="size-10 text-magenta" />

@@ -503,7 +503,7 @@ export function QuickAccess() {
         >
           <span
             aria-hidden="true"
-            className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-[0.08] pointer-events-none"
+            className="absolute inset-0 bg-[url('/noise.svg')] opacity-[0.08] pointer-events-none"
           />
           <p className="text-[0.6rem] font-bold uppercase tracking-[0.3em] text-ink/40 mb-4">
             Patient Corner

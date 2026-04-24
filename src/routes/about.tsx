@@ -382,6 +382,8 @@ function AboutPage() {
                   alt="Hospital Lobby"
                   className="w-full h-[120%] object-cover grayscale transition-all duration-[2s] group-hover:grayscale-0 hero-bg-img"
                   style={{ top: "-10%" }}
+                  fetchPriority="high"
+                  decoding="async"
                 />
               </div>
               <div
@@ -527,6 +529,8 @@ function AboutPage() {
                 src={founderDoctor}
                 alt="Founder"
                 className="w-full h-[120%] object-cover grayscale group-hover:grayscale-0 transition-all duration-[2s] absolute top-[-10%] founder-img"
+                loading="lazy"
+                decoding="async"
               />
             </div>
             <div className="absolute top-8 -right-8 origin-bottom-right -rotate-90 hidden lg:block">
@@ -686,6 +690,8 @@ function AboutPage() {
                 <img
                   src={leader.img}
                   alt={leader.name}
+                  loading="lazy"
+                  decoding="async"
                   className="w-full h-full object-cover grayscale opacity-90 transition-all duration-[2s] group-hover:grayscale-0 group-hover:scale-105"
                 />
 
@@ -832,6 +838,8 @@ function AboutPage() {
               <img
                 src={operatingTheatre}
                 alt="Operating Theatre"
+                loading="lazy"
+                decoding="async"
                 className="w-full h-full object-cover grayscale transition-all duration-1000 group-hover:grayscale-0"
               />
               <div className="absolute top-8 left-8 bg-paper p-4 border border-navy/10 shadow-editorial z-10">
@@ -852,6 +860,8 @@ function AboutPage() {
             className="w-full h-[150%] object-cover grayscale manifesto-bg"
             style={{ top: "-25%" }}
             alt="bg"
+            loading="lazy"
+            decoding="async"
           />
         </div>
         <div className="max-w-[1200px] mx-auto px-6 lg:px-24 relative z-20 text-center" data-reveal>

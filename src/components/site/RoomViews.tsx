@@ -342,6 +342,8 @@ export function RoomViews() {
                 <img
                   src={room.img}
                   alt={room.title}
+                  loading="lazy"
+                  decoding="async"
                   className="w-full h-full object-cover will-change-transform"
                 />
                 {/* Cinematic overlays */}

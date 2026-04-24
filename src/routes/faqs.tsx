@@ -348,6 +348,8 @@ function FAQsPage() {
                 src={abstractCorridor}
                 alt="Hospital Facility"
                 className="hq-hero-img-inner w-full h-[120%] object-cover grayscale transition-all duration-[2s] group-hover:grayscale-0 absolute -top-[10%]"
+                fetchPriority="high"
+                decoding="async"
               />
             </div>
             {/* Corner decorator */}
