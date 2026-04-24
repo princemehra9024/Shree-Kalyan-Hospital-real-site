@@ -19,12 +19,12 @@ export interface AppointmentInput {
 
 export async function getBookedSlots(dateStr: string): Promise<string[]> {
   try {
-    const rows = await sql`
+    const rows = (await sql`
       SELECT appointment_time 
       FROM appointments 
       WHERE appointment_date = ${dateStr}::DATE
-    `;
-    return rows.map((row: { appointment_time: string }) => row.appointment_time);
+    `) as { appointment_time: string }[];
+    return rows.map((row) => row.appointment_time);
   } catch (err) {
     console.error("Error fetching booked slots:", err);
     return [];
