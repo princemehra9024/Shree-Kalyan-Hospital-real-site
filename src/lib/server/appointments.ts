@@ -54,3 +54,17 @@ export async function bookAppointment(data: AppointmentInput): Promise<boolean> 
     return false;
   }
 }
+
+export async function saveNotificationToken(token: string): Promise<boolean> {
+  try {
+    await sql`
+      INSERT INTO notification_tokens (token)
+      VALUES (${token})
+      ON CONFLICT (token) DO NOTHING
+    `;
+    return true;
+  } catch (err) {
+    console.error("Error saving notification token:", err);
+    return false;
+  }
+}

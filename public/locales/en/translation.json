@@ -1,0 +1,47 @@
+{
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "services": "Services",
+    "appointments": "Appointments",
+    "patient_care": "Patient Care",
+    "facilities": "Facilities",
+    "team": "Our Team",
+    "contact": "Contact"
+  },
+  "home": {
+    "hero_title": "World-Class Healthcare, Close to You",
+    "hero_subtitle": "Experience advanced medical care with a human touch at Shree Kalyan Hospital.",
+    "book_appointment": "Book Appointment",
+    "emergency": "Emergency: +91 1234567890"
+  },
+  "appointments": {
+    "title": "Book an Appointment",
+    "hero_title": "Reserve",
+    "hero_subtitle": "Your time.",
+    "hero_desc": "Select a time that works for you to experience our world-class healthcare services.",
+    "select_date": "1. Select Date",
+    "select_time": "2. Select Time",
+    "complete_info": "3. Complete Info",
+    "morning": "Morning",
+    "afternoon": "Afternoon",
+    "evening": "Evening",
+    "slots_available": "slots available",
+    "confirmed": "Confirmed",
+    "success_its": "It's",
+    "success_official": "official.",
+    "success_message": "Your time is reserved for {{time}} on {{date}}.",
+    "book_another": "Book another",
+    "form": {
+      "name": "Full Name",
+      "phone": "Phone Number",
+      "reason": "Reason for Visit (Optional)",
+      "submit": "Confirm Booking"
+    },
+    "notifications": {
+      "title": "Get Reminders",
+      "desc": "Enable push notifications to receive a reminder before your appointment.",
+      "enable": "Enable"
+    }
+  }
+}

@@ -14,6 +14,8 @@ import {
   AlertTriangle,
 } from "lucide-react";
 import logo from "@/assets/logo.jpeg";
+import { useTranslation } from "react-i18next";
+import { LanguageSwitcher } from "./LanguageSwitcher";
 
 const WhatsAppIcon = ({ className }: { className?: string }) => (
   <svg
@@ -27,18 +29,19 @@ const WhatsAppIcon = ({ className }: { className?: string }) => (
 );
 
 const navItems = [
-  { to: "/" as const, label: "Home", num: "01" },
-  { to: "/about" as const, label: "About Us", num: "02" },
-  { to: "/services" as const, label: "Services", num: "03" },
-  { to: "/facilities" as const, label: "Facilities", num: "04" },
-  { to: "/team" as const, label: "Team", num: "05" },
-  { to: "/appointments" as const, label: "Appointments", num: "06" },
-  { to: "/patient-care" as const, label: "Patient Care", num: "07" },
-  { to: "/faqs" as const, label: "FAQs", num: "08" },
-  { to: "/contact" as const, label: "Contact", num: "09" },
+  { to: "/" as const, key: "home", num: "01" },
+  { to: "/about" as const, key: "about", num: "02" },
+  { to: "/services" as const, key: "services", num: "03" },
+  { to: "/facilities" as const, key: "facilities", num: "04" },
+  { to: "/team" as const, key: "team", num: "05" },
+  { to: "/appointments" as const, key: "appointments", num: "06" },
+  { to: "/patient-care" as const, key: "patient_care", num: "07" },
+  { to: "/faqs" as const, key: "faqs", num: "08" },
+  { to: "/contact" as const, key: "contact", num: "09" },
 ];
 
 export function SiteNav({ isHome = false }: { isHome?: boolean }) {
+  const { t } = useTranslation();
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const indicatorRef = useRef<HTMLSpanElement | null>(null);
@@ -290,12 +293,13 @@ export function SiteNav({ isHome = false }: { isHome?: boolean }) {
                   activeProps={{ className: "!text-magenta" }}
                   className="relative z-10 group flex items-center gap-2 px-3 py-2 text-[0.65rem] font-bold tracking-[0.15em] uppercase text-paper hover:text-magenta transition-colors whitespace-nowrap [text-shadow:0_1px_4px_rgba(0,0,0,0.5)]"
                 >
-                  {item.label}
+                  {t(`nav.${item.key}`, item.key)}
                 </Link>
               ))}
             </nav>
 
             <div className="flex items-center gap-3 md:gap-4">
+              <LanguageSwitcher />
               {/* Mobile Quick Actions */}
               <div className="flex md:hidden items-center gap-2">
                 {/* Emergency Icon */}
@@ -405,7 +409,7 @@ export function SiteNav({ isHome = false }: { isHome?: boolean }) {
               >
                 <span className="flex items-baseline gap-4">
                   <span className="font-display italic text-magenta/70 text-sm">{item.num}</span>
-                  <span className="font-display text-3xl tracking-tight">{item.label}</span>
+                  <span className="font-display text-3xl tracking-tight">{t(`nav.${item.key}`, item.key)}</span>
                 </span>
                 <span className="font-display italic text-2xl opacity-0 group-hover:opacity-100 transition-opacity">
                   →

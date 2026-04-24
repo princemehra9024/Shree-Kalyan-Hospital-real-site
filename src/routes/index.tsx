@@ -11,6 +11,7 @@ import { PatientStories } from "@/components/site/PatientStories";
 import { QuickAccess } from "@/components/site/QuickAccess";
 import { RoomViews } from "@/components/site/RoomViews";
 import { useGsapReveal } from "@/hooks/use-gsap-reveal";
+import { useTranslation } from "react-i18next";
 
 export const Route = createFileRoute("/")({
   component: Index,
@@ -34,6 +35,7 @@ export const Route = createFileRoute("/")({
 });
 
 function Index() {
+  const { t } = useTranslation();
   useGsapReveal();
 
   return (
@@ -67,10 +69,10 @@ function Index() {
                   className="size-36 md:size-56 rounded-full bg-magenta text-paper flex flex-col items-center justify-center text-center p-6 transition-all duration-700 hover:scale-110 shadow-glow-magenta relative z-10 overflow-hidden group/btn"
                 >
                   <span className="text-[0.6rem] md:text-[0.7rem] font-bold tracking-[0.3em] uppercase mb-1 opacity-80">
-                    Schedule
+                    {t('home.book_appointment', 'Schedule')}
                   </span>
                   <span className="font-display italic text-3xl md:text-5xl leading-none">
-                    Visit
+                    {t('nav.appointments', 'Visit')}
                   </span>
                   <div className="absolute inset-0 bg-paper/20 translate-y-full group-hover/btn:translate-y-0 transition-transform duration-500" />
                 </Link>
@@ -87,8 +89,7 @@ function Index() {
               data-anim="hero-stats"
             >
               <p className="text-paper/50 text-sm max-w-sm leading-relaxed font-light">
-                Quiet precision in modern healthcare. A sanctuary where advanced clinical practice
-                meets profound human empathy.
+                {t('home.hero_subtitle', 'Quiet precision in modern healthcare. A sanctuary where advanced clinical practice meets profound human empathy.')}
               </p>
               <div className="flex gap-12">
                 <div>
