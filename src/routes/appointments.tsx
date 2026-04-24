@@ -91,7 +91,9 @@ function AppointmentsPage() {
   const [bookingConfirmed, setBookingConfirmed] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const queryClient = useQueryClient();
-  const { permission, requestPermission } = usePushNotifications();
+  const { permission, requestPermission } = usePushNotifications({
+    onTokenReceived: (t) => saveNotificationToken(t),
+  });
 
   // YYYY-MM-DD
   const dateStr = date ? date.toLocaleDateString("en-CA") : "";
@@ -609,7 +611,7 @@ function AppointmentsPage() {
                     </div>
                     <button
                       type="button"
-                      onClick={() => requestPermission((t) => saveNotificationToken(t))}
+                      onClick={() => requestPermission()}
                       className="bg-navy-deep text-paper px-6 py-3 text-[0.6rem] font-bold uppercase tracking-widest hover:bg-magenta transition-colors shrink-0"
                     >
                       {t('appointments.notifications.enable', 'Enable')}

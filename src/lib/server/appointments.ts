@@ -1,4 +1,5 @@
 import { neon } from "@neondatabase/serverless";
+import { broadcastNotification } from "./push";
 
 // Fallback to import.meta.env for Vite clients, or process.env for Node
 const dbUrl = import.meta.env?.VITE_NEON_DB_URL || (typeof process !== 'undefined' ? process.env.VITE_NEON_DB_URL : undefined);
@@ -48,6 +49,13 @@ export async function bookAppointment(data: AppointmentInput): Promise<boolean> 
         ${data.appointment_time}
       )
     `;
+    
+    // Trigger push notification asynchronously
+    broadcastNotification(
+      'Appointment Confirmed',
+      `Your appointment is confirmed for ${data.appointment_date} at ${data.appointment_time}.`
+    ).catch(err => console.error("Failed to trigger notification:", err));
+
     return true;
   } catch (err) {
     console.error("Error booking appointment:", err);
@@ -55,16 +63,17 @@ export async function bookAppointment(data: AppointmentInput): Promise<boolean> 
   }
 }
 
-export async function saveNotificationToken(token: string): Promise<boolean> {
+export async function saveNotificationToken(subscription: any): Promise<boolean> {
   try {
+    const jsonSub = JSON.stringify(subscription);
+    // Use jsonb for proper insertion
     await sql`
-      INSERT INTO notification_tokens (token)
-      VALUES (${token})
-      ON CONFLICT (token) DO NOTHING
+      INSERT INTO notification_tokens (subscription)
+      VALUES (${jsonSub}::jsonb)
     `;
     return true;
   } catch (err) {
-    console.error("Error saving notification token:", err);
+    console.error("Error saving notification subscription:", err);
     return false;
   }
 }
