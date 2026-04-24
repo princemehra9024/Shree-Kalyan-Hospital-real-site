@@ -38,7 +38,7 @@ const navItems = [
   { to: "/contact" as const, label: "Contact", num: "09" },
 ];
 
-export function SiteNav() {
+export function SiteNav({ isHome = false }: { isHome?: boolean }) {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const indicatorRef = useRef<HTMLSpanElement | null>(null);
@@ -100,7 +100,7 @@ export function SiteNav() {
     gsap.to(indicatorRef.current, { opacity: 0, duration: 0.25, ease: "power2.out" });
   };
 
-  // Drawer open/close animation
+  // Drawer open/close animation — clip-path reveal only; items use CSS for visibility
   useEffect(() => {
     if (!drawerRef.current) return;
 
@@ -114,49 +114,27 @@ export function SiteNav() {
     }
 
     if (open) {
-      const tl = gsap.timeline();
-
+      // Show drawer and animate clip-path reveal
       gsap.set(drawerRef.current, {
         display: "flex",
         clipPath: `circle(0% at ${origin})`,
       });
 
-      tl.to(drawerRef.current, {
+      gsap.to(drawerRef.current, {
         clipPath: `circle(150% at ${origin})`,
         duration: 0.9,
         ease: "expo.inOut",
       });
-
-      tl.fromTo(
-        drawerRef.current.querySelectorAll("[data-drawer-item]"),
-        { y: 60, opacity: 0, rotateX: -20 },
-        { y: 0, opacity: 1, rotateX: 0, duration: 0.8, stagger: 0.08, ease: "power4.out" },
-        "-=0.5", // Start while the circle is still expanding
-      );
     } else {
-      const tl = gsap.timeline({
+      // Animate clip-path close then hide
+      gsap.to(drawerRef.current, {
+        clipPath: `circle(0% at ${origin})`,
+        duration: 0.7,
+        ease: "expo.inOut",
         onComplete: () => {
           if (drawerRef.current) gsap.set(drawerRef.current, { display: "none" });
         },
       });
-
-      tl.to(drawerRef.current.querySelectorAll("[data-drawer-item]"), {
-        y: -20,
-        opacity: 0,
-        duration: 0.4,
-        stagger: 0.03,
-        ease: "power2.in",
-      });
-
-      tl.to(
-        drawerRef.current,
-        {
-          clipPath: `circle(0% at ${origin})`,
-          duration: 0.7,
-          ease: "expo.inOut",
-        },
-        "-=0.2",
-      );
     }
   }, [open]);
 
@@ -165,7 +143,8 @@ export function SiteNav() {
       <header className="fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-out flex bg-transparent drop-shadow-md">
         {/* Huge Left Logo Block Container */}
         <div
-          className={`bg-magenta flex items-center justify-center shrink-0 w-32 md:w-64 transition-all duration-500 z-10 shadow-[4px_0_15px_rgba(0,0,0,0.15)] relative
+          className={`flex items-center justify-center shrink-0 w-32 md:w-64 transition-all duration-500 z-10 relative
+          ${isHome && !scrolled ? "bg-transparent" : "bg-magenta shadow-[4px_0_15px_rgba(0,0,0,0.15)]"}
           ${scrolled ? "h-16 md:h-20" : "h-24 md:h-[128px]"}`}
         >
           <Link
@@ -193,12 +172,18 @@ export function SiteNav() {
         <div className="flex flex-col flex-1">
           {/* TOP TIER: Contact info & Social icons */}
           <div
-            className={`hidden md:flex bg-navy-deep items-stretch transition-all duration-500 overflow-hidden ${
-              scrolled ? "h-0 opacity-0" : "h-12 opacity-100"
-            }`}
+            className={`hidden md:flex items-stretch transition-all duration-500 overflow-hidden ${
+              isHome && !scrolled ? "bg-transparent" : "bg-navy-deep"
+            } ${scrolled ? "h-0 opacity-0" : "h-12 opacity-100"}`}
           >
             {/* White Contact Section with Slanted Edge */}
-            <div className="bg-paper flex items-center px-8 gap-8 [clip-path:polygon(0_0,100%_0,calc(100%-2rem)_100%,0_100%)] pr-16 text-[0.65rem] tracking-wider uppercase font-bold text-ink">
+            <div
+              className={`flex items-center px-8 gap-8 [clip-path:polygon(0_0,100%_0,calc(100%-2rem)_100%,0_100%)] pr-16 text-[0.65rem] tracking-wider uppercase font-bold transition-colors ${
+                isHome && !scrolled
+                  ? "bg-white/10 backdrop-blur-md text-paper border-r border-white/10"
+                  : "bg-paper text-ink"
+              }`}
+            >
               <button
                 onClick={() => {
                   setOpen(false);
@@ -260,7 +245,12 @@ export function SiteNav() {
 
           {/* BOTTOM TIER: Main Navigation */}
           <div
-            className={`flex-1 bg-navy-deep/95 backdrop-blur-xl flex items-center justify-between px-4 md:px-6 border-b border-ink/10 transition-all duration-500 
+            className={`flex-1 flex items-center justify-between px-4 md:px-6 transition-all duration-500 
+            ${
+              isHome && !scrolled
+                ? "bg-transparent border-transparent"
+                : "bg-navy-deep/95 backdrop-blur-xl border-b border-ink/10"
+            } 
             ${scrolled ? "h-16 md:h-20" : "h-16 md:h-20"}`}
           >
             {/* Mobile: Hospital name — hidden on desktop */}
@@ -269,10 +259,10 @@ export function SiteNav() {
               className="flex flex-col md:hidden leading-tight"
               aria-label="Shree Kalyan Hospital home"
             >
-              <span className="text-paper font-bold text-[0.95rem] tracking-wide leading-tight">
+              <span className="text-paper font-bold text-[0.95rem] tracking-wide leading-tight [text-shadow:0_1px_4px_rgba(0,0,0,0.6)]">
                 Shree Kalyan
               </span>
-              <span className="text-magenta text-[0.62rem] font-bold uppercase tracking-[0.22em] leading-tight">
+              <span className="text-magenta text-[0.62rem] font-bold uppercase tracking-[0.22em] leading-tight [text-shadow:0_1px_3px_rgba(0,0,0,0.5)]">
                 Hospital · Kota
               </span>
             </Link>
@@ -295,8 +285,8 @@ export function SiteNav() {
                   to={item.to}
                   activeOptions={{ exact: true }}
                   onMouseEnter={(e) => moveIndicatorTo(e.currentTarget)}
-                  activeProps={{ className: "text-magenta" }}
-                  className="relative z-10 group flex items-center gap-2 px-3 py-2 text-[0.65rem] font-bold tracking-[0.15em] uppercase text-paper hover:text-magenta transition-colors whitespace-nowrap"
+                  activeProps={{ className: "!text-magenta" }}
+                  className="relative z-10 group flex items-center gap-2 px-3 py-2 text-[0.65rem] font-bold tracking-[0.15em] uppercase text-paper hover:text-magenta transition-colors whitespace-nowrap [text-shadow:0_1px_4px_rgba(0,0,0,0.5)]"
                 >
                   {item.label}
                 </Link>
@@ -381,9 +371,10 @@ export function SiteNav() {
         ref={drawerRef}
         style={{ display: "none" }}
         data-lenis-prevent
-        className="fixed inset-0 z-[60] bg-navy-deep text-paper flex-col px-6 pt-6 pb-12 overflow-y-auto"
+        className="fixed inset-0 z-[60] bg-navy-deep text-paper flex-col h-[100dvh] max-h-[100dvh] overflow-hidden"
       >
-        <div className="flex items-center justify-between mb-16">
+        {/* Header row — always visible at top */}
+        <div className="flex items-center justify-between px-6 pt-6 pb-4 shrink-0">
           <span className="text-[0.65rem] tracking-[0.25em] uppercase text-magenta font-bold">
             Menu
           </span>
@@ -397,36 +388,39 @@ export function SiteNav() {
           </button>
         </div>
 
-        <nav className="flex-1 flex flex-col justify-center gap-2">
-          {navItems.map((item) => (
-            <Link
-              key={item.to}
-              to={item.to}
-              onClick={() => setOpen(false)}
-              activeOptions={{ exact: true }}
-              activeProps={{ className: "text-magenta" }}
-              data-drawer-item
-              className="group flex items-baseline justify-between border-b border-paper/15 py-6 text-paper hover:text-magenta transition-colors"
-            >
-              <span className="flex items-baseline gap-4">
-                <span className="font-display italic text-magenta/70 text-base">{item.num}</span>
-                <span className="font-display text-4xl tracking-tight">{item.label}</span>
-              </span>
-              <span className="font-display italic text-2xl opacity-0 group-hover:opacity-100 transition-opacity">
-                →
-              </span>
-            </Link>
-          ))}
-        </nav>
+        {/* Scrollable content area */}
+        <div className="flex-1 overflow-y-auto px-6 pb-12">
+          <nav className="flex flex-col gap-0">
+            {navItems.map((item) => (
+              <Link
+                key={item.to}
+                to={item.to}
+                onClick={() => setOpen(false)}
+                activeOptions={{ exact: true }}
+                activeProps={{ className: "text-magenta" }}
+                data-drawer-item
+                className="group flex items-baseline justify-between border-b border-paper/15 py-5 text-paper hover:text-magenta transition-colors"
+              >
+                <span className="flex items-baseline gap-4">
+                  <span className="font-display italic text-magenta/70 text-sm">{item.num}</span>
+                  <span className="font-display text-3xl tracking-tight">{item.label}</span>
+                </span>
+                <span className="font-display italic text-2xl opacity-0 group-hover:opacity-100 transition-opacity">
+                  →
+                </span>
+              </Link>
+            ))}
+          </nav>
 
-        <div data-drawer-item className="mt-12 space-y-4 text-[0.65rem] tracking-[0.2em] uppercase">
-          <a
-            href="mailto:care@shreekalyan.in"
-            className="flex w-full items-center justify-center gap-3 bg-magenta text-paper px-5 py-5 text-center font-bold rounded-full shadow-lg shadow-magenta/20 hover:bg-magenta/90 transition-colors"
-          >
-            <Mail className="size-4" />
-            Email Us
-          </a>
+          <div className="mt-8 space-y-4 text-[0.65rem] tracking-[0.2em] uppercase">
+            <a
+              href="mailto:care@shreekalyan.in"
+              className="flex w-full items-center justify-center gap-3 bg-magenta text-paper px-5 py-5 text-center font-bold rounded-full shadow-lg shadow-magenta/20 hover:bg-magenta/90 transition-colors"
+            >
+              <Mail className="size-4" />
+              Email Us
+            </a>
+          </div>
         </div>
       </div>
     </>

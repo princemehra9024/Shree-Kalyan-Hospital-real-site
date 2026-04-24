@@ -13,6 +13,22 @@ export const Route = createFileRoute("/services/$serviceId")({
     if (!service) throw notFound();
     return { service };
   },
+  head: ({ loaderData }) => {
+    const service = loaderData?.service;
+    const title = service ? `${service.title} · Shree Kalyan Hospital` : "Service · Shree Kalyan Hospital";
+    const description = service ? service.desc : "Specialized medical services at Shree Kalyan Hospital.";
+    
+    return {
+      meta: [
+        { title },
+        { name: "description", content: description },
+        { property: "og:title", content: title },
+        { property: "og:description", content: description },
+        { property: "og:type", content: "website" },
+        { name: "twitter:card", content: "summary_large_image" },
+      ],
+    };
+  },
 });
 
 function ServiceIdPage() {
@@ -35,6 +51,7 @@ function ServiceIdPage() {
           </>
         }
         intro={service.desc}
+        image={service.image}
       />
 
       {/* Editorial Body Segment */}

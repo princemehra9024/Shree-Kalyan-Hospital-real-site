@@ -20,6 +20,14 @@ export const Route = createFileRoute("/facilities")({
         content:
           "Tour Shree Kalyan Hospital's precision infrastructure — state-of-the-art ICU, modular operation theaters, deluxe recovery suites, and advanced diagnostics.",
       },
+      { property: "og:title", content: "Facilities · Shree Kalyan Hospital" },
+      {
+        property: "og:description",
+        content:
+          "Tour Shree Kalyan Hospital's precision infrastructure — state-of-the-art ICU, modular operation theaters, deluxe recovery suites, and advanced diagnostics.",
+      },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
 });

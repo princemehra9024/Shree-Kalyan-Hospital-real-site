@@ -21,8 +21,15 @@ export const Route = createFileRoute("/services")({
       { title: "Centers of Excellence · Shree Kalyan Hospital" },
       {
         name: "description",
+        content: "Explore our specialized medical institutes and centers of excellence including Cardiology, Neurosciences, and Orthopedics.",
+      },
+      { property: "og:title", content: "Centers of Excellence · Shree Kalyan Hospital" },
+      {
+        property: "og:description",
         content: "Explore our specialized medical institutes and centers of excellence.",
       },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
 });
@@ -154,7 +161,7 @@ function ServicesPage() {
       {/* ═══════════════════════════════════════ */}
       <section className="services-hero relative w-full pt-48 md:pt-56 pb-24 px-6 md:px-12 lg:px-24 max-w-[1600px] mx-auto min-h-[90vh] flex flex-col border-b border-navy/10 overflow-hidden">
         {/* Background Parallax Element */}
-        <div className="absolute top-0 right-0 w-[60%] md:w-[45%] h-full opacity-10 pointer-events-none mix-blend-multiply overflow-hidden mask-image-b">
+        <div className="absolute top-0 right-0 w-[60%] md:w-[50%] h-full opacity-20 pointer-events-none mix-blend-soft-light overflow-hidden mask-image-b">
           <img
             src={surgicalTheater}
             className="hero-parallax-img w-full h-[130%] object-cover grayscale"
@@ -169,9 +176,9 @@ function ServicesPage() {
           </span>
         </div>
 
-        <h1 className="font-display leading-[0.85] tracking-tight text-navy-deep relative z-10">
+        <h1 className="font-display leading-[0.95] tracking-tight text-navy-deep relative z-10">
           {["Where clinical", "precision meets", "profound care."].map((text, i) => (
-            <div key={i} className="overflow-hidden pb-4 md:pb-6">
+            <div key={i} className="overflow-hidden pt-2 md:pt-4 pb-4 md:pb-6">
               <span
                 className={`hq-word block ${i === 2 ? "italic font-light text-magenta/90" : ""}`}
                 style={{ fontSize: "clamp(3.5rem, 8vw, 8rem)" }}

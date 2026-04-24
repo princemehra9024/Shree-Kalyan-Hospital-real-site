@@ -17,6 +17,9 @@ export function LenisProvider({ children }: { children: ReactNode }) {
       infinite: false,
     });
 
+    // Force scroll to top on every mount (fixes reload starting at bottom)
+    lenis.scrollTo(0, { immediate: true });
+
     // Expose lenis globally for scroll restoration
     (window as unknown as { lenis?: Lenis }).lenis = lenis;
 

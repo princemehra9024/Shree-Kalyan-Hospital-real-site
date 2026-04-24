@@ -2,6 +2,7 @@ export interface ServiceDetail {
   id: string;
   chapter: string;
   title: string;
+  image?: string;
   desc: string;
   longDesc: string;
   services: string[];
@@ -14,6 +15,7 @@ export const services: ServiceDetail[] = [
     id: "cardiology",
     chapter: "01",
     title: "Cardiology",
+    image: "/src/assets/surgical-theater.jpg",
     desc: "From non-invasive diagnostics to complex interventional procedures, our heart center is equipped for silent precision in life-saving care.",
     longDesc:
       "At Shree Kalyan, our Cardiology institute is built on the principle of intervention before invasion. We combine high-fidelity imaging with minimally invasive techniques to treat the most complex structural heart diseases. Our physicians are recognized for their precision in coronary interventions and their commitment to long-term cardiac rehabilitation.",
@@ -44,6 +46,7 @@ export const services: ServiceDetail[] = [
     id: "neurosciences",
     chapter: "02",
     title: "Neurosciences",
+    image: "/src/assets/operating-theatre.png",
     desc: "Dedicated to the intricate care of the brain and spine. Our surgeons utilize advanced robotic assistance for uncompromised accuracy.",
     longDesc:
       "The human nervous system demands nothing less than absolute precision. Our Neurosciences department integrates advanced neuro-navigation and intraoperative monitoring to ensure that every movement is measured. We specialize in stroke management, epilepsy surgery, and complex spinal reconstructions with an emphasis on early mobilization.",
@@ -74,6 +77,7 @@ export const services: ServiceDetail[] = [
     id: "orthopedics",
     chapter: "03",
     title: "Orthopedics",
+    image: "/src/assets/hero-corridor.jpg",
     desc: "Restoring mobility through advanced joint replacements and sports medicine, tailored to the unique biomechanics of each individual.",
     longDesc:
       "Mobility is independence. The Orthopedic institute at Shree Kalyan focuses on restoring function through personalized joint replacements and minimally invasive arthroscopic surgeries. Whether it is a high-impact sports injury or age-related degeneration, we treat every joint with local precision and global expertise.",
@@ -104,6 +108,7 @@ export const services: ServiceDetail[] = [
     id: "mother-child",
     chapter: "04",
     title: "Mother & Child",
+    image: "/src/assets/hospital-lobby.png",
     desc: "A sanctuary for new beginnings, providing specialized neonatology and maternal care in a warm, unhurried environment.",
     longDesc:
       "Bringing a new life into the world requires a sanctuary of safety and empathy. Our Mother & Child center is designed as a calm environment for high-risk pregnancies and neonatal care. With a Level III NICU and expert perinatologists, we ensure that both mother and child receive the unhurried attention they deserve.",
@@ -134,6 +139,7 @@ export const services: ServiceDetail[] = [
     id: "oncology",
     chapter: "05",
     title: "Oncology",
+    image: "/src/assets/surgical-theater.jpg",
     desc: "Precision in the fight against cancer. We combine targeted therapies with compassionate care for a unified healing journey.",
     longDesc:
       "Cancer care at Shree Kalyan is built around the individual, not just the diagnosis. Our multidisciplinary tumor board ensures that every patient benefits from a collective expertise in surgical, medical, and radiation oncology. We utilize precision diagnostics to target the disease with surgical accuracy while preserving the patient’s quality of life.",
@@ -164,6 +170,7 @@ export const services: ServiceDetail[] = [
     id: "critical-care",
     chapter: "06",
     title: "Critical Care",
+    image: "/src/assets/operating-theatre.png",
     desc: "Vigilance that never rests. Our ICU is manned by expert intensivists providing 24/7 life-support and monitoring.",
     longDesc:
       "When every second counts, vigilance is the ultimate medicine. Our Critical Care unit is the heart of the hospital’s trauma response, providing closed-unit intensive care where every patient is under the direct supervision of an expert intensivist. We utilize advanced electronic monitoring to ensure silent, constant protection.",

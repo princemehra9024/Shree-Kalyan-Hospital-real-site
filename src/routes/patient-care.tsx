@@ -30,6 +30,13 @@ export const Route = createFileRoute("/patient-care")({
         name: "description",
         content: "Compassionate, unhurried patient care at Shree Kalyan Hospital.",
       },
+      { property: "og:title", content: "Patient Care · Shree Kalyan Hospital" },
+      {
+        property: "og:description",
+        content: "Compassionate, unhurried patient care at Shree Kalyan Hospital.",
+      },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
 });

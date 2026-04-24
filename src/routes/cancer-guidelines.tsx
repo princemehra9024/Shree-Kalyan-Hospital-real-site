@@ -24,6 +24,14 @@ export const Route = createFileRoute("/cancer-guidelines")({
         content:
           "Comprehensive cancer treatment guidelines and patient support at Shree Kalyan Hospital's Oncology Department.",
       },
+      { property: "og:title", content: "Cancer Treatment Guidelines · Shree Kalyan Hospital" },
+      {
+        property: "og:description",
+        content:
+          "Comprehensive cancer treatment guidelines and patient support at Shree Kalyan Hospital's Oncology Department.",
+      },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
 });

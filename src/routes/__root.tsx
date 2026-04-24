@@ -1,11 +1,32 @@
 import { Outlet, Link, createRootRoute } from "@tanstack/react-router";
 import { LenisProvider } from "@/components/site/LenisProvider";
 import { CustomCursor } from "@/components/site/CustomCursor";
-import { BespokeTransition } from "@/components/site/BespokeTransition";
+
 import { EmergencyOverlay } from "@/components/site/EmergencyOverlay";
 import { ErrorBoundary } from "@/components/site/ErrorBoundary";
 import { useState, useEffect } from "react";
 import { MapPin, ArrowRight, Compass } from "lucide-react";
+
+const hospitalSchema = {
+  "@context": "https://schema.org",
+  "@type": "MedicalOrganization",
+  "name": "Shree Kalyan Hospital",
+  "url": "https://shreekalyanhospital.com",
+  "logo": "https://shreekalyanhospital.com/favicon.svg",
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "telephone": "+918529219330",
+    "contactType": "customer service",
+    "availableLanguage": ["en", "hi"]
+  },
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Kota",
+    "addressLocality": "Kota",
+    "addressRegion": "Rajasthan",
+    "addressCountry": "IN"
+  }
+};
 
 function NotFoundComponent() {
   return (
@@ -81,11 +102,21 @@ export const Route = createRootRoute({
         content: "Quiet precision in modern healthcare. Kota, Rajasthan.",
       },
       { property: "og:type", content: "website" },
+      { property: "og:url", content: "https://shreekalyanhospital.com" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:site", content: "@shreekalyan" },
       { name: "theme-color", content: "#03061a" },
     ],
-    links: [{ rel: "icon", href: "/favicon.svg", type: "image/svg+xml" }],
+    links: [
+      { rel: "icon", href: "/favicon.svg", type: "image/svg+xml" },
+      { rel: "canonical", href: "https://shreekalyanhospital.com" }
+    ],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify(hospitalSchema),
+      },
+    ],
   }),
 });
 
@@ -107,9 +138,7 @@ function RootComponent() {
   return (
     <LenisProvider>
       <CustomCursor />
-      <BespokeTransition>
-        <Outlet />
-      </BespokeTransition>
+      <Outlet />
       <EmergencyOverlay isOpen={emergencyOpen} onClose={() => setEmergencyOpen(false)} />
     </LenisProvider>
   );

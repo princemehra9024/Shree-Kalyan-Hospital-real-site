@@ -147,22 +147,26 @@ function AboutPage() {
         repeat: -1,
       });
 
-      // 5. Horizontal Scroll Section (Leadership)
-      const slider = document.querySelector(".horizontal-slider") as HTMLElement;
-      if (slider) {
-        // Calculate the exact distance to slide based on the content width minus the viewport width
-        gsap.to(slider, {
-          x: () => -(slider.scrollWidth - window.innerWidth),
-          ease: "none",
-          scrollTrigger: {
-            trigger: ".horizontal-section",
-            pin: true,
-            scrub: 1,
-            // The distance scrolled vertically to complete the horizontal move
-            end: () => "+=" + (slider.scrollWidth - window.innerWidth),
+      // 5. Leadership Cards Entrance Animation
+      const leaderCards = gsap.utils.toArray<HTMLElement>(".leader-card");
+      leaderCards.forEach((card, i) => {
+        gsap.fromTo(
+          card,
+          { y: 60, opacity: 0 },
+          {
+            y: 0,
+            opacity: 1,
+            duration: 1,
+            delay: i * 0.12,
+            ease: "expo.out",
+            scrollTrigger: {
+              trigger: ".leadership-section",
+              start: "top 75%",
+              toggleActions: "play none none reverse",
+            },
           },
-        });
-      }
+        );
+      });
 
       // 6. Timeline Progress & Custom Award-Winning Animations
       gsap.to(".timeline-progress-line", {
@@ -642,57 +646,77 @@ function AboutPage() {
         </div>
       </section>
 
-      {/* 5. NEW: HORIZONTAL SCROLL GSAP (LEADERSHIP) */}
-      <section className="h-screen w-full bg-paper overflow-hidden horizontal-section flex items-center relative py-20">
-        <div className="absolute top-10 left-6 lg:left-24 z-20">
-          <p className="text-[0.6rem] font-syne font-bold tracking-[0.4em] text-magenta uppercase flex items-center gap-4">
-            <span className="w-12 h-px bg-magenta" /> Master Surgeons
-          </p>
-        </div>
-
-        {/* The slider container width depends on contents */}
-        <div className="horizontal-slider flex items-center px-6 lg:px-24 h-full will-change-transform pt-10">
-          <div className="w-[80vw] lg:w-[40vw] shrink-0 pr-12 lg:pr-24">
-            <h2 className="font-display text-5xl md:text-7xl lg:text-[7rem] leading-[0.8] text-navy-deep shrink-0">
-              Guiding <br />
-              <em className="italic font-light text-magenta">Hands.</em>
-            </h2>
-            <p className="text-ink/60 mt-8 text-xl font-light w-full max-w-sm">
+      {/* 5. LEADERSHIP / MASTER SURGEONS */}
+      <section className="py-24 md:py-32 bg-paper leadership-section">
+        <div className="max-w-[1600px] mx-auto px-6 lg:px-24">
+          {/* Section Header */}
+          <div
+            className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16"
+            data-reveal
+          >
+            <div>
+              <p className="text-[0.6rem] font-syne font-bold tracking-[0.4em] text-magenta uppercase mb-8 flex items-center gap-4">
+                <span className="w-12 h-px bg-magenta" /> Master Surgeons
+              </p>
+              <h2 className="font-display text-5xl md:text-7xl lg:text-[7rem] leading-[0.8] text-navy-deep">
+                Guiding <br />
+                <em className="italic font-light text-magenta">Hands.</em>
+              </h2>
+            </div>
+            <p className="text-ink/60 text-xl font-light max-w-sm leading-relaxed">
               Scroll to explore the leading minds driving clinical innovation at Shree Kalyan.
             </p>
-            <div className="mt-12 flex gap-4 items-center">
-              <span className="w-16 h-[1px] bg-navy/20"></span>
-              <ChevronRight className="w-8 h-8 text-magenta" />
-            </div>
           </div>
 
-          {LEADERSHIP.map((leader, i) => (
-            <div
-              key={i}
-              className="w-[85vw] md:w-[60vw] lg:w-[35vw] h-[60vh] md:h-[70vh] shrink-0 mr-12 lg:mr-24 relative group border border-navy/10 overflow-hidden bg-white"
-            >
-              <div className="absolute inset-0 z-10 bg-gradient-to-t from-navy-deep/90 via-navy-deep/20 to-transparent"></div>
-              <img
-                src={leader.img}
-                alt={leader.name}
-                className="w-full h-full object-cover grayscale opacity-90 transition-all duration-[2s] group-hover:grayscale-0 group-hover:scale-105"
-              />
+          {/* Horizontally scrollable cards row */}
+          <div
+            className="flex gap-6 lg:gap-10 overflow-x-auto pb-8 hide-scrollbar"
+            style={{
+              scrollSnapType: "x mandatory",
+              WebkitOverflowScrolling: "touch",
+            }}
+          >
+            {LEADERSHIP.map((leader, i) => (
+              <div
+                key={i}
+                className="leader-card w-[85vw] sm:w-[65vw] md:w-[45vw] lg:w-[30vw] h-[65vh] shrink-0 relative group border border-navy/10 overflow-hidden bg-white"
+                style={{ scrollSnapAlign: "start" }}
+              >
+                <div className="absolute inset-0 z-10 bg-gradient-to-t from-navy-deep/90 via-navy-deep/20 to-transparent" />
+                <img
+                  src={leader.img}
+                  alt={leader.name}
+                  className="w-full h-full object-cover grayscale opacity-90 transition-all duration-[2s] group-hover:grayscale-0 group-hover:scale-105"
+                />
 
-              <div className="absolute bottom-0 left-0 p-8 lg:p-12 z-20 w-full transform transition-transform duration-500 translate-y-4 group-hover:translate-y-0">
-                <p className="text-[0.65rem] font-syne uppercase tracking-[0.3em] font-bold text-magenta mb-3">
-                  {leader.role}
-                </p>
-                <h3 className="font-display text-4xl lg:text-5xl text-paper mb-4">{leader.name}</h3>
-                <div className="h-0 group-hover:h-20 lg:group-hover:h-16 transition-all duration-700 ease-out overflow-hidden opacity-0 group-hover:opacity-100">
-                  <p className="text-paper/70 font-light">{leader.desc}</p>
+                <div className="absolute bottom-0 left-0 p-8 lg:p-10 z-20 w-full transform transition-transform duration-500 translate-y-4 group-hover:translate-y-0">
+                  <p className="text-[0.65rem] font-syne uppercase tracking-[0.3em] font-bold text-magenta mb-3">
+                    {leader.role}
+                  </p>
+                  <h3 className="font-display text-3xl lg:text-4xl text-paper mb-4">
+                    {leader.name}
+                  </h3>
+                  <div className="h-0 group-hover:h-20 lg:group-hover:h-16 transition-all duration-700 ease-out overflow-hidden opacity-0 group-hover:opacity-100">
+                    <p className="text-paper/70 font-light text-sm leading-relaxed">
+                      {leader.desc}
+                    </p>
+                  </div>
+                </div>
+
+                <div className="absolute top-6 right-6 z-20 w-10 h-10 border rounded-full hidden lg:flex items-center justify-center border-paper/20 bg-paper/5 backdrop-blur-md">
+                  <span className="font-syne text-[0.6rem] text-paper">0{i + 1}</span>
                 </div>
               </div>
+            ))}
+          </div>
 
-              <div className="absolute top-6 right-6 z-20 w-12 h-12 border rounded-full hidden lg:flex items-center justify-center border-paper/20 bg-paper/5 backdrop-blur-md">
-                <span className="font-syne text-[0.6rem] text-paper">0{i + 1}</span>
-              </div>
-            </div>
-          ))}
+          {/* Scroll hint */}
+          <div className="flex items-center gap-3 mt-6 text-ink/30">
+            <ChevronRight className="w-4 h-4" />
+            <span className="text-[0.6rem] font-syne uppercase tracking-[0.3em] font-bold">
+              Drag to explore
+            </span>
+          </div>
         </div>
       </section>
 

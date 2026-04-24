@@ -35,32 +35,23 @@ export function useGsapReveal() {
           "-=0.8",
         )
         .from(
-          "[data-anim='hero-body']",
+          "[data-anim='hero-cta']",
           {
             opacity: 0,
-            y: 30,
+            scale: 0.5,
+            rotate: -15,
             duration: 1.2,
           },
           "-=1.2",
         )
         .from(
-          "[data-anim='hero-image']",
+          "[data-anim='hero-stats']",
           {
             opacity: 0,
-            scale: 1.05,
-            duration: 1.5,
-          },
-          "-=1.5",
-        )
-        .from(
-          "[data-anim='hero-badge']",
-          {
-            opacity: 0,
-            y: 40,
-            rotate: -5,
+            y: 30,
             duration: 1,
           },
-          "-=1.1",
+          "-=1",
         );
 
       // Generic scroll reveal

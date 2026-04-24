@@ -1,5 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 import { createFileRoute } from "@tanstack/react-router";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
+import { getBookedSlots, bookAppointment } from "@/lib/server/appointments";
 import { Calendar } from "@/components/ui/calendar";
 import { SiteNav } from "@/components/site/SiteNav";
 import { SiteFooter } from "@/components/site/SiteFooter";
@@ -15,11 +17,37 @@ export const Route = createFileRoute("/appointments")({
   component: AppointmentsPage,
   head: () => ({
     meta: [
-      { title: "Appointments · Shree Kalyan Hospital" },
+      { title: "Appointments · Shree Kalyan Hospital | Top Care in Kota" },
       {
         name: "description",
         content:
-          "Book a private consultation or OPD slot at Shree Kalyan Hospital, Kota. Walk-in OPD daily. Emergency 24/7.",
+          "Book your private consultation or OPD appointment at Shree Kalyan Hospital, Kota, Rajasthan. Expert doctors available. Emergency 24/7.",
+      },
+      { property: "og:title", content: "Appointments · Shree Kalyan Hospital" },
+      {
+        property: "og:description",
+        content: "Book your private consultation or OPD appointment at Shree Kalyan Hospital.",
+      },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
+    ],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "MedicalBusiness",
+          name: "Shree Kalyan Hospital",
+          url: "https://shreekalyanhospital.com",
+          telephone: "+918529219330",
+          address: {
+            "@type": "PostalAddress",
+            addressLocality: "Kota",
+            addressRegion: "Rajasthan",
+            addressCountry: "IN",
+          },
+          medicalSpecialty: ["General Practice", "Emergency Care"],
+        }),
       },
     ],
   }),
@@ -59,6 +87,17 @@ function AppointmentsPage() {
   const [selectedTime, setSelectedTime] = useState<string | null>(null);
   const [bookingConfirmed, setBookingConfirmed] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const queryClient = useQueryClient();
+
+  // YYYY-MM-DD
+  const dateStr = date ? date.toLocaleDateString("en-CA") : "";
+  const { data: bookedSlots = [], isLoading: isLoadingSlots } = useQuery({
+    queryKey: ["bookedSlots", dateStr],
+    queryFn: () => getBookedSlots(dateStr),
+    enabled: !!dateStr,
+  });
+
+  const nextAvailableSlot = TIME_SLOTS.find((time) => !bookedSlots.includes(time));
 
   /* ── Hero entrance animations ── */
   useEffect(() => {
@@ -183,15 +222,14 @@ function AppointmentsPage() {
     }
   }, [selectedTime]);
 
-  const isSlotBooked = (time: string, dt: Date) => {
-    const seed = dt.getDate() + dt.getMonth() + time.charCodeAt(0) + time.charCodeAt(3);
-    return seed % 3 === 0;
+  const isSlotBooked = (time: string) => {
+    return bookedSlots.includes(time);
   };
 
   return (
     <div
       ref={pageRef}
-      className="min-h-dvh bg-paper text-ink overflow-x-hidden pb-24 md:pb-0 selection:bg-magenta selection:text-white"
+      className="min-h-dvh bg-paper text-ink overflow-x-hidden selection:bg-magenta selection:text-white"
     >
       <SiteNav />
 
@@ -375,10 +413,20 @@ function AppointmentsPage() {
                     <p className="text-[0.65rem] uppercase tracking-[0.3em] font-bold text-magenta mb-4 flex items-center gap-4">
                       <span className="w-4 h-px bg-magenta" /> Step 2
                     </p>
-                    <h3 className="font-display text-5xl text-navy-deep tracking-tight leading-[0.9]">
-                      Available <br />
-                      <span className="italic font-light text-magenta">slots.</span>
-                    </h3>
+                    <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+                      <h3 className="font-display text-5xl text-navy-deep tracking-tight leading-[0.9]">
+                        Available <br />
+                        <span className="italic font-light text-magenta">slots.</span>
+                      </h3>
+                      {nextAvailableSlot && !isLoadingSlots && (
+                        <button
+                          onClick={() => setSelectedTime(nextAvailableSlot)}
+                          className="w-fit text-[0.6rem] bg-navy-deep text-white px-4 py-2 uppercase tracking-widest font-bold hover:bg-magenta transition-colors"
+                        >
+                          Next Available
+                        </button>
+                      )}
+                    </div>
                   </div>
                   {date && (
                     <div className="text-right">
@@ -401,7 +449,7 @@ function AppointmentsPage() {
                 {date && !selectedTime && (
                   <div ref={gridRef} className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-4">
                     {TIME_SLOTS.map((time, idx) => {
-                      const booked = isSlotBooked(time, date);
+                      const booked = isSlotBooked(time);
                       return (
                         <button
                           key={idx}
@@ -463,8 +511,11 @@ function AppointmentsPage() {
                           formData.append("access_key", "ad8f6ae8-f6a3-4a34-b035-a96a66e5d980");
                           formData.append("subject", "New Appointment Request");
                           formData.append("from_name", "Shree Kalyan Hospital Website");
-                          formData.append("appointment_date", date?.toLocaleDateString() || "Not set");
-                          formData.append("appointment_time", selectedTime || "Not set");
+                          formData.append(
+                            "Appointment Date",
+                            date?.toLocaleDateString() || "Not set",
+                          );
+                          formData.append("Appointment Time", selectedTime || "Not set");
 
                           try {
                             const response = await fetch("https://api.web3forms.com/submit", {
@@ -475,10 +526,21 @@ function AppointmentsPage() {
                             const data = await response.json();
 
                             if (data.success) {
+                              await bookAppointment({
+                                patient_name: formData.get("name") as string,
+                                phone_number: formData.get("phone") as string,
+                                reason: formData.get("reason") as string,
+                                appointment_date: dateStr,
+                                appointment_time: selectedTime,
+                              });
+
+                              queryClient.invalidateQueries({ queryKey: ["bookedSlots", dateStr] });
                               setBookingConfirmed(true);
                               toast.success("Your appointment request has been submitted.");
                             } else {
-                              toast.error(data.message || "Something went wrong. Please try again.");
+                              toast.error(
+                                data.message || "Something went wrong. Please try again.",
+                              );
                             }
                           } catch (err) {
                             toast.error("Failed to submit request. Please check your connection.");
@@ -583,6 +645,7 @@ function DarkField({
         required={required}
         type={type}
         id={id}
+        name={id}
         className="peer w-full bg-transparent border-b border-white/20 focus:border-magenta focus:outline-none py-4 text-xl font-light text-white placeholder-transparent transition-colors"
         placeholder={label}
       />

@@ -32,6 +32,13 @@ export const Route = createFileRoute("/faqs")({
         content:
           "Complete guidelines, admission protocols, and FAQs for patients at Shree Kalyan Hospital.",
       },
+      { property: "og:title", content: "Patient Guidelines & FAQs · Shree Kalyan Hospital" },
+      {
+        property: "og:description",
+        content: "Complete guidelines, admission protocols, and FAQs for patients at Shree Kalyan Hospital.",
+      },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
 });

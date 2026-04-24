@@ -102,7 +102,7 @@
     scroll-padding-top: 5rem;
   }
   body {
-    background-color: var(--color-paper);
+    background-color: var(--color-navy-deep);
     color: var(--color-ink);
     font-family: var(--font-sans);
     font-feature-settings: "ss01", "cv01";
@@ -411,6 +411,11 @@
   transform: translateY(24px);
 }
 
+.vertical-text {
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+}
+
 /* ── Hover card 3D tilt ────────────────────────────────────────────────── */
 .card-3d {
   transform-style: preserve-3d;
@@ -454,7 +459,25 @@
 
 /* Menu Animation Helpers */
 [data-drawer-item] {
-  perspective: 1000px;
-  backface-visibility: hidden;
-  transform-style: preserve-3d;
+  perspective: 1200px;
+}
+
+/* ── Hide scrollbar utility ────────────────────────────────────────────── */
+.hide-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* ── Mask Image Utilities ────────────────────────────────────────────── */
+.mask-image-b {
+  mask-image: linear-gradient(to bottom, black 0%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to bottom, black 0%, transparent 100%);
+}
+
+.mask-image-r {
+  mask-image: linear-gradient(to right, black 0%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to right, black 0%, transparent 100%);
 }
