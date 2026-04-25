@@ -1,9 +1,9 @@
-import webpush from 'web-push';
-import { neon } from '@neondatabase/serverless';
-import dotenv from 'dotenv';
-import path from 'path';
+import webpush from "web-push";
+import { neon } from "@neondatabase/serverless";
+import dotenv from "dotenv";
+import path from "path";
 
-dotenv.config({ path: path.resolve(process.cwd(), '.env.local') });
+dotenv.config({ path: path.resolve(process.cwd(), ".env.local") });
 
 async function testPush() {
   try {
@@ -11,19 +11,19 @@ async function testPush() {
     const vapidPrivateKey = process.env.VITE_VAPID_PRIVATE_KEY;
 
     if (!vapidPublicKey || !vapidPrivateKey) {
-      console.error('VAPID keys not configured.');
+      console.error("VAPID keys not configured.");
       return;
     }
 
     webpush.setVapidDetails(
-      'mailto:admin@shreekalyanhospital.com',
+      "mailto:admin@shreekalyanhospital.com",
       vapidPublicKey,
-      vapidPrivateKey
+      vapidPrivateKey,
     );
 
     const dbUrl = process.env.VITE_NEON_DB_URL;
     if (!dbUrl) {
-      console.error('Database URL not configured.');
+      console.error("Database URL not configured.");
       return;
     }
 
@@ -33,13 +33,13 @@ async function testPush() {
     console.log("Fetching subscriptions from the database...");
     const rows = await sql`SELECT subscription FROM notification_tokens`;
     console.log(`Found ${rows.length} subscriptions.`);
-    
+
     let successCount = 0;
     let failCount = 0;
 
-    const payload = JSON.stringify({ 
-      title: 'Test Notification', 
-      message: 'Checking if it works! This is a test push notification.' 
+    const payload = JSON.stringify({
+      title: "Test Notification",
+      message: "Checking if it works! This is a test push notification.",
     });
 
     for (const row of rows) {

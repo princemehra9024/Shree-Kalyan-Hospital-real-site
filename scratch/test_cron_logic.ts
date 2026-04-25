@@ -1,18 +1,18 @@
-import cronHandler from '../api/cron-reminders';
-import dotenv from 'dotenv';
-import path from 'path';
+import cronHandler from "../api/cron-reminders";
+import dotenv from "dotenv";
+import path from "path";
 
-dotenv.config({ path: path.resolve(process.cwd(), '.env.local') });
+dotenv.config({ path: path.resolve(process.cwd(), ".env.local") });
 
 async function testCron() {
   console.log("Starting cron test...");
-  
+
   // Create mock request and response
   const req = {
-    method: 'GET',
+    method: "GET",
     headers: {
-      authorization: `Bearer ${process.env.CRON_SECRET}`
-    }
+      authorization: `Bearer ${process.env.CRON_SECRET}`,
+    },
   };
 
   const res = {
@@ -21,9 +21,9 @@ async function testCron() {
       return res;
     },
     json: (data: any) => {
-      console.log('Response JSON:', JSON.stringify(data, null, 2));
+      console.log("Response JSON:", JSON.stringify(data, null, 2));
       return res;
-    }
+    },
   };
 
   try {

@@ -35,7 +35,7 @@ const navItems = [
   { to: "/facilities" as const, key: "facilities", num: "04" },
   { to: "/team" as const, key: "team", num: "05" },
   { to: "/appointments" as const, key: "appointments", num: "06" },
-  { to: "/patient-care" as const, key: "patient_care", num: "07" },
+  { to: "/patient-care" as const, key: "patientCare", num: "07" },
   { to: "/faqs" as const, key: "faqs", num: "08" },
   { to: "/contact" as const, key: "contact", num: "09" },
 ];
@@ -146,9 +146,9 @@ export function SiteNav({ isHome = false }: { isHome?: boolean }) {
       <header className="fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-out flex bg-transparent drop-shadow-md">
         {/* Huge Left Logo Block Container */}
         <div
-          className={`flex items-center justify-center shrink-0 w-32 md:w-64 transition-all duration-500 z-10 relative
+          className={`flex items-center justify-center shrink-0 w-24 md:w-64 transition-all duration-500 z-10 relative
           ${isHome && !scrolled ? "bg-transparent" : "bg-magenta shadow-[4px_0_15px_rgba(0,0,0,0.15)]"}
-          ${scrolled ? "h-16 md:h-20" : "h-24 md:h-[128px]"}`}
+          ${scrolled ? "h-16 md:h-20" : "h-20 md:h-[128px]"}`}
         >
           <Link
             to="/"
@@ -261,13 +261,13 @@ export function SiteNav({ isHome = false }: { isHome?: boolean }) {
             {/* Mobile: Hospital name — hidden on desktop */}
             <Link
               to="/"
-              className="flex flex-col md:hidden leading-tight"
+              className="flex flex-col md:hidden leading-tight overflow-hidden"
               aria-label="Shree Kalyan Hospital home"
             >
-              <span className="text-paper font-bold text-[0.95rem] tracking-wide leading-tight [text-shadow:0_1px_4px_rgba(0,0,0,0.6)]">
+              <span className="text-paper font-bold text-[0.85rem] sm:text-[0.95rem] tracking-wide leading-tight [text-shadow:0_1px_4px_rgba(0,0,0,0.6)] truncate">
                 Shree Kalyan
               </span>
-              <span className="text-magenta text-[0.62rem] font-bold uppercase tracking-[0.22em] leading-tight [text-shadow:0_1px_3px_rgba(0,0,0,0.5)]">
+              <span className="hidden sm:block text-magenta text-[0.62rem] font-bold uppercase tracking-[0.22em] leading-tight [text-shadow:0_1px_3px_rgba(0,0,0,0.5)]">
                 Hospital · Kota
               </span>
             </Link>
@@ -298,10 +298,10 @@ export function SiteNav({ isHome = false }: { isHome?: boolean }) {
               ))}
             </nav>
 
-            <div className="flex items-center gap-3 md:gap-4">
+            <div className="flex items-center gap-1.5 md:gap-4">
               <LanguageSwitcher />
               {/* Mobile Quick Actions */}
-              <div className="flex md:hidden items-center gap-2">
+              <div className="flex md:hidden items-center gap-1">
                 {/* Emergency Icon */}
                 <button
                   onClick={() => {
@@ -409,7 +409,9 @@ export function SiteNav({ isHome = false }: { isHome?: boolean }) {
               >
                 <span className="flex items-baseline gap-4">
                   <span className="font-display italic text-magenta/70 text-sm">{item.num}</span>
-                  <span className="font-display text-3xl tracking-tight">{t(`nav.${item.key}`, item.key)}</span>
+                  <span className="font-display text-3xl tracking-tight">
+                    {t(`nav.${item.key}`, item.key)}
+                  </span>
                 </span>
                 <span className="font-display italic text-2xl opacity-0 group-hover:opacity-100 transition-opacity">
                   →

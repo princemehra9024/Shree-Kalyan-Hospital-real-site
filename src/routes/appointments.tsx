@@ -2,7 +2,42 @@ import { useState, useRef, useEffect } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
-import { getBookedSlots, bookAppointment, saveNotificationToken } from "@/lib/server/appointments";
+
+/* ─── Client-side API wrappers (call serverless endpoints) ─── */
+async function getBookedSlots(dateStr: string): Promise<string[]> {
+  const res = await fetch(`/api/booked-slots?date=${encodeURIComponent(dateStr)}`);
+  if (!res.ok) return [];
+  const data = await res.json();
+  return data.slots ?? [];
+}
+
+interface AppointmentInput {
+  patient_name: string;
+  phone_number: string;
+  reason?: string;
+  appointment_date: string;
+  appointment_time: string;
+}
+
+async function bookAppointment(input: AppointmentInput): Promise<boolean> {
+  const res = await fetch("/api/book-appointment", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(input),
+  });
+  const data = await res.json();
+  return data.success === true;
+}
+
+async function saveNotificationToken(subscription: PushSubscription): Promise<boolean> {
+  const res = await fetch("/api/save-subscription", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ subscription }),
+  });
+  const data = await res.json();
+  return data.success === true;
+}
 import { Calendar } from "@/components/ui/calendar";
 import { SiteNav } from "@/components/site/SiteNav";
 import { SiteFooter } from "@/components/site/SiteFooter";
@@ -92,7 +127,8 @@ function AppointmentsPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const queryClient = useQueryClient();
   const { permission, requestPermission } = usePushNotifications({
-    onTokenReceived: (t) => saveNotificationToken(t),
+    // Use `sub` here — `t` would shadow the useTranslation `t` above
+    onTokenReceived: (sub) => saveNotificationToken(sub),
   });
 
   // YYYY-MM-DD
@@ -283,7 +319,10 @@ function AppointmentsPage() {
 
             {/* Description */}
             <p className="ap-desc text-lg md:text-xl text-ink/60 font-light leading-relaxed max-w-md mb-12">
-              {t('appointments.description', 'Schedule your consultation with our leading medical experts. Select a date, choose a slot, and confirm — we handle the rest.')}
+              {t(
+                "appointments.description",
+                "Schedule your consultation with our leading medical experts. Select a date, choose a slot, and confirm — we handle the rest.",
+              )}
             </p>
 
             {/* CTA cluster */}
@@ -293,7 +332,7 @@ function AppointmentsPage() {
                 className="group inline-flex items-center gap-3 bg-navy-deep text-paper px-10 py-5 text-[0.65rem] font-bold tracking-[0.3em] uppercase hover:bg-magenta transition-colors duration-500"
               >
                 <CalendarDays className="size-4" />
-                {t('appointments.cta_pick_slot', 'Pick a Slot')}
+                {t("appointments.cta_pick_slot", "Pick a Slot")}
                 <ArrowRight className="size-4 group-hover:translate-x-1 transition-transform" />
               </a>
               <a
@@ -301,7 +340,7 @@ function AppointmentsPage() {
                 className="inline-flex items-center gap-3 border border-ink/20 px-10 py-5 text-[0.65rem] font-bold tracking-[0.3em] uppercase text-ink hover:border-magenta hover:text-magenta transition-colors duration-500"
               >
                 <Phone className="size-4" />
-                {t('appointments.cta_call', 'Call Instead')}
+                {t("appointments.cta_call", "Call Instead")}
               </a>
             </div>
 
@@ -364,17 +403,19 @@ function AppointmentsPage() {
       {/* ══════════════════════════════════════════════════════════ */}
       <section
         id="booking"
-        className="ap-booking-section px-6 md:px-12 lg:px-24 py-32 md:py-48 max-w-[1600px] mx-auto border-t border-ink/10"
+        className="ap-booking-section px-6 md:px-12 lg:px-24 py-20 md:py-32 max-w-[1600px] mx-auto border-t border-ink/10"
       >
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24 items-start relative">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start relative">
           {/* Left — Calendar sticky */}
-          <div className="col-span-1 lg:col-span-5 lg:sticky top-32">
+          <div className="col-span-1 lg:col-span-5 lg:sticky top-24">
             <p className="text-[0.65rem] uppercase tracking-[0.3em] font-bold text-magenta mb-8 flex items-center gap-4">
-              <span className="w-8 h-px bg-magenta" /> {t('appointments.steps.step1', 'Step 1')}
+              <span className="w-8 h-px bg-magenta" /> {t("appointments.steps.step1", "Step 1")}
             </p>
             <h2 className="font-display text-5xl lg:text-7xl text-navy-deep tracking-tight mb-12 leading-[0.9]">
-              {t('appointments.select', 'Select')} <br />
-              <span className="italic font-light text-magenta">{t('appointments.your_date', 'your date.')}</span>
+              {t("appointments.select", "Select")} <br />
+              <span className="italic font-light text-magenta">
+                {t("appointments.your_date", "your date.")}
+              </span>
             </h2>
 
             <div className="border border-ink/10 p-8 backdrop-blur-sm bg-white/30">
@@ -418,12 +459,15 @@ function AppointmentsPage() {
                 <div className="flex items-end justify-between mb-12 border-b border-ink/10 pb-8">
                   <div>
                     <p className="text-[0.65rem] uppercase tracking-[0.3em] font-bold text-magenta mb-4 flex items-center gap-4">
-                      <span className="w-4 h-px bg-magenta" /> {t('appointments.steps.step2', 'Step 2')}
+                      <span className="w-4 h-px bg-magenta" />{" "}
+                      {t("appointments.steps.step2", "Step 2")}
                     </p>
                     <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
                       <h3 className="font-display text-5xl text-navy-deep tracking-tight leading-[0.9]">
-                        {t('appointments.available', 'Available')} <br />
-                        <span className="italic font-light text-magenta">{t('appointments.slots', 'slots.')}</span>
+                        {t("appointments.available", "Available")} <br />
+                        <span className="italic font-light text-magenta">
+                          {t("appointments.slots", "slots.")}
+                        </span>
                       </h3>
                       {nextAvailableSlot && !isLoadingSlots && (
                         <button
@@ -435,20 +479,10 @@ function AppointmentsPage() {
                       )}
                     </div>
                   </div>
-                  {date && (
-                    <div className="text-right">
-                      <p className="text-sm font-light text-ink/50 uppercase tracking-widest">
-                        {date.getFullYear()}
-                      </p>
-                      <p className="text-xl font-display">
-                        {date.toLocaleDateString("en-US", { month: "long", day: "numeric" })}
-                      </p>
-                    </div>
-                  )}
                 </div>
 
                 {!date && (
-                  <div className="py-24 text-center border-b border-ink/10">
+                  <div className="py-16 text-center border-b border-ink/10">
                     <p className="text-2xl font-light text-ink/40">Awaiting date selection…</p>
                   </div>
                 )}
@@ -497,7 +531,8 @@ function AppointmentsPage() {
                       <div className="flex justify-between items-start mb-12 border-b border-white/10 pb-8">
                         <div>
                           <p className="text-[0.65rem] uppercase tracking-[0.3em] font-bold text-magenta mb-4 flex items-center gap-4">
-                            <span className="w-4 h-px bg-magenta" /> {t('appointments.steps.final', 'Final Step')}
+                            <span className="w-4 h-px bg-magenta" />{" "}
+                            {t("appointments.steps.final", "Final Step")}
                           </p>
                           <h4 className="font-display text-4xl md:text-5xl">{selectedTime}</h4>
                         </div>
@@ -505,7 +540,7 @@ function AppointmentsPage() {
                           onClick={() => setSelectedTime(null)}
                           className="text-[0.65rem] uppercase tracking-wider font-bold text-white/50 hover:text-magenta transition-colors hover:underline"
                         >
-                          {t('appointments.change_time', 'Change Time')}
+                          {t("appointments.change_time", "Change Time")}
                         </button>
                       </div>
 
@@ -524,22 +559,36 @@ function AppointmentsPage() {
                           );
                           formData.append("Appointment Time", selectedTime || "Not set");
 
+                          // 15-second timeout so a hung request doesn't freeze the button forever
+                          const controller = new AbortController();
+                          const timeoutId = setTimeout(() => controller.abort(), 15_000);
+
                           try {
                             const response = await fetch("https://api.web3forms.com/submit", {
                               method: "POST",
                               body: formData,
+                              signal: controller.signal,
                             });
+                            clearTimeout(timeoutId);
 
                             const data = await response.json();
 
                             if (data.success) {
-                              await bookAppointment({
+                              // Save to DB — check return value; don't show success if DB write failed
+                              const saved = await bookAppointment({
                                 patient_name: formData.get("name") as string,
                                 phone_number: formData.get("phone") as string,
                                 reason: formData.get("reason") as string,
                                 appointment_date: dateStr,
                                 appointment_time: selectedTime,
                               });
+
+                              if (!saved) {
+                                toast.error(
+                                  "Your email was sent but we couldn't save the appointment. Please call us to confirm.",
+                                );
+                                return;
+                              }
 
                               queryClient.invalidateQueries({ queryKey: ["bookedSlots", dateStr] });
                               setBookingConfirmed(true);
@@ -550,7 +599,16 @@ function AppointmentsPage() {
                               );
                             }
                           } catch (err) {
-                            toast.error("Failed to submit request. Please check your connection.");
+                            clearTimeout(timeoutId);
+                            if (err instanceof Error && err.name === "AbortError") {
+                              toast.error(
+                                "Request timed out. Please check your connection and try again.",
+                              );
+                            } else {
+                              toast.error(
+                                "Failed to submit request. Please check your connection.",
+                              );
+                            }
                           } finally {
                             setIsSubmitting(false);
                           }
@@ -558,11 +616,25 @@ function AppointmentsPage() {
                         className="space-y-8 relative z-10"
                       >
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-                          <DarkField id="name" label={t('appointments.form.name', 'Full Name')} type="text" required />
-                          <DarkField id="phone" label={t('appointments.form.phone', 'Phone Number')} type="tel" required />
+                          <DarkField
+                            id="name"
+                            label={t("appointments.form.name", "Full Name")}
+                            type="text"
+                            required
+                          />
+                          <DarkField
+                            id="phone"
+                            label={t("appointments.form.phone", "Phone Number")}
+                            type="tel"
+                            required
+                          />
                         </div>
                         <div className="mt-8">
-                          <DarkField id="reason" label={t('appointments.form.reason', 'Reason for Visit')} type="text" />
+                          <DarkField
+                            id="reason"
+                            label={t("appointments.form.reason", "Reason for Visit")}
+                            type="text"
+                          />
                         </div>
                         <button
                           type="submit"
@@ -590,31 +662,45 @@ function AppointmentsPage() {
               /* Success state */
               <div className="py-24 flex flex-col items-start border-b border-ink/10">
                 <p className="text-[0.65rem] uppercase tracking-[0.3em] font-bold text-magenta mb-8 flex items-center gap-4">
-                  <span className="w-4 h-px bg-magenta" /> {t('appointments.confirmed', 'Confirmed')}
+                  <span className="w-4 h-px bg-magenta" />{" "}
+                  {t("appointments.confirmed", "Confirmed")}
                 </p>
                 <h4 className="font-display text-6xl md:text-7xl text-navy-deep mb-8 leading-[0.9]">
-                  {t('appointments.success_its', "It's")} <br />
-                  <span className="text-magenta italic font-light">{t('appointments.success_official', 'official.')}</span>
+                  {t("appointments.success_its", "It's")} <br />
+                  <span className="text-magenta italic font-light">
+                    {t("appointments.success_official", "official.")}
+                  </span>
                 </h4>
                 <p className="text-xl md:text-2xl text-ink/70 max-w-lg mb-12 font-light">
-                  {t('appointments.success_message', 'Your time is reserved for {{time}} on {{date}}.', {
-                    time: selectedTime,
-                    date: date?.toLocaleDateString()
-                  })}
+                  {t(
+                    "appointments.success_message",
+                    "Your time is reserved for {{time}} on {{date}}.",
+                    {
+                      time: selectedTime,
+                      date: date?.toLocaleDateString(),
+                    },
+                  )}
                 </p>
 
-                {permission !== 'granted' && (
+                {permission !== "granted" && (
                   <div className="mb-12 p-6 border border-magenta/20 bg-magenta/5 flex flex-col md:flex-row md:items-center justify-between gap-6 max-w-lg">
                     <div>
-                      <p className="font-bold text-navy-deep mb-1">{t('appointments.notifications.title', 'Get Reminders')}</p>
-                      <p className="text-sm text-ink/60">{t('appointments.notifications.desc', 'Enable push notifications to receive a reminder before your appointment.')}</p>
+                      <p className="font-bold text-navy-deep mb-1">
+                        {t("appointments.notifications.title", "Get Reminders")}
+                      </p>
+                      <p className="text-sm text-ink/60">
+                        {t(
+                          "appointments.notifications.desc",
+                          "Enable push notifications to receive a reminder before your appointment.",
+                        )}
+                      </p>
                     </div>
                     <button
                       type="button"
                       onClick={() => requestPermission()}
                       className="bg-navy-deep text-paper px-6 py-3 text-[0.6rem] font-bold uppercase tracking-widest hover:bg-magenta transition-colors shrink-0"
                     >
-                      {t('appointments.notifications.enable', 'Enable')}
+                      {t("appointments.notifications.enable", "Enable")}
                     </button>
                   </div>
                 )}
@@ -625,7 +711,7 @@ function AppointmentsPage() {
                   }}
                   className="text-sm uppercase tracking-[0.2em] font-bold border-b-2 border-magenta text-magenta hover:text-navy-deep hover:border-navy-deep transition-colors pb-1"
                 >
-                  {t('appointments.book_another', 'Book another')}
+                  {t("appointments.book_another", "Book another")}
                 </button>
               </div>
             )}

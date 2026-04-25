@@ -1,10 +1,10 @@
-import { useState, useEffect } from 'react';
-import { toast } from 'sonner';
+import { useState, useEffect } from "react";
+import { toast } from "sonner";
 
 // URL-safe base64 to Uint8Array converter
 const urlBase64ToUint8Array = (base64String: string) => {
-  const padding = '='.repeat((4 - base64String.length % 4) % 4);
-  const base64 = (base64String + padding).replace(/-/g, '+').replace(/_/g, '/');
+  const padding = "=".repeat((4 - (base64String.length % 4)) % 4);
+  const base64 = (base64String + padding).replace(/-/g, "+").replace(/_/g, "/");
   const rawData = window.atob(base64);
   const outputArray = new Uint8Array(rawData.length);
   for (let i = 0; i < rawData.length; ++i) {
@@ -13,29 +13,36 @@ const urlBase64ToUint8Array = (base64String: string) => {
   return outputArray;
 };
 
-export function usePushNotifications(options?: { onTokenReceived?: (subscription: any) => void }) {
+export function usePushNotifications(options?: {
+  onTokenReceived?: (subscription: PushSubscription) => void;
+}) {
   const [subscription, setSubscription] = useState<PushSubscription | null>(null);
   const [permission, setPermission] = useState<NotificationPermission>(
-    typeof window !== 'undefined' ? Notification.permission : 'default'
+    typeof window !== "undefined" ? Notification.permission : "default",
   );
 
   useEffect(() => {
     // Check for existing subscription if permission is already granted
-    if (permission === 'granted' && 'serviceWorker' in navigator) {
-      navigator.serviceWorker.ready.then((reg) => {
-        reg.pushManager.getSubscription().then((sub) => {
+    if (permission === "granted" && "serviceWorker" in navigator) {
+      navigator.serviceWorker.ready
+        .then((reg) => {
+          return reg.pushManager.getSubscription();
+        })
+        .then((sub) => {
           if (sub) {
             setSubscription(sub);
-            // Optionally we can resend it to server just in case
-            // options?.onTokenReceived?.(sub); 
+            // Optionally resend to server to ensure it's still registered:
+            // options?.onTokenReceived?.(sub);
           }
+        })
+        .catch((err) => {
+          console.error("[usePushNotifications] Failed to retrieve existing subscription:", err);
         });
-      });
     }
   }, [permission]);
 
   const requestPermission = async () => {
-    if (!('serviceWorker' in navigator) || !('PushManager' in window)) {
+    if (!("serviceWorker" in navigator) || !("PushManager" in window)) {
       toast.error("Push notifications are not supported by this browser.");
       return null;
     }
@@ -44,9 +51,9 @@ export function usePushNotifications(options?: { onTokenReceived?: (subscription
       const currentPermission = await Notification.requestPermission();
       setPermission(currentPermission);
 
-      if (currentPermission === 'granted') {
+      if (currentPermission === "granted") {
         const registration = await navigator.serviceWorker.ready;
-        
+
         // Ensure VAPID key is available
         const publicVapidKey = import.meta.env.VITE_VAPID_PUBLIC_KEY;
         if (!publicVapidKey) {
@@ -57,23 +64,23 @@ export function usePushNotifications(options?: { onTokenReceived?: (subscription
 
         const sub = await registration.pushManager.subscribe({
           userVisibleOnly: true,
-          applicationServerKey: urlBase64ToUint8Array(publicVapidKey)
+          applicationServerKey: urlBase64ToUint8Array(publicVapidKey),
         });
 
         setSubscription(sub);
-        
+
         if (options?.onTokenReceived) {
           options.onTokenReceived(sub);
         }
-        
-        toast.success('Notifications enabled!');
+
+        toast.success("Notifications enabled!");
         return sub;
       } else {
         toast.error("Notification permission denied.");
         return null;
       }
     } catch (error) {
-      console.error('Error subscribing for push notifications:', error);
+      console.error("Error subscribing for push notifications:", error);
       toast.error("Failed to enable notifications.");
       return null;
     }

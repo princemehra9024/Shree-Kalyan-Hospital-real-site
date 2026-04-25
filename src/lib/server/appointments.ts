@@ -2,13 +2,20 @@ import { neon } from "@neondatabase/serverless";
 import { broadcastNotification } from "./push";
 
 // Fallback to import.meta.env for Vite clients, or process.env for Node
-const dbUrl = import.meta.env?.VITE_NEON_DB_URL || (typeof process !== 'undefined' ? process.env.VITE_NEON_DB_URL : undefined);
+const dbUrl =
+  import.meta.env?.VITE_NEON_DB_URL ||
+  (typeof process !== "undefined" ? process.env.VITE_NEON_DB_URL : undefined);
 
 if (!dbUrl) {
-  console.warn("VITE_NEON_DB_URL is missing. Please check your environment variables.");
+  // Throw immediately at module load time so misconfigured deployments fail fast
+  // rather than producing cryptic "connection refused" errors at query time.
+  throw new Error(
+    "[appointments] VITE_NEON_DB_URL is not set. " +
+      "Add it to your .env.local file (development) or Vercel environment variables (production).",
+  );
 }
 
-const sql = neon(dbUrl || "postgresql://mock");
+const sql = neon(dbUrl);
 
 export interface AppointmentInput {
   patient_name: string;
@@ -49,12 +56,12 @@ export async function bookAppointment(data: AppointmentInput): Promise<boolean> 
         ${data.appointment_time}
       )
     `;
-    
+
     // Trigger push notification asynchronously
     broadcastNotification(
-      'Appointment Confirmed',
-      `Your appointment is confirmed for ${data.appointment_date} at ${data.appointment_time}.`
-    ).catch(err => console.error("Failed to trigger notification:", err));
+      "Appointment Confirmed",
+      `Your appointment is confirmed for ${data.appointment_date} at ${data.appointment_time}.`,
+    ).catch((err) => console.error("Failed to trigger notification:", err));
 
     return true;
   } catch (err) {
@@ -63,7 +70,7 @@ export async function bookAppointment(data: AppointmentInput): Promise<boolean> 
   }
 }
 
-export async function saveNotificationToken(subscription: any): Promise<boolean> {
+export async function saveNotificationToken(subscription: PushSubscription): Promise<boolean> {
   try {
     const jsonSub = JSON.stringify(subscription);
     // Use jsonb for proper insertion

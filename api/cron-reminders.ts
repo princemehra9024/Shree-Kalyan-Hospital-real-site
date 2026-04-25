@@ -1,17 +1,31 @@
-import { neon } from '@neondatabase/serverless';
-import { broadcastNotification } from '../src/lib/server/push';
+import { neon } from "@neondatabase/serverless";
+import { broadcastNotification } from "../src/lib/server/push";
 
-export default async function handler(req: any, res: any) {
-  // Optional: Check authorization header if you want to secure the cron job 
+// Minimal type shims for Vercel serverless handler params
+interface Request {
+  headers: Record<string, string | undefined>;
+  method?: string;
+  body?: Record<string, unknown>;
+}
+interface Response {
+  status(code: number): this;
+  json(body: unknown): unknown;
+}
+
+export default async function handler(req: Request, res: Response) {
+  // Optional: Check authorization header if you want to secure the cron job
   // (Vercel sends a CRON secret you can verify)
-  if (req.headers.authorization !== `Bearer ${process.env.CRON_SECRET}` && process.env.NODE_ENV === 'production') {
-    return res.status(401).json({ error: 'Unauthorized' });
+  if (
+    process.env.NODE_ENV === "production" &&
+    req.headers.authorization !== `Bearer ${process.env.CRON_SECRET}`
+  ) {
+    return res.status(401).json({ error: "Unauthorized" });
   }
 
   try {
     const dbUrl = process.env.VITE_NEON_DB_URL;
     if (!dbUrl) {
-      return res.status(500).json({ error: 'Database URL not configured.' });
+      return res.status(500).json({ error: "Database URL not configured." });
     }
 
     const sql = neon(dbUrl);
@@ -19,24 +33,36 @@ export default async function handler(req: any, res: any) {
     // Calculate target time: current time + 30 minutes
     const now = new Date();
     now.setMinutes(now.getMinutes() + 30);
-    
+
     // Format date as YYYY-MM-DD
     const targetDateStr = now.toLocaleDateString("en-CA", { timeZone: "Asia/Kolkata" }); // Format as YYYY-MM-DD
-    
-    // Format time to match "09:00 AM" or "02:30 PM"
-    let hours = now.getHours();
-    let minutes = now.getMinutes();
-    
+
+    // Format time in IST (Asia/Kolkata) — avoids UTC vs local skew on the server
+    const istParts = new Intl.DateTimeFormat("en-US", {
+      timeZone: "Asia/Kolkata",
+      hour: "numeric",
+      minute: "2-digit",
+      hour12: false,
+    }).formatToParts(now);
+
+    let hours = parseInt(istParts.find((p) => p.type === "hour")!.value, 10);
+    let minutes = parseInt(istParts.find((p) => p.type === "minute")!.value, 10);
+
     // Round minutes to nearest 30 since appointments are at :00 or :30
-    if (minutes < 15) minutes = 0;
-    else if (minutes < 45) minutes = 30;
-    else { minutes = 0; hours++; }
-    
-    const ampm = hours >= 12 ? 'PM' : 'AM';
-    const hour12 = hours % 12 || 12; // Convert 0 to 12
+    if (minutes < 15) {
+      minutes = 0;
+    } else if (minutes < 45) {
+      minutes = 30;
+    } else {
+      minutes = 0;
+      hours = (hours + 1) % 24; // safe midnight rollover — never reaches 24
+    }
+
+    const ampm = hours >= 12 ? "PM" : "AM";
+    const hour12 = hours % 12 || 12; // Convert 0 → 12
     const hStr = hour12 < 10 ? `0${hour12}` : `${hour12}`;
-    const mStr = minutes === 0 ? '00' : '30';
-    
+    const mStr = minutes === 0 ? "00" : "30";
+
     const targetTimeStr = `${hStr}:${mStr} ${ampm}`;
 
     console.log(`Cron checking for appointments on ${targetDateStr} at ${targetTimeStr}`);
@@ -56,19 +82,21 @@ export default async function handler(req: any, res: any) {
       for (const appt of appointments) {
         const title = "Upcoming Appointment Reminder";
         const message = `Reminder: ${appt.patient_name} has an appointment scheduled at ${appt.appointment_time}.`;
-        await broadcastNotification(title, message);
-        notificationsSent++;
+        const sent = await broadcastNotification(title, message);
+        if (sent) {
+          notificationsSent++;
+        }
       }
     }
 
-    return res.status(200).json({ 
-      success: true, 
-      appointmentsFound: appointments.length, 
-      notificationsSent 
+    return res.status(200).json({
+      success: true,
+      appointmentsFound: appointments.length,
+      notificationsSent,
     });
-
-  } catch (error: any) {
+  } catch (error) {
+    const e = error as { message?: string };
     console.error("Cron Error:", error);
-    return res.status(500).json({ error: 'Failed to process reminders', details: error.message });
+    return res.status(500).json({ error: "Failed to process reminders", details: e.message });
   }
 }

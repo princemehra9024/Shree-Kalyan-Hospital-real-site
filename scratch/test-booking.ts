@@ -1,4 +1,4 @@
-import { bookAppointment } from '../src/lib/server/appointments';
+import { bookAppointment } from "../src/lib/server/appointments";
 
 async function test() {
   console.log("Testing appointment booking...");
@@ -7,7 +7,7 @@ async function test() {
     phone_number: "0001112222",
     reason: "Verifying backend and DB connectivity",
     appointment_date: "2026-05-01",
-    appointment_time: "10:30 AM"
+    appointment_time: "10:30 AM",
   });
 
   if (success) {

@@ -4,29 +4,28 @@ import { CustomCursor } from "@/components/site/CustomCursor";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 import { EmergencyOverlay } from "@/components/site/EmergencyOverlay";
-import { ErrorBoundary } from "@/components/site/ErrorBoundary";
 import { useState, useEffect } from "react";
 import { MapPin, ArrowRight, Compass } from "lucide-react";
 
 const hospitalSchema = {
   "@context": "https://schema.org",
   "@type": "MedicalOrganization",
-  "name": "Shree Kalyan Hospital",
-  "url": "https://shreekalyanhospital.com",
-  "logo": "https://shreekalyanhospital.com/favicon.svg",
-  "contactPoint": {
+  name: "Shree Kalyan Hospital",
+  url: "https://shreekalyanhospital.com",
+  logo: "https://shreekalyanhospital.com/favicon.svg",
+  contactPoint: {
     "@type": "ContactPoint",
-    "telephone": "+918529219330",
-    "contactType": "customer service",
-    "availableLanguage": ["en", "hi"]
+    telephone: "+918529219330",
+    contactType: "customer service",
+    availableLanguage: ["en", "hi"],
   },
-  "address": {
+  address: {
     "@type": "PostalAddress",
-    "streetAddress": "Kota",
-    "addressLocality": "Kota",
-    "addressRegion": "Rajasthan",
-    "addressCountry": "IN"
-  }
+    streetAddress: "Kota",
+    addressLocality: "Kota",
+    addressRegion: "Rajasthan",
+    addressCountry: "IN",
+  },
 };
 
 function NotFoundComponent() {
@@ -81,10 +80,55 @@ export const Route = createRootRoute({
   component: RootComponent,
   notFoundComponent: NotFoundComponent,
   errorComponent: ({ error }) => (
-    <ErrorBoundary>
-      <div className="hidden">{error?.toString()}</div>
-      <></>
-    </ErrorBoundary>
+    <div className="min-h-screen bg-paper flex items-center justify-center p-6 selection:bg-magenta selection:text-white">
+      <div className="max-w-2xl w-full">
+        <div className="flex items-center gap-4 mb-8">
+          <div className="p-3 bg-magenta/10 rounded-full">
+            <MapPin className="size-6 text-magenta" />
+          </div>
+          <span className="text-[0.65rem] font-syne font-bold tracking-[0.4em] text-magenta uppercase">
+            System Encountered an Exception
+          </span>
+        </div>
+
+        <h1 className="font-display text-5xl md:text-7xl text-navy-deep leading-[0.9] mb-8 tracking-tighter">
+          Precision was <br />
+          <em className="italic font-light text-magenta">interrupted.</em>
+        </h1>
+
+        <p className="text-xl text-ink/60 font-light leading-relaxed mb-12 max-w-lg">
+          We encountered an unexpected technical issue. Please try refreshing or return to our
+          homepage.
+        </p>
+
+        <div className="flex flex-wrap gap-4">
+          <button
+            onClick={() => window.location.reload()}
+            className="bg-navy-deep text-paper px-10 py-5 text-[0.65rem] font-syne font-bold uppercase tracking-widest hover:bg-magenta transition-colors duration-500 inline-flex items-center gap-3"
+          >
+            <ArrowRight className="size-4" />
+            Retry
+          </button>
+          <Link
+            to="/"
+            className="border border-navy/20 px-10 py-5 text-[0.65rem] font-syne font-bold uppercase tracking-widest text-ink/60 hover:border-navy hover:text-ink transition-all inline-flex items-center gap-3"
+          >
+            Return Home
+          </Link>
+        </div>
+
+        {import.meta.env.DEV && error && (
+          <div className="mt-20 p-8 bg-secondary/50 border border-navy/5 rounded-lg overflow-hidden">
+            <p className="text-[0.6rem] font-bold tracking-widest text-magenta uppercase mb-4">
+              Developer Insight
+            </p>
+            <pre className="text-xs font-mono text-ink/70 overflow-x-auto whitespace-pre-wrap leading-relaxed">
+              {error.toString()}
+            </pre>
+          </div>
+        )}
+      </div>
+    </div>
   ),
   head: () => ({
     meta: [

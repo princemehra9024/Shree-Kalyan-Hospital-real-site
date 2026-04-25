@@ -686,7 +686,13 @@ function CancerGuidelinesPage() {
       <section className="cg-cta-split grid lg:grid-cols-2 min-h-[60vh]">
         {/* Left — image */}
         <div className="cg-cta-l relative overflow-hidden min-h-[40vh]">
-          <img src={hospitalLobby} alt="Shree Kalyan" className="w-full h-full object-cover" loading="lazy" decoding="async" />
+          <img
+            src={hospitalLobby}
+            alt="Shree Kalyan"
+            className="w-full h-full object-cover"
+            loading="lazy"
+            decoding="async"
+          />
           <div className="absolute inset-0 bg-navy-deep/70" />
           <div className="absolute inset-0 flex flex-col items-start justify-end p-10 md:p-16 gap-4">
             <HeartHandshake className="size-10 text-magenta" />

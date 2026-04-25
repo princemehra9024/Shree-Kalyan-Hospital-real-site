@@ -181,11 +181,11 @@ const themeMap: Record<
     bgHover: "group-hover:bg-magenta",
     text: "text-navy-deep group-hover:text-white",
     textHover: "",
-    subText: "text-ink/50 group-hover:text-white/70",
+    subText: "text-ink/60 group-hover:text-white/80",
     subTextHover: "",
     iconColor: "text-magenta",
     iconColorHover: "group-hover:text-white",
-    numColor: "text-ink/20 group-hover:text-white/30",
+    numColor: "text-ink/30 group-hover:text-white/40",
     border: "border-ink/8",
     arrowBorder: "border-ink/15 group-hover:border-white/40",
   },
@@ -194,11 +194,11 @@ const themeMap: Record<
     bgHover: "group-hover:bg-navy-deep",
     text: "text-white",
     textHover: "",
-    subText: "text-white/40 group-hover:text-white/60",
+    subText: "text-white/60 group-hover:text-white/80",
     subTextHover: "",
-    iconColor: "text-sky/70",
+    iconColor: "text-sky/80",
     iconColorHover: "group-hover:text-sky",
-    numColor: "text-white/15 group-hover:text-white/25",
+    numColor: "text-white/30 group-hover:text-white/40",
     border: "border-white/5",
     arrowBorder: "border-white/15 group-hover:border-sky/60",
   },
@@ -207,11 +207,11 @@ const themeMap: Record<
     bgHover: "group-hover:bg-navy-deep",
     text: "text-navy-deep group-hover:text-white",
     textHover: "",
-    subText: "text-ink/50 group-hover:text-white/50",
+    subText: "text-ink/60 group-hover:text-white/70",
     subTextHover: "",
-    iconColor: "text-navy-deep/70",
+    iconColor: "text-navy-deep/80",
     iconColorHover: "group-hover:text-sky",
-    numColor: "text-ink/20 group-hover:text-white/20",
+    numColor: "text-ink/30 group-hover:text-white/30",
     border: "border-ink/8",
     arrowBorder: "border-ink/15 group-hover:border-white/25",
   },
@@ -542,7 +542,7 @@ export function QuickAccess() {
             <span className="font-display text-4xl text-navy-deep group-hover:text-white transition-colors duration-500 tracking-tight">
               <Counter value={stat.value} suffix={stat.suffix} />
             </span>
-            <span className="text-[0.62rem] font-bold uppercase tracking-[0.28em] text-ink/40 group-hover:text-white/40 transition-colors duration-500">
+            <span className="text-[0.62rem] font-bold uppercase tracking-[0.28em] text-ink/60 group-hover:text-white/60 transition-colors duration-500">
               {stat.label}
             </span>
           </div>

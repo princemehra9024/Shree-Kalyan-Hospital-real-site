@@ -410,11 +410,17 @@ function ContactPage() {
                   formData.append("subject", "New Consultation Request from Website");
                   formData.append("from_name", "Shree Kalyan Hospital Website");
 
+                  // 15-second timeout so a hung request doesn't freeze the button forever
+                  const controller = new AbortController();
+                  const timeoutId = setTimeout(() => controller.abort(), 15_000);
+
                   try {
                     const response = await fetch("https://api.web3forms.com/submit", {
                       method: "POST",
                       body: formData,
+                      signal: controller.signal,
                     });
+                    clearTimeout(timeoutId);
 
                     const data = await response.json();
 
@@ -425,7 +431,12 @@ function ContactPage() {
                       toast.error(data.message || "Something went wrong. Please try again.");
                     }
                   } catch (err) {
-                    toast.error("Failed to send request. Please check your connection.");
+                    clearTimeout(timeoutId);
+                    if (err instanceof Error && err.name === "AbortError") {
+                      toast.error("Request timed out. Please check your connection and try again.");
+                    } else {
+                      toast.error("Failed to send request. Please check your connection.");
+                    }
                   } finally {
                     setIsSubmitting(false);
                   }

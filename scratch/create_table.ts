@@ -1,7 +1,7 @@
+import { neon } from "@neondatabase/serverless";
 
-import { neon } from '@neondatabase/serverless';
-
-const dbUrl = "postgresql://neondb_owner:npg_DJqBKE5dp7rY@ep-blue-forest-aeo5q88m-pooler.c-2.us-east-2.aws.neon.tech/neondb?sslmode=require";
+const dbUrl =
+  "postgresql://neondb_owner:npg_DJqBKE5dp7rY@ep-blue-forest-aeo5q88m-pooler.c-2.us-east-2.aws.neon.tech/neondb?sslmode=require";
 const sql = neon(dbUrl);
 
 async function createTable() {

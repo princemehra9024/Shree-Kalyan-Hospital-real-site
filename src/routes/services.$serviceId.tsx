@@ -15,9 +15,13 @@ export const Route = createFileRoute("/services/$serviceId")({
   },
   head: ({ loaderData }) => {
     const service = loaderData?.service;
-    const title = service ? `${service.title} · Shree Kalyan Hospital` : "Service · Shree Kalyan Hospital";
-    const description = service ? service.desc : "Specialized medical services at Shree Kalyan Hospital.";
-    
+    const title = service
+      ? `${service.title} · Shree Kalyan Hospital`
+      : "Service · Shree Kalyan Hospital";
+    const description = service
+      ? service.desc
+      : "Specialized medical services at Shree Kalyan Hospital.";
+
     return {
       meta: [
         { title },

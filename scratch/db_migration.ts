@@ -1,8 +1,8 @@
 import { neon } from "@neondatabase/serverless";
-import dotenv from 'dotenv';
-import path from 'path';
+import dotenv from "dotenv";
+import path from "path";
 
-dotenv.config({ path: path.resolve(process.cwd(), '.env.local') });
+dotenv.config({ path: path.resolve(process.cwd(), ".env.local") });
 
 const sql = neon(process.env.VITE_NEON_DB_URL!);
 
@@ -10,7 +10,7 @@ async function migrate() {
   try {
     console.log("Dropping existing notification_tokens table...");
     await sql`DROP TABLE IF EXISTS notification_tokens`;
-    
+
     console.log("Creating new notification_tokens table with JSONB subscription...");
     await sql`
       CREATE TABLE notification_tokens (

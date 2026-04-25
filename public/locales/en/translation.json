@@ -4,7 +4,8 @@
     "about": "About",
     "services": "Services",
     "appointments": "Appointments",
-    "patient_care": "Patient Care",
+    "patientCare": "Patient Care",
+    "faqs": "FAQs",
     "facilities": "Facilities",
     "team": "Our Team",
     "contact": "Contact"

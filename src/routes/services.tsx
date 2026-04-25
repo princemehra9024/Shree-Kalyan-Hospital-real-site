@@ -21,7 +21,8 @@ export const Route = createFileRoute("/services")({
       { title: "Centers of Excellence · Shree Kalyan Hospital" },
       {
         name: "description",
-        content: "Explore our specialized medical institutes and centers of excellence including Cardiology, Neurosciences, and Orthopedics.",
+        content:
+          "Explore our specialized medical institutes and centers of excellence including Cardiology, Neurosciences, and Orthopedics.",
       },
       { property: "og:title", content: "Centers of Excellence · Shree Kalyan Hospital" },
       {
