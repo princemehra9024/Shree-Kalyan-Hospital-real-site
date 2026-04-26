@@ -619,7 +619,7 @@ function Field({
 }) {
   let autoComplete = "on";
   let inputMode: React.HTMLAttributes<HTMLInputElement>["inputMode"] = "text";
-  
+
   if (name === "name") autoComplete = "name";
   if (name === "email" || type === "email") {
     autoComplete = "email";

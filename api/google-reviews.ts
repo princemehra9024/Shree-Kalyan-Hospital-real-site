@@ -18,15 +18,15 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     }
 
     // Filter for 5-star reviews
-    const fiveStarReviews = (data.result.reviews || []).filter(
-      (r: any) => r.rating === 5
-    );
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const fiveStarReviews = (data.result.reviews || []).filter((r: any) => r.rating === 5);
 
     return res.status(200).json({
       rating: data.result.rating,
       total_ratings: data.result.user_ratings_total,
       reviews: fiveStarReviews,
     });
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (error: any) {
     console.error("Google Reviews Error:", error);
     return res.status(500).json({ error: error.message });

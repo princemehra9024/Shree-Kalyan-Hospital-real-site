@@ -39,6 +39,8 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   } catch (err) {
     const e = err as { message?: string };
     console.error("[save-subscription] DB error:", err);
-    return res.status(500).json({ success: false, error: "Failed to save subscription", details: e.message });
+    return res
+      .status(500)
+      .json({ success: false, error: "Failed to save subscription", details: e.message });
   }
 }
