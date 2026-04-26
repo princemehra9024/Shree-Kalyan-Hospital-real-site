@@ -41,6 +41,18 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   try {
     const sql = neon(dbUrl);
 
+    // Check for existing booking at the same time
+    const existing = await sql`
+      SELECT id FROM appointments 
+      WHERE appointment_date = ${appointment_date}::DATE 
+      AND appointment_time = ${appointment_time}
+      LIMIT 1
+    `;
+
+    if (existing.length > 0) {
+      return res.status(409).json({ error: "This slot is already booked. Please choose another time." });
+    }
+
     await sql`
       INSERT INTO appointments (
         patient_name,

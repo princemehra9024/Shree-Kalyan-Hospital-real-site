@@ -44,6 +44,12 @@ function ServicesPage() {
   const hoverImgRef = useRef<HTMLImageElement>(null);
 
   useEffect(() => {
+    // Preload hover images to prevent flicker
+    HOVER_IMAGES.forEach((src) => {
+      const img = new Image();
+      img.src = src;
+    });
+
     const ctx = gsap.context(() => {
       /* ── 1. Hero Reveal ── */
       gsap.fromTo(

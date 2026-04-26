@@ -19,78 +19,80 @@ export function useGsapReveal() {
         const heroTl = gsap.timeline({ defaults: { ease: "power4.out" } });
 
         heroTl
-          .from("[data-anim='hero-eyebrow']", {
-            opacity: 0,
-            y: 20,
-            duration: 1,
-            delay: 0.3,
-          })
-          .from(
+          .fromTo("[data-anim='hero-eyebrow']", 
+            { opacity: 0, y: 20 },
+            { opacity: 1, y: 0, duration: 1, delay: 0.3 }
+          )
+          .fromTo(
             "[data-anim='hero-title'] span",
-            {
-              yPercent: 120,
-              skewY: 3,
-              opacity: 0,
-              duration: 1.5,
-              stagger: 0.15,
-            },
-            "-=0.8",
+            { yPercent: 120, skewY: 3, opacity: 0 },
+            { yPercent: 0, skewY: 0, opacity: 1, duration: 1.5, stagger: 0.15 },
+            "-=0.8"
           )
-          .from(
+          .fromTo(
             "[data-anim='hero-cta']",
-            {
-              opacity: 0,
-              scale: 0.5,
-              rotate: -15,
-              duration: 1.2,
-            },
-            "-=1.2",
+            { opacity: 0, scale: 0.5, rotate: -15 },
+            { opacity: 1, scale: 1, rotate: 0, duration: 1.2 },
+            "-=1.2"
           )
-          .from(
+          .fromTo(
             "[data-anim='hero-stats']",
-            {
-              opacity: 0,
-              y: 30,
-              duration: 1,
-            },
-            "-=1",
+            { opacity: 0, y: 30 },
+            { opacity: 1, y: 0, duration: 1 },
+            "-=1"
           );
       }
 
       // Generic scroll reveal
       gsap.utils.toArray<HTMLElement>("[data-reveal]").forEach((el) => {
-        gsap.from(el, {
-          opacity: 0,
-          y: 40,
-          duration: 1,
-          ease: "power3.out",
-          scrollTrigger: { trigger: el, start: "top 85%", once: true },
-        });
+        gsap.fromTo(el,
+          { opacity: 0, y: 40 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 1,
+            ease: "power3.out",
+            scrollTrigger: { trigger: el, start: "top 85%", once: true },
+          }
+        );
       });
 
       // Stagger lists
       gsap.utils.toArray<HTMLElement>("[data-reveal-stagger]").forEach((el) => {
         const children = el.querySelectorAll(":scope > *");
-        gsap.from(children, {
-          opacity: 0,
-          y: 30,
-          duration: 0.9,
-          ease: "power3.out",
-          stagger: 0.1,
-          scrollTrigger: { trigger: el, start: "top 80%", once: true },
-        });
+        gsap.fromTo(children,
+          { opacity: 0, y: 30 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.9,
+            ease: "power3.out",
+            stagger: 0.1,
+            scrollTrigger: { trigger: el, start: "top 80%", once: true },
+          }
+        );
       });
 
       // Parallax images
       gsap.utils.toArray<HTMLElement>("[data-parallax]").forEach((el) => {
-        gsap.to(el, {
-          yPercent: -12,
-          ease: "none",
-          scrollTrigger: { trigger: el, start: "top bottom", end: "bottom top", scrub: true },
-        });
+        gsap.fromTo(el,
+          { yPercent: 0 },
+          {
+            yPercent: -12,
+            ease: "none",
+            scrollTrigger: { trigger: el, start: "top bottom", end: "bottom top", scrub: true },
+          }
+        );
       });
     });
 
-    return () => ctx.revert();
+    const timer = setTimeout(() => {
+      ScrollTrigger.refresh();
+    }, 200);
+
+    return () => {
+      clearTimeout(timer);
+      ctx.revert();
+    };
   }, []);
 }

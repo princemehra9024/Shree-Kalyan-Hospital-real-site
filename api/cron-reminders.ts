@@ -79,13 +79,17 @@ export default async function handler(req: Request, res: Response) {
 
     let notificationsSent = 0;
     if (appointments.length > 0) {
-      for (const appt of appointments) {
+      if (appointments.length === 1) {
+        const appt = appointments[0];
         const title = "Upcoming Appointment Reminder";
         const message = `Reminder: ${appt.patient_name} has an appointment scheduled at ${appt.appointment_time}.`;
-        const sent = await broadcastNotification(title, message);
-        if (sent) {
-          notificationsSent++;
-        }
+        const result = await broadcastNotification(title, message);
+        if (result.success) notificationsSent = 1;
+      } else {
+        const title = `${appointments.length} Upcoming Appointments`;
+        const message = `You have ${appointments.length} appointments scheduled in 30 minutes. Check the dashboard for details.`;
+        const result = await broadcastNotification(title, message);
+        if (result.success) notificationsSent = 1; // Counted as one batch broadcast
       }
     }
 

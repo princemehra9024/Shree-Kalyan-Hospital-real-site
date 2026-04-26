@@ -199,19 +199,22 @@ export function PatientStories() {
     const ctx = gsap.context(() => {
       if (headingRef.current) {
         const lines = headingRef.current.querySelectorAll(".hl");
-        gsap.from(lines, {
-          opacity: 0,
-          yPercent: 110,
-          skewY: 2,
-          stagger: 0.13,
-          duration: 1.1,
-          ease: "power4.out",
-          scrollTrigger: {
-            trigger: headingRef.current,
-            start: "top bottom", // fire as soon as heading enters viewport
-            once: true,
-          },
-        });
+        gsap.fromTo(lines,
+          { opacity: 0, yPercent: 110, skewY: 2 },
+          {
+            opacity: 1,
+            yPercent: 0,
+            skewY: 0,
+            stagger: 0.13,
+            duration: 1.1,
+            ease: "power4.out",
+            scrollTrigger: {
+              trigger: headingRef.current,
+              start: "top bottom", // fire as soon as heading enters viewport
+              once: true,
+            },
+          }
+        );
       }
 
       /* — Cards stagger reveal — fire the moment tape scrolls into view — */

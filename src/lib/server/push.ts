@@ -28,30 +28,35 @@ export async function broadcastNotification(title: string, message: string) {
     // Get all subscriptions
     const rows = await sql`SELECT subscription FROM notification_tokens`;
 
-    let successCount = 0;
-    let failCount = 0;
-
     const payload = JSON.stringify({ title, message });
+    const expiredSubscriptions: string[] = [];
 
-    for (const row of rows) {
-      try {
+    const results = await Promise.allSettled(
+      rows.map(async (row) => {
         const subscription = row.subscription as webpush.PushSubscription;
-        await webpush.sendNotification(subscription, payload);
-        successCount++;
-      } catch (err) {
-        const pushErr = err as { statusCode?: number; message?: string };
-        failCount++;
-        console.error("Error sending notification:", err);
-        if (pushErr.statusCode === 410 || pushErr.statusCode === 404) {
-          // Subscription expired/invalid — remove it; wrap in its own try/catch
-          // so a DB failure here doesn't abort remaining notifications.
-          try {
-            await sql`DELETE FROM notification_tokens WHERE subscription::text = ${JSON.stringify(row.subscription)}`;
-            console.log("Removed expired subscription.");
-          } catch (dbErr) {
-            console.error("Failed to remove expired subscription from DB:", dbErr);
+        try {
+          await webpush.sendNotification(subscription, payload);
+          return true;
+        } catch (err) {
+          const pushErr = err as { statusCode?: number; message?: string };
+          if (pushErr.statusCode === 410 || pushErr.statusCode === 404) {
+            expiredSubscriptions.push(JSON.stringify(row.subscription));
           }
+          throw err;
         }
+      }),
+    );
+
+    const successCount = results.filter((r) => r.status === "fulfilled").length;
+    const failCount = results.filter((r) => r.status === "rejected").length;
+
+    // Batch remove expired subscriptions
+    if (expiredSubscriptions.length > 0) {
+      try {
+        await sql`DELETE FROM notification_tokens WHERE subscription::text = ANY(${expiredSubscriptions})`;
+        console.log(`Removed ${expiredSubscriptions.length} expired subscriptions.`);
+      } catch (dbErr) {
+        console.error("Failed to remove expired subscriptions from DB:", dbErr);
       }
     }
 

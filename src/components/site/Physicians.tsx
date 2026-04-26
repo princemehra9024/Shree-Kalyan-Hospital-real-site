@@ -1,7 +1,19 @@
 import { Link } from "@tanstack/react-router";
-import doctor from "@/assets/anjali-sharma.png";
+import { useQuery } from "@tanstack/react-query";
+import { getFeaturedDoctor, urlFor } from "@/lib/sanity";
+import defaultDoctor from "@/assets/anjali-sharma.png";
 
 export function Physicians() {
+  const { data: featuredDoctor, isLoading } = useQuery({
+    queryKey: ["featured-doctor"],
+    queryFn: getFeaturedDoctor,
+    enabled: !!import.meta.env.VITE_SANITY_PROJECT_ID,
+  });
+
+  const doctorName = featuredDoctor?.name || "Dr. Anjali Sharma";
+  const doctorImg = featuredDoctor?.image ? urlFor(featuredDoctor.image).url() : defaultDoctor;
+  const doctorQuote = featuredDoctor?.bio?.split(".")[0] || "Time, given honestly.";
+
   return (
     <section
       id="physicians"
@@ -9,24 +21,28 @@ export function Physicians() {
     >
       <div className="grid grid-cols-12 gap-x-6 gap-y-16 items-center">
         <div className="col-span-12 lg:col-span-5 relative" data-reveal>
-          <div className="overflow-hidden border border-ink/10 shadow-editorial">
-            <img
-              src={doctor}
-              alt="Dr. Anjali Sharma, Senior Consultant"
-              loading="lazy"
-              width={900}
-              height={1200}
-              className="w-full aspect-[3/4] object-cover"
-              data-parallax
-              decoding="async"
-            />
+          <div className="overflow-hidden border border-ink/10 shadow-editorial bg-paper/5">
+            {isLoading ? (
+              <div className="w-full aspect-[3/4] animate-pulse bg-ink/5" />
+            ) : (
+              <img
+                src={doctorImg}
+                alt={`${doctorName}, Senior Consultant`}
+                loading="lazy"
+                width={900}
+                height={1200}
+                className="w-full aspect-[3/4] object-cover"
+                data-parallax
+                decoding="async"
+              />
+            )}
           </div>
           <div className="absolute -bottom-8 -right-6 md:-right-10 bg-magenta text-paper p-5 md:p-6 shadow-card max-w-[16rem]">
             <p className="font-display italic text-2xl md:text-3xl leading-tight">
-              "Time, given honestly."
+              "{doctorQuote}"
             </p>
             <p className="mt-3 text-[0.65rem] tracking-[0.2em] uppercase font-semibold opacity-90">
-              Dr. Anjali Sharma
+              {doctorName}
             </p>
           </div>
         </div>

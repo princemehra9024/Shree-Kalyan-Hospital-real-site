@@ -550,65 +550,55 @@ function AppointmentsPage() {
                           setIsSubmitting(true);
 
                           const formData = new FormData(e.currentTarget);
-                          formData.append("access_key", "ad8f6ae8-f6a3-4a34-b035-a96a66e5d980");
-                          formData.append("subject", "New Appointment Request");
-                          formData.append("from_name", "Shree Kalyan Hospital Website");
-                          formData.append(
-                            "Appointment Date",
-                            date?.toLocaleDateString() || "Not set",
-                          );
-                          formData.append("Appointment Time", selectedTime || "Not set");
+                          const patientData = {
+                            patient_name: formData.get("name") as string,
+                            phone_number: formData.get("phone") as string,
+                            reason: formData.get("reason") as string,
+                            appointment_date: dateStr,
+                            appointment_time: selectedTime!,
+                          };
 
-                          // 15-second timeout so a hung request doesn't freeze the button forever
-                          const controller = new AbortController();
-                          const timeoutId = setTimeout(() => controller.abort(), 15_000);
-
+                          // 1. First, try to book in the local DB (Source of Truth)
+                          // This checks for double-booking on the server
                           try {
-                            const response = await fetch("https://api.web3forms.com/submit", {
+                            const res = await fetch("/api/book-appointment", {
+                              method: "POST",
+                              headers: { "Content-Type": "application/json" },
+                              body: JSON.stringify(patientData),
+                            });
+
+                            if (res.status === 409) {
+                              toast.error("This slot was just taken. Please choose another time.");
+                              queryClient.invalidateQueries({ queryKey: ["bookedSlots", dateStr] });
+                              setSelectedTime(null);
+                              setIsSubmitting(false);
+                              return;
+                            }
+
+                            if (!res.ok) {
+                              throw new Error("Failed to save appointment to database.");
+                            }
+
+                            // 2. If DB save succeeded, send the email notification (Secondary)
+                            // We don't block the UI for this, but we try it.
+                            formData.append("access_key", "ad8f6ae8-f6a3-4a34-b035-a96a66e5d980");
+                            formData.append("subject", "New Appointment Request");
+                            formData.append("from_name", "Shree Kalyan Hospital Website");
+                            formData.append("Appointment Date", date?.toLocaleDateString() || "Not set");
+                            formData.append("Appointment Time", selectedTime || "Not set");
+
+                            fetch("https://api.web3forms.com/submit", {
                               method: "POST",
                               body: formData,
-                              signal: controller.signal,
-                            });
-                            clearTimeout(timeoutId);
+                            }).catch(err => console.error("Web3Forms failed:", err));
 
-                            const data = await response.json();
-
-                            if (data.success) {
-                              // Save to DB — check return value; don't show success if DB write failed
-                              const saved = await bookAppointment({
-                                patient_name: formData.get("name") as string,
-                                phone_number: formData.get("phone") as string,
-                                reason: formData.get("reason") as string,
-                                appointment_date: dateStr,
-                                appointment_time: selectedTime,
-                              });
-
-                              if (!saved) {
-                                toast.error(
-                                  "Your email was sent but we couldn't save the appointment. Please call us to confirm.",
-                                );
-                                return;
-                              }
-
-                              queryClient.invalidateQueries({ queryKey: ["bookedSlots", dateStr] });
-                              setBookingConfirmed(true);
-                              toast.success("Your appointment request has been submitted.");
-                            } else {
-                              toast.error(
-                                data.message || "Something went wrong. Please try again.",
-                              );
-                            }
+                            // Success flow
+                            queryClient.invalidateQueries({ queryKey: ["bookedSlots", dateStr] });
+                            setBookingConfirmed(true);
+                            toast.success("Your appointment has been confirmed!");
                           } catch (err) {
-                            clearTimeout(timeoutId);
-                            if (err instanceof Error && err.name === "AbortError") {
-                              toast.error(
-                                "Request timed out. Please check your connection and try again.",
-                              );
-                            } else {
-                              toast.error(
-                                "Failed to submit request. Please check your connection.",
-                              );
-                            }
+                            console.error("Booking error:", err);
+                            toast.error("Something went wrong. Please try again or call us.");
                           } finally {
                             setIsSubmitting(false);
                           }

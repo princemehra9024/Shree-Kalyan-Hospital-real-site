@@ -7,11 +7,13 @@ import { Specialties } from "@/components/site/Specialties";
 import { Physicians } from "@/components/site/Physicians";
 import { ContactPreview } from "@/components/site/ContactPreview";
 import { SiteFooter } from "@/components/site/SiteFooter";
-import { PatientStories } from "@/components/site/PatientStories";
+import { PatientReviews } from "@/components/site/Reviews";
 import { QuickAccess } from "@/components/site/QuickAccess";
 import { RoomViews } from "@/components/site/RoomViews";
 import { useGsapReveal } from "@/hooks/use-gsap-reveal";
 import { useTranslation } from "react-i18next";
+
+
 
 export const Route = createFileRoute("/")({
   component: Index,
@@ -160,7 +162,7 @@ function Index() {
         <Specialties />
         <RoomViews />
         <Physicians />
-        <PatientStories />
+        <PatientReviews />
         <ContactPreview />
       </main>
       <SiteFooter />

@@ -349,61 +349,76 @@ export function QuickAccess() {
     const ctx = gsap.context(() => {
       // ── Heading reveal
       if (headingRef.current) {
-        gsap.from(headingRef.current.children, {
-          opacity: 0,
-          y: 30,
-          skewY: 1.5,
-          stagger: 0.12,
-          duration: 1,
-          ease: "power4.out",
-          scrollTrigger: {
-            trigger: headingRef.current,
-            start: "top 88%",
-            once: true,
-          },
-        });
+        gsap.fromTo(headingRef.current.children,
+          { opacity: 0, y: 30, skewY: 1.5 },
+          {
+            opacity: 1,
+            y: 0,
+            skewY: 0,
+            stagger: 0.12,
+            duration: 1,
+            ease: "power4.out",
+            scrollTrigger: {
+              trigger: headingRef.current,
+              start: "top 88%",
+              once: true,
+            },
+          }
+        );
       }
 
       // ── Cards stagger in with clip-path reveal
       if (gridRef.current) {
         const cards = gridRef.current.querySelectorAll(".qa-card");
-        gsap.set(cards, { opacity: 0, y: 60, clipPath: "inset(0 0 100% 0)" });
-        gsap.to(cards, {
-          opacity: 1,
-          y: 0,
-          clipPath: "inset(0 0 0% 0)",
-          stagger: {
-            each: 0.09,
-            from: "start",
-          },
-          duration: 1,
-          ease: "power4.out",
-          scrollTrigger: {
-            trigger: gridRef.current,
-            start: "top 82%",
-            once: true,
-          },
-        });
+        gsap.fromTo(cards,
+          { opacity: 0, y: 60, clipPath: "inset(0 0 100% 0)" },
+          {
+            opacity: 1,
+            y: 0,
+            clipPath: "inset(0 0 0% 0)",
+            stagger: {
+              each: 0.09,
+              from: "start",
+            },
+            duration: 1,
+            ease: "power4.out",
+            scrollTrigger: {
+              trigger: gridRef.current,
+              start: "top 82%",
+              once: true,
+            },
+          }
+        );
       }
 
       // ── Stats bar slide up
       if (statsRef.current) {
-        gsap.from(statsRef.current.children, {
-          opacity: 0,
-          y: 40,
-          stagger: 0.1,
-          duration: 0.9,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: statsRef.current,
-            start: "top 90%",
-            once: true,
-          },
-        });
+        gsap.fromTo(statsRef.current.children,
+          { opacity: 0, y: 40 },
+          {
+            opacity: 1,
+            y: 0,
+            stagger: 0.1,
+            duration: 0.9,
+            ease: "power3.out",
+            scrollTrigger: {
+              trigger: statsRef.current,
+              start: "top 90%",
+              once: true,
+            },
+          }
+        );
       }
     }, sectionRef);
 
-    return () => ctx.revert();
+    const timer = setTimeout(() => {
+      ScrollTrigger.refresh();
+    }, 200);
+
+    return () => {
+      clearTimeout(timer);
+      ctx.revert();
+    };
   }, []);
 
   return (
