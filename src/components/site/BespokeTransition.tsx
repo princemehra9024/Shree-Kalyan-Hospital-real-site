@@ -38,94 +38,45 @@ export function BespokeTransition({ children }: { children: React.ReactNode }) {
     const content = contentRef.current;
     if (!l1 || !l2 || !lbl || !content) return;
 
-    const tl = gsap.timeline({
-      defaults: { ease: "expo.inOut" },
-      onStart: () => {
-        gsap.set(containerRef.current, { pointerEvents: "all" });
-      },
-      onComplete: () => {
-        gsap.set(containerRef.current, { pointerEvents: "none" });
-      },
+    let mm = gsap.matchMedia();
+
+    mm.add("(min-width: 768px)", () => {
+      const tl = gsap.timeline({
+        defaults: { ease: "expo.inOut" },
+        onStart: () => gsap.set(containerRef.current, { pointerEvents: "all" }),
+        onComplete: () => gsap.set(containerRef.current, { pointerEvents: "none" }),
+      });
+
+      gsap.set([l1, l2], { clipPath: "circle(0% at 50% 50%)" });
+      gsap.set(lbl.querySelectorAll("span"), { y: 20, opacity: 0 });
+      gsap.set(content, { scale: 1.05, opacity: 0, filter: "blur(8px)" });
+
+      tl.to(l1, { clipPath: "circle(150% at 50% 50%)", duration: 0.8 })
+        .to(l2, { clipPath: "circle(150% at 50% 50%)", duration: 0.8 }, "-=0.6")
+        .to(lbl.querySelectorAll("span"), { y: 0, opacity: 1, duration: 0.6, stagger: 0.1, ease: "power3.out" }, "-=0.3")
+        .to({}, { duration: 0.4 })
+        .to(lbl.querySelectorAll("span"), { y: -20, opacity: 0, duration: 0.4, stagger: 0.05, ease: "power2.in" })
+        .to(l2, { clipPath: "circle(0% at 50% 50%)", duration: 0.9 }, "-=0.1")
+        .to(l1, { clipPath: "circle(0% at 50% 50%)", duration: 0.9 }, "-=0.7")
+        .to(content, { scale: 1, opacity: 1, filter: "blur(0px)", duration: 1.2, ease: "power3.out" }, "-=0.9");
     });
 
-    // 1. Reset
-    gsap.set([l1, l2], { clipPath: "circle(0% at 50% 50%)" });
-    gsap.set(lbl.querySelectorAll("span"), { y: 20, opacity: 0 });
+    mm.add("(max-width: 767px)", () => {
+      // Simplified fade transition for mobile to save battery and reduce jank
+      const tl = gsap.timeline({
+        onStart: () => gsap.set(containerRef.current, { pointerEvents: "all" }),
+        onComplete: () => gsap.set(containerRef.current, { pointerEvents: "none" }),
+      });
 
-    // Hide the incoming content initially to prevent flashes before the overlay covers it
-    gsap.set(content, { scale: 1.05, opacity: 0, filter: "blur(8px)" });
+      gsap.set([l1, l2], { clipPath: "none", opacity: 0 });
+      gsap.set(content, { opacity: 0, scale: 1, filter: "none" });
 
-    // 2. Cover Phase (Inward)
-    tl.to(l1, {
-      clipPath: "circle(150% at 50% 50%)",
-      duration: 0.8,
-    })
-      .to(
-        l2,
-        {
-          clipPath: "circle(150% at 50% 50%)",
-          duration: 0.8,
-        },
-        "-=0.6",
-      )
+      tl.to(l1, { opacity: 1, duration: 0.3 })
+        .to(content, { opacity: 1, duration: 0.4 })
+        .to(l1, { opacity: 0, duration: 0.3 }, "-=0.1");
+    });
 
-      // 3. Label Entrance
-      .to(
-        lbl.querySelectorAll("span"),
-        {
-          y: 0,
-          opacity: 1,
-          duration: 0.6,
-          stagger: 0.1,
-          ease: "power3.out",
-        },
-        "-=0.3",
-      )
-
-      // 4. Hold
-      .to({}, { duration: 0.4 })
-
-      // 5. Reveal Phase (Outward)
-      .to(lbl.querySelectorAll("span"), {
-        y: -20,
-        opacity: 0,
-        duration: 0.4,
-        stagger: 0.05,
-        ease: "power2.in",
-      })
-      .to(
-        l2,
-        {
-          clipPath: "circle(0% at 50% 50%)",
-          duration: 0.9,
-        },
-        "-=0.1",
-      )
-      .to(
-        l1,
-        {
-          clipPath: "circle(0% at 50% 50%)",
-          duration: 0.9,
-        },
-        "-=0.7",
-      )
-
-      // 6. Content Parallax Reveal
-      .to(
-        content,
-        {
-          scale: 1,
-          opacity: 1,
-          filter: "blur(0px)",
-          duration: 1.2,
-          ease: "power3.out",
-        },
-        "-=0.9",
-      );
-
-    return () => {
-      tl.kill();
-    };
+    return () => mm.revert();
   }, [location.pathname]);
 
   return (

@@ -617,6 +617,19 @@ function Field({
   required?: boolean;
   placeholder?: string;
 }) {
+  let autoComplete = "on";
+  let inputMode: React.HTMLAttributes<HTMLInputElement>["inputMode"] = "text";
+  
+  if (name === "name") autoComplete = "name";
+  if (name === "email" || type === "email") {
+    autoComplete = "email";
+    inputMode = "email";
+  }
+  if (name === "phone" || type === "tel") {
+    autoComplete = "tel";
+    inputMode = "tel";
+  }
+
   return (
     <div>
       <label
@@ -631,6 +644,8 @@ function Field({
         type={type}
         required={required}
         placeholder={placeholder}
+        autoComplete={autoComplete}
+        inputMode={inputMode}
         className="w-full bg-transparent border-b border-ink/20 focus:border-magenta focus:outline-none py-3 text-base font-display text-ink placeholder:text-ink/30 transition-colors"
       />
     </div>

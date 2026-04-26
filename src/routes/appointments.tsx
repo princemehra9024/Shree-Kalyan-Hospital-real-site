@@ -736,6 +736,19 @@ function DarkField({
   type: string;
   required?: boolean;
 }) {
+  let autoComplete = "on";
+  let inputMode: React.HTMLAttributes<HTMLInputElement>["inputMode"] = "text";
+  
+  if (id === "name") autoComplete = "name";
+  if (id === "email" || type === "email") {
+    autoComplete = "email";
+    inputMode = "email";
+  }
+  if (id === "phone" || type === "tel") {
+    autoComplete = "tel";
+    inputMode = "tel";
+  }
+
   return (
     <div className="relative">
       <input
@@ -743,6 +756,8 @@ function DarkField({
         type={type}
         id={id}
         name={id}
+        autoComplete={autoComplete}
+        inputMode={inputMode}
         className="peer w-full bg-transparent border-b border-white/20 focus:border-magenta focus:outline-none py-4 text-xl font-light text-white placeholder-transparent transition-colors"
         placeholder={label}
       />
