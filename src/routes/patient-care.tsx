@@ -13,11 +13,11 @@ import {
   Sparkles,
 } from "lucide-react";
 
-import hospitalLobby from "@/assets/hospital-lobby.png";
-import operatingTheatre from "@/assets/operating-theatre.png";
-import heroCorridor from "@/assets/hero-corridor.jpg";
-import surgicalTheater from "@/assets/surgical-theater.jpg";
-import founderDoctor from "@/assets/founder-doctor.png";
+import hospitalLobby from "@/assets/reception.png";
+import operatingTheatre from "@/assets/lab.png";
+import heroCorridor from "@/assets/corridor.png";
+import surgicalTheater from "@/assets/ward.jpeg";
+import founderDoctor from "@/assets/kapilG.jpeg";
 
 gsap.registerPlugin(ScrollTrigger);
 

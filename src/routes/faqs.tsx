@@ -17,8 +17,8 @@ import { SiteNav } from "@/components/site/SiteNav";
 import { SiteFooter } from "@/components/site/SiteFooter";
 import { useGsapReveal } from "@/hooks/use-gsap-reveal";
 
-import abstractCorridor from "@/assets/hero-corridor.jpg";
-import hospitalLobby from "@/assets/hospital-lobby.png";
+import abstractCorridor from "@/assets/corridor.png";
+import hospitalLobby from "@/assets/reception.png";
 
 gsap.registerPlugin(ScrollTrigger);
 

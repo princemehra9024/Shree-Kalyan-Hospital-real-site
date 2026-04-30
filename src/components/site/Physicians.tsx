@@ -1,7 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { useQuery } from "@tanstack/react-query";
 import { getFeaturedDoctor, urlFor } from "@/lib/sanity";
-import defaultDoctor from "@/assets/anjali-sharma.png";
+import defaultDoctor from "@/assets/kapilG.jpeg";
 
 export function Physicians() {
   const { data: featuredDoctor, isLoading } = useQuery({

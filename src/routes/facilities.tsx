@@ -5,8 +5,8 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { SiteNav } from "@/components/site/SiteNav";
 import { SiteFooter } from "@/components/site/SiteFooter";
 import { ShieldCheck, Zap, Coffee, Bed, Activity, ArrowRight } from "lucide-react";
-import operatingTheatre from "@/assets/operating-theatre.png";
-import surgicalTheater from "@/assets/surgical-theater.jpg";
+import operatingTheatre from "@/assets/lab.png";
+import surgicalTheater from "@/assets/ward.jpeg";
 
 gsap.registerPlugin(ScrollTrigger);
 

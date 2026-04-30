@@ -6,11 +6,11 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ArrowRight, CheckCircle2, HeartHandshake } from "lucide-react";
 
-import hospitalLobby from "@/assets/hospital-lobby.png";
-import operatingTheatre from "@/assets/operating-theatre.png";
-import heroCorridor from "@/assets/hero-corridor.jpg";
-import founderDoctor from "@/assets/founder-doctor.png";
-import surgicalTheater from "@/assets/surgical-theater.jpg";
+import hospitalLobby from "@/assets/reception.png";
+import operatingTheatre from "@/assets/lab.png";
+import heroCorridor from "@/assets/corridor.png";
+import founderDoctor from "@/assets/kapilG.jpeg";
+import surgicalTheater from "@/assets/ward.jpeg";
 
 gsap.registerPlugin(ScrollTrigger);
 

@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import exterior from "@/assets/hospital-exterior.jpg";
+import exterior from "@/assets/hospital.png";
 
 export function ContactPreview() {
   return (
