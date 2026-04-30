@@ -38,7 +38,7 @@ export function BespokeTransition({ children }: { children: React.ReactNode }) {
     const content = contentRef.current;
     if (!l1 || !l2 || !lbl || !content) return;
 
-    let mm = gsap.matchMedia();
+    const mm = gsap.matchMedia();
 
     mm.add("(min-width: 768px)", () => {
       const tl = gsap.timeline({
@@ -53,12 +53,26 @@ export function BespokeTransition({ children }: { children: React.ReactNode }) {
 
       tl.to(l1, { clipPath: "circle(150% at 50% 50%)", duration: 0.8 })
         .to(l2, { clipPath: "circle(150% at 50% 50%)", duration: 0.8 }, "-=0.6")
-        .to(lbl.querySelectorAll("span"), { y: 0, opacity: 1, duration: 0.6, stagger: 0.1, ease: "power3.out" }, "-=0.3")
+        .to(
+          lbl.querySelectorAll("span"),
+          { y: 0, opacity: 1, duration: 0.6, stagger: 0.1, ease: "power3.out" },
+          "-=0.3",
+        )
         .to({}, { duration: 0.4 })
-        .to(lbl.querySelectorAll("span"), { y: -20, opacity: 0, duration: 0.4, stagger: 0.05, ease: "power2.in" })
+        .to(lbl.querySelectorAll("span"), {
+          y: -20,
+          opacity: 0,
+          duration: 0.4,
+          stagger: 0.05,
+          ease: "power2.in",
+        })
         .to(l2, { clipPath: "circle(0% at 50% 50%)", duration: 0.9 }, "-=0.1")
         .to(l1, { clipPath: "circle(0% at 50% 50%)", duration: 0.9 }, "-=0.7")
-        .to(content, { scale: 1, opacity: 1, filter: "blur(0px)", duration: 1.2, ease: "power3.out" }, "-=0.9");
+        .to(
+          content,
+          { scale: 1, opacity: 1, filter: "blur(0px)", duration: 1.2, ease: "power3.out" },
+          "-=0.9",
+        );
     });
 
     mm.add("(max-width: 767px)", () => {

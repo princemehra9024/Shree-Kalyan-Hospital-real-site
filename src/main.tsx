@@ -6,8 +6,6 @@ import { getRouter } from "./router";
 import "./styles.css";
 import "./i18n";
 
-
-
 const router = getRouter();
 
 const rootElement = document.getElementById("root")!;

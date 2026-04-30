@@ -26,8 +26,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     return res.status(405).json({ error: "Method not allowed" });
   }
 
-  const { patient_name, phone_number, reason, appointment_date, appointment_time } =
-    req.body ?? {};
+  const { patient_name, phone_number, reason, appointment_date, appointment_time } = req.body ?? {};
 
   if (!patient_name || !phone_number || !appointment_date || !appointment_time) {
     return res.status(400).json({ error: "Missing required fields" });
@@ -50,7 +49,9 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     `;
 
     if (existing.length > 0) {
-      return res.status(409).json({ error: "This slot is already booked. Please choose another time." });
+      return res
+        .status(409)
+        .json({ error: "This slot is already booked. Please choose another time." });
     }
 
     await sql`
@@ -79,6 +80,8 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   } catch (err) {
     const e = err as { message?: string };
     console.error("[book-appointment] DB error:", err);
-    return res.status(500).json({ success: false, error: "Failed to save appointment", details: e.message });
+    return res
+      .status(500)
+      .json({ success: false, error: "Failed to save appointment", details: e.message });
   }
 }

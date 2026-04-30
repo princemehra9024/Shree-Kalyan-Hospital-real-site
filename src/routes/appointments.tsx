@@ -584,13 +584,16 @@ function AppointmentsPage() {
                             formData.append("access_key", "ad8f6ae8-f6a3-4a34-b035-a96a66e5d980");
                             formData.append("subject", "New Appointment Request");
                             formData.append("from_name", "Shree Kalyan Hospital Website");
-                            formData.append("Appointment Date", date?.toLocaleDateString() || "Not set");
+                            formData.append(
+                              "Appointment Date",
+                              date?.toLocaleDateString() || "Not set",
+                            );
                             formData.append("Appointment Time", selectedTime || "Not set");
 
                             fetch("https://api.web3forms.com/submit", {
                               method: "POST",
                               body: formData,
-                            }).catch(err => console.error("Web3Forms failed:", err));
+                            }).catch((err) => console.error("Web3Forms failed:", err));
 
                             // Success flow
                             queryClient.invalidateQueries({ queryKey: ["bookedSlots", dateStr] });
@@ -738,7 +741,7 @@ function DarkField({
 }) {
   let autoComplete = "on";
   let inputMode: React.HTMLAttributes<HTMLInputElement>["inputMode"] = "text";
-  
+
   if (id === "name") autoComplete = "name";
   if (id === "email" || type === "email") {
     autoComplete = "email";

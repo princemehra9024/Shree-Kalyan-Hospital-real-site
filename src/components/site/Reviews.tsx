@@ -18,7 +18,8 @@ export function PatientReviews() {
 
   useGsapReveal();
 
-  if (isLoading) return <div className="h-48 flex items-center justify-center">Loading reviews...</div>;
+  if (isLoading)
+    return <div className="h-48 flex items-center justify-center">Loading reviews...</div>;
   if (isError || !data?.reviews?.length) return null;
 
   return (
@@ -53,6 +54,7 @@ export function PatientReviews() {
       <div className="relative">
         <Marquee
           speed="slow"
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
           items={data.reviews.map((review: any) => (
             <div
               key={review.time}

@@ -14,8 +14,8 @@ async function testSaveToken() {
     endpoint: "https://fcm.googleapis.com/fcm/send/test-endpoint-" + Date.now(),
     keys: {
       p256dh: "mock-p256dh-key",
-      auth: "mock-auth-key"
-    }
+      auth: "mock-auth-key",
+    },
   };
   console.log("Saving test subscription:", testSubscription.endpoint);
 

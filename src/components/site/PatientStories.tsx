@@ -199,7 +199,8 @@ export function PatientStories() {
     const ctx = gsap.context(() => {
       if (headingRef.current) {
         const lines = headingRef.current.querySelectorAll(".hl");
-        gsap.fromTo(lines,
+        gsap.fromTo(
+          lines,
           { opacity: 0, yPercent: 110, skewY: 2 },
           {
             opacity: 1,
@@ -213,7 +214,7 @@ export function PatientStories() {
               start: "top bottom", // fire as soon as heading enters viewport
               once: true,
             },
-          }
+          },
         );
       }
 
