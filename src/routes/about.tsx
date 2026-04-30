@@ -31,12 +31,14 @@ export const Route = createFileRoute("/about")({
   component: AboutPage,
   head: () => ({
     meta: [
-      { title: "About Us | Shree Kalyan Hospital" },
+      { title: "About Shree Kalyan Hospital Kota | Our Legacy & Medical Experts" },
       {
         name: "description",
         content:
-          "Learn more about Shree Kalyan Hospital, our history, and our commitment to providing world-class healthcare in Kota, Rajasthan.",
+          "Discover the history of Shree Kalyan Hospital in Kota. Founded in 2001, we are dedicated to bringing world-class healthcare and top specialists to Rajasthan.",
       },
+      { property: "og:title", content: "About Us | Shree Kalyan Hospital Kota" },
+      { property: "og:description", content: "A legacy of care and medical excellence in Kota, Rajasthan since 2001." },
     ],
   }),
 });
@@ -334,8 +336,8 @@ function AboutPage() {
             >
               <div className="absolute -left-[5px] top-0 size-2 bg-magenta rounded-full"></div>
               <p className="text-xl md:text-2xl text-ink/80 font-light leading-relaxed">
-                Twenty-five years of quiet precision. Delivering world-class healthcare with an
-                uncompromising, human touch right here in Kota.
+                Over two decades of dedicated medical service in Kota. We are committed to providing
+                expert healthcare with the same warmth and care we would give our own family.
               </p>
             </div>
 
@@ -345,7 +347,7 @@ function AboutPage() {
             >
               <div className="flex flex-col">
                 <span className="font-display font-light text-4xl text-navy-deep">
-                  500<span className="text-magenta">+</span>
+                  150<span className="text-magenta">+</span>
                 </span>
                 <span className="text-[0.55rem] font-syne uppercase tracking-widest text-ink/60 mt-3 font-bold">
                   Beds Facility
@@ -353,18 +355,18 @@ function AboutPage() {
               </div>
               <div className="flex flex-col">
                 <span className="font-display font-light text-4xl text-navy-deep">
-                  140<span className="text-magenta">+</span>
+                  70<span className="text-magenta">+</span>
                 </span>
                 <span className="text-[0.55rem] font-syne uppercase tracking-widest text-ink/60 mt-3 font-bold">
-                  Top Specialists
+                  Expert Specialists
                 </span>
               </div>
               <div className="flex flex-col">
                 <span className="font-display font-light text-4xl text-navy-deep">
-                  1M<span className="text-magenta">+</span>
+                  23<span className="text-magenta">+</span>
                 </span>
                 <span className="text-[0.55rem] font-syne uppercase tracking-widest text-ink/60 mt-3 font-bold">
-                  Lives Touched
+                  Years of Service
                 </span>
               </div>
             </div>
@@ -392,10 +394,10 @@ function AboutPage() {
               >
                 <ArrowDownRight className="w-8 h-8 text-magenta mb-6" />
                 <p className="font-display italic text-paper text-2xl leading-none mb-3">
-                  Shree Kalyan Campus
+                  Shree Kalyan Kota
                 </p>
                 <p className="text-[0.6rem] font-syne uppercase tracking-[0.2em] text-paper/60 font-bold hidden sm:block">
-                  Kota, Rajasthan
+                  Trusted Since 2001
                 </p>
               </div>
             </div>
@@ -409,11 +411,10 @@ function AboutPage() {
           data-reveal
         >
           <h2 className="font-display text-4xl md:text-6xl lg:text-8xl text-navy-deep leading-[0.85] tracking-tight">
-            Heritage & <span className="italic font-light text-magenta">milestones.</span>
+            Our Journey & <span className="italic font-light text-magenta">milestones.</span>
           </h2>
           <p className="text-lg text-ink/60 max-w-[36ch] leading-relaxed">
-            A brief history of our evolution from a surgical center to a regional center of
-            excellence.
+            A look back at how we grew from a small clinic to one of Kota's most trusted hospitals.
           </p>
         </div>
 
@@ -421,23 +422,23 @@ function AboutPage() {
           {[
             {
               year: "2001",
-              event: "Shree Kalyan Surgical Center founded by senior consultants in Kota.",
+              event: "Shree Kalyan Hospital founded with a vision to provide quality surgical care in Kota.",
             },
             {
               year: "2008",
-              event: "Expansion into a multi-specialty facility with advanced cardiology wing.",
+              event: "Expansion into a multi-specialty center with the addition of a dedicated Cardiology unit.",
             },
             {
               year: "2015",
-              event: "Attained NABH accreditation, the gold standard for Indian healthcare.",
+              event: "Received NABH accreditation, reinforcing our commitment to patient safety and quality care.",
             },
             {
               year: "2021",
-              event: "Inauguration of the Precision Oncology and Robotic Surgery department.",
+              event: "Inauguration of our advanced Oncology and Critical Care departments.",
             },
             {
               year: "2024",
-              event: "Celebrating 25 years of restoring vitality through quiet precision.",
+              event: "Continuing our mission to provide compassionate healthcare to the people of Rajasthan.",
             },
           ].map((m, i) => (
             <div
@@ -553,25 +554,27 @@ function AboutPage() {
 
             <div className="space-y-6 text-ink/75 text-lg font-light leading-relaxed">
               <p>
-                From a modest surgical center to a leading multi-specialty hospital, our journey has
-                been driven by one core philosophy: the patient always comes first.
+                What started as a modest surgical center in 2001 has grown into a leading 
+                multi-specialty hospital, but our mission remains the same: the patient always comes first.
               </p>
               <p>
-                When we opened our doors in 2001, we aimed to create a sanctuary of healing. We
-                understood that modern healthcare requires advanced technology, but we also knew
-                that true healing requires empathy, patience, and a human connection.
+                Founded by dedicated medical professionals, Shree Kalyan Hospital was built 
+                to bridge the gap in quality healthcare for the people of Kota and nearby regions. 
+                We understood that while technology is essential, true healing happens through 
+                personal attention and empathy.
               </p>
               <p>
-                Today, Shree Kalyan Hospital is recognized across Rajasthan and beyond for its
-                specialized departments, from Robotic Surgery to Oncology, all operating under the
-                same guiding principle of unhurried, personalized care.
+                Today, we take pride in our specialized departments and the thousands of 
+                families who trust us with their health. We continue to evolve, bringing 
+                the latest medical advancements to Kota while keeping our roots firmly 
+                planted in compassionate care.
               </p>
             </div>
 
             <div className="mt-14 pt-8 border-t border-navy/10 relative">
               <div className="absolute top-0 right-1/2 w-4 h-[2px] bg-magenta"></div>
               <p className="font-display text-3xl italic text-navy-deep leading-tight">
-                "Healing is not merely technical. It is deeply, irreversibly human."
+                "We don't just treat illnesses; we care for people. That's been our way since day one."
               </p>
             </div>
           </div>

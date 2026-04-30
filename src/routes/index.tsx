@@ -17,16 +17,16 @@ export const Route = createFileRoute("/")({
   component: Index,
   head: () => ({
     meta: [
-      { title: "Shree Kalyan Hospital · Kota — Quiet precision in modern healthcare" },
+      { title: "Best Hospital in Kota | Shree Kalyan Hospital | Leading Multi-Specialty Care" },
       {
         name: "description",
         content:
-          "Shree Kalyan Hospital, Kota — an editorial sanctuary of advanced clinical care across cardiology, neurosciences, oncology and more.",
+          "Shree Kalyan Hospital in Kota provides advanced clinical care in Cardiology, Oncology, Neurosciences, and more. Trusted by thousands in Rajasthan since 2001.",
       },
-      { property: "og:title", content: "Shree Kalyan Hospital · Kota" },
+      { property: "og:title", content: "Shree Kalyan Hospital · Kota | Advanced Healthcare" },
       {
         property: "og:description",
-        content: "Quiet precision in modern healthcare. Kota, Rajasthan.",
+        content: "Expert medical care with a human touch in the heart of Kota, Rajasthan.",
       },
       { property: "og:image", content: heroImg },
       { name: "twitter:image", content: heroImg },
@@ -60,19 +60,19 @@ function Index() {
             <div className="absolute inset-0 opacity-20 mix-blend-overlay bg-paper/10" />
           </div>
 
-          <div className="relative z-10 px-6 md:pl-48 lg:pl-80 pr-6 md:pr-12 lg:pr-24 pb-12 md:pb-20 pt-48 md:pt-56 lg:pt-64 max-w-[1920px] mx-auto w-full">
+                <div className="relative z-10 px-6 md:pl-48 lg:pl-80 pr-6 md:pr-12 lg:pr-24 pb-12 md:pb-20 pt-48 md:pt-56 lg:pt-64 max-w-[1920px] mx-auto w-full">
             <div className="flex flex-col md:flex-row items-end justify-between gap-12">
-              {/* Circular CTA — HutStuf Inspired */}
+              {/* Circular CTA */}
               <div className="relative group shrink-0 mb-4 md:mb-12" data-anim="hero-cta">
                 <Link
                   to="/appointments"
                   className="size-36 md:size-56 rounded-full bg-magenta text-paper flex flex-col items-center justify-center text-center p-6 transition-all duration-700 hover:scale-110 shadow-glow-magenta relative z-10 overflow-hidden group/btn"
                 >
                   <span className="text-[0.6rem] md:text-[0.7rem] font-bold tracking-[0.3em] uppercase mb-2 opacity-80">
-                    {t("home.book_appointment", "Schedule")}
+                    {t("nav.appointments", "Consultation")}
                   </span>
                   <span className="font-display italic text-3xl md:text-5xl leading-tight">
-                    {t("nav.appointments", "Visit")}
+                    {t("home.book_appointment", "Schedule")}
                   </span>
                   <div className="absolute inset-0 bg-paper/20 translate-y-full group-hover/btn:translate-y-0 transition-transform duration-500" />
                 </Link>
@@ -91,7 +91,7 @@ function Index() {
               <p className="text-paper/50 text-sm max-w-sm leading-relaxed font-light">
                 {t(
                   "home.hero_subtitle",
-                  "Quiet precision in modern healthcare. A sanctuary where advanced clinical practice meets profound human empathy.",
+                  "Expert medical care with personal attention. We combine advanced clinical practice with compassion to ensure the best outcomes for our patients.",
                 )}
               </p>
               <div className="flex gap-12">
@@ -128,18 +128,18 @@ function Index() {
           </div>
         </section>
 
-        {/* Quick-access Fortis-style grid */}
+        {/* Quick-access grid */}
         <QuickAccess />
 
         {/* Conveyor belt */}
         <Marquee
           items={[
-            "Advanced Cardiology",
-            "Neurosciences",
-            "Precision Oncology",
-            "Robotic Surgery",
-            "Mother & Child",
-            "Critical Care",
+            "Expert Cardiology",
+            "Advanced Neurosciences",
+            "Oncology Care",
+            "Surgical Excellence",
+            "Mother & Child Care",
+            "24/7 Critical Care",
           ]}
         />
 

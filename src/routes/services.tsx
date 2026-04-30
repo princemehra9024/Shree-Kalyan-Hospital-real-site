@@ -18,16 +18,16 @@ export const Route = createFileRoute("/services")({
   component: ServicesPage,
   head: () => ({
     meta: [
-      { title: "Centers of Excellence · Shree Kalyan Hospital" },
+      { title: "Medical Services & Specialties | Shree Kalyan Hospital Kota" },
       {
         name: "description",
         content:
-          "Explore our specialized medical institutes and centers of excellence including Cardiology, Neurosciences, and Orthopedics.",
+          "Explore specialized medical services at Shree Kalyan Hospital Kota, including Cardiology, Oncology, Neurosciences, and Orthopedics. Advanced care in Rajasthan.",
       },
-      { property: "og:title", content: "Centers of Excellence · Shree Kalyan Hospital" },
+      { property: "og:title", content: "Specialized Medical Services | Shree Kalyan Hospital Kota" },
       {
         property: "og:description",
-        content: "Explore our specialized medical institutes and centers of excellence.",
+        content: "Explore our centers of excellence in Cardiology, Oncology, and more in Kota.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },

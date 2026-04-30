@@ -14,16 +14,16 @@ export const Route = createFileRoute("/contact")({
   component: ContactPage,
   head: () => ({
     meta: [
-      { title: "Contact · Shree Kalyan Hospital, Kota" },
+      { title: "Contact Us | Shree Kalyan Hospital Kota | 24/7 Emergency" },
       {
         name: "description",
         content:
-          "Visit Shree Kalyan Hospital in Kota, Rajasthan. Walk-in OPD daily, 24/7 emergency triage, private consultations on appointment.",
+          "Contact Shree Kalyan Hospital in Kota for appointments, emergency care, and medical inquiries. Located on 80 Feet Link Road, Kota. Open 24/7 for emergencies.",
       },
-      { property: "og:title", content: "Contact · Shree Kalyan Hospital" },
+      { property: "og:title", content: "Contact Shree Kalyan Hospital Kota" },
       {
         property: "og:description",
-        content: "Walk-in OPD daily. Emergency 24/7. Kota, Rajasthan.",
+        content: "Visit us at 80 Feet Link Road, Kota. 24/7 emergency services and expert OPD consultations.",
       },
       { property: "og:image", content: exterior },
       { name: "twitter:image", content: exterior },
