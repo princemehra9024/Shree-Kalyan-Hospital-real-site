@@ -46,7 +46,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ArrowRight, CalendarDays, Clock, Phone, Loader2 } from "lucide-react";
 import { toast } from "sonner";
 import { usePushNotifications } from "@/hooks/use-push-notifications";
-import heroCorridor from "@/assets/hero-corridor.jpg";
+import heroCorridor from "@/assets/corridor.png";
 
 gsap.registerPlugin(ScrollTrigger);
 

@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import heroImg from "@/assets/hero-corridor.jpg";
+import heroImg from "@/assets/corridor.png";
 import { SiteNav } from "@/components/site/SiteNav";
 import { Marquee } from "@/components/site/Marquee";
 import { Philosophy } from "@/components/site/Philosophy";

@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { createFileRoute } from "@tanstack/react-router";
-import exterior from "@/assets/hospital-exterior.jpg";
+import exterior from "@/assets/hospital.png";
 import { SiteNav } from "@/components/site/SiteNav";
 import { SiteFooter } from "@/components/site/SiteFooter";
 import gsap from "gsap";

@@ -7,10 +7,10 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { services } from "@/lib/data/services";
 import { ArrowRight } from "lucide-react";
 
-import operatingTheatre from "@/assets/operating-theatre.png";
-import heroCorridor from "@/assets/hero-corridor.jpg";
-import hospitalLobby from "@/assets/hospital-lobby.png";
-import surgicalTheater from "@/assets/surgical-theater.jpg";
+import operatingTheatre from "@/assets/lab.png";
+import heroCorridor from "@/assets/corridor.png";
+import hospitalLobby from "@/assets/reception.png";
+import surgicalTheater from "@/assets/ward.jpeg";
 
 gsap.registerPlugin(ScrollTrigger);
 

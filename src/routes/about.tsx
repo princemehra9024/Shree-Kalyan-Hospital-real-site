@@ -17,13 +17,13 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 // Assets
-import founderDoctor from "@/assets/founder-doctor.png";
-import hospitalLobby from "@/assets/hospital-lobby.png";
-import operatingTheatre from "@/assets/operating-theatre.png";
-import doctor1 from "@/assets/doctor-1.jpg";
-import doctor2 from "@/assets/doctor-2.jpg";
-import doctor3 from "@/assets/doctor-3.jpg";
-import doctor4 from "@/assets/doctor-4.jpg";
+import founderDoctor from "@/assets/kapilG.jpeg";
+import hospitalLobby from "@/assets/reception.png";
+import operatingTheatre from "@/assets/lab.png";
+import doctor1 from "@/assets/kapilG.jpeg";
+import doctor2 from "@/assets/manishG.jpeg";
+import doctor3 from "@/assets/anjali-sharma.png";
+import doctor4 from "@/assets/doctor-portrait.jpg";
 
 gsap.registerPlugin(ScrollTrigger);
 

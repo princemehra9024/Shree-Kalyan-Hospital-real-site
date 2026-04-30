@@ -1,11 +1,12 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
-import doc1 from "@/assets/doctor-1.jpg";
-import doc2 from "@/assets/doctor-2.jpg";
-import doc3 from "@/assets/doctor-3.jpg";
-import doc4 from "@/assets/doctor-4.jpg";
-import featured from "@/assets/anjali-sharma.png";
+import doc1 from "@/assets/kapilG.jpeg";
+import doc2 from "@/assets/manishG.jpeg";
+import doc3 from "@/assets/anjali-sharma.png";
+import doc4 from "@/assets/doctor-portrait.jpg";
+import featured from "@/assets/kapilG.jpeg";
+import manishG from "@/assets/manishG.jpeg";
 import { SiteNav } from "@/components/site/SiteNav";
 import { SiteFooter } from "@/components/site/SiteFooter";
 import { Marquee } from "@/components/site/Marquee";
@@ -192,7 +193,7 @@ function TeamPage() {
           <div className="relative z-10 mt-8 lg:mt-0 px-4 md:px-0">
             <div className="hero-img-wrap overflow-hidden relative shadow-2xl bg-ink/5">
               <img
-                src={physicians[0].image}
+                src={manishG}
                 alt="Medical Team"
                 className="hero-img w-full aspect-[4/3] md:aspect-[16/10] lg:aspect-[4/5] object-cover"
                 fetchPriority="high"
