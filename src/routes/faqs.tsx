@@ -93,20 +93,20 @@ const FAQ_CATEGORIES = [
     ],
   },
   {
-    id: "international",
-    title: "International & Financial",
+    id: "financial",
+    title: "Financial & Concierge",
     items: [
       {
-        q: "Do you accept international insurance?",
-        a: "Yes, we partner with major global health insurance providers. Please contact our international desk prior to arrival. Our concierge team handles direct-billing arrangements and coverage verification.",
+        q: "Do you accept cashless insurance?",
+        a: "Yes, we partner with all major national health insurance providers. Our TPA desk handles direct-billing arrangements and coverage verification for a seamless experience.",
       },
       {
         q: "Is remote second-opinion consultation possible?",
-        a: "Yes. Through our Telemedicine Protocol, our specialists consult globally. For complex oncology or neurosurgery cases, we routinely facilitate multi-disciplinary remote tumor board reviews.",
+        a: "Yes. Through our Telemedicine Protocol, our specialists offer remote consultations. For complex cases, we routinely facilitate multi-disciplinary remote reviews.",
       },
       {
-        q: "Do you offer concierge services for out-of-town patients?",
-        a: "Yes. Our patient experience team manages airport transfers in medically equipped vehicles, coordinates nearby luxury hotel stays for extended family, and handles all local logistical requirements.",
+        q: "Do you offer support for out-of-town patients?",
+        a: "Yes. Our patient experience team coordinates nearby stays for extended family and handles local logistical requirements for patients travelling from other cities.",
       },
     ],
   },

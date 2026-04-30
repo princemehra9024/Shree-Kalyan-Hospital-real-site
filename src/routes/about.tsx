@@ -85,7 +85,7 @@ const LEADERSHIP = [
     img: doctor3,
     role: "Chief Neurologist",
     name: "Dr. Vikram Singh",
-    desc: "Internationally renowned for critical neuro-navigation and spinal reconstructive procedures.",
+    desc: "Widely renowned for critical neuro-navigation and spinal reconstructive procedures.",
   },
   {
     img: doctor4,

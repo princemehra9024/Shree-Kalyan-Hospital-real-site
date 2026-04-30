@@ -5,7 +5,7 @@ const ACCREDITATIONS = [
   { icon: "🎖️", label: "ISO 9001:2015", sub: "Quality Management" },
   { icon: "⚡", label: "24/7 Trauma Care", sub: "Level II Trauma Centre" },
   { icon: "🤝", label: "Cashless Care", sub: "500+ Insurance Partners" },
-  { icon: "🌍", label: "International Patients", sub: "Multilingual Support" },
+  { icon: "🌟", label: "Patient Centric", sub: "Dedicated Support" },
   { icon: "🔬", label: "NABL Lab", sub: "Accredited Diagnostics" },
   { icon: "🏅", label: "Top Hospital 2024", sub: "Times of India Award" },
   { icon: "💎", label: "CRISIL Rated", sub: "A+ Healthcare Quality" },

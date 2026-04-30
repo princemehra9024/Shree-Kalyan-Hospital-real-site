@@ -569,7 +569,7 @@ export function QuickAccess() {
             Patient Corner
           </p>
           <div className="space-y-3">
-            {["Insurance & Cashless", "International Patients", "Medical Records"].map((item) => (
+            {["Insurance & Cashless", "Health Checkups", "Medical Records"].map((item) => (
               <Link
                 key={item}
                 to="/contact"
