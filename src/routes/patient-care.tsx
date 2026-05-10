@@ -13,11 +13,12 @@ import {
   Sparkles,
 } from "lucide-react";
 
-import hospitalLobby from "@/assets/reception.png";
-import operatingTheatre from "@/assets/lab.png";
-import heroCorridor from "@/assets/corridor.png";
-import surgicalTheater from "@/assets/ward.jpeg";
-import founderDoctor from "@/assets/kapilG.jpeg";
+import elevatorLobby from "@/assets/elevator-lobby-skh.jpg";
+import otImg from "@/assets/ot-skh.jpg";
+import corridorImg from "@/assets/corridor-skh.jpg";
+import wardImg from "@/assets/ward-skh.jpg";
+import founderDoctor from "@/assets/founder-doctor.png";
+import surgicalTheater from "@/assets/ward-skh.jpg";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -48,28 +49,28 @@ const STEPS = [
     title: "Pre-Admission",
     body: "Pre-register online, upload records, and receive a digital welcome packet. Your concierge confirms travel and dietary preferences before you even arrive.",
     icon: ShieldCheck,
-    image: heroCorridor,
+    image: corridorImg,
   },
   {
     num: "02",
     title: "Arrival & Suite",
     body: "Greeted at the door and escorted to a private recovery suite — climate-controlled, nutritionally curated, and designed around your circadian recovery rhythms.",
     icon: Sparkles,
-    image: hospitalLobby,
+    image: elevatorLobby,
   },
   {
     num: "03",
     title: "Treatment",
     body: "One lead physician oversees every decision — from diagnosis through surgery to post-operative review. A single thread of absolute accountability.",
     icon: Stethoscope,
-    image: operatingTheatre,
+    image: otImg,
   },
   {
     num: "04",
     title: "Recovery & Home",
     body: "Access your encrypted dossier, schedule video follow-ups, and message your care team via the patient portal — complete continuity beyond discharge.",
     icon: HeartHandshake,
-    image: surgicalTheater,
+    image: wardImg,
   },
 ];
 
@@ -445,8 +446,8 @@ function PatientCarePage() {
         {/* Right — image with clip-path wipe */}
         <div className="relative overflow-hidden hero-img-wrap min-h-[50vh] lg:min-h-full">
           <img
-            src={hospitalLobby}
-            alt="Patient Suite"
+            src={elevatorLobby}
+            alt="Patient Reception at Shree Kalyan Hospital"
             className="hero-img-inner w-full h-[115%] object-cover -top-[7%] absolute"
             fetchPriority="high"
             decoding="async"
@@ -723,14 +724,14 @@ function PatientCarePage() {
           <div className="grid grid-cols-2 gap-4">
             <div className="grid-img relative col-span-2 h-[45vh] overflow-hidden">
               <img
-                src={operatingTheatre}
+                src={otImg}
                 alt="Operating Theatre"
                 className="w-full h-full object-cover grayscale hover:grayscale-0 transition-[filter] duration-[2s]"
                 loading="lazy"
                 decoding="async"
               />
               <div className="absolute top-4 left-4 bg-paper px-4 py-2 text-[0.55rem] font-syne font-bold uppercase tracking-widest text-navy-deep">
-                Recovery Suite
+                Surgical Excellence
               </div>
             </div>
             <div className="grid-img relative h-[30vh] overflow-hidden">
@@ -744,7 +745,7 @@ function PatientCarePage() {
             </div>
             <div className="grid-img relative h-[30vh] overflow-hidden">
               <img
-                src={heroCorridor}
+                src={corridorImg}
                 alt="Hospital corridor"
                 className="w-full h-full object-cover grayscale hover:grayscale-0 transition-[filter] duration-[2s]"
                 loading="lazy"
@@ -779,7 +780,7 @@ function PatientCarePage() {
           <div className="mt-16 flex items-center justify-center gap-4">
             <div className="w-12 h-px bg-magenta" />
             <span className="text-[0.6rem] font-syne uppercase tracking-[0.3em] text-paper/40 font-bold">
-              Dr. Founder, Shree Kalyan Hospital
+              Dr. Kapil Garg, Founder, Shree Kalyan Hospital
             </span>
             <div className="w-12 h-px bg-magenta" />
           </div>

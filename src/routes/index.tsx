@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import heroImg from "@/assets/corridor.png";
+import heroImg from "@/assets/hospital-hero-generated.png";
 import { SiteNav } from "@/components/site/SiteNav";
 import { Marquee } from "@/components/site/Marquee";
 import { Philosophy } from "@/components/site/Philosophy";
@@ -42,25 +42,23 @@ function Index() {
     <div className="min-h-dvh bg-paper text-ink overflow-x-hidden">
       <SiteNav isHome={true} />
       <main>
-        {/* Hero Section — Immersive & Minimalist */}
+        {/* ── Hero Section — Immersive & Minimalist ── */}
         <section className="relative h-dvh min-h-[700px] flex flex-col justify-end overflow-hidden bg-navy-deep">
-          {/* Background Video Layer */}
+          {/* Background Image Layer */}
           <div className="absolute inset-0 z-0">
-            <video
-              src="https://player.vimeo.com/external/517090025.hd.mp4?s=d63a8b277d33b49e6d8a39e8&profile_id=174"
-              poster={heroImg}
-              autoPlay
-              loop
-              muted
-              playsInline
-              className="absolute inset-0 w-full h-full object-cover grayscale brightness-50 contrast-125 transition-all duration-1000"
+            <img
+              src={heroImg}
+              alt="Shree Kalyan Hospital"
+              fetchPriority="high"
+              decoding="async"
+              className="absolute inset-0 w-full h-full object-cover brightness-50 contrast-110"
             />
             {/* Editorial Overlays */}
-            <div className="absolute inset-0 bg-gradient-to-t from-navy-deep via-transparent to-navy-deep/30" />
-            <div className="absolute inset-0 opacity-20 mix-blend-overlay bg-paper/10" />
+            <div className="absolute inset-0 bg-gradient-to-t from-navy-deep via-navy-deep/30 to-navy-deep/20" />
+            <div className="absolute inset-0 bg-gradient-to-r from-navy-deep/60 to-transparent" />
           </div>
 
-                <div className="relative z-10 px-6 md:pl-48 lg:pl-80 pr-6 md:pr-12 lg:pr-24 pb-12 md:pb-20 pt-48 md:pt-56 lg:pt-64 max-w-[1920px] mx-auto w-full">
+          <div className="relative z-10 px-6 md:pl-48 lg:pl-80 pr-6 md:pr-12 lg:pr-24 pb-12 md:pb-20 pt-48 md:pt-56 lg:pt-64 max-w-[1920px] mx-auto w-full">
             <div className="flex flex-col md:flex-row items-end justify-between gap-12">
               {/* Circular CTA */}
               <div className="relative group shrink-0 mb-4 md:mb-12" data-anim="hero-cta">
@@ -69,10 +67,10 @@ function Index() {
                   className="size-36 md:size-56 rounded-full bg-magenta text-paper flex flex-col items-center justify-center text-center p-6 transition-all duration-700 hover:scale-110 shadow-glow-magenta relative z-10 overflow-hidden group/btn"
                 >
                   <span className="text-[0.6rem] md:text-[0.7rem] font-bold tracking-[0.3em] uppercase mb-2 opacity-80">
-                    {t("nav.appointments", "Consultation")}
+                    {t("nav.appointments", "Appointments")}
                   </span>
                   <span className="font-display italic text-3xl md:text-5xl leading-tight">
-                    {t("home.book_appointment", "Schedule")}
+                    {t("home.book_appointment", "Book\nAppointment")}
                   </span>
                   <div className="absolute inset-0 bg-paper/20 translate-y-full group-hover/btn:translate-y-0 transition-transform duration-500" />
                 </Link>
@@ -83,7 +81,7 @@ function Index() {
               </div>
             </div>
 
-            {/* Subtle Hero Footer */}
+            {/* Hero Footer — tagline + stats */}
             <div
               className="mt-16 md:mt-24 flex flex-col md:flex-row items-center gap-8 md:gap-16 border-t border-paper/10 pt-12"
               data-anim="hero-stats"
@@ -131,7 +129,7 @@ function Index() {
         {/* Quick-access grid */}
         <QuickAccess />
 
-        {/* Conveyor belt */}
+        {/* Marquee conveyor */}
         <Marquee
           items={[
             "Expert Cardiology",

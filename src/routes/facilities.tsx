@@ -5,8 +5,10 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { SiteNav } from "@/components/site/SiteNav";
 import { SiteFooter } from "@/components/site/SiteFooter";
 import { ShieldCheck, Zap, Coffee, Bed, Activity, ArrowRight } from "lucide-react";
-import operatingTheatre from "@/assets/lab.png";
-import surgicalTheater from "@/assets/ward.jpeg";
+import elevatorLobby from "@/assets/elevator-lobby-skh.jpg";
+import otImg from "@/assets/ot-skh.jpg";
+import diagnosticLab from "@/assets/lab-skh.jpg";
+import icuImg from "@/assets/icu-skh.jpg";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -42,6 +44,7 @@ const facilitiesData = [
     bg: "bg-navy-deep",
     text: "text-paper",
     accent: "text-magenta",
+    img: icuImg,
   },
   {
     id: "suites",
@@ -52,6 +55,7 @@ const facilitiesData = [
     bg: "bg-[#f0ede6]",
     text: "text-navy-deep",
     accent: "text-magenta",
+    img: elevatorLobby, // Reusing lobby for suite vibes if specific suite img not found, or use ward
   },
   {
     id: "ot",
@@ -62,6 +66,7 @@ const facilitiesData = [
     bg: "bg-ink",
     text: "text-paper",
     accent: "text-magenta",
+    img: otImg,
   },
   {
     id: "diagnostic",
@@ -72,6 +77,7 @@ const facilitiesData = [
     bg: "bg-paper",
     text: "text-navy-deep",
     accent: "text-magenta",
+    img: diagnosticLab,
   },
   {
     id: "cafeteria",
@@ -82,6 +88,7 @@ const facilitiesData = [
     bg: "bg-magenta",
     text: "text-paper",
     accent: "text-paper/80",
+    img: elevatorLobby,
   },
 ];
 
@@ -300,8 +307,8 @@ function FacilitiesPage() {
               style={{ clipPath: "polygon(0 100%, 100% 100%, 100% 100%, 0 100%)" }}
             >
               <img
-                src={operatingTheatre}
-                alt="Shree Kalyan Hospital — operating theatre"
+                src={elevatorLobby}
+                alt="Shree Kalyan Hospital — Elegant Lobby"
                 className="fc-hero-img w-full aspect-[4/5] object-cover grayscale hover:grayscale-0 transition-all duration-[2s] ease-in-out"
                 fetchPriority="high"
                 decoding="async"
@@ -372,6 +379,17 @@ function FacilitiesPage() {
                 >
                   {item.desc}
                 </p>
+
+                {item.img && (
+                  <div className="mt-12 relative overflow-hidden rounded-sm group/img aspect-video max-w-2xl border border-white/10">
+                    <img
+                      src={item.img}
+                      alt={item.title}
+                      className="w-full h-full object-cover grayscale group-hover/img:grayscale-0 group-hover/img:scale-105 transition-all duration-700"
+                    />
+                    <div className="absolute inset-0 bg-navy-deep/20 mix-blend-multiply" />
+                  </div>
+                )}
 
                 <div className="mt-24 flex items-center gap-12">
                   <div className="flex flex-col">
@@ -465,8 +483,8 @@ function FacilitiesPage() {
             </p>
             <div className="relative overflow-hidden shadow-[0_30px_80px_-20px_rgba(0,0,0,0.14)]">
               <img
-                src={surgicalTheater}
-                alt="Surgical theater at Shree Kalyan Hospital"
+                src={otImg}
+                alt="Operation Theater at Shree Kalyan Hospital"
                 className="w-full aspect-video object-cover grayscale hover:grayscale-0 transition-all duration-[2s]"
                 loading="lazy"
                 decoding="async"

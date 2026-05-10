@@ -1,42 +1,46 @@
 import { useEffect, useRef, useState, useCallback } from "react";
 import gsap from "gsap";
 import { ArrowRight, ArrowLeft, Maximize2 } from "lucide-react";
+import lobbyImg from "@/assets/lobby-skh.jpg";
+import wardImg from "@/assets/ward-skh.jpg";
+import labImg from "@/assets/lab-skh.jpg";
+import corridorImg from "@/assets/corridor-skh.jpg";
 
 const ROOMS = [
   {
     id: "01",
-    title: "Executive Suite",
-    subtitle: "Luxury Redefined",
-    desc: "Where five-star hospitality meets world-class medicine. Private lounges, dedicated nursing staff, and panoramic views create a sanctuary for healing.",
-    stats: { area: "450 sq.ft", beds: "King-size", feature: "Private Lounge" },
-    img: "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&q=80&w=1600",
+    title: "Patient Reception",
+    subtitle: "Welcoming Care",
+    desc: "A professional and warm environment where your journey to health begins. Our dedicated front-desk team ensures a seamless admission and guidance process.",
+    stats: { area: "Spacious", beds: "Reception", feature: "24/7 Desk" },
+    img: lobbyImg,
     accent: "#e0185e",
   },
   {
     id: "02",
-    title: "Premium Ward",
-    subtitle: "Designed for Recovery",
-    desc: "Flooded with natural light and engineered for rest. Smart-bed technology, ambient soundscapes, and biophilic design accelerate the healing journey.",
-    stats: { area: "320 sq.ft", beds: "Adjustable", feature: "Smart Controls" },
-    img: "https://images.unsplash.com/photo-1551884170-09fb70a3a2ed?auto=format&fit=crop&q=80&w=1600",
+    title: "General Ward",
+    subtitle: "Comfortable Recovery",
+    desc: "Designed for shared comfort and constant monitoring. Our general wards provide a supportive environment with immediate access to nursing care.",
+    stats: { area: "Multi-bed", beds: "Standard", feature: "Oxygen Ports" },
+    img: wardImg,
     accent: "#3a86c4",
   },
   {
     id: "03",
-    title: "Advanced ICU",
-    subtitle: "Precision Engineering",
-    desc: "A triumph of medical architecture. AI-driven monitoring, ultra-sterile laminar airflow, and 24/7 specialist oversight for the most critical moments.",
-    stats: { area: "280 sq.ft", beds: "Motorized", feature: "AI Monitoring" },
-    img: "https://images.unsplash.com/photo-1581594693702-fbdc51b2763b?auto=format&fit=crop&q=80&w=1600",
+    title: "Advanced Diagnostics",
+    subtitle: "Pathology Lab",
+    desc: "Equipped with the latest diagnostic machinery like the Horiba Yumizen. We provide high-precision pathology and hematology testing for accurate clinical decisions.",
+    stats: { area: "High-Tech", beds: "Lab Tests", feature: "Automated" },
+    img: labImg,
     accent: "#2ec4b6",
   },
   {
     id: "04",
-    title: "Maternity Wing",
-    subtitle: "Where Life Begins",
-    desc: "A gentle revolution in birthing care. LDR suites wrapped in warmth, neonatal excellence on standby, and an atmosphere that feels like home.",
-    stats: { area: "400 sq.ft", beds: "LDR Suite", feature: "NICU Adjacent" },
-    img: "https://images.unsplash.com/photo-1538108149393-fbbd81895907?auto=format&fit=crop&q=80&w=1600",
+    title: "Advanced Infrastructure",
+    subtitle: "Efficient Transit",
+    desc: "Spacious and clean infrastructure designed for easy mobility and rapid transit between departments. Engineered for the highest standards of hygiene and accessibility.",
+    stats: { area: "Clean-air", beds: "Stretchers", feature: "Wide Access" },
+    img: corridorImg,
     accent: "#f4a261",
   },
 ];

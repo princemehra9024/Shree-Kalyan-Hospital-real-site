@@ -17,12 +17,14 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 // Assets
-import founderDoctor from "@/assets/kapilG.jpeg";
-import hospitalLobby from "@/assets/reception.png";
-import operatingTheatre from "@/assets/lab.png";
-import doctor1 from "@/assets/kapilG.jpeg";
-import doctor2 from "@/assets/manishG.jpeg";
-import doctor3 from "@/assets/anjali-sharma.png";
+import founderDoctor from "@/assets/founder-doctor.png";
+import elevatorLobby from "@/assets/elevator-lobby-skh.jpg";
+import otImg from "@/assets/ot-skh.jpg";
+import operatingTheatre from "@/assets/ot-skh.jpg";
+import hospitalLobby from "@/assets/lobby-skh.jpg";
+import doctor1 from "@/assets/anjali-sharma.png";
+import doctor2 from "@/assets/kapilG.jpeg";
+import doctor3 from "@/assets/manishG.jpeg";
 import doctor4 from "@/assets/doctor-portrait.jpg";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -73,27 +75,27 @@ const TIMELINE = [
 const LEADERSHIP = [
   {
     img: doctor1,
-    role: "Chief of Surgery",
-    name: "Dr. Arvind Mehta",
-    desc: "Over 30 years of excellence in minimally invasive and robotic surgical oncology.",
+    role: "Director, Internal Medicine",
+    name: "Dr. Anjali Sharma",
+    desc: "Dedicated to providing expert medical care with a human touch, leading our clinical practice with compassion.",
   },
   {
     img: doctor2,
     role: "Head of Cardiology",
-    name: "Dr. Sunita Sharma",
-    desc: "Pioneer in complex angioplasties and advanced structural heart disease interventions.",
+    name: "Dr. Kapil Garg",
+    desc: "Pioneer in interventional cardiology with over 25 years of experience in complex heart procedures.",
   },
   {
     img: doctor3,
-    role: "Chief Neurologist",
-    name: "Dr. Vikram Singh",
-    desc: "Widely renowned for critical neuro-navigation and spinal reconstructive procedures.",
+    role: "Consultant Neurosurgeon",
+    name: "Dr. Manish Gupta",
+    desc: "Expert in neuro-navigation and spinal reconstructive procedures with a focus on minimally invasive techniques.",
   },
   {
     img: doctor4,
     role: "Medical Director",
     name: "Dr. Ananya Roy",
-    desc: "Leading the global clinical governance and patient safety protocols across all facilities.",
+    desc: "Overseeing global clinical governance and patient safety protocols to ensure the highest standards of care.",
   },
 ];
 
@@ -380,8 +382,8 @@ function AboutPage() {
               <div className="absolute inset-0 border border-navy/15 translate-x-3 translate-y-3 md:translate-x-6 md:translate-y-6 pointer-events-none transition-transform duration-700 group-hover:translate-x-8 group-hover:translate-y-8"></div>
               <div className="absolute inset-0 bg-navy/5 overflow-hidden">
                 <img
-                  src={hospitalLobby}
-                  alt="Hospital Lobby"
+                  src={elevatorLobby}
+                  alt="Elegant Hospital Lobby"
                   className="w-full h-[120%] object-cover grayscale transition-all duration-[2s] group-hover:grayscale-0 hero-bg-img"
                   style={{ top: "-10%" }}
                   fetchPriority="high"

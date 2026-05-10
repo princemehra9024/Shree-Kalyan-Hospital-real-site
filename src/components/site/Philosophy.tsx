@@ -1,4 +1,4 @@
-import surgical from "@/assets/ward.jpeg";
+import surgical from "@/assets/operating-theatre.png";
 
 export function Philosophy() {
   return (

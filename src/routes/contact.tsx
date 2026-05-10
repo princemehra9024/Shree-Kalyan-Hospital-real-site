@@ -582,7 +582,7 @@ function ContactPage() {
 
         {/* Bottom-right stat */}
         <div className="absolute bottom-12 right-6 md:bottom-24 md:right-24 text-paper text-right">
-          <p className="font-display text-6xl md:text-8xl text-paper/20 leading-none">2024</p>
+          <p className="font-display text-6xl md:text-8xl text-paper/20 leading-none">2004</p>
           <p className="text-[0.6rem] tracking-[0.35em] uppercase text-magenta font-bold">
             Est. in Kota
           </p>

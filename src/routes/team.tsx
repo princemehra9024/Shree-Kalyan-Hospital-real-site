@@ -5,7 +5,8 @@ import doc1 from "@/assets/kapilG.jpeg";
 import doc2 from "@/assets/manishG.jpeg";
 import doc3 from "@/assets/anjali-sharma.png";
 import doc4 from "@/assets/doctor-portrait.jpg";
-import featured from "@/assets/kapilG.jpeg";
+import doc5 from "@/assets/doctor-1.jpg";
+import featured from "@/assets/anjali-sharma.png";
 import manishG from "@/assets/manishG.jpeg";
 import { SiteNav } from "@/components/site/SiteNav";
 import { SiteFooter } from "@/components/site/SiteFooter";
@@ -46,7 +47,7 @@ const physicians = [
     institute: "Internal Medicine",
   },
   {
-    name: "Dr. Rakesh Mehta",
+    name: "Dr. Kapil Garg",
     role: "Senior Consultant, Cardiology",
     image: doc1,
     quote: "The heart keeps its own counsel.",
@@ -54,7 +55,7 @@ const physicians = [
     institute: "Cardiology",
   },
   {
-    name: "Dr. Arjun Verma",
+    name: "Dr. Manish Gupta",
     role: "Consultant Neurosurgeon",
     image: doc2,
     quote: "Steady hands. Quieter minds.",
@@ -64,7 +65,7 @@ const physicians = [
   {
     name: "Dr. Meera Nair",
     role: "Head, Mother & Child",
-    image: doc3,
+    image: doc4,
     quote: "Two patients. One held breath.",
     creds: "MBBS · MD Pediatrics (CMC Vellore)",
     institute: "Pediatrics",
@@ -72,7 +73,7 @@ const physicians = [
   {
     name: "Dr. Vikram Singh",
     role: "Senior Consultant, Orthopedics",
-    image: doc4,
+    image: doc5,
     quote: "Bone remembers. So we listen.",
     creds: "MBBS · MS Orthopedics (KEM Mumbai)",
     institute: "Orthopedics",

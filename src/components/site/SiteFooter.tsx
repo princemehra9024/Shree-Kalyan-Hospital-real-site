@@ -84,10 +84,10 @@ export function SiteFooter() {
               </li>
               <li>
                 <a
-                  href="mailto:care@shreekalyan.in"
+                  href="mailto:info@shreekalyan.in"
                   className="hover:text-magenta transition-colors"
                 >
-                  care@shreekalyan.in
+                  info@shreekalyan.in
                 </a>
               </li>
             </ul>
@@ -115,7 +115,7 @@ export function SiteFooter() {
           <div className="col-span-12 mt-32 pt-16 border-t border-white/5 flex flex-col md:flex-row items-start md:items-end justify-between gap-12">
             <div className="space-y-4 text-[0.65rem] tracking-[0.3em] uppercase text-paper/30 leading-relaxed">
               <p className="text-paper/50">© {new Date().getFullYear()} Shree Kalyan Hospital</p>
-              <p>Indraprastha Industrial Area, Kota, Rajasthan</p>
+              <p>80 Feet Link Road, Kota, Rajasthan</p>
             </div>
 
             <div className="md:text-right">
