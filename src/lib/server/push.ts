@@ -17,7 +17,10 @@ export async function broadcastNotification(title: string, message: string) {
       vapidPrivateKey,
     );
 
-    const dbUrl = process.env.VITE_NEON_DB_URL;
+    const dbUrl =
+      import.meta.env?.VITE_NEON_DB_URL ||
+      (typeof process !== "undefined" ? process.env.VITE_NEON_DB_URL : undefined);
+
     if (!dbUrl) {
       console.error("Database URL not configured.");
       return { success: false, error: "Database URL not configured." };

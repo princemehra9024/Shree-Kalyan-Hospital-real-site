@@ -2,20 +2,26 @@ import { neon } from "@neondatabase/serverless";
 import { broadcastNotification } from "./push";
 
 // Fallback to import.meta.env for Vite clients, or process.env for Node
-const dbUrl =
-  import.meta.env?.VITE_NEON_DB_URL ||
-  (typeof process !== "undefined" ? process.env.VITE_NEON_DB_URL : undefined);
+let sqlInstance: ReturnType<typeof neon> | null = null;
 
-if (!dbUrl) {
-  // Throw immediately at module load time so misconfigured deployments fail fast
-  // rather than producing cryptic "connection refused" errors at query time.
-  throw new Error(
-    "[appointments] VITE_NEON_DB_URL is not set. " +
-      "Add it to your .env.local file (development) or Vercel environment variables (production).",
-  );
+function getSql() {
+  if (sqlInstance) return sqlInstance;
+
+  const dbUrl =
+    import.meta.env?.VITE_NEON_DB_URL ||
+    (typeof process !== "undefined" ? process.env.VITE_NEON_DB_URL : undefined);
+
+  if (!dbUrl) {
+    console.error(
+      "[appointments] VITE_NEON_DB_URL is not set. " +
+        "Database operations will fail. Check your environment variables.",
+    );
+    throw new Error("Database not configured");
+  }
+
+  sqlInstance = neon(dbUrl);
+  return sqlInstance;
 }
-
-const sql = neon(dbUrl);
 
 export interface AppointmentInput {
   patient_name: string;
@@ -27,7 +33,7 @@ export interface AppointmentInput {
 
 export async function getBookedSlots(dateStr: string): Promise<string[]> {
   try {
-    const rows = (await sql`
+    const rows = (await getSql()`
       SELECT appointment_time 
       FROM appointments 
       WHERE appointment_date = ${dateStr}::DATE
@@ -41,7 +47,7 @@ export async function getBookedSlots(dateStr: string): Promise<string[]> {
 
 export async function bookAppointment(data: AppointmentInput): Promise<boolean> {
   try {
-    await sql`
+    await getSql()`
       INSERT INTO appointments (
         patient_name, 
         phone_number, 
@@ -74,7 +80,7 @@ export async function saveNotificationToken(subscription: PushSubscription): Pro
   try {
     const jsonSub = JSON.stringify(subscription);
     // Use jsonb for proper insertion
-    await sql`
+    await getSql()`
       INSERT INTO notification_tokens (subscription)
       VALUES (${jsonSub}::jsonb)
     `;
