@@ -60,6 +60,24 @@ function Index() {
 
           <div className="relative z-10 px-6 md:pl-48 lg:pl-80 pr-6 md:pr-12 lg:pr-24 pb-12 md:pb-20 pt-48 md:pt-56 lg:pt-64 max-w-[1920px] mx-auto w-full">
             <div className="flex flex-col md:flex-row items-end justify-between gap-12">
+              <div className="flex-1">
+                <div className="mb-8 flex items-center gap-6" data-anim="hero-eyebrow">
+                  <span className="h-px w-16 bg-paper/20"></span>
+                  <span className="text-[0.65rem] font-syne uppercase tracking-[0.4em] font-bold text-magenta">
+                    Est. 2001
+                  </span>
+                </div>
+                <h1
+                  className="font-display text-paper leading-[0.88] tracking-tighter"
+                  data-anim="hero-title"
+                >
+                  <span className="block text-6xl md:text-[7rem] lg:text-[10rem]">Care that</span>
+                  <span className="block text-7xl md:text-[8rem] lg:text-[12rem] mt-2 lg:mt-4">
+                    <em className="italic font-light text-magenta pr-4 lg:pr-8">sees</em>You.
+                  </span>
+                </h1>
+              </div>
+
               {/* Circular CTA */}
               <div className="relative group shrink-0 mb-4 md:mb-12" data-anim="hero-cta">
                 <Link
