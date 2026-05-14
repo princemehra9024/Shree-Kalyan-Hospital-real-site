@@ -9,6 +9,8 @@ import elevatorLobby from "@/assets/elevator-lobby-skh.jpg";
 import otImg from "@/assets/ot-skh.jpg";
 import diagnosticLab from "@/assets/lab-skh.jpg";
 import icuImg from "@/assets/icu-skh.jpg";
+import recoveryRoom from "@/assets/recovery-room-new.jpg";
+import receptionNew from "@/assets/reception-new.jpg";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -55,7 +57,7 @@ const facilitiesData = [
     bg: "bg-[#f0ede6]",
     text: "text-navy-deep",
     accent: "text-magenta",
-    img: elevatorLobby, // Reusing lobby for suite vibes if specific suite img not found, or use ward
+    img: recoveryRoom,
   },
   {
     id: "ot",
@@ -88,7 +90,7 @@ const facilitiesData = [
     bg: "bg-magenta",
     text: "text-paper",
     accent: "text-paper/80",
-    img: elevatorLobby,
+    img: receptionNew,
   },
 ];
 

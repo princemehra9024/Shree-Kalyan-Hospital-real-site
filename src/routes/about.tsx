@@ -17,14 +17,14 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 // Assets
-import founderDoctor from "@/assets/founder-doctor.png";
+import founderDoctor from "@/assets/kapilG.jpeg";
 import elevatorLobby from "@/assets/elevator-lobby-skh.jpg";
 import otImg from "@/assets/ot-skh.jpg";
 import operatingTheatre from "@/assets/ot-skh.jpg";
 import hospitalLobby from "@/assets/lobby-skh.jpg";
 import doctor1 from "@/assets/anjali-sharma.png";
 import doctor2 from "@/assets/kapilG.jpeg";
-import doctor3 from "@/assets/manishG.jpeg";
+import doctor3 from "@/assets/manishG-new.jpg";
 import doctor4 from "@/assets/doctor-portrait.jpg";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -74,12 +74,6 @@ const TIMELINE = [
 
 const LEADERSHIP = [
   {
-    img: doctor1,
-    role: "Director, Internal Medicine",
-    name: "Dr. Anjali Sharma",
-    desc: "Dedicated to providing expert medical care with a human touch, leading our clinical practice with compassion.",
-  },
-  {
     img: doctor2,
     role: "Head of Cardiology",
     name: "Dr. Kapil Garg",
@@ -90,12 +84,6 @@ const LEADERSHIP = [
     role: "Consultant Neurosurgeon",
     name: "Dr. Manish Gupta",
     desc: "Expert in neuro-navigation and spinal reconstructive procedures with a focus on minimally invasive techniques.",
-  },
-  {
-    img: doctor4,
-    role: "Medical Director",
-    name: "Dr. Ananya Roy",
-    desc: "Overseeing global clinical governance and patient safety protocols to ensure the highest standards of care.",
   },
 ];
 
@@ -323,12 +311,12 @@ function AboutPage() {
             </div>
 
             <h1
-              className="font-display text-navy-deep leading-[0.8] tracking-tighter mix-blend-multiply hero-massive-text"
+              className="font-display text-navy-deep leading-[0.85] tracking-tighter mix-blend-multiply hero-massive-text"
               data-anim="hero-title"
             >
-              <span className="block text-6xl md:text-[6rem] lg:text-[8rem]">A Legacy</span>
-              <span className="block text-7xl md:text-[7rem] lg:text-[9.5rem] mt-2 lg:mt-4">
-                <em className="italic font-light text-magenta pr-4 lg:pr-8">of</em>Care.
+              <span className="block text-5xl md:text-[5rem] lg:text-[7rem]">A Legacy</span>
+              <span className="block text-6xl md:text-[6rem] lg:text-[8rem] mt-2 lg:mt-4 whitespace-nowrap">
+                <em className="italic font-light text-magenta pr-2 lg:pr-4">of</em>Care.
               </span>
             </h1>
 
@@ -382,10 +370,9 @@ function AboutPage() {
               <div className="absolute inset-0 border border-navy/15 translate-x-3 translate-y-3 md:translate-x-6 md:translate-y-6 pointer-events-none transition-transform duration-700 group-hover:translate-x-8 group-hover:translate-y-8"></div>
               <div className="absolute inset-0 bg-navy/5 overflow-hidden">
                 <img
-                  src={elevatorLobby}
-                  alt="Elegant Hospital Lobby"
-                  className="w-full h-[120%] object-cover grayscale transition-all duration-[2s] group-hover:grayscale-0 hero-bg-img"
-                  style={{ top: "-10%" }}
+                  src={founderDoctor}
+                  alt="Kapil Gautam"
+                  className="w-full h-full object-cover grayscale transition-all duration-[2s] group-hover:grayscale-0"
                   fetchPriority="high"
                   decoding="async"
                 />
@@ -560,13 +547,13 @@ function AboutPage() {
                 multi-specialty hospital, but our mission remains the same: the patient always comes first.
               </p>
               <p>
-                Founded by dedicated medical professionals, Shree Kalyan Hospital was built 
+                Founded by <strong>Kapil Gautam</strong>, Shree Kalyan Hospital was built 
                 to bridge the gap in quality healthcare for the people of Kota and nearby regions. 
-                We understood that while technology is essential, true healing happens through 
+                He understood that while technology is essential, true healing happens through 
                 personal attention and empathy.
               </p>
               <p>
-                Today, we take pride in our specialized departments and the thousands of 
+                Today, under his visionary leadership, we take pride in our specialized departments and the thousands of 
                 families who trust us with their health. We continue to evolve, bringing 
                 the latest medical advancements to Kota while keeping our roots firmly 
                 planted in compassionate care.

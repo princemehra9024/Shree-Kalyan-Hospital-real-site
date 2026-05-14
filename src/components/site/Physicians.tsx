@@ -1,7 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { useQuery } from "@tanstack/react-query";
 import { getFeaturedDoctor, urlFor } from "@/lib/sanity";
-import defaultDoctor from "@/assets/anjali-sharma.png";
+import defaultDoctor from "@/assets/manishG-new.jpg";
 
 export function Physicians() {
   const { data: featuredDoctor, isLoading } = useQuery({
@@ -10,9 +10,9 @@ export function Physicians() {
     enabled: !!import.meta.env.VITE_SANITY_PROJECT_ID,
   });
 
-  const doctorName = featuredDoctor?.name || "Dr. Anjali Sharma";
+  const doctorName = featuredDoctor?.name || "Dr. Manish Gotam";
   const doctorImg = featuredDoctor?.image ? urlFor(featuredDoctor.image).url() : defaultDoctor;
-  const doctorQuote = featuredDoctor?.bio?.split(".")[0] || "Time, given honestly.";
+  const doctorQuote = featuredDoctor?.bio?.split(".")[0] || "Steady hands. Quieter minds.";
 
   return (
     <section

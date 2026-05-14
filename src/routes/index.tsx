@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import heroImg from "@/assets/hospital-hero-generated.png";
+import heroImg from "@/assets/hospital.png";
 import { SiteNav } from "@/components/site/SiteNav";
 import { Marquee } from "@/components/site/Marquee";
 import { Philosophy } from "@/components/site/Philosophy";
@@ -43,7 +43,7 @@ function Index() {
       <SiteNav isHome={true} />
       <main>
         {/* ── Hero Section — Immersive & Minimalist ── */}
-        <section className="relative h-dvh min-h-[700px] flex flex-col justify-end overflow-hidden bg-navy-deep">
+        <section className="relative h-dvh min-h-[700px] flex flex-col justify-center overflow-hidden bg-navy-deep pt-24">
           {/* Background Image Layer */}
           <div className="absolute inset-0 z-0">
             <img
@@ -58,36 +58,36 @@ function Index() {
             <div className="absolute inset-0 bg-gradient-to-r from-navy-deep/60 to-transparent" />
           </div>
 
-          <div className="relative z-10 px-6 md:pl-48 lg:pl-80 pr-6 md:pr-12 lg:pr-24 pb-12 md:pb-20 pt-48 md:pt-56 lg:pt-64 max-w-[1920px] mx-auto w-full">
-            <div className="flex flex-col md:flex-row items-end justify-between gap-12">
-              <div className="flex-1">
-                <div className="mb-8 flex items-center gap-6" data-anim="hero-eyebrow">
+          <div className="relative z-10 px-6 md:pl-24 lg:pl-32 pr-6 md:pr-12 lg:pr-24 max-w-[1920px] mx-auto w-full">
+            <div className="flex flex-col xl:flex-row items-start xl:items-end justify-between gap-8 xl:gap-12">
+              <div className="flex-1 max-w-full">
+                <div className="mb-4 lg:mb-8 flex items-center gap-6" data-anim="hero-eyebrow">
                   <span className="h-px w-16 bg-paper/20"></span>
                   <span className="text-[0.65rem] font-syne uppercase tracking-[0.4em] font-bold text-magenta">
                     Est. 2001
                   </span>
                 </div>
                 <h1
-                  className="font-display text-paper leading-[0.88] tracking-tighter"
+                  className="font-display text-paper leading-[1] tracking-tighter"
                   data-anim="hero-title"
                 >
-                  <span className="block text-6xl md:text-[7rem] lg:text-[10rem]">Care that</span>
-                  <span className="block text-7xl md:text-[8rem] lg:text-[12rem] mt-2 lg:mt-4">
-                    <em className="italic font-light text-magenta pr-4 lg:pr-8">sees</em>You.
+                  <span className="block text-5xl sm:text-6xl md:text-[5rem] lg:text-[7.5rem]">Care that</span>
+                  <span className="block text-6xl sm:text-7xl md:text-[6rem] lg:text-[9rem] mt-1 lg:mt-2 whitespace-nowrap">
+                    <em className="italic font-light text-magenta pr-2 lg:pr-4">sees</em> You.
                   </span>
                 </h1>
               </div>
 
               {/* Circular CTA */}
-              <div className="relative group shrink-0 mb-4 md:mb-12" data-anim="hero-cta">
+              <div className="relative group shrink-0 mb-4 xl:mb-8 self-start xl:self-auto" data-anim="hero-cta">
                 <Link
                   to="/appointments"
-                  className="size-36 md:size-56 rounded-full bg-magenta text-paper flex flex-col items-center justify-center text-center p-6 transition-all duration-700 hover:scale-110 shadow-glow-magenta relative z-10 overflow-hidden group/btn"
+                  className="size-28 sm:size-32 md:size-40 lg:size-48 rounded-full bg-magenta text-paper flex flex-col items-center justify-center text-center p-3 md:p-4 transition-all duration-700 hover:scale-110 shadow-glow-magenta relative z-10 overflow-hidden group/btn"
                 >
-                  <span className="text-[0.6rem] md:text-[0.7rem] font-bold tracking-[0.3em] uppercase mb-2 opacity-80">
+                  <span className="text-[0.5rem] md:text-[0.65rem] font-bold tracking-[0.2em] md:tracking-[0.3em] uppercase mb-1 md:mb-2 opacity-80">
                     {t("nav.appointments", "Appointments")}
                   </span>
-                  <span className="font-display italic text-3xl md:text-5xl leading-tight">
+                  <span className="font-display italic text-xl md:text-3xl leading-tight">
                     {t("home.book_appointment", "Book\nAppointment")}
                   </span>
                   <div className="absolute inset-0 bg-paper/20 translate-y-full group-hover/btn:translate-y-0 transition-transform duration-500" />
@@ -101,7 +101,7 @@ function Index() {
 
             {/* Hero Footer — tagline + stats */}
             <div
-              className="mt-16 md:mt-24 flex flex-col md:flex-row items-center gap-8 md:gap-16 border-t border-paper/10 pt-12"
+              className="mt-12 lg:mt-16 flex flex-col md:flex-row items-start md:items-center gap-8 md:gap-16 border-t border-paper/10 pt-8"
               data-anim="hero-stats"
             >
               <p className="text-paper/50 text-sm max-w-sm leading-relaxed font-light">
@@ -110,7 +110,7 @@ function Index() {
                   "Expert medical care with personal attention. We combine advanced clinical practice with compassion to ensure the best outcomes for our patients.",
                 )}
               </p>
-              <div className="flex gap-12">
+              <div className="flex gap-8 md:gap-12 flex-wrap">
                 <div>
                   <span className="block text-paper text-xl font-display italic">25+</span>
                   <span className="text-[0.55rem] font-bold uppercase tracking-widest text-paper/60 mt-1 block">

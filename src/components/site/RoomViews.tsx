@@ -4,7 +4,7 @@ import { ArrowRight, ArrowLeft, Maximize2 } from "lucide-react";
 import lobbyImg from "@/assets/lobby-skh.jpg";
 import wardImg from "@/assets/ward-skh.jpg";
 import labImg from "@/assets/lab-skh.jpg";
-import corridorImg from "@/assets/corridor-skh.jpg";
+import corridorImg from "@/assets/display-screen.jpg";
 
 const ROOMS = [
   {
