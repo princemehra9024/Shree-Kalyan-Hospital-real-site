@@ -25,10 +25,10 @@ export const Route = createFileRoute("/team")({
         content:
           "Seventy-four named consultants. The same physician at admission, review and discharge.",
       },
-      { property: "og:image", content: featured },
+      { property: "og:image", content: doc1 },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:image", content: featured },
+      { name: "twitter:image", content: doc1 },
     ],
   }),
 });
