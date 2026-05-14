@@ -73,71 +73,10 @@ export const services: ServiceDetail[] = [
       { label: "Bed Capacity", value: "45" },
     ],
   },
-  {
-    id: "orthopedics",
-    chapter: "03",
-    title: "Orthopedics",
-    image: "/src/assets/corridor.png",
-    desc: "Restoring mobility through advanced joint replacements and sports medicine, tailored to the unique biomechanics of each individual.",
-    longDesc:
-      "Mobility is independence. The Orthopedic institute at Shree Kalyan focuses on restoring function through personalized joint replacements and minimally invasive arthroscopic surgeries. Whether it is a high-impact sports injury or age-related degeneration, we treat every joint with local precision and global expertise.",
-    services: [
-      "Joint Replacement",
-      "Sports Medicine",
-      "Trauma & Orthopedics",
-      "Physiotherapy",
-      "Arthroscopic Surgery",
-      "Pediatric Orthopedics",
-    ],
-    features: [
-      {
-        title: "Computer Assisted Surgery",
-        desc: "Real-time infrared navigation for knee and hip replacements to ensure perfect alignment and longevity.",
-      },
-      {
-        title: "Sports Injury Clinic",
-        desc: "Comprehensive care for athletes including ligament reconstructions and bio-mechanical analysis.",
-      },
-    ],
-    stats: [
-      { label: "Joints Replaced", value: "10k+" },
-      { label: "Recovery Time", value: "-40%" },
-    ],
-  },
-  {
-    id: "mother-child",
-    chapter: "04",
-    title: "Mother & Child",
-    image: "/src/assets/reception.png",
-    desc: "A sanctuary for new beginnings, providing specialized neonatology and maternal care in a warm, unhurried environment.",
-    longDesc:
-      "Bringing a new life into the world requires a sanctuary of safety and empathy. Our Mother & Child center is designed as a calm environment for high-risk pregnancies and neonatal care. With a Level III NICU and expert perinatologists, we ensure that both mother and child receive the unhurried attention they deserve.",
-    services: [
-      "Obstetrics & Gynecology",
-      "Neonatology (NICU)",
-      "Pediatrics",
-      "Antenatal Care",
-      "Fetal Medicine",
-      "Fertility Services",
-    ],
-    features: [
-      {
-        title: "Level III NICU",
-        desc: "Advanced neonatal intensive care unit equipped to handle even the most fragile pre-term deliveries.",
-      },
-      {
-        title: "Birthing Suites",
-        desc: "Private, editorial-style labor and delivery rooms designed for comfort, safety, and a personalized experience.",
-      },
-    ],
-    stats: [
-      { label: "Safe Deliveries", value: "15k+" },
-      { label: "NICU Beds", value: "32" },
-    ],
-  },
+
   {
     id: "oncology",
-    chapter: "05",
+    chapter: "03",
     title: "Oncology",
     image: "/src/assets/ward.jpeg",
     desc: "Precision in the fight against cancer. We combine targeted therapies with compassionate care for a unified healing journey.",
@@ -168,7 +107,7 @@ export const services: ServiceDetail[] = [
   },
   {
     id: "critical-care",
-    chapter: "06",
+    chapter: "04",
     title: "Critical Care",
     image: "/src/assets/lab.png",
     desc: "Vigilance that never rests. Our ICU is manned by expert intensivists providing 24/7 life-support and monitoring.",

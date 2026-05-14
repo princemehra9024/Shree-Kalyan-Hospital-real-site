@@ -22,10 +22,8 @@ import elevatorLobby from "@/assets/elevator-lobby-skh.jpg";
 import otImg from "@/assets/ot-skh.jpg";
 import operatingTheatre from "@/assets/ot-skh.jpg";
 import hospitalLobby from "@/assets/lobby-skh.jpg";
-import doctor1 from "@/assets/anjali-sharma.png";
 import doctor2 from "@/assets/kapilG.jpeg";
 import doctor3 from "@/assets/manishG-new.jpg";
-import doctor4 from "@/assets/doctor-portrait.jpg";
 
 gsap.registerPlugin(ScrollTrigger);
 

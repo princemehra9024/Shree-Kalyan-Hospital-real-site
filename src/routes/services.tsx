@@ -22,7 +22,7 @@ export const Route = createFileRoute("/services")({
       {
         name: "description",
         content:
-          "Explore specialized medical services at Shree Kalyan Hospital Kota, including Cardiology, Oncology, Neurosciences, and Orthopedics. Advanced care in Rajasthan.",
+          "Explore specialized medical services at Shree Kalyan Hospital Kota, including Cardiology, Oncology, and Neurosciences. Advanced care in Rajasthan.",
       },
       { property: "og:title", content: "Specialized Medical Services | Shree Kalyan Hospital Kota" },
       {

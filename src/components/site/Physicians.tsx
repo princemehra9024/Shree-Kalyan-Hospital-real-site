@@ -53,7 +53,7 @@ export function Physicians() {
             Chapter 03 — Physicians
           </p>
           <h2 className="font-display text-5xl md:text-6xl lg:text-7xl leading-[0.95] text-navy-deep tracking-tight">
-            Seventy-four <span className="italic font-light">named</span> consultants.
+            Expert <span className="italic font-light">named</span> consultants.
           </h2>
           <p className="mt-8 text-base md:text-lg leading-relaxed text-ink/75 max-w-prose">
             Care at Shree Kalyan is delivered, not dispatched. You meet the same physician at

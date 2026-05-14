@@ -16,16 +16,6 @@ const specialties = [
   },
   {
     num: "IV",
-    title: "Orthopedics",
-    body: "Joint replacement, sports medicine and reconstructive trauma surgery.",
-  },
-  {
-    num: "V",
-    title: "Mother & Child",
-    body: "Obstetrics, neonatal ICU and pediatric specialists under one quiet roof.",
-  },
-  {
-    num: "VI",
     title: "Critical Care",
     body: "Multi-disciplinary ICU with 24-hour intensivist coverage and trauma triage.",
   },
@@ -42,7 +32,7 @@ export function Specialties() {
               Chapter 02 — Centers of Care
             </p>
             <h2 className="font-display text-5xl md:text-6xl lg:text-7xl leading-[0.95] text-navy-deep tracking-tight">
-              Six institutes. <span className="italic font-light">One promise.</span>
+              Four institutes. <span className="italic font-light">One promise.</span>
             </h2>
           </div>
           <p className="col-span-12 lg:col-span-5 lg:col-start-8 self-end text-base md:text-lg leading-relaxed text-ink/75 max-w-prose">

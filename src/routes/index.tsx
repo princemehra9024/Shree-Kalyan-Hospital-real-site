@@ -154,7 +154,6 @@ function Index() {
             "Advanced Neurosciences",
             "Oncology Care",
             "Surgical Excellence",
-            "Mother & Child Care",
             "24/7 Critical Care",
           ]}
         />

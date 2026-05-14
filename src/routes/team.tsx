@@ -3,10 +3,6 @@ import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import doc1 from "@/assets/kapilG.jpeg";
 import doc2 from "@/assets/manishG-new.jpg";
-import doc3 from "@/assets/anjali-sharma.png";
-import doc4 from "@/assets/doctor-portrait.jpg";
-import doc5 from "@/assets/doctor-1.jpg";
-import featured from "@/assets/anjali-sharma.png";
 import manishG from "@/assets/manishG-new.jpg";
 import { SiteNav } from "@/components/site/SiteNav";
 import { SiteFooter } from "@/components/site/SiteFooter";
@@ -21,7 +17,7 @@ export const Route = createFileRoute("/team")({
       {
         name: "description",
         content:
-          "Meet the consultants of Shree Kalyan Hospital, Kota — seventy-four named physicians across cardiology, neurosciences, oncology, orthopedics, pediatrics and critical care.",
+          "Meet the consultants of Shree Kalyan Hospital, Kota — experts across cardiology, neurosciences, oncology, and critical care.",
       },
       { property: "og:title", content: "Physicians · Shree Kalyan Hospital" },
       {
@@ -39,14 +35,6 @@ export const Route = createFileRoute("/team")({
 
 const physicians = [
   {
-    name: "Dr. Anjali Sharma",
-    role: "Director, Internal Medicine",
-    image: featured,
-    quote: "Time, given honestly.",
-    creds: "MBBS · MD (AIIMS, New Delhi)",
-    institute: "Internal Medicine",
-  },
-  {
     name: "Dr. Kapil Garg",
     role: "Senior Consultant, Cardiology",
     image: doc1,
@@ -61,22 +49,6 @@ const physicians = [
     quote: "Steady hands. Quieter minds.",
     creds: "MBBS · MCh Neurosurgery (NIMHANS)",
     institute: "Neurosciences",
-  },
-  {
-    name: "Dr. Meera Nair",
-    role: "Head, Mother & Child",
-    image: doc4,
-    quote: "Two patients. One held breath.",
-    creds: "MBBS · MD Pediatrics (CMC Vellore)",
-    institute: "Pediatrics",
-  },
-  {
-    name: "Dr. Vikram Singh",
-    role: "Senior Consultant, Orthopedics",
-    image: doc5,
-    quote: "Bone remembers. So we listen.",
-    creds: "MBBS · MS Orthopedics (KEM Mumbai)",
-    institute: "Orthopedics",
   },
 ];
 
@@ -185,7 +157,7 @@ function TeamPage() {
             </h1>
 
             <p className="hero-desc text-lg md:text-xl text-ink/70 max-w-md leading-relaxed">
-              At Shree Kalyan, our team of seventy-four dedicated consultants provides world-class
+              At Shree Kalyan, our team of dedicated consultants provides world-class
               care. Experience healing guided by the finest medical minds.
             </p>
           </div>
@@ -214,8 +186,6 @@ function TeamPage() {
             "Cardiology",
             "Neurosciences",
             "Oncology",
-            "Orthopedics",
-            "Pediatrics",
             "Critical Care",
           ]}
         />
@@ -279,12 +249,12 @@ function TeamPage() {
           </div>
 
           <div
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-16"
+            className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-24"
             data-reveal-stagger
           >
-            {physicians.slice(1).map((p) => (
+            {physicians.map((p) => (
               <article key={p.name} className="group cursor-pointer">
-                <div className="overflow-hidden bg-ink aspect-[3/4] mb-6 shadow-card relative">
+                <div className="overflow-hidden bg-ink aspect-[16/10] mb-8 shadow-card relative">
                   <div className="absolute inset-0 bg-navy-deep/20 group-hover:bg-transparent transition-colors duration-500 z-10" />
                   <img
                     src={p.image}
@@ -294,11 +264,19 @@ function TeamPage() {
                     className="w-full h-full object-cover transition-transform duration-[1200ms] group-hover:scale-110 opacity-90 group-hover:opacity-100"
                   />
                 </div>
-                <p className="text-[0.6rem] tracking-[0.2em] uppercase text-magenta font-bold mb-2">
-                  {p.institute}
-                </p>
-                <h3 className="font-display text-2xl md:text-3xl leading-tight">{p.name}</h3>
-                <p className="mt-1 text-sm text-paper/65 italic">{p.role}</p>
+                <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
+                  <div>
+                    <p className="text-[0.7rem] tracking-[0.3em] uppercase text-magenta font-bold mb-3">
+                      {p.institute}
+                    </p>
+                    <h3 className="font-display text-4xl md:text-5xl leading-tight">{p.name}</h3>
+                    <p className="mt-2 text-lg text-paper/65 italic">{p.role}</p>
+                  </div>
+                  <div className="hidden md:block">
+                    <p className="text-[0.6rem] tracking-[0.2em] uppercase text-paper/40 font-bold mb-1">Credentials</p>
+                    <p className="text-sm text-paper/80">{p.creds}</p>
+                  </div>
+                </div>
               </article>
             ))}
           </div>
