@@ -46,7 +46,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ArrowRight, CalendarDays, Clock, Phone, Loader2 } from "lucide-react";
 import { toast } from "sonner";
 import { usePushNotifications } from "@/hooks/use-push-notifications";
-import heroCorridor from "@/assets/corridor.png";
+import heroCorridor from "@/assets/reception.png";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -356,10 +356,10 @@ function AppointmentsPage() {
             >
               <img
                 src={heroCorridor}
-                alt="Shree Kalyan Hospital — corridor"
+                alt="Shree Kalyan Hospital — reception desk"
                 fetchPriority="high"
                 decoding="async"
-                className="ap-hero-img w-full aspect-[4/5] object-cover grayscale hover:grayscale-0 transition-all duration-[2s] ease-in-out"
+                className="ap-hero-img w-full aspect-[4/5] object-cover transition-all duration-[2s] ease-in-out"
               />
               <div className="absolute inset-0 bg-navy-deep/10 mix-blend-multiply" />
             </div>

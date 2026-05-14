@@ -51,11 +51,11 @@ function Index() {
               alt="Shree Kalyan Hospital"
               fetchPriority="high"
               decoding="async"
-              className="absolute inset-0 w-full h-full object-cover brightness-50 contrast-110"
+              className="absolute inset-0 w-full h-full object-cover object-top brightness-75 contrast-110"
             />
             {/* Editorial Overlays */}
-            <div className="absolute inset-0 bg-gradient-to-t from-navy-deep via-navy-deep/30 to-navy-deep/20" />
-            <div className="absolute inset-0 bg-gradient-to-r from-navy-deep/60 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-t from-navy-deep/95 via-navy-deep/30 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-r from-navy-deep/75 via-navy-deep/20 to-transparent" />
           </div>
 
           <div className="relative z-10 px-6 md:pl-24 lg:pl-32 pr-6 md:pr-12 lg:pr-24 max-w-[1920px] mx-auto w-full">

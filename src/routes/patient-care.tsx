@@ -18,7 +18,7 @@ import otImg from "@/assets/ot-skh.jpg";
 import corridorImg from "@/assets/corridor-skh.jpg";
 import wardImg from "@/assets/ward-skh.jpg";
 import founderDoctor from "@/assets/founder-doctor.png";
-import surgicalTheater from "@/assets/ward-skh.jpg";
+import hospitalExterior from "@/assets/hospital-exterior.jpg";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -578,7 +578,7 @@ function PatientCarePage() {
               alt={step.title}
               loading="lazy"
               decoding="async"
-              className={`step-img absolute inset-0 w-full h-full object-cover grayscale brightness-[0.35] ${i === 0 ? "" : "opacity-0"}`}
+              className={`step-img absolute inset-0 w-full h-full object-cover brightness-[0.35] ${i === 0 ? "" : "opacity-0"}`}
             />
           ))}
           {/* dark gradient overlay */}
@@ -726,7 +726,7 @@ function PatientCarePage() {
               <img
                 src={otImg}
                 alt="Operating Theatre"
-                className="w-full h-full object-cover grayscale hover:grayscale-0 transition-[filter] duration-[2s]"
+                className="w-full h-full object-cover transition-[filter] duration-[2s]"
                 loading="lazy"
                 decoding="async"
               />
@@ -738,7 +738,7 @@ function PatientCarePage() {
               <img
                 src={founderDoctor}
                 alt="Expert care"
-                className="w-full h-full object-cover object-top grayscale hover:grayscale-0 transition-[filter] duration-[2s]"
+                className="w-full h-full object-cover object-top transition-[filter] duration-[2s]"
                 loading="lazy"
                 decoding="async"
               />
@@ -747,7 +747,7 @@ function PatientCarePage() {
               <img
                 src={corridorImg}
                 alt="Hospital corridor"
-                className="w-full h-full object-cover grayscale hover:grayscale-0 transition-[filter] duration-[2s]"
+                className="w-full h-full object-cover transition-[filter] duration-[2s]"
                 loading="lazy"
                 decoding="async"
               />
@@ -831,15 +831,13 @@ function PatientCarePage() {
       </section>
 
       {/* ════════════════════════════════════ */}
-      {/* 8. SPLIT CTA PANEL                  */}
-      {/* ════════════════════════════════════ */}
       <section className="cta-split grid lg:grid-cols-2 min-h-[60vh]">
         {/* Left — image */}
         <div className="cta-left-panel relative overflow-hidden min-h-[40vh]">
           <img
-            src={surgicalTheater}
-            alt="Our facility"
-            className="w-full h-full object-cover grayscale"
+            src={hospitalExterior}
+            alt="Shree Kalyan Hospital Exterior - Kota"
+            className="w-full h-full object-cover object-center"
           />
           <div className="absolute inset-0 bg-navy-deep/60" />
           <div className="absolute inset-0 flex items-end p-10 md:p-16">

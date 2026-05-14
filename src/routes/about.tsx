@@ -19,8 +19,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 // Assets
 import founderDoctor from "@/assets/kapilG.jpeg";
 import elevatorLobby from "@/assets/elevator-lobby-skh.jpg";
-import otImg from "@/assets/ot-skh.jpg";
-import operatingTheatre from "@/assets/ot-skh.jpg";
+import operatingTheatre from "@/assets/hospital.png";
 import hospitalLobby from "@/assets/lobby-skh.jpg";
 import doctor2 from "@/assets/kapilG.jpeg";
 import doctor3 from "@/assets/manishG-new.jpg";
@@ -298,7 +297,7 @@ function AboutPage() {
       <SiteNav />
 
       {/* 1. EDITORIAL HERO SECTION */}
-      <section className="relative w-full pt-44 pb-32 px-6 md:px-12 lg:px-24 flex flex-col justify-center bg-paper hero-section border-b border-navy/5">
+      <section className="relative w-full pt-32 pb-20 px-6 md:px-12 lg:px-24 flex flex-col justify-center bg-paper hero-section border-b border-navy/5">
         <div className="max-w-[1600px] mx-auto w-full relative z-10 grid grid-cols-12 gap-y-16 gap-x-8 items-center lg:items-end">
           <div className="col-span-12 lg:col-span-8 order-2 lg:order-1 relative z-20">
             <div className="mb-8 flex items-center gap-6" data-anim="hero-eyebrow">
@@ -362,15 +361,15 @@ function AboutPage() {
 
           <div className="col-span-12 lg:col-span-4 order-1 lg:order-2 relative">
             <div
-              className="relative aspect-[3/4] w-full max-w-[400px] mx-auto lg:ml-auto group hero-img-container"
+              className="relative w-full max-w-[480px] mx-auto lg:ml-auto group hero-img-container"
               data-anim="hero-image"
             >
-              <div className="absolute inset-0 border border-navy/15 translate-x-3 translate-y-3 md:translate-x-6 md:translate-y-6 pointer-events-none transition-transform duration-700 group-hover:translate-x-8 group-hover:translate-y-8"></div>
-              <div className="absolute inset-0 bg-navy/5 overflow-hidden">
+              <div className="absolute inset-0 border border-navy/15 translate-x-3 translate-y-3 md:translate-x-6 md:translate-y-6 pointer-events-none transition-transform duration-700 group-hover:translate-x-8 group-hover:translate-y-8 z-0"></div>
+              <div className="relative bg-navy/5 overflow-hidden" style={{height: '560px'}}>
                 <img
                   src={founderDoctor}
                   alt="Kapil Gautam"
-                  className="w-full h-full object-cover grayscale transition-all duration-[2s] group-hover:grayscale-0"
+                  className="w-full h-full object-cover object-center grayscale transition-all duration-[2s] group-hover:grayscale-0"
                   fetchPriority="high"
                   decoding="async"
                 />
@@ -392,9 +391,9 @@ function AboutPage() {
         </div>
       </section>
 
-      <section className="px-6 md:px-12 lg:px-24 py-32 md:py-48 max-w-[1600px] mx-auto border-t border-ink/10">
+      <section className="px-6 md:px-12 lg:px-24 py-20 md:py-28 max-w-[1600px] mx-auto border-t border-ink/10">
         <div
-          className="flex flex-col md:flex-row md:items-end justify-between gap-12 mb-24"
+          className="flex flex-col md:flex-row md:items-end justify-between gap-12 mb-16"
           data-reveal
         >
           <h2 className="font-display text-4xl md:text-6xl lg:text-8xl text-navy-deep leading-[0.85] tracking-tight">
@@ -448,7 +447,7 @@ function AboutPage() {
         </div>
       </section>
 
-      <section className="px-6 md:px-12 lg:px-24 py-32 bg-navy-deep text-paper overflow-hidden relative">
+      <section className="px-6 md:px-12 lg:px-24 py-20 bg-navy-deep text-paper overflow-hidden relative">
         <div className="absolute top-0 right-0 w-1/2 h-full opacity-10 pointer-events-none">
           <div className="w-full h-full bg-[radial-gradient(circle_at_center,_var(--color-magenta)_0%,_transparent_70%)]" />
         </div>
@@ -509,7 +508,7 @@ function AboutPage() {
       </section>
 
       {/* 3. OUR STORY */}
-      <section className="py-32 px-6 lg:px-24 max-w-[1600px] mx-auto bg-paper story-section relative">
+      <section className="py-20 px-6 lg:px-24 max-w-[1600px] mx-auto bg-paper story-section relative">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24 items-start relative">
           <div className="col-span-1 lg:col-span-5 relative" data-reveal>
             <div className="h-[600px] overflow-hidden group border border-navy/5 relative">
@@ -569,7 +568,7 @@ function AboutPage() {
       </section>
 
       {/* 4. THE JOURNEY TIMELINE - Custom GSAP Timeline */}
-      <section className="py-32 bg-surface text-paper relative timeline-section border-t border-white/5">
+      <section className="py-20 bg-surface text-paper relative timeline-section border-t border-white/5">
         <div className="max-w-[1600px] mx-auto relative z-10 px-6 lg:px-24">
           <div className="mb-24 flex items-end justify-between" data-reveal>
             <div>
@@ -641,7 +640,7 @@ function AboutPage() {
       </section>
 
       {/* 5. LEADERSHIP / MASTER SURGEONS */}
-      <section className="py-24 md:py-32 bg-paper leadership-section">
+      <section className="py-16 md:py-20 bg-paper leadership-section">
         <div className="max-w-[1600px] mx-auto px-6 lg:px-24">
           {/* Section Header */}
           <div
@@ -673,16 +672,16 @@ function AboutPage() {
             {LEADERSHIP.map((leader, i) => (
               <div
                 key={i}
-                className="leader-card w-[85vw] sm:w-[65vw] md:w-[45vw] lg:w-[30vw] h-[65vh] shrink-0 relative group border border-navy/10 overflow-hidden bg-white"
+                className="leader-card w-[85vw] sm:w-[65vw] md:w-[45vw] lg:w-[35vw] h-[80vh] min-h-[550px] shrink-0 relative group border border-navy/10 overflow-hidden bg-white"
                 style={{ scrollSnapAlign: "start" }}
               >
-                <div className="absolute inset-0 z-10 bg-gradient-to-t from-navy-deep/90 via-navy-deep/20 to-transparent" />
+                <div className="absolute inset-0 z-10 bg-gradient-to-t from-navy-deep/90 via-navy-deep/10 to-transparent" />
                 <img
                   src={leader.img}
                   alt={leader.name}
                   loading="lazy"
                   decoding="async"
-                  className="w-full h-full object-cover grayscale opacity-90 transition-all duration-[2s] group-hover:grayscale-0 group-hover:scale-105"
+                  className="w-full h-full object-cover object-top grayscale opacity-95 transition-all duration-[2s] group-hover:grayscale-0 group-hover:scale-105"
                 />
 
                 <div className="absolute bottom-0 left-0 p-8 lg:p-10 z-20 w-full transform transition-transform duration-500 translate-y-4 group-hover:translate-y-0">
@@ -827,10 +826,10 @@ function AboutPage() {
 
               <img
                 src={operatingTheatre}
-                alt="Operating Theatre"
+                alt="Hospital Facility"
                 loading="lazy"
                 decoding="async"
-                className="w-full h-full object-cover grayscale transition-all duration-1000 group-hover:grayscale-0"
+                className="w-full h-full object-cover object-center grayscale transition-all duration-1000 group-hover:grayscale-0"
               />
               <div className="absolute top-8 left-8 bg-paper p-4 border border-navy/10 shadow-editorial z-10">
                 <span className="text-[0.55rem] font-syne uppercase tracking-widest text-navy-deep font-bold">

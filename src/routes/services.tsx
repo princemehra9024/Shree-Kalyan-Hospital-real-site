@@ -166,7 +166,7 @@ function ServicesPage() {
       {/* ═══════════════════════════════════════ */}
       {/* 1. CINEMATIC HERO                       */}
       {/* ═══════════════════════════════════════ */}
-      <section className="services-hero relative w-full pt-48 md:pt-56 pb-24 px-6 md:px-12 lg:px-24 max-w-[1600px] mx-auto min-h-[90vh] flex flex-col border-b border-navy/10 overflow-hidden">
+      <section className="services-hero relative w-full pt-36 md:pt-44 pb-16 px-6 md:px-12 lg:px-24 max-w-[1600px] mx-auto min-h-[80vh] flex flex-col border-b border-navy/10 overflow-hidden">
         {/* Background Parallax Element */}
         <div className="absolute top-0 right-0 w-[60%] md:w-[50%] h-full opacity-20 pointer-events-none mix-blend-soft-light overflow-hidden mask-image-b">
           <img
