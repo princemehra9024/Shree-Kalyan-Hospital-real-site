@@ -175,7 +175,7 @@ function TeamPage() {
               <img
                 src={manishG}
                 alt="Medical Team"
-                className="hero-img w-full aspect-[4/3] md:aspect-[16/10] lg:aspect-[4/5] object-cover"
+                className="hero-img w-full aspect-[3/4] md:aspect-[16/10] lg:aspect-[4/5] object-cover object-top"
                 fetchPriority="high"
                 decoding="async"
               />
@@ -261,14 +261,14 @@ function TeamPage() {
           >
             {physicians.map((p) => (
               <article key={p.name} className="group cursor-pointer">
-                <div className="overflow-hidden bg-ink aspect-[16/10] mb-8 shadow-card relative">
+                <div className="overflow-hidden bg-ink aspect-[4/5] sm:aspect-[16/10] mb-8 shadow-card relative">
                   <div className="absolute inset-0 bg-navy-deep/20 group-hover:bg-transparent transition-colors duration-500 z-10" />
                   <img
                     src={p.image}
                     alt={p.name}
                     loading="lazy"
                     decoding="async"
-                    className="w-full h-full object-cover transition-transform duration-[1200ms] group-hover:scale-110 opacity-90 group-hover:opacity-100"
+                    className="w-full h-full object-cover object-top transition-transform duration-[1200ms] group-hover:scale-110 opacity-90 group-hover:opacity-100"
                   />
                 </div>
                 <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">

@@ -1,5 +1,6 @@
 import { Outlet, Link, createRootRoute } from "@tanstack/react-router";
 import { LenisProvider } from "@/components/site/LenisProvider";
+import { ScrollToTop } from "@/components/site/SiteNav";
 import { CustomCursor } from "@/components/site/CustomCursor";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
@@ -295,6 +296,7 @@ function RootComponent() {
       <LenisProvider>
         <CustomCursor />
         <Outlet />
+        <ScrollToTop />
         <EmergencyOverlay isOpen={emergencyOpen} onClose={() => setEmergencyOpen(false)} />
       </LenisProvider>
     </QueryClientProvider>

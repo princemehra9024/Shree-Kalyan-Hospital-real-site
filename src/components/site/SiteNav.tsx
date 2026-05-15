@@ -12,6 +12,7 @@ import {
   Menu,
   X,
   AlertTriangle,
+  ChevronUp,
 } from "lucide-react";
 import logo from "@/assets/logo.jpeg";
 import { useTranslation } from "react-i18next";
@@ -405,30 +406,88 @@ export function SiteNav({ isHome = false }: { isHome?: boolean }) {
           </div>
         </div>
       </div>
-    </>
+      </>
   );
 }
 
-function ScrollProgress() {
-  const ref = useRef<HTMLSpanElement | null>(null);
+export function ScrollToTop() {
+  const btnRef = useRef<HTMLButtonElement | null>(null);
+  const [visible, setVisible] = useState(false);
+
   useEffect(() => {
     const onScroll = () => {
-      if (!ref.current) return;
-      const h = document.documentElement;
-      const total = h.scrollHeight - h.clientHeight;
-      const pct = total > 0 ? (window.scrollY / total) * 100 : 0;
-      ref.current.style.transform = `scaleX(${pct / 100})`;
+      const total = document.documentElement.scrollHeight - window.innerHeight;
+      setVisible(total > 0 && window.scrollY / total > 0.3);
     };
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
+
+  const handleClick = () => {
+    const lenis = (window as unknown as { lenis?: { scrollTo: (target: number, opts?: object) => void } }).lenis;
+    if (lenis) {
+      lenis.scrollTo(0, { duration: 1.8, easing: (t: number) => 1 - Math.pow(1 - t, 4) });
+    } else {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+  };
+
   return (
-    <span className="absolute left-0 right-0 bottom-0 h-px bg-magenta/15 overflow-hidden z-20">
+    <button
+      ref={btnRef}
+      onClick={handleClick}
+      aria-label="Scroll to top"
+      className={`fixed bottom-8 right-6 z-40 size-12 rounded-full flex items-center justify-center shadow-xl transition-all duration-500 ease-out
+        bg-navy-deep text-paper border border-paper/10
+        hover:bg-magenta hover:border-magenta hover:scale-110 active:scale-95
+        ${ visible ? "opacity-100 translate-y-0 pointer-events-auto" : "opacity-0 translate-y-6 pointer-events-none" }`}
+    >
+      <ChevronUp className="size-5" />
+    </button>
+  );
+}
+
+function ScrollProgress() {
+  const ref = useRef<HTMLSpanElement | null>(null);
+
+  useEffect(() => {
+    const update = () => {
+      if (!ref.current) return;
+      const h = document.documentElement;
+      const total = h.scrollHeight - h.clientHeight;
+      const pct = total > 0 ? window.scrollY / total : 0;
+      ref.current.style.transform = `scaleX(${pct})`;
+    };
+
+    update();
+
+    // Use Lenis scroll event if available for perfectly smooth tracking
+    const lenis = (window as unknown as { lenis?: { on: (e: string, cb: () => void) => void; off: (e: string, cb: () => void) => void } }).lenis;
+    if (lenis) {
+      lenis.on("scroll", update);
+    } else {
+      window.addEventListener("scroll", update, { passive: true });
+    }
+
+    return () => {
+      if (lenis) {
+        lenis.off("scroll", update);
+      } else {
+        window.removeEventListener("scroll", update);
+      }
+    };
+  }, []);
+
+  return (
+    <span className="absolute left-0 right-0 bottom-0 h-[2px] overflow-hidden z-20">
       <span
         ref={ref}
-        className="block h-full w-full bg-magenta origin-left"
-        style={{ transform: "scaleX(0)" }}
+        className="block h-full w-full origin-left"
+        style={{
+          transform: "scaleX(0)",
+          background: "linear-gradient(90deg, #06d6f5 0%, #e0185e 50%, #d4a843 100%)",
+        }}
       />
     </span>
   );

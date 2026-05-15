@@ -20,7 +20,7 @@ export function SiteFooter() {
                   <span className="w-12 h-px bg-pink/40" />
                   Shree Kalyan Hospital
                 </p>
-                <h2 className="font-display text-6xl md:text-8xl lg:text-9xl leading-[0.85] tracking-tighter mb-12">
+                <h2 className="font-display text-4xl sm:text-6xl md:text-8xl lg:text-9xl leading-[0.85] tracking-tighter mb-12">
                   Precision care, <br />
                   <span className="italic font-light text-paper/90">in the heart of Kota.</span>
                 </h2>
@@ -74,7 +74,7 @@ export function SiteFooter() {
             </ul>
           </div>
 
-          <div className="col-span-6 md:col-span-3 lg:col-span-2">
+          <div className="col-span-12 sm:col-span-6 md:col-span-3 lg:col-span-2">
             <p className="text-[0.65rem] tracking-[0.3em] uppercase text-paper/30 mb-10">Reach</p>
             <ul className="space-y-4 text-base font-light text-paper/80">
               <li>
@@ -85,7 +85,7 @@ export function SiteFooter() {
               <li>
                 <a
                   href="mailto:info@shreekalyan.in"
-                  className="hover:text-magenta transition-colors"
+                  className="hover:text-magenta transition-colors break-all"
                 >
                   info@shreekalyan.in
                 </a>
