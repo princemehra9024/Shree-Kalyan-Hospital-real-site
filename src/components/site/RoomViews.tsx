@@ -4,7 +4,7 @@ import { ArrowRight, ArrowLeft, Maximize2 } from "lucide-react";
 import lobbyImg from "@/assets/lobby-skh.jpg";
 import wardImg from "@/assets/ward-skh.jpg";
 import labImg from "@/assets/lab-skh.jpg";
-import corridorImg from "@/assets/display-screen.jpg";
+import corridorImg from "@/assets/display.png";
 
 const ROOMS = [
   {
@@ -205,7 +205,7 @@ export function RoomViews() {
     <section
       ref={containerRef}
       className="relative bg-navy-deep text-paper overflow-hidden border-t border-paper/5"
-      style={{ minHeight: "100vh" }}
+
     >
       {/* Ambient background glow */}
       <div
@@ -215,7 +215,7 @@ export function RoomViews() {
         }}
       />
 
-      <div className="max-w-[1600px] w-full mx-auto px-6 md:px-12 lg:px-24 py-20 lg:py-28 relative z-10 min-h-screen flex flex-col justify-center">
+      <div className="max-w-[1600px] w-full mx-auto px-6 md:px-12 lg:px-24 py-14 lg:py-20 relative z-10 flex flex-col justify-center">
         {/* Top Row: Section header + Nav Buttons */}
         <div className="flex items-end justify-between mb-16 lg:mb-20">
           <div>

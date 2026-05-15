@@ -6,7 +6,8 @@ import { SiteNav } from "@/components/site/SiteNav";
 import { SiteFooter } from "@/components/site/SiteFooter";
 import { ShieldCheck, Zap, Coffee, Bed, Activity, ArrowRight } from "lucide-react";
 import elevatorLobby from "@/assets/elevator-lobby-skh.jpg";
-import otImg from "@/assets/ot-skh.jpg";
+import labPng from "@/assets/lab.png";
+import displayPng from "@/assets/display.png";
 import diagnosticLab from "@/assets/lab-skh.jpg";
 import icuImg from "@/assets/icu-skh.jpg";
 import recoveryRoom from "@/assets/recovery-room-new.jpg";
@@ -68,7 +69,7 @@ const facilitiesData = [
     bg: "bg-ink",
     text: "text-paper",
     accent: "text-magenta",
-    img: otImg,
+    img: labPng,
   },
   {
     id: "diagnostic",
@@ -485,8 +486,8 @@ function FacilitiesPage() {
             </p>
             <div className="relative overflow-hidden shadow-[0_30px_80px_-20px_rgba(0,0,0,0.14)]">
               <img
-                src={otImg}
-                alt="Operation Theater at Shree Kalyan Hospital"
+                src={displayPng}
+                alt="Advanced Display Infrastructure at Shree Kalyan Hospital"
                 className="w-full aspect-video object-cover grayscale hover:grayscale-0 transition-all duration-[2s]"
                 loading="lazy"
                 decoding="async"

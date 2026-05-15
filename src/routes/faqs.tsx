@@ -2,20 +2,9 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useState, useRef, useEffect } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import {
-  Plus,
-  Minus,
-  Search,
-  ArrowRight,
-  Phone,
-  Mail,
-  Award,
-  Send,
-  MessageCircle,
-} from "lucide-react";
+import { ArrowRight, Send } from "lucide-react";
 import { SiteNav } from "@/components/site/SiteNav";
 import { SiteFooter } from "@/components/site/SiteFooter";
-import { useGsapReveal } from "@/hooks/use-gsap-reveal";
 
 import abstractCorridor from "@/assets/corridor.png";
 import hospitalLobby from "@/assets/reception.png";

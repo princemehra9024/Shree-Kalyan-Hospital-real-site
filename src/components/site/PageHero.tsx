@@ -68,7 +68,7 @@ export function PageHero({ chapter, eyebrow, title, intro, image }: PageHeroProp
   return (
     <header
       ref={containerRef}
-      className="relative px-6 md:px-12 lg:px-24 max-w-[1600px] mx-auto pt-40 md:pt-56 pb-24 md:pb-32 bg-paper overflow-hidden"
+      className="relative px-6 md:px-12 lg:px-24 max-w-[1600px] mx-auto pt-28 md:pt-36 pb-16 md:pb-24 bg-paper overflow-hidden"
     >
       {/* Background Parallax Element */}
       {image && (

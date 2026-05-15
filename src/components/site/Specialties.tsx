@@ -1,33 +1,47 @@
+import wardImg from "@/assets/ward-skh.jpg";
+import corridorImg from "@/assets/corridor-skh.jpg";
+import icuImg from "@/assets/icu-skh.jpg";
+import otImg from "@/assets/lab-skh.jpg";
+
 const specialties = [
   {
     num: "I",
     title: "Cardiology",
     body: "Interventional procedures and chronic care across our 32-bed cardiac unit.",
+    img: wardImg,
   },
   {
     num: "II",
     title: "Neurosciences",
     body: "Stroke response, epilepsy and movement disorder programs led by senior neurologists.",
+    img: corridorImg,
   },
   {
     num: "III",
     title: "Oncology",
     body: "Targeted therapy and surgical oncology informed by molecular diagnostics.",
+    img: icuImg,
   },
   {
     num: "IV",
     title: "Critical Care",
     body: "Multi-disciplinary ICU with 24-hour intensivist coverage and trauma triage.",
+    img: otImg,
   },
 ];
 
 export function Specialties() {
   return (
-    <section id="specialties" className="bg-secondary px-6 md:px-12 lg:px-24 py-32 md:py-48">
+    <section id="specialties" className="bg-secondary px-6 md:px-12 lg:px-24 pt-16 pb-10 md:pt-20 md:pb-16">
       <div className="max-w-[1600px] mx-auto">
-        <div className="grid grid-cols-12 gap-x-6 mb-20" data-reveal>
+
+        {/* ── Header + Description — single unified frame ── */}
+        <div
+          className="border border-ink/15 p-8 md:p-12 mb-6 grid grid-cols-12 gap-x-6 gap-y-6"
+          data-reveal
+        >
           <div className="col-span-12 lg:col-span-5">
-            <p className="text-xs font-semibold tracking-[0.2em] text-magenta uppercase mb-8 flex items-center gap-4">
+            <p className="text-xs font-semibold tracking-[0.2em] text-magenta uppercase mb-6 flex items-center gap-4">
               <span className="w-8 h-px bg-magenta" />
               Chapter 02 — Centers of Care
             </p>
@@ -41,28 +55,42 @@ export function Specialties() {
           </p>
         </div>
 
-        <div
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 border-t border-ink/15"
-          data-reveal-stagger
-        >
+        {/* ── Individual framed specialty cards (2×2 grid) ── */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6" data-reveal-stagger>
           {specialties.map((s) => (
             <article
               key={s.title}
-              className="group relative border-b border-ink/15 md:border-r last:border-b-0 md:[&:nth-child(2n)]:border-r-0 lg:[&:nth-child(3n)]:border-r-0 lg:[&:nth-child(2n)]:border-r p-8 md:p-12 transition-colors hover:bg-paper cursor-default"
+              className="group border border-ink/15 overflow-hidden hover:border-magenta transition-colors duration-500 cursor-default"
             >
-              <span className="font-display italic text-magenta text-sm tracking-widest">
-                {s.num}
-              </span>
-              <h3 className="mt-6 font-display text-3xl md:text-4xl text-navy-deep leading-tight">
-                {s.title}
-              </h3>
-              <p className="mt-4 text-sm md:text-base text-ink/70 leading-relaxed max-w-[36ch]">
-                {s.body}
-              </p>
-              <span className="absolute bottom-8 right-8 size-2 rounded-full bg-magenta opacity-0 group-hover:opacity-100 transition-opacity" />
+              {/* Image frame */}
+              <div className="relative h-52 md:h-64 overflow-hidden">
+                <img
+                  src={s.img}
+                  alt={s.title}
+                  className="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700"
+                  loading="lazy"
+                  decoding="async"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-secondary/80 to-transparent" />
+                <span className="absolute top-6 left-6 font-display italic text-magenta text-sm tracking-widest">
+                  {s.num}
+                </span>
+              </div>
+
+              {/* Text content */}
+              <div className="p-8 md:p-10">
+                <h3 className="font-display text-3xl md:text-4xl text-navy-deep leading-tight mb-4">
+                  {s.title}
+                </h3>
+                <p className="text-sm md:text-base text-ink/70 leading-relaxed max-w-[40ch]">
+                  {s.body}
+                </p>
+                <span className="mt-6 inline-block size-2 rounded-full bg-magenta opacity-0 group-hover:opacity-100 transition-opacity" />
+              </div>
             </article>
           ))}
         </div>
+
       </div>
     </section>
   );

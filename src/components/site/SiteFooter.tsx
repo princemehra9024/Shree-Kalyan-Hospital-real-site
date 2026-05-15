@@ -11,7 +11,7 @@ export function SiteFooter() {
       {/* Editorial Glass Veil — Subtly tints and blurs the map */}
       <div className="absolute inset-0 bg-gradient-to-b from-navy-deep/20 via-transparent to-navy-deep/60 backdrop-blur-[1px] z-1 pointer-events-none" />
 
-      <div className="relative z-10 max-w-[1700px] mx-auto px-6 md:px-12 lg:px-24 py-24 md:py-40">
+      <div className="relative z-10 max-w-[1700px] mx-auto px-6 md:px-12 lg:px-24 py-16 md:py-24">
         <div className="grid grid-cols-12 gap-x-8 gap-y-20">
           <div className="col-span-12 lg:col-span-12 mb-12 md:mb-20">
             <div className="flex flex-col md:flex-row md:items-end justify-between gap-12">
@@ -26,7 +26,7 @@ export function SiteFooter() {
                 </h2>
                 <div className="flex flex-wrap gap-8 items-center">
                   <a
-                    href="https://maps.app.goo.gl/YXY7rY7Z7Z7Z7Z7Z7"
+                    href="https://maps.app.goo.gl/shreekalyanhospitalkota"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="group flex items-center gap-4 px-8 py-4 rounded-full border border-white/10 hover:bg-paper hover:text-navy-deep transition-all duration-500 text-[0.7rem] tracking-[0.2em] uppercase font-bold"
@@ -42,7 +42,7 @@ export function SiteFooter() {
                   Clinical Excellence
                 </p>
                 <p className="text-[0.6rem] tracking-[0.3em] uppercase text-paper/20">
-                  est. 2004 — Kota
+                  est. 2001 — Kota
                 </p>
               </div>
             </div>

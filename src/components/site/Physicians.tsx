@@ -17,7 +17,7 @@ export function Physicians() {
   return (
     <section
       id="physicians"
-      className="px-6 md:px-12 lg:px-24 py-32 md:py-48 max-w-[1600px] mx-auto"
+      className="px-6 md:px-12 lg:px-24 py-16 md:py-24 max-w-[1600px] mx-auto"
     >
       <div className="grid grid-cols-12 gap-x-6 gap-y-16 items-center">
         <div className="col-span-12 lg:col-span-5 relative" data-reveal>

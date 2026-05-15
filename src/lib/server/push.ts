@@ -57,7 +57,6 @@ export async function broadcastNotification(title: string, message: string) {
     if (expiredSubscriptions.length > 0) {
       try {
         await sql`DELETE FROM notification_tokens WHERE subscription::text = ANY(${expiredSubscriptions})`;
-        console.log(`Removed ${expiredSubscriptions.length} expired subscriptions.`);
       } catch (dbErr) {
         console.error("Failed to remove expired subscriptions from DB:", dbErr);
       }

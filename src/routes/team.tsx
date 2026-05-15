@@ -131,10 +131,10 @@ function TeamPage() {
       <SiteNav />
 
       {/* Split-Screen Hero Section (Matching FAQs style) */}
-      <section className="hero-section relative min-h-screen bg-paper text-ink pt-32 pb-24 px-6 md:px-12 lg:px-24 flex items-center overflow-hidden">
+      <section className="hero-section relative bg-paper text-ink pt-28 pb-16 px-6 md:px-12 lg:px-24 flex items-center overflow-hidden">
         <div className="hero-parallax-group w-full max-w-[1600px] mx-auto z-10 relative grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
           {/* Left: Text Content */}
-          <div className="max-w-2xl z-20 pt-20 lg:pt-0">
+          <div className="max-w-2xl z-20">
             <div className="flex items-center gap-6 mb-8">
               <div className="hero-line w-12 h-[1px] bg-magenta origin-left scale-x-0" />
               <p className="hero-sub font-bold text-[0.65rem] md:text-[0.75rem] tracking-[0.3em] uppercase text-magenta">
@@ -192,7 +192,7 @@ function TeamPage() {
       </div>
 
       {/* Featured physician editorial */}
-      <section className="px-6 md:px-12 lg:px-24 py-32 md:py-48 max-w-[1600px] mx-auto relative z-30 bg-paper">
+      <section className="px-6 md:px-12 lg:px-24 py-16 md:py-24 max-w-[1600px] mx-auto relative z-30 bg-paper">
         <div className="grid grid-cols-12 gap-x-6 gap-y-16 items-center">
           <div className="col-span-12 lg:col-span-5" data-reveal>
             <p className="text-[0.65rem] font-bold tracking-[0.3em] text-magenta uppercase mb-8 flex items-center gap-4">
@@ -233,7 +233,7 @@ function TeamPage() {
       </section>
 
       {/* Roster — editorial cards */}
-      <section className="bg-navy-deep text-paper px-6 md:px-12 lg:px-24 py-32 md:py-48 relative z-30">
+      <section className="bg-navy-deep text-paper px-6 md:px-12 lg:px-24 py-16 md:py-24 relative z-30">
         <div className="max-w-[1600px] mx-auto">
           <div
             className="flex flex-col md:flex-row md:items-end justify-between gap-12 mb-24"

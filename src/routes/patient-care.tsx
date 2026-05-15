@@ -13,8 +13,9 @@ import {
   Sparkles,
 } from "lucide-react";
 
-import elevatorLobby from "@/assets/elevator-lobby-skh.jpg";
-import otImg from "@/assets/ot-skh.jpg";
+import lobbyImg from "@/assets/lobby-skh.jpg";
+import kapilGImg from "@/assets/kapilG.jpeg";
+import otImg from "@/assets/lab-skh.jpg";
 import corridorImg from "@/assets/corridor-skh.jpg";
 import wardImg from "@/assets/ward-skh.jpg";
 import founderDoctor from "@/assets/founder-doctor.png";
@@ -56,7 +57,7 @@ const STEPS = [
     title: "Arrival & Suite",
     body: "Greeted at the door and escorted to a private recovery suite — climate-controlled, nutritionally curated, and designed around your circadian recovery rhythms.",
     icon: Sparkles,
-    image: elevatorLobby,
+    image: lobbyImg,
   },
   {
     num: "03",
@@ -443,23 +444,45 @@ function PatientCarePage() {
           </div>
         </div>
 
-        {/* Right — image with clip-path wipe */}
+        {/* Right — editorial photo panel */}
         <div className="relative overflow-hidden hero-img-wrap min-h-[50vh] lg:min-h-full">
+
+          {/* Full-bleed photo */}
           <img
-            src={elevatorLobby}
-            alt="Patient Reception at Shree Kalyan Hospital"
-            className="hero-img-inner w-full h-[115%] object-cover -top-[7%] absolute"
+            src={kapilGImg}
+            alt="Dr. Kapil Garg — Founder, Shree Kalyan Hospital"
+            className="hero-img-inner absolute inset-0 w-full h-[115%] object-cover object-top -top-[7%]"
             fetchPriority="high"
             decoding="async"
           />
-          <div className="absolute inset-0 bg-gradient-to-l from-transparent to-paper/20 lg:to-transparent" />
 
-          {/* Floating badge */}
-          <div className="hero-badge absolute bottom-8 left-8 bg-navy-deep text-paper p-6 md:p-8 shadow-editorial max-w-[220px] z-10">
-            <p className="font-display italic text-3xl leading-none mb-2">4.9 / 5</p>
-            <p className="text-[0.58rem] font-syne uppercase tracking-[0.2em] text-paper/60 font-bold">
-              Rated by 2,400+ patients
-            </p>
+          {/* ── Cinematic gradient overlays ── */}
+          {/* Left fade — blend into text panel */}
+          <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-r from-paper/30 via-transparent to-transparent pointer-events-none" />
+          {/* Bottom vignette — grounds the badges */}
+          <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-t from-navy-deep/80 via-navy-deep/10 to-transparent pointer-events-none" />
+          {/* Top subtle dark cap */}
+          <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-b from-navy-deep/30 to-transparent pointer-events-none" />
+
+          {/* ── Corner bracket accents ── */}
+          <div aria-hidden="true" className="absolute top-6 left-6 w-10 h-10 border-t-2 border-l-2 border-white/20 pointer-events-none" />
+          <div aria-hidden="true" className="absolute top-6 right-6 w-10 h-10 border-t-2 border-r-2 border-white/20 pointer-events-none" />
+          <div aria-hidden="true" className="absolute bottom-24 left-6 w-10 h-10 border-b-2 border-l-2 border-white/20 pointer-events-none" />
+          <div aria-hidden="true" className="absolute bottom-24 right-6 w-10 h-10 border-b-2 border-r-2 border-white/20 pointer-events-none" />
+
+          {/* ── Doctor name caption — bottom ── */}
+          <div className="absolute bottom-8 left-8 right-8 z-10 flex items-end justify-between gap-4">
+            {/* Name card */}
+            <div style={{ background: "rgba(10,15,30,0.65)", backdropFilter: "blur(16px)", border: "1px solid rgba(255,255,255,0.08)", padding: "1.25rem 1.5rem" }}>
+              <p className="font-display text-xl text-white leading-tight mb-1">Dr. Kapil Garg</p>
+              <p className="text-[0.55rem] font-syne uppercase tracking-[0.3em] text-magenta font-bold">Founder &amp; Director</p>
+              <p className="text-[0.52rem] font-syne uppercase tracking-[0.2em] text-white/35 font-bold mt-0.5">Shree Kalyan Hospital</p>
+            </div>
+            {/* Rating pill */}
+            <div className="hero-badge" style={{ background: "rgba(214,31,104,0.9)", backdropFilter: "blur(12px)", padding: "0.875rem 1.25rem", textAlign: "center" }}>
+              <p className="font-display italic text-2xl text-white leading-none">4.9★</p>
+              <p className="text-[0.48rem] font-syne uppercase tracking-[0.2em] text-white/70 font-bold mt-0.5">Patient Rating</p>
+            </div>
           </div>
         </div>
 
