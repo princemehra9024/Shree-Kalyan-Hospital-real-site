@@ -65,8 +65,8 @@ function Index() {
               style={{ willChange: "transform", transform: "translateZ(0)", backfaceVisibility: "hidden" }}
             />
             {/* Editorial Overlays */}
-            <div className="absolute inset-0 bg-gradient-to-t from-navy-deep/95 via-navy-deep/30 to-transparent" />
-            <div className="absolute inset-0 bg-gradient-to-r from-navy-deep/75 via-navy-deep/20 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-t from-navy-deep/70 md:from-navy-deep/95 via-navy-deep/20 md:via-navy-deep/30 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-r from-navy-deep/40 md:from-navy-deep/75 via-transparent md:via-navy-deep/20 to-transparent" />
           </div>
 
           <div className="relative z-10 px-4 sm:px-6 md:pl-24 lg:pl-32 pr-4 sm:pr-6 md:pr-12 lg:pr-24 max-w-[1920px] mx-auto w-full">
@@ -124,19 +124,19 @@ function Index() {
               <div className="flex gap-8 md:gap-12 flex-wrap">
                 <div>
                   <span className="block text-paper text-xl font-display italic">25+</span>
-                  <span className="text-[0.55rem] font-bold uppercase tracking-widest text-paper/60 mt-1 block">
+                  <span className="text-[0.65rem] md:text-[0.55rem] font-bold uppercase tracking-widest text-paper/60 mt-1 block">
                     Specialties
                   </span>
                 </div>
                 <div>
                   <span className="block text-paper text-xl font-display italic">150+</span>
-                  <span className="text-[0.55rem] font-bold uppercase tracking-widest text-paper/60 mt-1 block">
+                  <span className="text-[0.65rem] md:text-[0.55rem] font-bold uppercase tracking-widest text-paper/60 mt-1 block">
                     Bed Capacity
                   </span>
                 </div>
                 <div>
                   <span className="block text-paper text-xl font-display italic">NABH</span>
-                  <span className="text-[0.55rem] font-bold uppercase tracking-widest text-paper/60 mt-1 block">
+                  <span className="text-[0.65rem] md:text-[0.55rem] font-bold uppercase tracking-widest text-paper/60 mt-1 block">
                     Accredited
                   </span>
                 </div>

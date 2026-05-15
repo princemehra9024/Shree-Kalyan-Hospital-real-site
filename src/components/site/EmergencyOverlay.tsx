@@ -131,7 +131,7 @@ export function EmergencyOverlay({ isOpen, onClose }: EmergencyOverlayProps) {
               <p className="text-[0.65rem] font-bold tracking-[0.2em] uppercase mb-4 text-magenta">
                 Get Directions
               </p>
-              <h3 className="font-display text-4xl md:text-5xl leading-none">80 Feet Link Road</h3>
+              <h3 className="font-display text-4xl md:text-5xl leading-none">28B, R K Puram Rd</h3>
               <p className="mt-4 text-sm font-medium opacity-70 italic text-magenta">
                 Kota, Rajasthan
               </p>

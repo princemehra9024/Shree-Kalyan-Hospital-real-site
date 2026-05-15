@@ -1,4 +1,4 @@
-﻿import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import exterior from "@/assets/hospital.png";
 import { SiteNav } from "@/components/site/SiteNav";
@@ -18,7 +18,7 @@ export const Route = createFileRoute("/contact")({
       {
         name: "description",
         content:
-          "Contact Shree Kalyan Hospital, Kota — 80 Feet Link Road, Kota, Rajasthan 324005. Call +91 85292 19330. 24/7 emergency care. Book OPD appointments Mon–Sat 9AM–8PM.",
+          "Contact Shree Kalyan Hospital, Kota — 28B, R K Puram Rd, Sector B, Rama Krishna Puram, Kota, Rajasthan 324005. Call +91 85292 19330. 24/7 emergency care. Book OPD appointments Mon–Sat 9AM–8PM.",
       },
       {
         name: "keywords",
@@ -29,7 +29,7 @@ export const Route = createFileRoute("/contact")({
       { property: "og:title", content: "Contact Shree Kalyan Hospital Kota | 24/7 Emergency" },
       {
         property: "og:description",
-        content: "80 Feet Link Road, Kota, Rajasthan 324005. Call +91 85292 19330. 24/7 emergency, OPD Mon–Sat.",
+        content: "28B, R K Puram Rd, Rama Krishna Puram, Kota, Rajasthan 324005. Call +91 85292 19330. 24/7 emergency, OPD Mon–Sat.",
       },
       { property: "og:url", content: "https://shreekalyanhospital.com/contact" },
       { property: "og:image", content: exterior },
@@ -503,9 +503,9 @@ function ContactPage() {
                     <>
                       Shree Kalyan Hospital
                       <br />
-                      80 Feet Link Road
+                      28B, R K Puram Rd, Sector B
                       <br />
-                      Kota, Rajasthan 324005
+                      Rama Krishna Puram, Kota 324005
                     </>
                   ),
                 },

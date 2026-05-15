@@ -10,7 +10,7 @@ export function Physicians() {
     enabled: !!import.meta.env.VITE_SANITY_PROJECT_ID,
   });
 
-  const doctorName = featuredDoctor?.name || "Dr. Manish Gotam";
+  const doctorName = featuredDoctor?.name || "Dr. Manish Ji";
   const doctorImg = featuredDoctor?.image ? urlFor(featuredDoctor.image).url() : defaultDoctor;
   const doctorQuote = featuredDoctor?.bio?.split(".")[0] || "Steady hands. Quieter minds.";
 

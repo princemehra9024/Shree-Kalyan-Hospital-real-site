@@ -42,20 +42,20 @@ export const Route = createFileRoute("/team")({
 
 const physicians = [
   {
-    name: "Dr. Kapil Garg",
-    role: "Senior Consultant, Cardiology",
+    name: "Kapil Ji",
+    role: "Managing Director, Shree Kalyan Hospital",
     image: doc1,
-    quote: "The heart keeps its own counsel.",
-    creds: "MBBS · DM Cardiology (PGIMER)",
-    institute: "Cardiology",
+    quote: "A hospital is only as strong as the people who run it with heart.",
+    creds: "Founder & Managing Director · Shree Kalyan Hospital, Kota",
+    institute: "Hospital Management",
   },
   {
-    name: "Dr. Manish Gupta",
-    role: "Consultant Neurosurgeon",
+    name: "Dr. Manish Ji",
+    role: "Senior Consultant Oncologist",
     image: doc2,
-    quote: "Steady hands. Quieter minds.",
-    creds: "MBBS · MCh Neurosurgery (NIMHANS)",
-    institute: "Neurosciences",
+    quote: "Every battle against cancer is a battle for life.",
+    creds: "MBBS · MD · DNB Oncology",
+    institute: "Oncology",
   },
 ];
 
@@ -191,9 +191,11 @@ function TeamPage() {
         <Marquee
           items={[
             "Cardiology",
-            "Neurosciences",
             "Oncology",
             "Critical Care",
+            "Senior Consultants",
+            "Cancer Care",
+            "Neurosciences",
           ]}
         />
       </div>
@@ -268,7 +270,7 @@ function TeamPage() {
                     alt={p.name}
                     loading="lazy"
                     decoding="async"
-                    className="w-full h-full object-cover object-top transition-transform duration-[1200ms] group-hover:scale-110 opacity-90 group-hover:opacity-100"
+                    className="w-full h-full object-cover object-center transition-transform duration-[1200ms] group-hover:scale-110 opacity-90 group-hover:opacity-100"
                   />
                 </div>
                 <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">

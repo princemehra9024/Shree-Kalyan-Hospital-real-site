@@ -11,18 +11,18 @@ export function SiteFooter() {
       {/* Editorial Glass Veil — Subtly tints and blurs the map */}
       <div className="absolute inset-0 bg-gradient-to-b from-navy-deep/20 via-transparent to-navy-deep/60 backdrop-blur-[1px] z-1 pointer-events-none" />
 
-      <div className="relative z-10 max-w-[1700px] mx-auto px-6 md:px-12 lg:px-24 py-16 md:py-24">
-        <div className="grid grid-cols-12 gap-x-8 gap-y-20">
-          <div className="col-span-12 lg:col-span-12 mb-12 md:mb-20">
-            <div className="flex flex-col md:flex-row md:items-end justify-between gap-12">
+      <div className="relative z-10 max-w-[1700px] mx-auto px-6 md:px-12 lg:px-24 pt-16 md:pt-24 pb-36 md:pb-24">
+        <div className="grid grid-cols-12 gap-x-8 gap-y-12 md:gap-y-20">
+          <div className="col-span-12 lg:col-span-12 mb-8 md:mb-20">
+            <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 md:gap-12">
               <div className="max-w-3xl">
-                <p className="text-[0.7rem] tracking-[0.4em] uppercase text-pink font-semibold mb-10 flex items-center gap-6">
+                <p className="text-[0.75rem] tracking-[0.4em] uppercase text-pink font-semibold mb-6 md:mb-10 flex items-center gap-6">
                   <span className="w-12 h-px bg-pink/40" />
                   Shree Kalyan Hospital
                 </p>
-                <h2 className="font-display text-4xl sm:text-6xl md:text-8xl lg:text-9xl leading-[0.85] tracking-tighter mb-12">
-                  Precision care, <br />
-                  <span className="italic font-light text-paper/90">in the heart of Kota.</span>
+                <h2 className="font-display text-4xl sm:text-6xl md:text-8xl lg:text-9xl leading-[0.85] tracking-tighter mb-10 md:mb-12">
+                  Precision care, <br className="hidden md:block" />
+                  <span className="italic font-light text-paper/90 md:block">in the heart of Kota.</span>
                 </h2>
                 <div className="flex flex-wrap gap-8 items-center">
                   <a
@@ -48,11 +48,11 @@ export function SiteFooter() {
             </div>
           </div>
 
-          <div className="col-span-12 h-px bg-white/5 mb-8" />
+          <div className="col-span-12 h-px bg-white/5 mb-4 md:mb-8" />
 
           {/* Column structure for the rest */}
-          <div className="col-span-6 md:col-span-3 lg:col-span-2">
-            <p className="text-[0.65rem] tracking-[0.3em] uppercase text-paper/30 mb-10">
+          <div className="col-span-12 sm:col-span-4 lg:col-span-2">
+            <p className="text-[0.75rem] md:text-[0.65rem] tracking-[0.3em] uppercase text-paper/40 mb-6 md:mb-10">
               Directory
             </p>
             <ul className="space-y-4 text-base font-light text-paper/80">
@@ -74,8 +74,8 @@ export function SiteFooter() {
             </ul>
           </div>
 
-          <div className="col-span-12 sm:col-span-6 md:col-span-3 lg:col-span-2">
-            <p className="text-[0.65rem] tracking-[0.3em] uppercase text-paper/30 mb-10">Reach</p>
+          <div className="col-span-12 sm:col-span-4 lg:col-span-2">
+            <p className="text-[0.75rem] md:text-[0.65rem] tracking-[0.3em] uppercase text-paper/40 mb-6 md:mb-10">Reach</p>
             <ul className="space-y-4 text-base font-light text-paper/80">
               <li>
                 <a href="tel:+918529219330" className="hover:text-magenta transition-colors">
@@ -85,7 +85,7 @@ export function SiteFooter() {
               <li>
                 <a
                   href="mailto:info@shreekalyan.in"
-                  className="hover:text-magenta transition-colors break-all"
+                  className="hover:text-magenta transition-colors break-all pr-12 md:pr-0 block"
                 >
                   info@shreekalyan.in
                 </a>
@@ -93,8 +93,8 @@ export function SiteFooter() {
             </ul>
           </div>
 
-          <div className="col-span-12 md:col-span-6 lg:col-span-3 lg:col-start-8">
-            <p className="text-[0.65rem] tracking-[0.3em] uppercase text-paper/30 mb-10">
+          <div className="col-span-12 sm:col-span-4 lg:col-span-3 lg:col-start-8">
+            <p className="text-[0.75rem] md:text-[0.65rem] tracking-[0.3em] uppercase text-paper/40 mb-6 md:mb-10">
               Facility Hours
             </p>
             <div className="space-y-6">
@@ -112,17 +112,17 @@ export function SiteFooter() {
           </div>
 
           {/* Global Footer Bottom */}
-          <div className="col-span-12 mt-32 pt-16 border-t border-white/5 flex flex-col md:flex-row items-start md:items-end justify-between gap-12">
-            <div className="space-y-4 text-[0.65rem] tracking-[0.3em] uppercase text-paper/30 leading-relaxed">
-              <p className="text-paper/50">© {new Date().getFullYear()} Shree Kalyan Hospital</p>
-              <p>80 Feet Link Road, Kota, Rajasthan</p>
+          <div className="col-span-12 mt-16 md:mt-32 pt-12 md:pt-16 border-t border-white/5 flex flex-col md:flex-row items-start md:items-end justify-between gap-8 md:gap-12 relative">
+            <div className="space-y-4 text-[0.7rem] md:text-[0.65rem] tracking-[0.25em] md:tracking-[0.3em] uppercase text-paper/40 leading-relaxed max-w-[85%] md:max-w-none">
+              <p className="text-paper/60 font-semibold">© {new Date().getFullYear()} Shree Kalyan Hospital</p>
+              <p>28B, R K Puram Rd, Sector B, Rama Krishna Puram, Kota</p>
             </div>
 
-            <div className="md:text-right">
+            <div className="text-left md:text-right mt-4 md:mt-0">
               <p className="italic font-display lowercase tracking-normal text-paper/20 text-2xl lg:text-3xl mb-2">
                 an editorial reimagining of clinical care
               </p>
-              <p className="text-[0.55rem] tracking-[0.4em] uppercase text-paper/10 font-bold">
+              <p className="text-[0.6rem] md:text-[0.55rem] tracking-[0.4em] uppercase text-paper/20 font-bold">
                 Premium Healthcare Experience
               </p>
             </div>

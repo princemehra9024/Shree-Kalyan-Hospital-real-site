@@ -86,7 +86,7 @@ export const Route = createFileRoute("/appointments")({
           telephone: "+918529219330",
           address: {
             "@type": "PostalAddress",
-            streetAddress: "80 Feet Link Road, R.K. Puram",
+            streetAddress: "28B, R K Puram Rd, Sector B, Rama Krishna Puram",
             addressLocality: "Kota",
             addressRegion: "Rajasthan",
             postalCode: "324005",

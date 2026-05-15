@@ -41,7 +41,7 @@ const hospitalSchema = {
   ],
   address: {
     "@type": "PostalAddress",
-    streetAddress: "80 Feet Link Road, R.K. Puram",
+    streetAddress: "28B, R K Puram Rd, Sector B, Rama Krishna Puram",
     addressLocality: "Kota",
     addressRegion: "Rajasthan",
     postalCode: "324005",
@@ -93,7 +93,7 @@ const hospitalSchema = {
   ],
   founder: {
     "@type": "Person",
-    name: "Kapil Gautam",
+    name: "Kapil Ji",
     jobTitle: "Founder & Managing Director, Shree Kalyan Hospital",
   },
   numberOfBeds: 150,

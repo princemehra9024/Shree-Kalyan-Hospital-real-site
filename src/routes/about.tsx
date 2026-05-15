@@ -79,15 +79,15 @@ const TIMELINE = [
 const LEADERSHIP = [
   {
     img: doctor2,
-    role: "Head of Cardiology",
-    name: "Dr. Kapil Garg",
-    desc: "Pioneer in interventional cardiology with over 25 years of experience in complex heart procedures.",
+    role: "Founder & Managing Director",
+    name: "Kapil Ji",
+    desc: "Visionary behind Shree Kalyan Hospital, Kapil Ji built the institution from the ground up with a single mission: bring quality healthcare to Kota.",
   },
   {
     img: doctor3,
-    role: "Consultant Neurosurgeon",
-    name: "Dr. Manish Gupta",
-    desc: "Expert in neuro-navigation and spinal reconstructive procedures with a focus on minimally invasive techniques.",
+    role: "Senior Consultant Oncologist",
+    name: "Dr. Manish Ji",
+    desc: "Expert in oncology and cancer care, Dr. Manish Ji leads our Oncology department with compassion and clinical excellence.",
   },
 ];
 
@@ -375,7 +375,7 @@ function AboutPage() {
               <div className="relative bg-navy/5 overflow-hidden" style={{height: '560px'}}>
                 <img
                   src={founderDoctor}
-                  alt="Kapil Gautam"
+                  alt="Kapil Ji"
                   className="w-full h-full object-cover object-center transition-all duration-[2s] group-hover: -0"
                   fetchPriority="high"
                   decoding="async"
@@ -551,7 +551,7 @@ function AboutPage() {
                 multi-specialty hospital, but our mission remains the same: the patient always comes first.
               </p>
               <p>
-                Founded by <strong>Kapil Gautam</strong>, Shree Kalyan Hospital was built 
+                Founded by <strong>Kapil Ji</strong>, Shree Kalyan Hospital was built 
                 to bridge the gap in quality healthcare for the people of Kota and nearby regions. 
                 He understood that while technology is essential, true healing happens through 
                 personal attention and empathy.

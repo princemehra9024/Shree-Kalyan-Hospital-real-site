@@ -1,4 +1,4 @@
-﻿import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute } from "@tanstack/react-router";
 import { SiteNav } from "@/components/site/SiteNav";
 import { SiteFooter } from "@/components/site/SiteFooter";
 import { useEffect, useRef } from "react";
@@ -458,7 +458,7 @@ function PatientCarePage() {
           {/* Full-bleed photo */}
           <img
             src={kapilGImg}
-            alt="Dr. Kapil Garg — Founder, Shree Kalyan Hospital"
+            alt="Kapil Ji — Founder, Shree Kalyan Hospital"
             className="hero-img-inner absolute inset-0 w-full h-[115%] object-cover object-top -top-[7%]"
             fetchPriority="high"
             decoding="async"
@@ -482,8 +482,8 @@ function PatientCarePage() {
           <div className="absolute bottom-8 left-8 right-8 z-10 flex items-end justify-between gap-4">
             {/* Name card */}
             <div style={{ background: "rgba(10,15,30,0.65)", backdropFilter: "blur(16px)", border: "1px solid rgba(255,255,255,0.08)", padding: "1.25rem 1.5rem" }}>
-              <p className="font-display text-xl text-white leading-tight mb-1">Dr. Kapil Garg</p>
-              <p className="text-[0.55rem] font-syne uppercase tracking-[0.3em] text-magenta font-bold">Founder &amp; Director</p>
+              <p className="font-display text-xl text-white leading-tight mb-1">Kapil Ji</p>
+              <p className="text-[0.55rem] font-syne uppercase tracking-[0.3em] text-magenta font-bold">Founder &amp; Managing Director</p>
               <p className="text-[0.52rem] font-syne uppercase tracking-[0.2em] text-white/35 font-bold mt-0.5">Shree Kalyan Hospital</p>
             </div>
             {/* Rating pill */}
@@ -811,7 +811,7 @@ function PatientCarePage() {
           <div className="mt-16 flex items-center justify-center gap-4">
             <div className="w-12 h-px bg-magenta" />
             <span className="text-[0.6rem] font-syne uppercase tracking-[0.3em] text-paper/40 font-bold">
-              Dr. Kapil Garg, Founder, Shree Kalyan Hospital
+              Kapil Ji, Founder & Managing Director, Shree Kalyan Hospital
             </span>
             <div className="w-12 h-px bg-magenta" />
           </div>

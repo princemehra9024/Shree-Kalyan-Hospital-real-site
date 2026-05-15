@@ -213,7 +213,7 @@ export function SiteNav({ isHome = false }: { isHome?: boolean }) {
                 <Mail className="size-3.5 text-magenta" /> info@shreekalyan.in
               </a>
               <span className="flex items-center gap-2">
-                <MapPin className="size-3.5 text-magenta" /> 80 Feet Link Road Kota
+                <MapPin className="size-3.5 text-magenta" /> 28B, R K Puram Rd, Kota
               </span>
             </div>
 
@@ -438,12 +438,12 @@ export function ScrollToTop() {
       ref={btnRef}
       onClick={handleClick}
       aria-label="Scroll to top"
-      className={`fixed bottom-8 right-6 z-40 size-12 rounded-full flex items-center justify-center shadow-xl transition-all duration-500 ease-out
+      className={`fixed bottom-6 right-4 md:bottom-8 md:right-6 z-40 size-10 md:size-12 rounded-full flex items-center justify-center shadow-xl transition-all duration-500 ease-out
         bg-navy-deep text-paper border border-paper/10
         hover:bg-magenta hover:border-magenta hover:scale-110 active:scale-95
         ${ visible ? "opacity-100 translate-y-0 pointer-events-auto" : "opacity-0 translate-y-6 pointer-events-none" }`}
     >
-      <ChevronUp className="size-5" />
+      <ChevronUp className="size-4 md:size-5" />
     </button>
   );
 }
