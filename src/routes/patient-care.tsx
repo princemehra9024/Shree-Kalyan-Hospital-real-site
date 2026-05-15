@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+﻿import { createFileRoute } from "@tanstack/react-router";
 import { SiteNav } from "@/components/site/SiteNav";
 import { SiteFooter } from "@/components/site/SiteFooter";
 import { useEffect, useRef } from "react";
@@ -27,16 +27,24 @@ export const Route = createFileRoute("/patient-care")({
   component: PatientCarePage,
   head: () => ({
     meta: [
-      { title: "Patient Care · Shree Kalyan Hospital" },
+      { title: "Patient Care & Experience | Shree Kalyan Hospital Kota | NABH Accredited" },
       {
         name: "description",
-        content: "Compassionate, unhurried patient care at Shree Kalyan Hospital.",
+        content:
+          "World-class patient care at Shree Kalyan Hospital Kota. Private suites, 24/7 nursing, continuity of care, cashless insurance, and compassionate oncology support. NABH accredited hospital, Kota.",
       },
-      { property: "og:title", content: "Patient Care · Shree Kalyan Hospital" },
+      {
+        name: "keywords",
+        content:
+          "patient care kota hospital, private hospital room kota, hospital facilities kota, 24 hour nursing kota, cashless hospital kota, oncology care kota, best patient care kota rajasthan",
+      },
+      { name: "robots", content: "index, follow" },
+      { property: "og:title", content: "Patient Care | Shree Kalyan Hospital Kota" },
       {
         property: "og:description",
-        content: "Compassionate, unhurried patient care at Shree Kalyan Hospital.",
+        content: "Private suites, 24/7 nursing & compassionate care at Shree Kalyan Hospital, Kota's NABH accredited multi-specialty hospital.",
       },
+      { property: "og:url", content: "https://shreekalyanhospital.com/patient-care" },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
@@ -861,7 +869,7 @@ function PatientCarePage() {
             src={hospitalExterior}
             alt="Shree Kalyan Hospital Exterior - Kota"
             className="w-full h-full object-cover object-center"
-          />
+           loading="lazy" decoding="async"/>
           <div className="absolute inset-0 bg-navy-deep/60" />
           <div className="absolute inset-0 flex items-end p-10 md:p-16">
             <p className="font-display italic text-4xl md:text-5xl text-paper leading-tight max-w-xs">

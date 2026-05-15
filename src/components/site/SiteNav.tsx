@@ -146,9 +146,9 @@ export function SiteNav({ isHome = false }: { isHome?: boolean }) {
       <header className="fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-out flex bg-transparent drop-shadow-md">
         {/* Huge Left Logo Block Container */}
         <div
-          className={`flex items-center justify-center shrink-0 w-24 md:w-64 transition-all duration-500 z-10 relative
+          className={`flex items-center justify-center shrink-0 w-16 md:w-64 transition-all duration-500 z-10 relative
           ${isHome && !scrolled ? "bg-transparent" : "bg-magenta shadow-[4px_0_15px_rgba(0,0,0,0.15)]"}
-          ${scrolled ? "h-16 md:h-20" : "h-20 md:h-[128px]"}`}
+          ${scrolled ? "h-16 md:h-20" : "h-16 md:h-[128px]"}`}
         >
           <Link
             to="/"
@@ -158,14 +158,15 @@ export function SiteNav({ isHome = false }: { isHome?: boolean }) {
           >
             <span
               className={`block rounded-full bg-paper border-2 border-paper shadow-card overflow-hidden transition-[width,height] duration-500 ease-out 
-                ${scrolled ? "size-10 md:size-14" : "size-14 md:size-20"}`}
+                ${scrolled ? "size-8 md:size-14" : "size-9 md:size-20"}`}
             >
               <img
                 src={logo}
                 alt="Shree Kalyan Hospital"
                 fetchPriority="high"
-                decoding="async"
+                decoding="sync"
                 className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                style={{ willChange: "transform", transform: "translateZ(0)" }}
               />
             </span>
           </Link>
@@ -298,10 +299,10 @@ export function SiteNav({ isHome = false }: { isHome?: boolean }) {
               ))}
             </nav>
 
-            <div className="flex items-center gap-1.5 md:gap-4">
+            <div className="flex items-center gap-1 md:gap-4">
               <LanguageSwitcher />
-              {/* Mobile Quick Actions */}
-              <div className="flex md:hidden items-center gap-1">
+              {/* Mobile Quick Actions - only emergency, hidden on very small */}
+              <div className="hidden sm:flex md:hidden items-center gap-1">
                 {/* Emergency Icon */}
                 <button
                   onClick={() => {
@@ -309,24 +310,13 @@ export function SiteNav({ isHome = false }: { isHome?: boolean }) {
                     window.dispatchEvent(new CustomEvent("toggle-emergency"));
                   }}
                   aria-label="Emergency"
-                  className="size-10 rounded-full flex items-center justify-center bg-magenta text-paper shadow-lg shadow-magenta/20 active:scale-90 transition-all border border-magenta/20"
+                  className="relative size-9 rounded-full flex items-center justify-center bg-magenta text-paper shadow-lg shadow-magenta/20 active:scale-90 transition-all"
                 >
-                  <AlertTriangle className="size-5" />
-                  <span className="absolute -top-1 -right-1 size-3 bg-paper rounded-full flex items-center justify-center">
-                    <span className="size-1.5 bg-magenta rounded-full animate-pulse" />
+                  <AlertTriangle className="size-4" />
+                  <span className="absolute -top-0.5 -right-0.5 size-2.5 bg-paper rounded-full flex items-center justify-center">
+                    <span className="size-1 bg-magenta rounded-full animate-pulse" />
                   </span>
                 </button>
-
-                {/* WhatsApp Icon */}
-                <a
-                  href="https://wa.me/918529219330"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="WhatsApp"
-                  className="size-10 rounded-full flex items-center justify-center bg-[#25D366] text-white shadow-lg shadow-[#25D366]/20 active:scale-90 transition-all border border-[#25D366]/20"
-                >
-                  <WhatsAppIcon className="size-5" />
-                </a>
               </div>
               {/* Desktop Enquiry CTA */}
               <Link
@@ -339,30 +329,14 @@ export function SiteNav({ isHome = false }: { isHome?: boolean }) {
                 </span>
               </Link>
 
-              {/* Mobile: quick call button */}
-              <a
-                href="tel:+918529219330"
-                aria-label="Call us"
-                className="md:hidden flex items-center justify-center size-9 rounded-full bg-magenta/15 border border-magenta/30 text-magenta hover:bg-magenta hover:text-white transition-colors"
-              >
-                <svg viewBox="0 0 20 20" fill="none" className="w-4 h-4">
-                  <path
-                    d="M3 3h4l1.5 4-2 1.5a11 11 0 005 5L13 11l4 1.5V17a1 1 0 01-1 1C7 18 2 13 2 4a1 1 0 011-1z"
-                    stroke="currentColor"
-                    strokeWidth="1.5"
-                    strokeLinejoin="round"
-                  />
-                </svg>
-              </a>
-
-              {/* Mobile Burger */}
+              {/* Mobile Burger — always solid magenta so it's visible on any background */}
               <button
                 ref={burgerRef}
                 onClick={() => setOpen(true)}
                 aria-label="Open menu"
-                className="md:hidden relative size-10 rounded-full flex flex-col items-center justify-center gap-1.5 hover:text-magenta transition-colors text-paper bg-ink/10 backdrop-blur-md border border-paper/10"
+                className="md:hidden relative size-10 rounded-full flex items-center justify-center bg-magenta text-white shadow-lg shadow-magenta/30 active:scale-90 transition-all shrink-0"
               >
-                <Menu className="size-6" />
+                <Menu className="size-5" />
               </button>
             </div>
           </div>

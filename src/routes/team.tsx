@@ -13,18 +13,25 @@ export const Route = createFileRoute("/team")({
   component: TeamPage,
   head: () => ({
     meta: [
-      { title: "Physicians · Shree Kalyan Hospital, Kota" },
+      { title: "Best Doctors in Kota | Specialist Physicians | Shree Kalyan Hospital" },
       {
         name: "description",
         content:
-          "Meet the consultants of Shree Kalyan Hospital, Kota — experts across cardiology, neurosciences, oncology, and critical care.",
+          "Meet the expert doctors and specialist consultants at Shree Kalyan Hospital, Kota. Leading cardiologists, neurosurgeons, oncologists, and critical care specialists in Rajasthan.",
       },
-      { property: "og:title", content: "Physicians · Shree Kalyan Hospital" },
+      {
+        name: "keywords",
+        content:
+          "best doctors kota, cardiologist kota, neurosurgeon kota, oncologist kota, specialist doctor kota rajasthan, top physician kota, shree kalyan hospital doctors, expert consultant kota",
+      },
+      { name: "robots", content: "index, follow" },
+      { property: "og:title", content: "Best Doctors & Specialists in Kota | Shree Kalyan Hospital" },
       {
         property: "og:description",
         content:
-          "Seventy-four named consultants. The same physician at admission, review and discharge.",
+          "Expert cardiologists, neurosurgeons, oncologists & specialists at Shree Kalyan Hospital Kota. 70+ named consultants.",
       },
+      { property: "og:url", content: "https://shreekalyanhospital.com/team" },
       { property: "og:image", content: doc1 },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },

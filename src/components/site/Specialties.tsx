@@ -63,15 +63,16 @@ export function Specialties() {
               className="group border border-ink/15 overflow-hidden hover:border-magenta transition-colors duration-500 cursor-default"
             >
               {/* Image frame */}
-              <div className="relative h-52 md:h-64 overflow-hidden">
+              <div className="relative h-52 md:h-64 overflow-hidden img-zoom">
                 <img
                   src={s.img}
                   alt={s.title}
-                  className="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700"
+                  className="w-full h-full object-cover"
                   loading="lazy"
                   decoding="async"
+                  style={{ willChange: "transform", transform: "translateZ(0)" }}
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-secondary/80 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-secondary/80 to-transparent transition-opacity duration-700 group-hover:opacity-60" />
                 <span className="absolute top-6 left-6 font-display italic text-magenta text-sm tracking-widest">
                   {s.num}
                 </span>

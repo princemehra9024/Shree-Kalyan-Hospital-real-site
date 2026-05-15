@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+﻿import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -75,7 +75,7 @@ export function PageHero({ chapter, eyebrow, title, intro, image }: PageHeroProp
         <div className="absolute top-0 right-0 w-[60%] md:w-[50%] h-full opacity-20 pointer-events-none mix-blend-soft-light overflow-hidden mask-image-b">
           <img
             src={image}
-            className="hero-parallax-img w-full h-[130%] object-cover grayscale"
+            className="hero-parallax-img w-full h-[130%] object-cover "
             alt="texture"
             fetchPriority="high"
             decoding="async"

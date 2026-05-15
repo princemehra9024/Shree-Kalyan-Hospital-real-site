@@ -102,6 +102,11 @@
     scroll-padding-top: 5rem;
     -webkit-tap-highlight-color: transparent;
   }
+  html, body {
+    max-width: 100vw;
+    overflow-x: hidden;
+  }
+
   body {
     background-color: var(--color-navy-deep);
     color: var(--color-ink);
@@ -624,5 +629,157 @@
 }
 .hero-panel:hover::before {
   transform: scale(1.04);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   IMAGE PERFORMANCE & SMOOTH LOADING SYSTEM
+   ═══════════════════════════════════════════════════════════════════════ */
+
+/* ── 1. Smooth fade-in when an image finishes loading ── */
+@keyframes img-reveal {
+  from {
+    opacity: 0;
+    transform: scale(1.015);
+    filter: blur(6px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+    filter: blur(0px);
+  }
+}
+
+/* Applied globally — every img fades in beautifully */
+img {
+  animation: img-reveal 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
+  /* GPU compositing layers for silky paint */
+  will-change: opacity, transform;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  /* Crisp rendering */
+  image-rendering: auto;
+  -webkit-backface-visibility: hidden;
+}
+
+/* Hero / above-the-fold images — no blur delay, just a gentle fade */
+img[fetchpriority="high"],
+img[data-priority="high"] {
+  animation: img-reveal 0.35s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* ── 2. Skeleton shimmer placeholder while loading ── */
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.img-skeleton {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(
+    90deg,
+    rgba(10, 15, 30, 0.06) 25%,
+    rgba(10, 15, 30, 0.12) 50%,
+    rgba(10, 15, 30, 0.06) 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.8s ease-in-out infinite;
+}
+
+/* Auto-skeleton on image containers — applied via wrapper class */
+.img-wrap {
+  position: relative;
+  overflow: hidden;
+  background: rgba(10, 15, 30, 0.06);
+}
+.img-wrap::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    transparent 25%,
+    rgba(255, 255, 255, 0.08) 50%,
+    transparent 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.6s ease-in-out infinite;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 1;
+  transition: opacity 0.4s ease;
+}
+/* Hide shimmer once img loads via JS .loaded class */
+.img-wrap.loaded::before {
+  opacity: 0;
+}
+
+/* ── 3. Parallax image GPU hint ── */
+.parallax-img,
+.hero-bg-img,
+.hero-img-inner,
+.ct-hero-img,
+.fc-hero-img,
+.ap-hero-img,
+.founder-img,
+.manifesto-bg {
+  will-change: transform;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+/* ── 4. Content-visibility for below-fold sections (huge perf win) ── */
+.section-lazy {
+  content-visibility: auto;
+  contain-intrinsic-size: 0 600px; /* estimated height */
+}
+
+/* ── 5. Smooth hover zoom on all gallery/card images ── */
+.img-zoom {
+  overflow: hidden;
+}
+.img-zoom img {
+  transition: transform 1.4s cubic-bezier(0.76, 0, 0.24, 1),
+              filter 1.4s ease;
+}
+.img-zoom:hover img {
+  transform: scale(1.06) translateZ(0);
+}
+
+/* ── 6. Image cross-fade between states (e.g. grayscale → color) ── */
+.img-fade-state img {
+  transition: filter 0.8s ease, opacity 0.6s ease;
+}
+
+/* ── 7. Smooth page-transition image reveal (clip-path) ── */
+@keyframes img-clip-reveal {
+  from { clip-path: inset(0 100% 0 0); }
+  to   { clip-path: inset(0 0% 0 0); }
+}
+.img-clip-reveal {
+  animation: img-clip-reveal 1.2s cubic-bezier(0.76, 0, 0.24, 1) forwards;
+}
+
+/* ── 8. Reduce motion accessibility ── */
+@media (prefers-reduced-motion: reduce) {
+  img {
+    animation: none !important;
+    transition: none !important;
+  }
+  .img-zoom img {
+    transition: none !important;
+  }
+  .img-wrap::before {
+    animation: none !important;
+    opacity: 0;
+  }
+}
+
+/* ── 9. Ensure object-fit images render crisply ── */
+img[class*="object-cover"],
+img[class*="object-contain"] {
+  /* Prevent sub-pixel rendering artifacts */
+  transform: translateZ(0);
 }
 

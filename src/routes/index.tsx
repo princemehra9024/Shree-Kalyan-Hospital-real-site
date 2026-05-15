@@ -17,19 +17,29 @@ export const Route = createFileRoute("/")({
   component: Index,
   head: () => ({
     meta: [
-      { title: "Best Hospital in Kota | Shree Kalyan Hospital | Leading Multi-Specialty Care" },
+      { title: "Best Hospital in Kota Rajasthan | Shree Kalyan Hospital | NABH Accredited" },
       {
         name: "description",
         content:
-          "Shree Kalyan Hospital in Kota provides advanced clinical care in Cardiology, Oncology, Neurosciences, and more. Trusted by thousands in Rajasthan since 2001.",
+          "Shree Kalyan Hospital — the best hospital in Kota, Rajasthan. NABH accredited, 150+ beds, 70+ specialists. Expert Cardiology, Oncology, Neurosciences, ICU & 24/7 Emergency care. Book appointment today.",
       },
-      { property: "og:title", content: "Shree Kalyan Hospital · Kota | Advanced Healthcare" },
+      {
+        name: "keywords",
+        content:
+          "best hospital in kota, hospital kota rajasthan, shree kalyan hospital kota, NABH hospital kota, multi specialty hospital kota, cardiology hospital kota, oncology hospital kota, 24 hour hospital kota, emergency hospital kota, top doctor kota",
+      },
+      { name: "robots", content: "index, follow" },
+      { property: "og:title", content: "Best Hospital in Kota | Shree Kalyan Hospital | NABH Accredited" },
       {
         property: "og:description",
-        content: "Expert medical care with a human touch in the heart of Kota, Rajasthan.",
+        content: "Shree Kalyan Hospital — NABH accredited multi-specialty hospital in Kota, Rajasthan. Expert Cardiology, Oncology, Neurosciences & 24/7 Emergency. Trusted since 2001.",
       },
+      { property: "og:url", content: "https://shreekalyanhospital.com/" },
       { property: "og:image", content: heroImg },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:image", content: heroImg },
+      { name: "twitter:title", content: "Best Hospital in Kota | Shree Kalyan Hospital" },
     ],
   }),
 });
@@ -43,22 +53,23 @@ function Index() {
       <SiteNav isHome={true} />
       <main>
         {/* ── Hero Section — Immersive & Minimalist ── */}
-        <section className="relative h-dvh min-h-[700px] flex flex-col justify-center overflow-hidden bg-navy-deep pt-24">
+        <section className="relative h-dvh min-h-[600px] flex flex-col justify-center overflow-hidden bg-navy-deep pt-20 md:pt-24">
           {/* Background Image Layer */}
           <div className="absolute inset-0 z-0">
             <img
               src={heroImg}
-              alt="Shree Kalyan Hospital"
+              alt="Shree Kalyan Hospital — best hospital in Kota"
               fetchPriority="high"
-              decoding="async"
-              className="absolute inset-0 w-full h-full object-cover object-top brightness-75 contrast-110"
+              decoding="sync"
+              className="absolute inset-0 w-full h-full object-cover object-top"
+              style={{ willChange: "transform", transform: "translateZ(0)", backfaceVisibility: "hidden" }}
             />
             {/* Editorial Overlays */}
             <div className="absolute inset-0 bg-gradient-to-t from-navy-deep/95 via-navy-deep/30 to-transparent" />
             <div className="absolute inset-0 bg-gradient-to-r from-navy-deep/75 via-navy-deep/20 to-transparent" />
           </div>
 
-          <div className="relative z-10 px-6 md:pl-24 lg:pl-32 pr-6 md:pr-12 lg:pr-24 max-w-[1920px] mx-auto w-full">
+          <div className="relative z-10 px-4 sm:px-6 md:pl-24 lg:pl-32 pr-4 sm:pr-6 md:pr-12 lg:pr-24 max-w-[1920px] mx-auto w-full">
             <div className="flex flex-col xl:flex-row items-start xl:items-end justify-between gap-8 xl:gap-12">
               <div className="flex-1 max-w-full">
                 <div className="mb-4 lg:mb-8 flex items-center gap-6" data-anim="hero-eyebrow">
@@ -72,7 +83,7 @@ function Index() {
                   data-anim="hero-title"
                 >
                   <span className="block text-5xl sm:text-6xl md:text-[5rem] lg:text-[7.5rem]">Care that</span>
-                  <span className="block text-6xl sm:text-7xl md:text-[6rem] lg:text-[9rem] mt-1 lg:mt-2 whitespace-nowrap">
+                  <span className="block text-6xl sm:text-7xl md:text-[6rem] lg:text-[9rem] mt-1 lg:mt-2">
                     <em className="italic font-light text-magenta pr-2 lg:pr-4">sees</em> You.
                   </span>
                 </h1>
@@ -101,7 +112,7 @@ function Index() {
 
             {/* Hero Footer — tagline + stats */}
             <div
-              className="mt-12 lg:mt-16 flex flex-col md:flex-row items-start md:items-center gap-8 md:gap-16 border-t border-paper/10 pt-8"
+              className="mt-8 md:mt-16 flex flex-col md:flex-row items-start md:items-center gap-6 md:gap-16 border-t border-paper/10 pt-6 md:pt-8"
               data-anim="hero-stats"
             >
               <p className="text-paper/50 text-sm max-w-sm leading-relaxed font-light">
@@ -172,11 +183,12 @@ function Index() {
           ]}
         />
 
-        <Specialties />
-        <RoomViews />
-        <Physicians />
-        <PatientReviews />
-        <ContactPreview />
+        {/* Below-fold sections — lazy rendered for perf */}
+        <div className="section-lazy"><Specialties /></div>
+        <div className="section-lazy"><RoomViews /></div>
+        <div className="section-lazy"><Physicians /></div>
+        <div className="section-lazy"><PatientReviews /></div>
+        <div className="section-lazy"><ContactPreview /></div>
       </main>
       <SiteFooter />
     </div>

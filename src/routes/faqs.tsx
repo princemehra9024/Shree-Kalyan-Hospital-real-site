@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+﻿import { createFileRoute } from "@tanstack/react-router";
 import { useState, useRef, useEffect } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -15,18 +15,25 @@ export const Route = createFileRoute("/faqs")({
   component: FAQsPage,
   head: () => ({
     meta: [
-      { title: "Patient Guidelines & FAQs · Shree Kalyan Hospital" },
+      { title: "Patient FAQs & Guidelines | Shree Kalyan Hospital Kota | Admission & Insurance" },
       {
         name: "description",
         content:
-          "Complete guidelines, admission protocols, and FAQs for patients at Shree Kalyan Hospital.",
+          "Get answers to all your questions about Shree Kalyan Hospital, Kota — admission process, insurance, diagnostics, visiting hours, pre-surgery preparation & more.",
       },
-      { property: "og:title", content: "Patient Guidelines & FAQs · Shree Kalyan Hospital" },
+      {
+        name: "keywords",
+        content:
+          "hospital FAQs kota, hospital admission kota, cashless insurance hospital kota, visiting hours kota hospital, patient guidelines kota, hospital appointment FAQs kota",
+      },
+      { name: "robots", content: "index, follow" },
+      { property: "og:title", content: "Patient FAQs & Guidelines | Shree Kalyan Hospital Kota" },
       {
         property: "og:description",
         content:
-          "Complete guidelines, admission protocols, and FAQs for patients at Shree Kalyan Hospital.",
+          "Comprehensive patient guidelines, admission protocols, insurance information & FAQs for Shree Kalyan Hospital, Kota.",
       },
+      { property: "og:url", content: "https://shreekalyanhospital.com/faqs" },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
@@ -337,7 +344,7 @@ function FAQsPage() {
               <img
                 src={abstractCorridor}
                 alt="Hospital Facility"
-                className="hq-hero-img-inner w-full h-[120%] object-cover grayscale transition-all duration-[2s] group-hover:grayscale-0 absolute -top-[10%]"
+                className="hq-hero-img-inner w-full h-[120%] object-cover transition-all duration-[2s] group-hover: -0 absolute -top-[10%]"
                 fetchPriority="high"
                 decoding="async"
               />
@@ -502,8 +509,8 @@ function FAQsPage() {
           <img
             src={hospitalLobby}
             alt=""
-            className="absolute inset-0 w-full h-full object-cover grayscale mix-blend-overlay opacity-30"
-          />
+            className="absolute inset-0 w-full h-full object-cover mix-blend-overlay opacity-30"
+           loading="lazy" decoding="async"/>
         </div>
 
         <div className="relative z-10 max-w-[1200px] mx-auto text-center" data-reveal>

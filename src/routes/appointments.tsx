@@ -54,17 +54,24 @@ export const Route = createFileRoute("/appointments")({
   component: AppointmentsPage,
   head: () => ({
     meta: [
-      { title: "Appointments · Shree Kalyan Hospital | Top Care in Kota" },
+      { title: "Book Appointment in Kota | Shree Kalyan Hospital | OPD & Specialist Consultation" },
       {
         name: "description",
         content:
-          "Book your private consultation or OPD appointment at Shree Kalyan Hospital, Kota, Rajasthan. Expert doctors available. Emergency 24/7.",
+          "Book your OPD or specialist appointment at Shree Kalyan Hospital, Kota's best multi-specialty hospital. Online appointment booking, 70+ expert doctors, 24/7 emergency. Kota, Rajasthan.",
       },
-      { property: "og:title", content: "Appointments · Shree Kalyan Hospital" },
+      {
+        name: "keywords",
+        content:
+          "book appointment kota hospital, doctor appointment kota, OPD appointment kota, online appointment kota hospital, specialist doctor appointment kota, shree kalyan hospital appointment",
+      },
+      { name: "robots", content: "index, follow" },
+      { property: "og:title", content: "Book Appointment | Shree Kalyan Hospital Kota" },
       {
         property: "og:description",
-        content: "Book your private consultation or OPD appointment at Shree Kalyan Hospital.",
+        content: "Online appointment booking at Shree Kalyan Hospital Kota. 70+ specialists, 24/7 emergency, NABH accredited.",
       },
+      { property: "og:url", content: "https://shreekalyanhospital.com/appointments" },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
@@ -79,11 +86,29 @@ export const Route = createFileRoute("/appointments")({
           telephone: "+918529219330",
           address: {
             "@type": "PostalAddress",
+            streetAddress: "80 Feet Link Road, R.K. Puram",
             addressLocality: "Kota",
             addressRegion: "Rajasthan",
+            postalCode: "324005",
             addressCountry: "IN",
           },
-          medicalSpecialty: ["General Practice", "Emergency Care"],
+          openingHoursSpecification: [
+            {
+              "@type": "OpeningHoursSpecification",
+              dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+              opens: "09:00",
+              closes: "20:00",
+            },
+          ],
+          medicalSpecialty: [
+            "Cardiology", "Oncology", "Neurosciences", "Orthopaedics",
+            "General Surgery", "Critical Care", "Emergency Care",
+          ],
+          aggregateRating: {
+            "@type": "AggregateRating",
+            ratingValue: "4.8",
+            reviewCount: "1200",
+          },
         }),
       },
     ],

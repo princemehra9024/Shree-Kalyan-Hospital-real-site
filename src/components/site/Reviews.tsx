@@ -1,4 +1,4 @@
-import { useQuery } from "@tanstack/react-query";
+﻿import { useQuery } from "@tanstack/react-query";
 import { Star, Quote } from "lucide-react";
 import { useGsapReveal } from "@/hooks/use-gsap-reveal";
 import { Marquee } from "./Marquee";
@@ -68,8 +68,8 @@ export function PatientReviews() {
                 <img
                   src={review.profile_photo_url}
                   alt={review.author_name}
-                  className="size-12 rounded-full grayscale group-hover:grayscale-0 transition-all"
-                />
+                  className="size-12 rounded-full transition-all"
+                 loading="lazy" decoding="async"/>
                 <div>
                   <p className="font-display text-xl leading-none mb-1">{review.author_name}</p>
                   <p className="text-[0.55rem] font-bold uppercase tracking-widest text-paper/30">

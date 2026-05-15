@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+﻿import { createFileRoute } from "@tanstack/react-router";
 import { SiteNav } from "@/components/site/SiteNav";
 import { SiteFooter } from "@/components/site/SiteFooter";
 import { useEffect, useRef } from "react";
@@ -528,7 +528,7 @@ function CancerGuidelinesPage() {
                 <img
                   src={tech.img}
                   alt={tech.title}
-                  className="absolute inset-0 w-full h-full object-cover grayscale opacity-50 group-hover:grayscale-0 group-hover:opacity-100 transition-[filter,opacity] duration-[1.5s]"
+                  className="absolute inset-0 w-full h-full object-cover opacity-50 group-hover: -0 group-hover:opacity-100 transition-[filter,opacity] duration-[1.5s]"
                   loading="lazy"
                   decoding="async"
                 />
@@ -650,7 +650,7 @@ function CancerGuidelinesPage() {
               <img
                 src={operatingTheatre}
                 alt="Oncology suite"
-                className="w-full h-full object-cover grayscale hover:grayscale-0 transition-[filter] duration-[2s]"
+                className="w-full h-full object-cover transition-[filter] duration-[2s]"
                 loading="lazy"
                 decoding="async"
               />
@@ -662,7 +662,7 @@ function CancerGuidelinesPage() {
               <img
                 src={founderDoctor}
                 alt="Care team"
-                className="w-full h-full object-cover object-top grayscale hover:grayscale-0 transition-[filter] duration-[2s]"
+                className="w-full h-full object-cover object-top transition-[filter] duration-[2s]"
                 loading="lazy"
                 decoding="async"
               />
@@ -671,7 +671,7 @@ function CancerGuidelinesPage() {
               <img
                 src={heroCorridor}
                 alt="Hospital"
-                className="w-full h-full object-cover grayscale hover:grayscale-0 transition-[filter] duration-[2s]"
+                className="w-full h-full object-cover transition-[filter] duration-[2s]"
                 loading="lazy"
                 decoding="async"
               />

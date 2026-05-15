@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+﻿import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -19,18 +19,25 @@ export const Route = createFileRoute("/facilities")({
   component: FacilitiesPage,
   head: () => ({
     meta: [
-      { title: "Facilities · Shree Kalyan Hospital, Kota" },
+      { title: "Hospital Facilities in Kota | ICU, OT, Diagnostics | Shree Kalyan Hospital" },
       {
         name: "description",
         content:
-          "Tour Shree Kalyan Hospital's precision infrastructure — state-of-the-art ICU, modular operation theaters, deluxe recovery suites, and advanced diagnostics.",
+          "Shree Kalyan Hospital Kota features a 12-bed ICU, modular operation theaters, deluxe recovery suites, advanced diagnostic lab & clinical cafeteria. State-of-the-art healthcare infrastructure in Rajasthan.",
       },
-      { property: "og:title", content: "Facilities · Shree Kalyan Hospital" },
+      {
+        name: "keywords",
+        content:
+          "hospital facilities kota, ICU hospital kota, operation theatre kota, diagnostic lab kota, recovery suites kota, HEPA filtration hospital kota, best hospital infrastructure kota rajasthan",
+      },
+      { name: "robots", content: "index, follow" },
+      { property: "og:title", content: "Hospital Facilities | ICU, OT, Diagnostics | Shree Kalyan Hospital Kota" },
       {
         property: "og:description",
         content:
-          "Tour Shree Kalyan Hospital's precision infrastructure — state-of-the-art ICU, modular operation theaters, deluxe recovery suites, and advanced diagnostics.",
+          "Tour our 12-bed ICU, modular OTs, deluxe recovery suites & advanced diagnostics. Premium healthcare infrastructure at Shree Kalyan Hospital, Kota.",
       },
+      { property: "og:url", content: "https://shreekalyanhospital.com/facilities" },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
@@ -312,7 +319,7 @@ function FacilitiesPage() {
               <img
                 src={elevatorLobby}
                 alt="Shree Kalyan Hospital — Elegant Lobby"
-                className="fc-hero-img w-full aspect-[4/5] object-cover grayscale hover:grayscale-0 transition-all duration-[2s] ease-in-out"
+                className="fc-hero-img w-full aspect-[4/5] object-cover transition-all duration-[2s] ease-in-out"
                 fetchPriority="high"
                 decoding="async"
               />
@@ -388,8 +395,8 @@ function FacilitiesPage() {
                     <img
                       src={item.img}
                       alt={item.title}
-                      className="w-full h-full object-cover grayscale group-hover/img:grayscale-0 group-hover/img:scale-105 transition-all duration-700"
-                    />
+                      className="w-full h-full object-cover group-hover/img: -0 group-hover/img:scale-105 transition-all duration-700"
+                     loading="lazy" decoding="async"/>
                     <div className="absolute inset-0 bg-navy-deep/20 mix-blend-multiply" />
                   </div>
                 )}
@@ -488,7 +495,7 @@ function FacilitiesPage() {
               <img
                 src={displayPng}
                 alt="Advanced Display Infrastructure at Shree Kalyan Hospital"
-                className="w-full aspect-video object-cover grayscale hover:grayscale-0 transition-all duration-[2s]"
+                className="w-full aspect-video object-cover transition-all duration-[2s]"
                 loading="lazy"
                 decoding="async"
               />

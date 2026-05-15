@@ -18,17 +18,24 @@ export const Route = createFileRoute("/services")({
   component: ServicesPage,
   head: () => ({
     meta: [
-      { title: "Medical Services & Specialties | Shree Kalyan Hospital Kota" },
+      { title: "Medical Services & Specialties in Kota | Shree Kalyan Hospital | Cardiology, Oncology, Neuro" },
       {
         name: "description",
         content:
-          "Explore specialized medical services at Shree Kalyan Hospital Kota, including Cardiology, Oncology, and Neurosciences. Advanced care in Rajasthan.",
+          "Shree Kalyan Hospital Kota offers expert medical services: Cardiology, Oncology, Neurosciences, Critical Care, Orthopaedics, Surgery & more. NABH accredited hospital in Kota, Rajasthan.",
       },
-      { property: "og:title", content: "Specialized Medical Services | Shree Kalyan Hospital Kota" },
+      {
+        name: "keywords",
+        content:
+          "medical services kota, cardiology kota, oncology kota, neurology kota, orthopaedics kota, cancer treatment kota, heart specialist kota, ICU hospital kota, surgery hospital kota, specialist doctor kota rajasthan",
+      },
+      { name: "robots", content: "index, follow" },
+      { property: "og:title", content: "Medical Services & Specialties | Shree Kalyan Hospital Kota" },
       {
         property: "og:description",
-        content: "Explore our centers of excellence in Cardiology, Oncology, and more in Kota.",
+        content: "Expert Cardiology, Oncology, Neurosciences, Critical Care & Surgery at Shree Kalyan Hospital, Kota's NABH accredited multi-specialty hospital.",
       },
+      { property: "og:url", content: "https://shreekalyanhospital.com/services" },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
@@ -171,7 +178,7 @@ function ServicesPage() {
         <div className="absolute top-0 right-0 w-[60%] md:w-[50%] h-full opacity-20 pointer-events-none mix-blend-soft-light overflow-hidden mask-image-b">
           <img
             src={surgicalTheater}
-            className="hero-parallax-img w-full h-[130%] object-cover grayscale"
+            className="hero-parallax-img w-full h-[130%] object-cover "
             alt="texture"
             fetchPriority="high"
             decoding="async"
@@ -218,7 +225,7 @@ function ServicesPage() {
             ref={hoverImgRef}
             src={operatingTheatre}
             alt="Department Preview"
-            className="hidden lg:block fixed pointer-events-none z-0 object-cover grayscale mix-blend-multiply"
+            className="hidden lg:block fixed pointer-events-none z-0 object-cover mix-blend-multiply"
             loading="lazy"
             decoding="async"
             style={{
@@ -299,7 +306,7 @@ function ServicesPage() {
           <img
             src={heroCorridor}
             alt=""
-            className="absolute inset-0 w-full h-full object-cover grayscale mix-blend-overlay opacity-10"
+            className="absolute inset-0 w-full h-full object-cover mix-blend-overlay opacity-10"
             loading="lazy"
             decoding="async"
           />

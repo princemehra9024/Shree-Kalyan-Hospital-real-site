@@ -30,14 +30,21 @@ export const Route = createFileRoute("/about")({
   component: AboutPage,
   head: () => ({
     meta: [
-      { title: "About Shree Kalyan Hospital Kota | Our Legacy & Medical Experts" },
+      { title: "About Shree Kalyan Hospital Kota | NABH Hospital | Our Story & Specialists" },
       {
         name: "description",
         content:
-          "Discover the history of Shree Kalyan Hospital in Kota. Founded in 2001, we are dedicated to bringing world-class healthcare and top specialists to Rajasthan.",
+          "Learn about Shree Kalyan Hospital, Kota's most trusted multi-specialty hospital since 2001. NABH accredited with 150+ beds, 70+ specialists, and expert care in Cardiology, Oncology, Neurosciences & Surgery.",
       },
-      { property: "og:title", content: "About Us | Shree Kalyan Hospital Kota" },
-      { property: "og:description", content: "A legacy of care and medical excellence in Kota, Rajasthan since 2001." },
+      {
+        name: "keywords",
+        content:
+          "about shree kalyan hospital kota, best hospital kota history, NABH accredited hospital kota, top doctors kota rajasthan, kapil gautam hospital kota, hospital since 2001 kota",
+      },
+      { name: "robots", content: "index, follow" },
+      { property: "og:title", content: "About Shree Kalyan Hospital Kota | NABH Accredited Since 2001" },
+      { property: "og:description", content: "Kota's leading multi-specialty hospital since 2001. NABH accredited, 150+ beds, expert Cardiology, Oncology & Neurosciences care." },
+      { property: "og:url", content: "https://shreekalyanhospital.com/about" },
     ],
   }),
 });
@@ -369,7 +376,7 @@ function AboutPage() {
                 <img
                   src={founderDoctor}
                   alt="Kapil Gautam"
-                  className="w-full h-full object-cover object-center grayscale transition-all duration-[2s] group-hover:grayscale-0"
+                  className="w-full h-full object-cover object-center transition-all duration-[2s] group-hover: -0"
                   fetchPriority="high"
                   decoding="async"
                 />
@@ -515,7 +522,7 @@ function AboutPage() {
               <img
                 src={founderDoctor}
                 alt="Founder"
-                className="w-full h-[120%] object-cover grayscale group-hover:grayscale-0 transition-all duration-[2s] absolute top-[-10%] founder-img"
+                className="w-full h-[120%] object-cover transition-all duration-[2s] absolute top-[-10%] founder-img"
                 loading="lazy"
                 decoding="async"
               />
@@ -681,7 +688,7 @@ function AboutPage() {
                   alt={leader.name}
                   loading="lazy"
                   decoding="async"
-                  className="w-full h-full object-cover object-top grayscale opacity-95 transition-all duration-[2s] group-hover:grayscale-0 group-hover:scale-105"
+                  className="w-full h-full object-cover object-top opacity-95 transition-all duration-[2s] group-hover: -0 group-hover:scale-105"
                 />
 
                 <div className="absolute bottom-0 left-0 p-8 lg:p-10 z-20 w-full transform transition-transform duration-500 translate-y-4 group-hover:translate-y-0">
@@ -829,7 +836,7 @@ function AboutPage() {
                 alt="Hospital Facility"
                 loading="lazy"
                 decoding="async"
-                className="w-full h-full object-cover object-center grayscale transition-all duration-1000 group-hover:grayscale-0"
+                className="w-full h-full object-cover object-center transition-all duration-1000 group-hover: -0"
               />
               <div className="absolute top-8 left-8 bg-paper p-4 border border-navy/10 shadow-editorial z-10">
                 <span className="text-[0.55rem] font-syne uppercase tracking-widest text-navy-deep font-bold">
@@ -846,7 +853,7 @@ function AboutPage() {
         <div className="absolute inset-0 opacity-10">
           <img
             src={hospitalLobby}
-            className="w-full h-[150%] object-cover grayscale manifesto-bg"
+            className="w-full h-[150%] object-cover manifesto-bg"
             style={{ top: "-25%" }}
             alt="bg"
             loading="lazy"

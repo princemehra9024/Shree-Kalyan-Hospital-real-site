@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+﻿import React, { useState, useEffect, useRef } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import exterior from "@/assets/hospital.png";
 import { SiteNav } from "@/components/site/SiteNav";
@@ -14,17 +14,24 @@ export const Route = createFileRoute("/contact")({
   component: ContactPage,
   head: () => ({
     meta: [
-      { title: "Contact Us | Shree Kalyan Hospital Kota | 24/7 Emergency" },
+      { title: "Contact Shree Kalyan Hospital Kota | 24/7 Emergency | Appointments" },
       {
         name: "description",
         content:
-          "Contact Shree Kalyan Hospital in Kota for appointments, emergency care, and medical inquiries. Located on 80 Feet Link Road, Kota. Open 24/7 for emergencies.",
+          "Contact Shree Kalyan Hospital, Kota — 80 Feet Link Road, Kota, Rajasthan 324005. Call +91 85292 19330. 24/7 emergency care. Book OPD appointments Mon–Sat 9AM–8PM.",
       },
-      { property: "og:title", content: "Contact Shree Kalyan Hospital Kota" },
+      {
+        name: "keywords",
+        content:
+          "contact shree kalyan hospital kota, hospital kota address, hospital kota phone number, hospital appointment kota, 24 hour emergency kota, doctor appointment kota, kota hospital location",
+      },
+      { name: "robots", content: "index, follow" },
+      { property: "og:title", content: "Contact Shree Kalyan Hospital Kota | 24/7 Emergency" },
       {
         property: "og:description",
-        content: "Visit us at 80 Feet Link Road, Kota. 24/7 emergency services and expert OPD consultations.",
+        content: "80 Feet Link Road, Kota, Rajasthan 324005. Call +91 85292 19330. 24/7 emergency, OPD Mon–Sat.",
       },
+      { property: "og:url", content: "https://shreekalyanhospital.com/contact" },
       { property: "og:image", content: exterior },
       { name: "twitter:image", content: exterior },
     ],
@@ -284,8 +291,8 @@ function ContactPage() {
               <img
                 src={exterior}
                 alt="Shree Kalyan Hospital — exterior"
-                className="ct-hero-img w-full aspect-[4/5] object-cover grayscale hover:grayscale-0 transition-all duration-[2s] ease-in-out"
-              />
+                className="ct-hero-img w-full aspect-[4/5] object-cover transition-all duration-[2s] ease-in-out"
+               loading="lazy" decoding="async"/>
               {/* Colour overlay */}
               <div className="absolute inset-0 bg-navy-deep/10 mix-blend-multiply" />
             </div>
@@ -565,7 +572,7 @@ function ContactPage() {
           width={1280}
           height={896}
           loading="lazy"
-          className="ct-map-img absolute inset-0 w-full h-[115%] -top-[7.5%] object-cover grayscale hover:grayscale-0 transition-all duration-[2s] ease-in-out"
+          className="ct-map-img absolute inset-0 w-full h-[115%] -top-[7.5%] object-cover transition-all duration-[2s] ease-in-out"
         />
         <div className="absolute inset-0 bg-navy-deep/30" />
 
