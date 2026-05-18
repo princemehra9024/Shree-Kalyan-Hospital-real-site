@@ -1,4 +1,4 @@
-﻿import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute } from "@tanstack/react-router";
 import { SiteNav } from "@/components/site/SiteNav";
 import { SiteFooter } from "@/components/site/SiteFooter";
 import { useEffect, useRef } from "react";
@@ -724,7 +724,7 @@ function CancerGuidelinesPage() {
               <ArrowRight className="size-4 group-hover:translate-x-1 transition-transform" />
             </a>
             <a
-              href="tel:+918529219330"
+              href="tel:+919462937447"
               className="border border-paper/30 px-10 py-5 text-[0.65rem] font-syne font-bold uppercase tracking-widest text-paper hover:bg-white/10 transition-colors text-center"
             >
               Call Now

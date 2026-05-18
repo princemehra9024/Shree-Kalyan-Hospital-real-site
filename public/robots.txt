@@ -1,4 +1,18 @@
+# robots.txt — Shree Kalyan Hospital
+# https://shreekalyanhospital.com
+
+# ── All crawlers ──────────────────────────────────────────────
 User-agent: *
 Allow: /
 
+# Block build artifacts and API internals
+Disallow: /api/
+Disallow: /_build/
+Disallow: /node_modules/
+
+# ── Google Image Bot ──────────────────────────────────────────
+User-agent: Googlebot-Image
+Allow: /
+
+# ── Sitemap location ──────────────────────────────────────────
 Sitemap: https://shreekalyanhospital.com/sitemap.xml

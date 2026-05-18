@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as TeamRouteImport } from './routes/team'
 import { Route as ServicesRouteImport } from './routes/services'
 import { Route as PatientCareRouteImport } from './routes/patient-care'
+import { Route as MedicalDisclaimerRouteImport } from './routes/medical-disclaimer'
 import { Route as FaqsRouteImport } from './routes/faqs'
 import { Route as FacilitiesRouteImport } from './routes/facilities'
 import { Route as ContactRouteImport } from './routes/contact'
@@ -35,6 +36,11 @@ const ServicesRoute = ServicesRouteImport.update({
 const PatientCareRoute = PatientCareRouteImport.update({
   id: '/patient-care',
   path: '/patient-care',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MedicalDisclaimerRoute = MedicalDisclaimerRouteImport.update({
+  id: '/medical-disclaimer',
+  path: '/medical-disclaimer',
   getParentRoute: () => rootRouteImport,
 } as any)
 const FaqsRoute = FaqsRouteImport.update({
@@ -91,6 +97,7 @@ export interface FileRoutesByFullPath {
   '/contact': typeof ContactRoute
   '/facilities': typeof FacilitiesRoute
   '/faqs': typeof FaqsRoute
+  '/medical-disclaimer': typeof MedicalDisclaimerRoute
   '/patient-care': typeof PatientCareRoute
   '/services': typeof ServicesRouteWithChildren
   '/team': typeof TeamRoute
@@ -105,6 +112,7 @@ export interface FileRoutesByTo {
   '/contact': typeof ContactRoute
   '/facilities': typeof FacilitiesRoute
   '/faqs': typeof FaqsRoute
+  '/medical-disclaimer': typeof MedicalDisclaimerRoute
   '/patient-care': typeof PatientCareRoute
   '/services': typeof ServicesRouteWithChildren
   '/team': typeof TeamRoute
@@ -120,6 +128,7 @@ export interface FileRoutesById {
   '/contact': typeof ContactRoute
   '/facilities': typeof FacilitiesRoute
   '/faqs': typeof FaqsRoute
+  '/medical-disclaimer': typeof MedicalDisclaimerRoute
   '/patient-care': typeof PatientCareRoute
   '/services': typeof ServicesRouteWithChildren
   '/team': typeof TeamRoute
@@ -136,6 +145,7 @@ export interface FileRouteTypes {
     | '/contact'
     | '/facilities'
     | '/faqs'
+    | '/medical-disclaimer'
     | '/patient-care'
     | '/services'
     | '/team'
@@ -150,6 +160,7 @@ export interface FileRouteTypes {
     | '/contact'
     | '/facilities'
     | '/faqs'
+    | '/medical-disclaimer'
     | '/patient-care'
     | '/services'
     | '/team'
@@ -164,6 +175,7 @@ export interface FileRouteTypes {
     | '/contact'
     | '/facilities'
     | '/faqs'
+    | '/medical-disclaimer'
     | '/patient-care'
     | '/services'
     | '/team'
@@ -179,6 +191,7 @@ export interface RootRouteChildren {
   ContactRoute: typeof ContactRoute
   FacilitiesRoute: typeof FacilitiesRoute
   FaqsRoute: typeof FaqsRoute
+  MedicalDisclaimerRoute: typeof MedicalDisclaimerRoute
   PatientCareRoute: typeof PatientCareRoute
   ServicesRoute: typeof ServicesRouteWithChildren
   TeamRoute: typeof TeamRoute
@@ -206,6 +219,13 @@ declare module '@tanstack/react-router' {
       path: '/patient-care'
       fullPath: '/patient-care'
       preLoaderRoute: typeof PatientCareRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/medical-disclaimer': {
+      id: '/medical-disclaimer'
+      path: '/medical-disclaimer'
+      fullPath: '/medical-disclaimer'
+      preLoaderRoute: typeof MedicalDisclaimerRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/faqs': {
@@ -294,6 +314,7 @@ const rootRouteChildren: RootRouteChildren = {
   ContactRoute: ContactRoute,
   FacilitiesRoute: FacilitiesRoute,
   FaqsRoute: FaqsRoute,
+  MedicalDisclaimerRoute: MedicalDisclaimerRoute,
   PatientCareRoute: PatientCareRoute,
   ServicesRoute: ServicesRouteWithChildren,
   TeamRoute: TeamRoute,

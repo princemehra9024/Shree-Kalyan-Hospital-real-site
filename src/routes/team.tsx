@@ -3,7 +3,8 @@ import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import doc1 from "@/assets/kapilG.jpeg";
 import doc2 from "@/assets/manishG-new.jpg";
-import manishG from "@/assets/manishG-new.jpg";
+import doc3 from "@/assets/Dr-sumit.jpg";
+import manishG from "@/assets/Dr-sumit.jpg";
 import { SiteNav } from "@/components/site/SiteNav";
 import { SiteFooter } from "@/components/site/SiteFooter";
 import { Marquee } from "@/components/site/Marquee";
@@ -29,7 +30,7 @@ export const Route = createFileRoute("/team")({
       {
         property: "og:description",
         content:
-          "Expert cardiologists, neurosurgeons, oncologists & specialists at Shree Kalyan Hospital Kota. 70+ named consultants.",
+          "Expert cardiologists, neurosurgeons, oncologists & specialists at Shree Kalyan Hospital Kota. 5+ named consultants.",
       },
       { property: "og:url", content: "https://shreekalyanhospital.com/team" },
       { property: "og:image", content: doc1 },
@@ -42,20 +43,21 @@ export const Route = createFileRoute("/team")({
 
 const physicians = [
   {
-    name: "Kapil Ji",
-    role: "Managing Director, Shree Kalyan Hospital",
+    name: "CEO Kapil Gautam",
+    role: "Founder & Managing Director, Shree Kalyan Hospital",
     image: doc1,
     quote: "A hospital is only as strong as the people who run it with heart.",
     creds: "Founder & Managing Director · Shree Kalyan Hospital, Kota",
     institute: "Hospital Management",
   },
   {
-    name: "Dr. Manish Ji",
+    name: "Dr. Manish Gautam",
     role: "Senior Consultant Oncologist",
-    image: doc2,
+    image: doc3,
     quote: "Every battle against cancer is a battle for life.",
-    creds: "MBBS · MD · DNB Oncology",
+    creds: "Senior Oncologist",
     institute: "Oncology",
+    experience: "10+ Years",
   },
 ];
 
@@ -272,6 +274,12 @@ function TeamPage() {
                     decoding="async"
                     className="w-full h-full object-cover object-center transition-transform duration-[1200ms] group-hover:scale-110 opacity-90 group-hover:opacity-100"
                   />
+                  {p.experience && (
+                    <div className="absolute bottom-4 right-4 z-20 bg-magenta text-white px-4 py-2 shadow-card">
+                      <p className="font-display text-2xl leading-none">{p.experience}</p>
+                      <p className="text-[0.55rem] tracking-[0.2em] uppercase font-bold opacity-80 mt-0.5">Experience</p>
+                    </div>
+                  )}
                 </div>
                 <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
                   <div>
@@ -284,6 +292,9 @@ function TeamPage() {
                   <div className="hidden md:block">
                     <p className="text-[0.6rem] tracking-[0.2em] uppercase text-paper/40 font-bold mb-1">Credentials</p>
                     <p className="text-sm text-paper/80">{p.creds}</p>
+                    {p.experience && (
+                      <p className="mt-2 text-[0.6rem] tracking-[0.2em] uppercase text-magenta font-bold">{p.experience} Experience</p>
+                    )}
                   </div>
                 </div>
               </article>

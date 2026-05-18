@@ -106,7 +106,7 @@ export function EmergencyOverlay({ isOpen, onClose }: EmergencyOverlayProps) {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {/* Action Card: Call */}
           <a
-            href="tel:+918529219330"
+            href="tel:+919468956726"
             className="group bg-white text-magenta p-10 flex flex-col justify-between aspect-square md:aspect-auto md:h-80 shadow-2xl hover:scale-[1.02] transition-transform"
           >
             <Phone className="size-12" />
@@ -114,7 +114,7 @@ export function EmergencyOverlay({ isOpen, onClose }: EmergencyOverlayProps) {
               <p className="text-[0.65rem] font-bold tracking-[0.2em] uppercase mb-4">
                 Tap to Call
               </p>
-              <h3 className="font-display text-4xl md:text-5xl leading-none">+91 85292 19330</h3>
+              <h3 className="font-display text-4xl md:text-5xl leading-none">+91 94689 56726</h3>
               <p className="mt-4 text-sm font-medium opacity-70">Direct line to Trauma Center</p>
             </div>
           </a>

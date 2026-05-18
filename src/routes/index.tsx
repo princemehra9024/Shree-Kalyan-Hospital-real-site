@@ -17,22 +17,22 @@ export const Route = createFileRoute("/")({
   component: Index,
   head: () => ({
     meta: [
-      { title: "Best Hospital in Kota Rajasthan | Shree Kalyan Hospital | NABH Accredited" },
+      { title: "Best Hospital in Kota Rajasthan | Shree Kalyan Hospital" },
       {
         name: "description",
         content:
-          "Shree Kalyan Hospital — the best hospital in Kota, Rajasthan. NABH accredited, 150+ beds, 70+ specialists. Expert Cardiology, Oncology, Neurosciences, ICU & 24/7 Emergency care. Book appointment today.",
+          "Shree Kalyan Hospital — the best hospital in Kota, Rajasthan. 30 beds, 5+ specialists. Expert Cardiology, Oncology, Neurosciences, ICU & 24/7 Emergency care. Book appointment today.",
       },
       {
         name: "keywords",
         content:
-          "best hospital in kota, hospital kota rajasthan, shree kalyan hospital kota, NABH hospital kota, multi specialty hospital kota, cardiology hospital kota, oncology hospital kota, 24 hour hospital kota, emergency hospital kota, top doctor kota",
+          "best hospital in kota, hospital kota rajasthan, shree kalyan hospital kota, multi specialty hospital kota, cardiology hospital kota, oncology hospital kota, 24 hour hospital kota, emergency hospital kota, top doctor kota",
       },
       { name: "robots", content: "index, follow" },
-      { property: "og:title", content: "Best Hospital in Kota | Shree Kalyan Hospital | NABH Accredited" },
+      { property: "og:title", content: "Best Hospital in Kota | Shree Kalyan Hospital" },
       {
         property: "og:description",
-        content: "Shree Kalyan Hospital — NABH accredited multi-specialty hospital in Kota, Rajasthan. Expert Cardiology, Oncology, Neurosciences & 24/7 Emergency. Trusted since 2001.",
+        content: "Shree Kalyan Hospital — multi-specialty hospital in Kota, Rajasthan. Expert Cardiology, Oncology, Neurosciences & 24/7 Emergency. Trusted since 2019.",
       },
       { property: "og:url", content: "https://shreekalyanhospital.com/" },
       { property: "og:image", content: heroImg },
@@ -75,7 +75,7 @@ function Index() {
                 <div className="mb-4 lg:mb-8 flex items-center gap-6" data-anim="hero-eyebrow">
                   <span className="h-px w-16 bg-paper/20"></span>
                   <span className="text-[0.65rem] font-syne uppercase tracking-[0.4em] font-bold text-magenta">
-                    Est. 2001
+                    Est. 2019
                   </span>
                 </div>
                 <h1
@@ -129,15 +129,15 @@ function Index() {
                   </span>
                 </div>
                 <div>
-                  <span className="block text-paper text-xl font-display italic">150+</span>
+                  <span className="block text-paper text-xl font-display italic">30</span>
                   <span className="text-[0.65rem] md:text-[0.55rem] font-bold uppercase tracking-widest text-paper/60 mt-1 block">
-                    Bed Capacity
+                    Beds Facility
                   </span>
                 </div>
                 <div>
-                  <span className="block text-paper text-xl font-display italic">NABH</span>
+                  <span className="block text-paper text-xl font-display italic">24/7</span>
                   <span className="text-[0.65rem] md:text-[0.55rem] font-bold uppercase tracking-widest text-paper/60 mt-1 block">
-                    Accredited
+                    Emergency Care
                   </span>
                 </div>
               </div>
@@ -175,7 +175,7 @@ function Index() {
           variant="paper"
           speed="fast"
           items={[
-            "NABH Accredited",
+            "Trusted Care",
             "ISO 9001:2015",
             "24/7 Trauma",
             "Insurance Empanelled",

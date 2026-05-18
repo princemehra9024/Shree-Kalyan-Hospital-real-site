@@ -390,7 +390,7 @@ export function PatientStories() {
             { val: "98%", label: "Patient Satisfaction" },
             { val: "1.2L+", label: "Patients Treated" },
             { val: "4.8 ★", label: "Google Rating" },
-            { val: "NABH", label: "Accredited Care" },
+            { val: "24/7", label: "Emergency Care" },
           ].map(({ val, label }) => (
             <div
               key={label}

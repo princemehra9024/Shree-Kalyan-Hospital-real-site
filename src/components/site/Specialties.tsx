@@ -1,7 +1,7 @@
-import wardImg from "@/assets/ward-skh.jpg";
+import wardImg from "@/assets/ward-garnal.png";
 import corridorImg from "@/assets/corridor-skh.jpg";
-import icuImg from "@/assets/icu-skh.jpg";
-import otImg from "@/assets/lab-skh.jpg";
+import icuImg from "@/assets/operating-theatre.png";
+import otImg from "@/assets/ward.jpeg";
 
 const specialties = [
   {

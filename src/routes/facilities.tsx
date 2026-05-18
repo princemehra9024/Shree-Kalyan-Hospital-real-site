@@ -1,16 +1,16 @@
-﻿import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { SiteNav } from "@/components/site/SiteNav";
 import { SiteFooter } from "@/components/site/SiteFooter";
 import { ShieldCheck, Zap, Coffee, Bed, Activity, ArrowRight } from "lucide-react";
-import elevatorLobby from "@/assets/elevator-lobby-skh.jpg";
-import labPng from "@/assets/lab.png";
+import elevatorLobby from "@/assets/hospital-enhanced.png";
+import labPng from "@/assets/ot-enhanced.png";
 import displayPng from "@/assets/display.png";
-import diagnosticLab from "@/assets/lab-skh.jpg";
-import icuImg from "@/assets/icu-skh.jpg";
-import recoveryRoom from "@/assets/recovery-room-new.jpg";
+import diagnosticLab from "@/assets/lab-skhreal.png";
+import icuImg from "@/assets/ward.jpeg";
+import recoveryRoom from "@/assets/Deluxe Recovery Suites.png";
 import receptionNew from "@/assets/reception-new.jpg";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -23,7 +23,7 @@ export const Route = createFileRoute("/facilities")({
       {
         name: "description",
         content:
-          "Shree Kalyan Hospital Kota features a 12-bed ICU, modular operation theaters, deluxe recovery suites, advanced diagnostic lab & clinical cafeteria. State-of-the-art healthcare infrastructure in Rajasthan.",
+          "Shree Kalyan Hospital Kota features a 12-bed ICU, modular operation theaters, deluxe recovery suites, advanced diagnostic lab. State-of-the-art healthcare infrastructure in Rajasthan.",
       },
       {
         name: "keywords",
@@ -66,6 +66,7 @@ const facilitiesData = [
     text: "text-navy-deep",
     accent: "text-magenta",
     img: recoveryRoom,
+    imgClass: "object-contain bg-ink/5",
   },
   {
     id: "ot",
@@ -88,17 +89,6 @@ const facilitiesData = [
     text: "text-navy-deep",
     accent: "text-magenta",
     img: diagnosticLab,
-  },
-  {
-    id: "cafeteria",
-    title: "Clinical Cafeteria",
-    eyebrow: "Unit 05",
-    desc: "Nutritional excellence tailored by clinical dietitians to accelerate healing and provide comfort to patients and families.",
-    icon: Coffee,
-    bg: "bg-magenta",
-    text: "text-paper",
-    accent: "text-paper/80",
-    img: receptionNew,
   },
 ];
 
@@ -213,20 +203,29 @@ function FacilitiesPage() {
     const totalWidth = horizontalRef.current.scrollWidth;
     const windowWidth = window.innerWidth;
 
-    const scrollTween = gsap.to(horizontalRef.current, {
-      x: -(totalWidth - windowWidth),
-      ease: "none",
-      scrollTrigger: {
-        trigger: containerRef.current,
-        pin: true,
-        scrub: 1,
-        end: () => `+=${totalWidth}`,
-        invalidateOnRefresh: true,
-      },
-    });
+    let scrollTween: gsap.core.Tween;
+
+    const initScroll = () => {
+      ScrollTrigger.refresh();
+      scrollTween = gsap.to(horizontalRef.current, {
+        x: -(totalWidth - windowWidth),
+        ease: "none",
+        scrollTrigger: {
+          trigger: containerRef.current,
+          pin: true,
+          scrub: 1,
+          end: () => `+=${totalWidth}`,
+          invalidateOnRefresh: true,
+        },
+      });
+    };
+
+    // Small delay to ensure DOM and images are painted before pinning
+    const timer = setTimeout(initScroll, 100);
 
     return () => {
-      scrollTween.kill();
+      clearTimeout(timer);
+      if (scrollTween) scrollTween.kill();
       ScrollTrigger.getAll().forEach((t) => t.kill());
     };
   }, []);
@@ -270,13 +269,13 @@ function FacilitiesPage() {
               className="font-display leading-[0.9] tracking-tighter text-navy-deep mb-10"
               style={{ fontSize: "clamp(4rem, 9.5vw, 8.5rem)" }}
             >
-              <div className="overflow-hidden pb-3">
+              <div className="overflow-hidden pb-3 pt-8 -mt-8">
                 <span className="fc-title-word block italic font-light text-magenta">Quiet</span>
               </div>
-              <div className="overflow-hidden pb-3 pl-[0.15em] md:pl-[0.3em]">
+              <div className="overflow-hidden pb-3 pt-8 -mt-8 pl-[0.15em] md:pl-[0.3em]">
                 <span className="fc-title-word block">Precision.</span>
               </div>
-              <div className="overflow-hidden pb-3 pl-[0.3em] md:pl-[0.6em]">
+              <div className="overflow-hidden pb-3 pt-8 -mt-8 pl-[0.3em] md:pl-[0.6em]">
                 <span
                   className="fc-title-word block italic font-light opacity-40"
                   style={{ fontSize: "55%" }}
@@ -327,7 +326,7 @@ function FacilitiesPage() {
             </div>
 
             <div className="fc-badge absolute -bottom-6 -left-6 md:-bottom-8 md:-left-10 bg-paper/95 backdrop-blur border border-ink/10 px-6 py-5 shadow-2xl">
-              <p className="font-display text-3xl text-navy-deep leading-none mb-1">5+</p>
+              <p className="font-display text-3xl text-navy-deep leading-none mb-1">4+</p>
               <p className="text-[0.6rem] font-bold tracking-[0.25em] uppercase text-ink/40">
                 Premium Units
               </p>
@@ -395,7 +394,7 @@ function FacilitiesPage() {
                     <img
                       src={item.img}
                       alt={item.title}
-                      className="w-full h-full object-cover group-hover/img: -0 group-hover/img:scale-105 transition-all duration-700"
+                      className={`w-full h-full ${item.imgClass || 'object-cover'} group-hover/img:scale-105 transition-all duration-700`}
                      loading="lazy" decoding="async"/>
                     <div className="absolute inset-0 bg-navy-deep/20 mix-blend-multiply" />
                   </div>

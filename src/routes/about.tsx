@@ -22,7 +22,7 @@ import elevatorLobby from "@/assets/elevator-lobby-skh.jpg";
 import operatingTheatre from "@/assets/hospital.png";
 import hospitalLobby from "@/assets/lobby-skh.jpg";
 import doctor2 from "@/assets/kapilG.jpeg";
-import doctor3 from "@/assets/manishG-new.jpg";
+import doctor3 from "@/assets/Dr-sumit.jpg";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -30,20 +30,20 @@ export const Route = createFileRoute("/about")({
   component: AboutPage,
   head: () => ({
     meta: [
-      { title: "About Shree Kalyan Hospital Kota | NABH Hospital | Our Story & Specialists" },
+      { title: "About Shree Kalyan Hospital Kota | Our Story & Specialists" },
       {
         name: "description",
         content:
-          "Learn about Shree Kalyan Hospital, Kota's most trusted multi-specialty hospital since 2001. NABH accredited with 150+ beds, 70+ specialists, and expert care in Cardiology, Oncology, Neurosciences & Surgery.",
+          "Learn about Shree Kalyan Hospital, Kota's most trusted multi-specialty hospital since 2019. 30 beds, 5+ specialists, and expert care in Cardiology, Oncology, Neurosciences & Surgery.",
       },
       {
         name: "keywords",
         content:
-          "about shree kalyan hospital kota, best hospital kota history, NABH accredited hospital kota, top doctors kota rajasthan, kapil gautam hospital kota, hospital since 2001 kota",
+          "about shree kalyan hospital kota, best hospital kota history, top doctors kota rajasthan, dr kapil gautam hospital kota, hospital since 2019 kota",
       },
       { name: "robots", content: "index, follow" },
-      { property: "og:title", content: "About Shree Kalyan Hospital Kota | NABH Accredited Since 2001" },
-      { property: "og:description", content: "Kota's leading multi-specialty hospital since 2001. NABH accredited, 150+ beds, expert Cardiology, Oncology & Neurosciences care." },
+      { property: "og:title", content: "About Shree Kalyan Hospital Kota | Since 2019" },
+      { property: "og:description", content: "Kota's leading multi-specialty hospital since 2019. 30 beds, expert Cardiology, Oncology & Neurosciences care." },
       { property: "og:url", content: "https://shreekalyanhospital.com/about" },
     ],
   }),
@@ -51,28 +51,28 @@ export const Route = createFileRoute("/about")({
 
 const TIMELINE = [
   {
-    year: "2001",
+    year: "2019",
     subtitle: "Genesis",
     title: "The Foundation",
     desc: "Shree Kalyan Hospital opens its doors as a specialized surgical center in Kota, Rajasthan — built on a single obsession: unhurried care.",
   },
   {
-    year: "2008",
+    year: "2021",
     subtitle: "Innovation",
     title: "Technological Leap",
-    desc: "Introduction of the first robotic-assisted surgery suite in the region, setting a new standard for precision and minimal-invasive procedures.",
+    desc: "Introduction of advanced diagnostic and surgical technology, setting a new standard for precision and minimal-invasive procedures.",
   },
   {
-    year: "2015",
+    year: "2023",
     subtitle: "Growth",
     title: "Regional Expansion",
     desc: "Expansion into a multi-specialty regional landmark with dedicated centres for Cardiology, Oncology, and state-of-the-art Neurosciences.",
   },
   {
-    year: "2024+",
+    year: "2026",
     subtitle: "Future",
     title: "Legacy of Care",
-    desc: "Celebrating over 1 million lives touched, consecutive NABH re-accreditations, and continuing our mission.",
+    desc: "Celebrating thousands of lives touched and continuing our mission of compassionate healthcare.",
   },
 ];
 
@@ -80,14 +80,14 @@ const LEADERSHIP = [
   {
     img: doctor2,
     role: "Founder & Managing Director",
-    name: "Kapil Ji",
-    desc: "Visionary behind Shree Kalyan Hospital, Kapil Ji built the institution from the ground up with a single mission: bring quality healthcare to Kota.",
+    name: "CEO Kapil Gautam",
+    desc: "The visionary behind Shree Kalyan Hospital, CEO Kapil Gautam built the institution from the ground up with a singular mission: to bring world-class, accessible healthcare to the community of Kota.",
   },
   {
     img: doctor3,
     role: "Senior Consultant Oncologist",
-    name: "Dr. Manish Ji",
-    desc: "Expert in oncology and cancer care, Dr. Manish Ji leads our Oncology department with compassion and clinical excellence.",
+    name: "Dr. Manish Gautam",
+    desc: "An expert in oncology and advanced cancer care, Dr. Manish Gautam leads our Oncology department with unwavering compassion, clinical excellence, and a commitment to patient-centric treatment.",
   },
 ];
 
@@ -306,11 +306,11 @@ function AboutPage() {
       {/* 1. EDITORIAL HERO SECTION */}
       <section className="relative w-full pt-32 pb-20 px-6 md:px-12 lg:px-24 flex flex-col justify-center bg-paper hero-section border-b border-navy/5">
         <div className="max-w-[1600px] mx-auto w-full relative z-10 grid grid-cols-12 gap-y-16 gap-x-8 items-center lg:items-end">
-          <div className="col-span-12 lg:col-span-8 order-2 lg:order-1 relative z-20">
+          <div className="col-span-12 order-2 lg:order-1 relative z-20">
             <div className="mb-8 flex items-center gap-6" data-anim="hero-eyebrow">
               <span className="h-px w-16 bg-navy-deep"></span>
               <span className="text-[0.65rem] font-syne uppercase tracking-[0.4em] font-bold text-navy-deep">
-                Established 2001
+                Established 2019
               </span>
             </div>
 
@@ -341,7 +341,7 @@ function AboutPage() {
             >
               <div className="flex flex-col">
                 <span className="font-display font-light text-4xl text-navy-deep">
-                  150<span className="text-magenta">+</span>
+                  30
                 </span>
                 <span className="text-[0.55rem] font-syne uppercase tracking-widest text-ink/60 mt-3 font-bold">
                   Beds Facility
@@ -349,7 +349,7 @@ function AboutPage() {
               </div>
               <div className="flex flex-col">
                 <span className="font-display font-light text-4xl text-navy-deep">
-                  70<span className="text-magenta">+</span>
+                  5<span className="text-magenta">+</span>
                 </span>
                 <span className="text-[0.55rem] font-syne uppercase tracking-widest text-ink/60 mt-3 font-bold">
                   Expert Specialists
@@ -357,7 +357,7 @@ function AboutPage() {
               </div>
               <div className="flex flex-col">
                 <span className="font-display font-light text-4xl text-navy-deep">
-                  23<span className="text-magenta">+</span>
+                  8
                 </span>
                 <span className="text-[0.55rem] font-syne uppercase tracking-widest text-ink/60 mt-3 font-bold">
                   Years of Service
@@ -366,35 +366,7 @@ function AboutPage() {
             </div>
           </div>
 
-          <div className="col-span-12 lg:col-span-4 order-1 lg:order-2 relative">
-            <div
-              className="relative w-full max-w-[480px] mx-auto lg:ml-auto group hero-img-container"
-              data-anim="hero-image"
-            >
-              <div className="absolute inset-0 border border-navy/15 translate-x-3 translate-y-3 md:translate-x-6 md:translate-y-6 pointer-events-none transition-transform duration-700 group-hover:translate-x-8 group-hover:translate-y-8 z-0"></div>
-              <div className="relative bg-navy/5 overflow-hidden" style={{height: '560px'}}>
-                <img
-                  src={founderDoctor}
-                  alt="Kapil Ji"
-                  className="w-full h-full object-cover object-center transition-all duration-[2s] group-hover: -0"
-                  fetchPriority="high"
-                  decoding="async"
-                />
-              </div>
-              <div
-                className="absolute -bottom-10 -left-6 md:-left-12 bg-navy-deep p-6 md:p-8 shadow-editorial z-30 max-w-[240px]"
-                data-anim="hero-badge"
-              >
-                <ArrowDownRight className="w-8 h-8 text-magenta mb-6" />
-                <p className="font-display italic text-paper text-2xl leading-none mb-3">
-                  Shree Kalyan Kota
-                </p>
-                <p className="text-[0.6rem] font-syne uppercase tracking-[0.2em] text-paper/60 font-bold hidden sm:block">
-                  Trusted Since 2001
-                </p>
-              </div>
-            </div>
-          </div>
+
         </div>
       </section>
 
@@ -414,23 +386,23 @@ function AboutPage() {
         <div className="space-y-12">
           {[
             {
-              year: "2001",
+              year: "2019",
               event: "Shree Kalyan Hospital founded with a vision to provide quality surgical care in Kota.",
             },
             {
-              year: "2008",
-              event: "Expansion into a multi-specialty center with the addition of a dedicated Cardiology unit.",
-            },
-            {
-              year: "2015",
-              event: "Received NABH accreditation, reinforcing our commitment to patient safety and quality care.",
-            },
-            {
               year: "2021",
-              event: "Inauguration of our advanced Oncology and Critical Care departments.",
+              event: "Expansion into a multi-specialty center with the addition of dedicated Cardiology and General Medicine units.",
+            },
+            {
+              year: "2023",
+              event: "Reinforcing our commitment to patient safety and quality care through continuous improvements.",
             },
             {
               year: "2024",
+              event: "Inauguration of our advanced Oncology and Critical Care departments.",
+            },
+            {
+              year: "2026",
               event: "Continuing our mission to provide compassionate healthcare to the people of Rajasthan.",
             },
           ].map((m, i) => (
@@ -498,7 +470,7 @@ function AboutPage() {
           {[1, 2].map((group) => (
             <div key={group} className="flex items-center gap-16 px-8 w-1/2 justify-around">
               <span className="font-display font-light italic text-3xl md:text-5xl flex items-center gap-6">
-                <Award className="w-10 h-10" /> NABH Accredited
+                <Award className="w-10 h-10" /> Trusted Care
               </span>
               <span className="h-2 w-2 rounded-full bg-paper/50"></span>
               <span className="font-display font-light italic text-3xl md:text-5xl">
@@ -529,7 +501,7 @@ function AboutPage() {
             </div>
             <div className="absolute top-8 -right-8 origin-bottom-right -rotate-90 hidden lg:block">
               <p className="text-[0.55rem] font-syne uppercase tracking-[0.4em] text-navy-deep font-bold mix-blend-multiply">
-                Origin · 2001
+                Origin · 2019
               </p>
             </div>
           </div>
@@ -547,11 +519,11 @@ function AboutPage() {
 
             <div className="space-y-6 text-ink/75 text-lg font-light leading-relaxed">
               <p>
-                What started as a modest surgical center in 2001 has grown into a leading 
+                What started as a modest surgical center in 2019 has grown into a leading 
                 multi-specialty hospital, but our mission remains the same: the patient always comes first.
               </p>
               <p>
-                Founded by <strong>Kapil Ji</strong>, Shree Kalyan Hospital was built 
+                Founded by <strong>CEO Kapil Gautam</strong>, Shree Kalyan Hospital was built 
                 to bridge the gap in quality healthcare for the people of Kota and nearby regions. 
                 He understood that while technology is essential, true healing happens through 
                 personal attention and empathy.

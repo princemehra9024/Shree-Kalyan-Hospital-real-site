@@ -1,4 +1,4 @@
-﻿import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute } from "@tanstack/react-router";
 import { useState, useRef, useEffect } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -7,7 +7,7 @@ import { SiteNav } from "@/components/site/SiteNav";
 import { SiteFooter } from "@/components/site/SiteFooter";
 
 import abstractCorridor from "@/assets/corridor.png";
-import hospitalLobby from "@/assets/reception.png";
+import hospitalLobby from "@/assets/DSC_0710.JPG";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -42,6 +42,32 @@ export const Route = createFileRoute("/faqs")({
 
 /* ── Categorized FAQ Data ── */
 const FAQ_CATEGORIES = [
+  {
+    id: "oncology",
+    title: "Oncology & Hematology",
+    items: [
+      {
+        q: "What is the role of a Medical Oncohematologist?",
+        a: "A Medical Oncohematologist specializes in the diagnosis and medical treatment of solid tumors and blood-related cancers. Our dedicated specialists provide comprehensive, personalized care protocols based on the latest evidence-based therapies.",
+      },
+      {
+        q: "Do you perform Bone Marrow tests and treatments?",
+        a: "Yes. Our facility is equipped for precise bone marrow aspirations and biopsies to diagnose complex blood disorders. We provide comprehensive care for bone marrow related conditions with advanced therapeutic support.",
+      },
+      {
+        q: "What should I expect during Chemotherapy?",
+        a: "Chemotherapy is administered in our specialized, comfortable day-care oncology suites. Our treatments are strictly monitored by experienced oncologists and trained nurses to ensure optimal efficacy while proactively managing any side effects.",
+      },
+      {
+        q: "Are Immunotherapy and Targeted Therapy available?",
+        a: "Yes. We offer advanced immunotherapy and targeted therapies that harness your immune system or focus on specific cancer cell markers. These cutting-edge options provide highly personalized care with potentially fewer systemic side effects.",
+      },
+      {
+        q: "How does the multi-disciplinary Tumor Board help?",
+        a: "Our Tumor Board brings together medical oncologists, surgeons, radiologists, and pathologists. They collaboratively review complex cases to design a cohesive, comprehensive treatment strategy, ensuring every patient receives the best possible care.",
+      },
+    ],
+  },
   {
     id: "clinical",
     title: "Clinical Care & Surgery",
@@ -531,7 +557,7 @@ function FAQsPage() {
               <ArrowRight className="size-4 group-hover:translate-x-1 transition-transform" />
             </a>
             <a
-              href="tel:+918529219330"
+              href="tel:+919462937447"
               className="border border-paper/30 px-10 py-5 text-[0.65rem] font-syne font-bold uppercase tracking-widest text-paper hover:bg-white/10 transition-colors text-center"
             >
               Call Concierge

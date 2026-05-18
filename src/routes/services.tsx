@@ -22,7 +22,7 @@ export const Route = createFileRoute("/services")({
       {
         name: "description",
         content:
-          "Shree Kalyan Hospital Kota offers expert medical services: Cardiology, Oncology, Neurosciences, Critical Care, Orthopaedics, Surgery & more. NABH accredited hospital in Kota, Rajasthan.",
+          "Shree Kalyan Hospital Kota offers expert medical services: Cardiology, Oncology, Neurosciences, Critical Care, Orthopaedics, Surgery & more. Top multi-specialty hospital in Kota, Rajasthan.",
       },
       {
         name: "keywords",
@@ -33,7 +33,7 @@ export const Route = createFileRoute("/services")({
       { property: "og:title", content: "Medical Services & Specialties | Shree Kalyan Hospital Kota" },
       {
         property: "og:description",
-        content: "Expert Cardiology, Oncology, Neurosciences, Critical Care & Surgery at Shree Kalyan Hospital, Kota's NABH accredited multi-specialty hospital.",
+        content: "Expert Cardiology, Oncology, Neurosciences, Critical Care & Surgery at Shree Kalyan Hospital, Kota's top multi-specialty hospital.",
       },
       { property: "og:url", content: "https://shreekalyanhospital.com/services" },
       { property: "og:type", content: "website" },
@@ -42,21 +42,10 @@ export const Route = createFileRoute("/services")({
   }),
 });
 
-/* Images array to cycle through for hover effects */
-const HOVER_IMAGES = [operatingTheatre, heroCorridor, surgicalTheater, hospitalLobby];
-
 function ServicesPage() {
   const pageRef = useRef<HTMLDivElement>(null);
-  const trackRef = useRef<HTMLDivElement>(null);
-  const hoverImgRef = useRef<HTMLImageElement>(null);
 
   useEffect(() => {
-    // Preload hover images to prevent flicker
-    HOVER_IMAGES.forEach((src) => {
-      const img = new Image();
-      img.src = src;
-    });
-
     const ctx = gsap.context(() => {
       /* ── 1. Hero Reveal ── */
       gsap.fromTo(
@@ -115,50 +104,6 @@ function ServicesPage() {
         );
       });
 
-      /* ── 4. Image Follow Cursor Logic ── */
-      const hoverImage = hoverImgRef.current;
-      const track = trackRef.current;
-
-      if (hoverImage && track) {
-        // Quick setters for performance
-        const xTo = gsap.quickTo(hoverImage, "x", { duration: 0.6, ease: "power3" });
-        const yTo = gsap.quickTo(hoverImage, "y", { duration: 0.6, ease: "power3" });
-
-        const mouseMove = (e: MouseEvent) => {
-          const trackRect = track.getBoundingClientRect();
-          // Calculate mouse position relative to the track container
-          xTo(e.clientX - trackRect.left);
-          yTo(e.clientY - trackRect.top);
-        };
-
-        track.addEventListener("mousemove", mouseMove);
-
-        // Hover event listeners on the rows
-        gsap.utils.toArray<HTMLElement>(".dept-row").forEach((row, i) => {
-          row.addEventListener("mouseenter", () => {
-            // Change image source based on index
-            hoverImage.src = HOVER_IMAGES[i % HOVER_IMAGES.length];
-            gsap.to(hoverImage, {
-              scale: 1,
-              opacity: 0.8,
-              rotate: Math.random() * 6 - 3,
-              duration: 0.4,
-              ease: "back.out(1.5)",
-            });
-          });
-          row.addEventListener("mouseleave", () => {
-            gsap.to(hoverImage, {
-              scale: 0.5,
-              opacity: 0,
-              rotate: 0,
-              duration: 0.3,
-              ease: "power2.in",
-            });
-          });
-        });
-
-        return () => track.removeEventListener("mousemove", mouseMove);
-      }
     }, pageRef);
     return () => ctx.revert();
   }, []);
@@ -218,27 +163,7 @@ function ServicesPage() {
       {/* 2. INTERACTIVE DEPARTMENT LIST          */}
       {/* ═══════════════════════════════════════ */}
       <section className="py-24 md:py-48 px-6 md:px-12 lg:px-24">
-        {/* Track Container for Floating Image */}
-        <div ref={trackRef} className="max-w-[1600px] mx-auto relative relative-track">
-          {/* Centered Floating Image that follows cursor */}
-          <img
-            ref={hoverImgRef}
-            src={operatingTheatre}
-            alt="Department Preview"
-            className="hidden lg:block fixed pointer-events-none z-0 object-cover mix-blend-multiply"
-            loading="lazy"
-            decoding="async"
-            style={{
-              width: "450px",
-              height: "550px",
-              opacity: 0,
-              scale: 0.5,
-              transform: "translate(-50%, -50%)", // perfectly center on cursor
-              left: 0,
-              top: 0, // rely on GSAP quickTo
-            }}
-          />
-
+        <div className="max-w-[1600px] mx-auto relative">
           <div className="flex flex-col border-t border-navy/10 relative z-10">
             {services.map((dept, i) => (
               <Link
@@ -329,10 +254,10 @@ function ServicesPage() {
               <ArrowRight className="size-4 group-hover:translate-x-1 transition-transform" />
             </Link>
             <a
-              href="tel:+918529219330"
+              href="tel:+919462937447"
               className="bg-transparent border border-white/20 text-paper px-12 py-6 text-[0.65rem] font-syne font-bold tracking-[0.3em] uppercase hover:border-paper transition-colors inline-block text-center mt-4 sm:mt-0"
             >
-              Call +91 85292 19330
+              Call +91 94629 37447
             </a>
           </div>
         </div>

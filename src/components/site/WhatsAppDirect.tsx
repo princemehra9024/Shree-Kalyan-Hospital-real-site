@@ -145,7 +145,7 @@ export function WhatsAppDirect() {
       {/* ── Main button ── */}
       <a
         ref={buttonRef}
-        href="https://wa.me/918529219330?text=Hello%2C%20I%20would%20like%20to%20connect%20with%20Shree%20Kalyan%20Hospital."
+        href="https://wa.me/919462937447?text=Hello%2C%20I%20would%20like%20to%20connect%20with%20Shree%20Kalyan%20Hospital."
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Chat with us on WhatsApp"

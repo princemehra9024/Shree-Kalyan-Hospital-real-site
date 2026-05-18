@@ -201,10 +201,10 @@ export function SiteNav({ isHome = false }: { isHome?: boolean }) {
                 <AlertTriangle className="size-3.5" /> Emergency
               </button>
               <a
-                href="tel:8529219330"
+                href="tel:9462937447"
                 className="flex items-center gap-2 hover:text-magenta transition-colors"
               >
-                <Phone className="size-3.5 text-magenta" /> +91 85292 19330
+                <Phone className="size-3.5 text-magenta" /> +91 94629 37447
               </a>
               <a
                 href="mailto:info@shreekalyan.in"

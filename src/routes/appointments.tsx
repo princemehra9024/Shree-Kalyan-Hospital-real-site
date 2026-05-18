@@ -58,7 +58,7 @@ export const Route = createFileRoute("/appointments")({
       {
         name: "description",
         content:
-          "Book your OPD or specialist appointment at Shree Kalyan Hospital, Kota's best multi-specialty hospital. Online appointment booking, 70+ expert doctors, 24/7 emergency. Kota, Rajasthan.",
+          "Book your OPD or specialist appointment at Shree Kalyan Hospital, Kota's best multi-specialty hospital. Online appointment booking, 5+ expert doctors, 24/7 emergency. Kota, Rajasthan.",
       },
       {
         name: "keywords",
@@ -69,7 +69,7 @@ export const Route = createFileRoute("/appointments")({
       { property: "og:title", content: "Book Appointment | Shree Kalyan Hospital Kota" },
       {
         property: "og:description",
-        content: "Online appointment booking at Shree Kalyan Hospital Kota. 70+ specialists, 24/7 emergency, NABH accredited.",
+        content: "Online appointment booking at Shree Kalyan Hospital Kota. 5+ specialists, 24/7 emergency.",
       },
       { property: "og:url", content: "https://shreekalyanhospital.com/appointments" },
       { property: "og:type", content: "website" },
@@ -83,13 +83,13 @@ export const Route = createFileRoute("/appointments")({
           "@type": "MedicalBusiness",
           name: "Shree Kalyan Hospital",
           url: "https://shreekalyanhospital.com",
-          telephone: "+918529219330",
+          telephone: "+919462937447",
           address: {
             "@type": "PostalAddress",
-            streetAddress: "28B, R K Puram Rd, Sector B, Rama Krishna Puram",
+            streetAddress: "28B, R.K Puram , Sector B",
             addressLocality: "Kota",
             addressRegion: "Rajasthan",
-            postalCode: "324005",
+            postalCode: "324010",
             addressCountry: "IN",
           },
           openingHoursSpecification: [
@@ -97,7 +97,13 @@ export const Route = createFileRoute("/appointments")({
               "@type": "OpeningHoursSpecification",
               dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
               opens: "09:00",
-              closes: "20:00",
+              closes: "13:00",
+            },
+            {
+              "@type": "OpeningHoursSpecification",
+              dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+              opens: "15:00",
+              closes: "19:00",
             },
           ],
           medicalSpecialty: [
@@ -361,7 +367,7 @@ function AppointmentsPage() {
                 <ArrowRight className="size-4 group-hover:translate-x-1 transition-transform" />
               </a>
               <a
-                href="tel:+918529219330"
+                href="tel:+919462937447"
                 className="inline-flex items-center gap-3 border border-ink/20 px-10 py-5 text-[0.65rem] font-bold tracking-[0.3em] uppercase text-ink hover:border-magenta hover:text-magenta transition-colors duration-500"
               >
                 <Phone className="size-4" />
@@ -397,7 +403,7 @@ function AppointmentsPage() {
               </p>
             </div>
             <div className="ap-badge absolute -top-6 -right-4 md:-top-8 md:-right-8 bg-paper/95 backdrop-blur border border-ink/10 px-6 py-5 shadow-2xl">
-              <p className="font-display text-3xl text-navy-deep leading-none mb-1">74+</p>
+              <p className="font-display text-3xl text-navy-deep leading-none mb-1">5+</p>
               <p className="text-[0.6rem] font-bold tracking-[0.25em] uppercase text-ink/40">
                 Consultants
               </p>
@@ -462,7 +468,7 @@ function AppointmentsPage() {
             {/* Quick info strip */}
             <div className="mt-8 grid grid-cols-2 gap-4">
               {[
-                { icon: Clock, label: "OPD Hours", value: "09:00 – 20:00" },
+                { icon: Clock, label: "OPD Hours", value: "9:00 AM – 1:00 PM, 3:00 PM – 7:00 PM" },
                 { icon: Phone, label: "Emergency", value: "24 / 7" },
               ].map((item) => (
                 <div key={item.label} className="border border-ink/10 p-5">

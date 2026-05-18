@@ -21,14 +21,14 @@ const resources = {
         hero_subtitle:
           "Experience expert medical treatment with personal attention at Kota's premier multi-specialty hospital. Your health is our first priority.",
         book_appointment: "Book Appointment",
-        emergency: "Emergency Helpline: +91 85292 19330",
+        emergency: "Emergency Helpline: +91 94689 56726",
         specialties_title: "Our Specialized Care",
         specialties_subtitle: "Comprehensive medical services tailored to your needs.",
       },
       about: {
         title: "Our Story",
         subtitle: "A Legacy of Compassion",
-        description: "Since 2001, Shree Kalyan Hospital has been a beacon of hope and healing in Kota. We believe in treating patients with dignity, respect, and the highest standards of medical excellence.",
+        description: "Since 2019, Shree Kalyan Hospital has been a beacon of hope and healing in Kota. We believe in treating patients with dignity, respect, and the highest standards of medical excellence.",
       },
       appointments: {
         title: "Book an Appointment",
@@ -90,14 +90,14 @@ const resources = {
         hero_subtitle:
           "कोटा के प्रमुख मल्टी-स्पेशियलिटी अस्पताल में व्यक्तिगत ध्यान और विशेषज्ञ चिकित्सा उपचार का अनुभव करें। आपका स्वास्थ्य हमारी प्राथमिकता है।",
         book_appointment: "अपॉइंटमेंट बुक करें",
-        emergency: "आपातकालीन हेल्पलाइन: +91 85292 19330",
+        emergency: "आपातकालीन हेल्पलाइन: +91 94689 56726",
         specialties_title: "हमारी विशेषज्ञ देखभाल",
         specialties_subtitle: "आपकी आवश्यकताओं के अनुसार व्यापक चिकित्सा सेवाएं।",
       },
       about: {
         title: "हमारी कहानी",
         subtitle: "करुणा की एक विरासत",
-        description: "2001 से, श्री कल्याण अस्पताल कोटा में आशा और उपचार का प्रतीक रहा है। हम मरीजों के साथ सम्मान और उच्चतम चिकित्सा मानकों के साथ व्यवहार करने में विश्वास रखते हैं।",
+        description: "2019 से, श्री कल्याण अस्पताल कोटा में आशा और उपचार का प्रतीक रहा है। हम मरीजों के साथ सम्मान और उच्चतम चिकित्सा मानकों के साथ व्यवहार करने में विश्वास रखते हैं।",
       },
       appointments: {
         title: "अपॉइंटमेंट बुक करें",

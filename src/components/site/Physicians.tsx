@@ -63,15 +63,15 @@ export function Physicians() {
           <dl className="mt-12 grid grid-cols-3 gap-6 max-w-md">
             <div data-reveal>
               <dt className="text-[0.65rem] tracking-[0.2em] uppercase text-ink/50">Consultants</dt>
-              <dd className="mt-2 font-display text-4xl text-navy-deep">74</dd>
+              <dd className="mt-2 font-display text-4xl text-navy-deep">5</dd>
             </div>
             <div data-reveal>
               <dt className="text-[0.65rem] tracking-[0.2em] uppercase text-ink/50">Beds</dt>
-              <dd className="mt-2 font-display text-4xl text-navy-deep">220</dd>
+              <dd className="mt-2 font-display text-4xl text-navy-deep">30</dd>
             </div>
             <div data-reveal>
               <dt className="text-[0.65rem] tracking-[0.2em] uppercase text-ink/50">Years</dt>
-              <dd className="mt-2 font-display text-4xl text-magenta">25</dd>
+              <dd className="mt-2 font-display text-4xl text-magenta">8</dd>
             </div>
           </dl>
 

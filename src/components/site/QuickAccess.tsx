@@ -153,8 +153,8 @@ const MAIN_CARDS = [
 ];
 
 const STATS = [
-  { value: 500, suffix: "+", label: "Beds" },
-  { value: 150, suffix: "+", label: "Specialists" },
+  { value: 30, suffix: "", label: "Beds" },
+  { value: 5, suffix: "+", label: "Specialists" },
   { value: 25, suffix: "k+", label: "Surgeries / yr" },
   { value: 98, suffix: "%", label: "Patient Satisfaction" },
 ];

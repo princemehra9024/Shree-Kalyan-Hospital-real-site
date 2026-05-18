@@ -15,11 +15,11 @@ import {
 
 import lobbyImg from "@/assets/lobby-skh.jpg";
 import kapilGImg from "@/assets/kapilG.jpeg";
-import otImg from "@/assets/lab-skh.jpg";
+import otImg from "@/assets/hospital-enhanced.png";
 import corridorImg from "@/assets/corridor-skh.jpg";
-import wardImg from "@/assets/ward-skh.jpg";
-import founderDoctor from "@/assets/founder-doctor.png";
-import hospitalExterior from "@/assets/hospital-exterior.jpg";
+import wardImg from "@/assets/ward-garnal.png";
+import recoveryRoomImg from "@/assets/recovery-room-new.jpg";
+import hospitalExterior from "@/assets/DSC_0710.JPG";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -27,11 +27,11 @@ export const Route = createFileRoute("/patient-care")({
   component: PatientCarePage,
   head: () => ({
     meta: [
-      { title: "Patient Care & Experience | Shree Kalyan Hospital Kota | NABH Accredited" },
+      { title: "Patient Care & Experience | Shree Kalyan Hospital Kota" },
       {
         name: "description",
         content:
-          "World-class patient care at Shree Kalyan Hospital Kota. Private suites, 24/7 nursing, continuity of care, cashless insurance, and compassionate oncology support. NABH accredited hospital, Kota.",
+          "World-class patient care at Shree Kalyan Hospital Kota. Private suites, 24/7 nursing, continuity of care, cashless insurance, and compassionate oncology support.",
       },
       {
         name: "keywords",
@@ -42,7 +42,7 @@ export const Route = createFileRoute("/patient-care")({
       { property: "og:title", content: "Patient Care | Shree Kalyan Hospital Kota" },
       {
         property: "og:description",
-        content: "Private suites, 24/7 nursing & compassionate care at Shree Kalyan Hospital, Kota's NABH accredited multi-specialty hospital.",
+        content: "Private suites, 24/7 nursing & compassionate care at Shree Kalyan Hospital, Kota's top multi-specialty hospital.",
       },
       { property: "og:url", content: "https://shreekalyanhospital.com/patient-care" },
       { property: "og:type", content: "website" },
@@ -65,7 +65,7 @@ const STEPS = [
     title: "Arrival & Suite",
     body: "Greeted at the door and escorted to a private recovery suite — climate-controlled, nutritionally curated, and designed around your circadian recovery rhythms.",
     icon: Sparkles,
-    image: lobbyImg,
+    image: hospitalExterior,
   },
   {
     num: "03",
@@ -79,7 +79,7 @@ const STEPS = [
     title: "Recovery & Home",
     body: "Access your encrypted dossier, schedule video follow-ups, and message your care team via the patient portal — complete continuity beyond discharge.",
     icon: HeartHandshake,
-    image: wardImg,
+    image: otImg,
   },
 ];
 
@@ -96,7 +96,7 @@ const STATS = [
   { value: "24", suffix: "/7", label: "Nursing Support" },
   { value: "98", suffix: "%", label: "Satisfaction Rate" },
   { value: "1", suffix: ":3", label: "Nurse-Patient Ratio" },
-  { value: "500", suffix: "+", label: "Beds Capacity" },
+  { value: "30", suffix: "", label: "Beds Facility" },
 ];
 
 /* ──────────────────────────────── */
@@ -458,7 +458,7 @@ function PatientCarePage() {
           {/* Full-bleed photo */}
           <img
             src={kapilGImg}
-            alt="Kapil Ji — Founder, Shree Kalyan Hospital"
+            alt="CEO Kapil Gautam — Founder, Shree Kalyan Hospital"
             className="hero-img-inner absolute inset-0 w-full h-[115%] object-cover object-top -top-[7%]"
             fetchPriority="high"
             decoding="async"
@@ -482,7 +482,7 @@ function PatientCarePage() {
           <div className="absolute bottom-8 left-8 right-8 z-10 flex items-end justify-between gap-4">
             {/* Name card */}
             <div style={{ background: "rgba(10,15,30,0.65)", backdropFilter: "blur(16px)", border: "1px solid rgba(255,255,255,0.08)", padding: "1.25rem 1.5rem" }}>
-              <p className="font-display text-xl text-white leading-tight mb-1">Kapil Ji</p>
+              <p className="font-display text-xl text-white leading-tight mb-1">CEO Kapil Gautam</p>
               <p className="text-[0.55rem] font-syne uppercase tracking-[0.3em] text-magenta font-bold">Founder &amp; Managing Director</p>
               <p className="text-[0.52rem] font-syne uppercase tracking-[0.2em] text-white/35 font-bold mt-0.5">Shree Kalyan Hospital</p>
             </div>
@@ -679,7 +679,7 @@ function PatientCarePage() {
       {/* ════════════════════════════════════ */}
       {/* 4.5 ONCOLOGY & CANCER FOCUS         */}
       {/* ════════════════════════════════════ */}
-      <section className="oncology-focus py-32 md:py-56 px-6 md:px-12 lg:px-24 bg-paper text-navy-deep border-b border-navy/10 relative overflow-hidden flex flex-col items-center justify-center min-h-[80vh]">
+      <section className="oncology-focus py-16 md:py-24 px-6 md:px-12 lg:px-24 bg-paper text-navy-deep border-b border-navy/10 relative overflow-hidden flex flex-col items-center justify-center">
         <div className="relative z-10 max-w-[1000px] mx-auto text-center oncology-text-container">
           <div className="oncology-elem flex justify-center mb-10">
             {/* Small, highly visible, stable pink ribbon icon */}
@@ -725,7 +725,7 @@ function PatientCarePage() {
       {/* ════════════════════════════════════ */}
       {/* 5. AMENITIES + IMAGE GRID           */}
       {/* ════════════════════════════════════ */}
-      <section className="py-32 md:py-48 px-6 md:px-12 lg:px-24 max-w-[1600px] mx-auto">
+      <section className="py-16 md:py-24 px-6 md:px-12 lg:px-24 max-w-[1600px] mx-auto">
         <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-start">
           {/* Left */}
           <div>
@@ -767,7 +767,7 @@ function PatientCarePage() {
             </div>
             <div className="grid-img relative h-[30vh] overflow-hidden">
               <img
-                src={founderDoctor}
+                src={recoveryRoomImg}
                 alt="Expert care"
                 className="w-full h-full object-cover object-top transition-[filter] duration-[2s]"
                 loading="lazy"
@@ -811,7 +811,7 @@ function PatientCarePage() {
           <div className="mt-16 flex items-center justify-center gap-4">
             <div className="w-12 h-px bg-magenta" />
             <span className="text-[0.6rem] font-syne uppercase tracking-[0.3em] text-paper/40 font-bold">
-              Kapil Ji, Founder & Managing Director, Shree Kalyan Hospital
+              CEO Kapil Gautam, Founder & Managing Director, Shree Kalyan Hospital
             </span>
             <div className="w-12 h-px bg-magenta" />
           </div>

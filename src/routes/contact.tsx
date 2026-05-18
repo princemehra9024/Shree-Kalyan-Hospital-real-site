@@ -18,7 +18,7 @@ export const Route = createFileRoute("/contact")({
       {
         name: "description",
         content:
-          "Contact Shree Kalyan Hospital, Kota — 28B, R K Puram Rd, Sector B, Rama Krishna Puram, Kota, Rajasthan 324005. Call +91 85292 19330. 24/7 emergency care. Book OPD appointments Mon–Sat 9AM–8PM.",
+          "Contact Shree Kalyan Hospital, Kota — 28B, R.K Puram , Sector B, Kota, Rajasthan 324010. Call +91 94629 37447. 24/7 emergency care. Book OPD appointments Mon–Sat 9AM–1PM & 3PM–7PM.",
       },
       {
         name: "keywords",
@@ -29,7 +29,7 @@ export const Route = createFileRoute("/contact")({
       { property: "og:title", content: "Contact Shree Kalyan Hospital Kota | 24/7 Emergency" },
       {
         property: "og:description",
-        content: "28B, R K Puram Rd, Rama Krishna Puram, Kota, Rajasthan 324005. Call +91 85292 19330. 24/7 emergency, OPD Mon–Sat.",
+        content: "28B, R.K Puram , Sector B, Kota, Rajasthan 324010. Call +91 94629 37447. 24/7 emergency, OPD Mon–Sat.",
       },
       { property: "og:url", content: "https://shreekalyanhospital.com/contact" },
       { property: "og:image", content: exterior },
@@ -269,7 +269,7 @@ function ContactPage() {
                 <ArrowRight className="size-4 group-hover:translate-x-1 transition-transform" />
               </a>
               <a
-                href="tel:+918529219330"
+                href="tel:+919462937447"
                 className="inline-flex items-center gap-3 border border-ink/20 px-10 py-5 text-[0.65rem] font-bold tracking-[0.3em] uppercase text-ink hover:border-magenta hover:text-magenta transition-colors duration-500"
               >
                 <Phone className="size-4" />
@@ -304,7 +304,7 @@ function ContactPage() {
               className="-bottom-6 -left-6 md:-bottom-8 md:-left-10"
             />
             <StatBadge
-              num="74+"
+              num="5+"
               label="Named Consultants"
               className="-top-6 -right-4 md:-top-8 md:-right-8"
             />
@@ -338,15 +338,15 @@ function ContactPage() {
             {
               icon: Phone,
               label: "Admissions",
-              value: "+91 85292 19330",
-              href: "tel:+918529219330",
+              value: "+91 94629 37447",
+              href: "tel:+919462937447",
               accent: false,
             },
             {
               icon: Phone,
               label: "Emergency",
-              value: "+91 85292 19330",
-              href: "tel:+918529219330",
+              value: "+91 94689 56726",
+              href: "tel:+919468956726",
               accent: true,
             },
             {
@@ -503,9 +503,9 @@ function ContactPage() {
                     <>
                       Shree Kalyan Hospital
                       <br />
-                      28B, R K Puram Rd, Sector B
+                      28B, R.K Puram , Sector B
                       <br />
-                      Rama Krishna Puram, Kota 324005
+                      Kota 324010
                     </>
                   ),
                 },
@@ -514,9 +514,9 @@ function ContactPage() {
                   label: "OPD Hours",
                   content: (
                     <>
-                      Mon – Sat
+                      9:00 AM – 1:00 PM
                       <br />
-                      09:00 – 20:00
+                      3:00 PM – 7:00 PM
                     </>
                   ),
                 },

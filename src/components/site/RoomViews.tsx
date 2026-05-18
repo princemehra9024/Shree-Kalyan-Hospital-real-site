@@ -1,10 +1,10 @@
 import { useEffect, useRef, useState, useCallback } from "react";
 import gsap from "gsap";
 import { ArrowRight, ArrowLeft, Maximize2 } from "lucide-react";
-import lobbyImg from "@/assets/lobby-skh.jpg";
-import wardImg from "@/assets/ward-skh.jpg";
-import labImg from "@/assets/lab-skh.jpg";
-import corridorImg from "@/assets/display.png";
+import lobbyImg from "@/assets/reception-new.jpg";
+import wardImg from "@/assets/ward-garnal.png";
+import labImg from "@/assets/lab-skhreal.png";
+import corridorImg from "@/assets/corridor-skh.jpg";
 
 const ROOMS = [
   {

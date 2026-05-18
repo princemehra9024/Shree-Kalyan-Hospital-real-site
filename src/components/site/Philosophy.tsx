@@ -43,7 +43,7 @@ export function Philosophy() {
             </p>
             <p className="mt-8 text-[0.65rem] font-bold tracking-[0.3em] uppercase text-magenta flex items-center gap-4">
               <span className="w-4 h-px bg-magenta" />
-              The founding intent, Kota, est. 2001
+              The founding intent, Kota, est. 2019
             </p>
           </div>
 

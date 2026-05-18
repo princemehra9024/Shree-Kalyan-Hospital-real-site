@@ -42,7 +42,7 @@ export function SiteFooter() {
                   Clinical Excellence
                 </p>
                 <p className="text-[0.6rem] tracking-[0.3em] uppercase text-paper/20">
-                  est. 2001 — Kota
+                  est. 2019 — Kota
                 </p>
               </div>
             </div>
@@ -71,6 +71,11 @@ export function SiteFooter() {
                   Contact
                 </Link>
               </li>
+              <li>
+                <Link to="/medical-disclaimer" className="hover:text-pink transition-colors">
+                  Medical Disclaimer
+                </Link>
+              </li>
             </ul>
           </div>
 
@@ -78,8 +83,8 @@ export function SiteFooter() {
             <p className="text-[0.75rem] md:text-[0.65rem] tracking-[0.3em] uppercase text-paper/40 mb-6 md:mb-10">Reach</p>
             <ul className="space-y-4 text-base font-light text-paper/80">
               <li>
-                <a href="tel:+918529219330" className="hover:text-magenta transition-colors">
-                  +91 85292 19330
+                <a href="tel:+919462937447" className="hover:text-magenta transition-colors">
+                  +91 94629 37447
                 </a>
               </li>
               <li>
@@ -102,7 +107,7 @@ export function SiteFooter() {
                 <span className="text-sm font-light text-paper/60 uppercase tracking-widest">
                   OPD · Mon–Sat
                 </span>
-                <span className="text-sm font-medium">09:00 – 20:00</span>
+                <span className="text-sm font-medium">9 AM – 1 PM, 3 PM – 7 PM</span>
               </div>
               <div className="flex justify-between items-center text-pink font-medium">
                 <span className="text-sm uppercase tracking-[0.2em]">Emergency</span>
@@ -115,7 +120,7 @@ export function SiteFooter() {
           <div className="col-span-12 mt-16 md:mt-32 pt-12 md:pt-16 border-t border-white/5 flex flex-col md:flex-row items-start md:items-end justify-between gap-8 md:gap-12 relative">
             <div className="space-y-4 text-[0.7rem] md:text-[0.65rem] tracking-[0.25em] md:tracking-[0.3em] uppercase text-paper/40 leading-relaxed max-w-[85%] md:max-w-none">
               <p className="text-paper/60 font-semibold">© {new Date().getFullYear()} Shree Kalyan Hospital</p>
-              <p>28B, R K Puram Rd, Sector B, Rama Krishna Puram, Kota</p>
+              <p>28B, R.K Puram , Sector B, Kota 324010</p>
             </div>
 
             <div className="text-left md:text-right mt-4 md:mt-0">

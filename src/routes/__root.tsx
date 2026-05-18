@@ -17,8 +17,8 @@ const hospitalSchema = {
   logo: "https://shreekalyanhospital.com/favicon.svg",
   image: "https://shreekalyanhospital.com/og-image.jpg",
   description:
-    "Shree Kalyan Hospital is the best multi-specialty hospital in Kota, Rajasthan, offering 24/7 emergency care, advanced cardiology, oncology, neurosciences, orthopaedics, critical ICU care, and surgical services. NABH accredited since 2001.",
-  telephone: "+918529219330",
+    "Shree Kalyan Hospital is the best multi-specialty hospital in Kota, Rajasthan, offering 24/7 emergency care, advanced cardiology, oncology, neurosciences, orthopaedics, critical ICU care, and surgical services. Trusted since 2019.",
+  telephone: "+919462937447",
   email: "info@shreekalyan.in",
   priceRange: "₹₹",
   currenciesAccepted: "INR",
@@ -26,7 +26,7 @@ const hospitalSchema = {
   contactPoint: [
     {
       "@type": "ContactPoint",
-      telephone: "+918529219330",
+      telephone: "+919468956726",
       contactType: "emergency",
       availableLanguage: ["en", "hi"],
       contactOption: "TollFree",
@@ -34,17 +34,17 @@ const hospitalSchema = {
     },
     {
       "@type": "ContactPoint",
-      telephone: "+918529219330",
+      telephone: "+919462937447",
       contactType: "customer service",
       availableLanguage: ["en", "hi"],
     },
   ],
   address: {
     "@type": "PostalAddress",
-    streetAddress: "28B, R K Puram Rd, Sector B, Rama Krishna Puram",
+    streetAddress: "28B, R.K Puram , Sector B",
     addressLocality: "Kota",
     addressRegion: "Rajasthan",
-    postalCode: "324005",
+    postalCode: "324010",
     addressCountry: "IN",
   },
   geo: {
@@ -93,10 +93,10 @@ const hospitalSchema = {
   ],
   founder: {
     "@type": "Person",
-    name: "Kapil Ji",
+    name: "CEO Kapil Gautam",
     jobTitle: "Founder & Managing Director, Shree Kalyan Hospital",
   },
-  numberOfBeds: 150,
+  numberOfBeds: 30,
   isAcceptingNewPatients: true,
   availableService: [
     { "@type": "MedicalTherapy", name: "24/7 Emergency Care" },
@@ -106,14 +106,13 @@ const hospitalSchema = {
     { "@type": "MedicalTherapy", name: "ICU Critical Care Kota" },
     { "@type": "MedicalTherapy", name: "Cashless Insurance Treatment" },
   ],
-  award: ["NABH Accredited Hospital", "ISO 9001:2015 Certified"],
+  award: ["ISO 9001:2015 Certified"],
   knowsAbout: [
     "Best hospital in Kota",
     "Multi-specialty hospital Kota Rajasthan",
     "Heart specialist Kota",
     "Cancer treatment Kota",
     "Emergency hospital Kota",
-    "NABH hospital Kota",
   ],
 };
 
@@ -223,16 +222,16 @@ export const Route = createRootRoute({
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Best Hospital in Kota | Shree Kalyan Hospital | NABH Accredited Multi-Specialty Care" },
+      { title: "Best Hospital in Kota | Shree Kalyan Hospital | Multi-Specialty Care" },
       {
         name: "description",
         content:
-          "Shree Kalyan Hospital Kota — NABH accredited, 150+ bed multi-specialty hospital. Expert care in Cardiology, Oncology, Neurosciences, ICU & Emergency. Serving Kota, Rajasthan since 2001.",
+          "Shree Kalyan Hospital Kota — 30 bed multi-specialty hospital. Expert care in Cardiology, Oncology, Neurosciences, ICU & Emergency. Serving Kota, Rajasthan since 2019.",
       },
       {
         name: "keywords",
         content:
-          "best hospital in kota, hospital kota rajasthan, NABH hospital kota, multi specialty hospital kota, heart specialist kota, cancer treatment kota, neurology hospital kota, ICU hospital kota, 24 hour emergency hospital kota, shree kalyan hospital, top hospital kota, hospital near me kota, cardiology kota, oncology kota",
+          "best hospital in kota, hospital kota rajasthan, multi specialty hospital kota, heart specialist kota, cancer treatment kota, neurology hospital kota, ICU hospital kota, 24 hour emergency hospital kota, shree kalyan hospital, top hospital kota, hospital near me kota, cardiology kota, oncology kota",
       },
       { name: "author", content: "Shree Kalyan Hospital, Kota" },
       { name: "robots", content: "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" },
@@ -243,7 +242,7 @@ export const Route = createRootRoute({
       { property: "og:title", content: "Best Hospital in Kota | Shree Kalyan Hospital" },
       {
         property: "og:description",
-        content: "NABH accredited multi-specialty hospital in Kota, Rajasthan. Expert Cardiology, Oncology, Neurosciences & 24/7 Emergency. Trusted since 2001.",
+        content: "Multi-specialty hospital in Kota, Rajasthan. Expert Cardiology, Oncology, Neurosciences & 24/7 Emergency. Trusted since 2019.",
       },
       { property: "og:type", content: "website" },
       { property: "og:url", content: "https://shreekalyanhospital.com" },
@@ -254,7 +253,7 @@ export const Route = createRootRoute({
       { name: "twitter:title", content: "Best Hospital in Kota | Shree Kalyan Hospital" },
       {
         name: "twitter:description",
-        content: "NABH accredited multi-specialty hospital in Kota. 24/7 emergency, advanced Cardiology, Oncology & more.",
+        content: "Multi-specialty hospital in Kota. 24/7 emergency, advanced Cardiology, Oncology & more.",
       },
       { name: "theme-color", content: "#03061a" },
     ],
